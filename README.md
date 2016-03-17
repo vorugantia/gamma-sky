@@ -1,2 +1,6 @@
-# gamma-sky
-Repository for the gamma-sky.net webpage
+# gamma-sky.net
+
+Repository for http://gamma-sky.net/
+
+Not implemented yet.
+Come back soon!
