@@ -13,7 +13,7 @@ var aladin = A.aladin(
 var catalog = A.catalogFromVizieR(
   'J/ApJS/218/23/table4',
   '0 +0',
-  180, // TODO: Make this load faster.
+  180, // TODO: Make this load faster
   {
     onClick: 'showTable'
   }
