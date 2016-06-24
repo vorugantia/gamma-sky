@@ -1,7 +1,11 @@
 var aladin = A.aladin(
   '#aladin-lite-div',
   {
-    target: 'Crab',
+    fullScreen: true,
+    showFullscreenControl: false,
+    survey: 'P/Fermi/color',
+    cooFrame: 'galactic',
+    target: '0 +0',
     fov: 30
   }
 );
@@ -9,7 +13,7 @@ var aladin = A.aladin(
 var catalog = A.catalogFromVizieR(
   'J/ApJS/218/23/table4',
   'Crab',
-  10,
+  180, // TODO: Make this load faster
   {
     onClick: 'showTable'
   }
