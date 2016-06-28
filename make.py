@@ -1,0 +1,23 @@
+"""Make gamma-sky.net input data.
+"""
+import click
+import gammasky
+
+
+@click.group()
+def cli():
+    """The gamma-sky.net Python cli"""
+    pass
+
+@cli.command()
+def catalog():
+    """Make catalog data"""
+    gammasky.prepare_catalog_data()
+
+@cli.command()
+def maps():
+    """Make map data"""
+    gammasky.prepare_maps_data()
+
+if __name__ == '__main__':
+    cli()
