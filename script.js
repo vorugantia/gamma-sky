@@ -65,7 +65,7 @@ var main = function() {
   console.log("Fetching catalog data...");
   window.setTimeout(
     function() {
-      $.getJSON("data/data.json", add_catalog);
+      $.getJSON("data/cat_3fgl.json", add_catalog);
     },
     [5000]
   );
