@@ -10,12 +10,6 @@ __all__ = [
     'make_catalog_data',
 ]
 
-def _dump_json(data, filename):
-    click.secho('Writing {}'.format(filename), fg='green')
-    with open(str(filename), 'w') as fh:
-        json.dump(data, fh)
-        fh.write('\n')
-
 def make_catalog_data():
     click.secho('Making catalog data ...', fg='green')
 
@@ -28,12 +22,14 @@ def make_catalog_data():
       'RAJ2000',
       'DEJ2000',
     ]
+    # For debugging ... just select first 5 sources
+    # table = table[:5]
+
     click.echo('Converting table to pandas dataframe ...')
     df = table[cols].to_pandas()
-    data = df.to_json()
-    from pprint import pprint
-    pprint(data)
+    text = df.to_json()
 
     filename = 'data/cat/cat_2fhl.json'
-    # click.secho('Writing'.format(filename), fg='green')
-    _dump_json(data, filename)
+    click.secho('Writing'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        fh.write(text)
