@@ -35,7 +35,7 @@ function show_map() {
     survey: 'P/Fermi/color',
     cooFrame: 'galactic',
     target: '0 +0',
-    fov: 360,
+    fov: 118,
     allowFullZoomout: true,  //Hidden attribute
     showShareControl: true,  //Hidden attribute. Developer did not finish it yet.
     // showCatalog: false    //Hidden attribute. This will hide the catalog points on the map, but there's no way to display them again
