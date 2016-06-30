@@ -25,7 +25,7 @@
 // );
 
 var map;
-var catalog;
+// var catalog;
 
 function show_map() {
   console.log("This is a show_map");
@@ -35,39 +35,82 @@ function show_map() {
     survey: 'P/Fermi/color',
     cooFrame: 'galactic',
     target: '0 +0',
-    fov: 30
+    fov: 360,
+    allowFullZoomout: true,  //Hidden attribute
+    showShareControl: true,  //Hidden attribute. Developer did not finish it yet.
+    // showCatalog: false    //Hidden attribute. This will hide the catalog points on the map, but there's no way to display them again
+
   });
+
   console.log(map);
 }
 
-var add_catalog = function(data) {
+// var add_catalog = function(data) {
+function add_catalog(catalogName, catalogColor, data) {
   console.log("This is add_catalog");
-  catalog = data;
-  var cat = A.catalog();
+  var catalog = data;
+  var cat = A.catalog({
+    name: catalogName,
+    color: catalogColor,
+    onClick: "showPopup"  //TODO Show the popup on mouse over?
+  });
   map.addCatalog(cat);
 
   var n_sources = Object.keys(catalog.Source_Name).length;
   console.log(n_sources);
+
   for(var i=0; i < n_sources; i++) {
-    // console.log(i, catalog[i]);
-    var ra = catalog['RAJ2000'][i.toString()];
-    var dec = catalog['DEJ2000'][i.toString()];
-    console.log(ra);
-    var marker = A.marker(ra, dec);
+
+
+    var source = {
+      name: catalog['Source_Name'][i.toString()],
+      ra: catalog['RAJ2000'][i.toString()],
+      dec: catalog['DEJ2000'][i.toString()],
+      // glon: catalog['GLON'][i.toString()]
+      // glon: catalog['GLON'][i.toString()],
+      // glat: catalog['GLAT'][i.toString()]
+
+    };
+    //TODO Have the above components for source generated from a helper function
+
+    // console.log(source);
+    var html_template = $("#source-template").html();
+    var template = Handlebars.compile(html_template);
+    var popupDesc = template(source);
+    var marker = A.marker(
+      source.ra,
+      source.dec,
+      {
+        // popupTitle: source.name,
+        popupDesc: popupDesc
+      });
     cat.addSources([marker]);
-    console.log(marker);
+
+
   }
-};
+
+}
 
 var main = function() {
   console.log("This is main");
   show_map();
-  $.getJSON("data/cat/cat_2fhl.json", add_catalog);
+  $.getJSON("data/cat/cat_3fgl.json", function(data) {
+    add_catalog(
+      "3FGL",
+      "red",
+      data
+    );
+  });
+  $.getJSON("data/cat/cat_2fhl.json", function(data) {
+    add_catalog(
+      "2FHL",
+      "blue",
+      data
+    );
+  });
+
 };
 $(document).ready(main);
-
-
-
 
 $(document).ready(function(){
     var timesClicked = 0;

@@ -9,6 +9,8 @@
 
 <script type="text/javascript" src="static/jquery-1.9.1.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
 <head>
 
   <title>Gamma-sky</title>
@@ -16,6 +18,8 @@
 </head>
 
 <body>
+
+  <!-- <div id="title"></div> -->
 
   <div id="aladin-lite-div"></div>
 
@@ -30,7 +34,7 @@
     <p>Created by <a href="https://github.com/cdeil" target="_blank">Christoph Deil</a> and
        <a href="https://github.com/vorugantia" target="_blank">Arjun Voruganti</a>.</p>
 
-    <p>If you would like to contribute, check out <a href="https://github.com/gammapy/gamma-sky" target="_blank">our repo</a>
+    <p>If you wopd like to contribute, check out <a href="https://github.com/gammapy/gamma-sky" target="_blank">our repo</a>
        or email us.</p>
 
   </div>
@@ -39,7 +43,14 @@
 
 <style>
 
+/*#title {
+  height: 5%;
+  width: 100%;
+  z-index: 5;
+}*/
+
 #aladin-lite-div {
+  /*height: 95%;*/
   height: 100%;
   width: 100%;
   position: relative;
@@ -57,18 +68,19 @@
   bottom: 3px;
   font-size: 14px;
   padding: 4 4 4 4;
+  height: 30px;
   border: 2px solid rgb(50, 50, 50);
 }
 
 #aboutInfo {
   position: absolute;;
   width: 410px;
-  bottom: 35px;
+  bottom: 38px;
   right: 100px;
   padding: 0 1em 0 1em;
   border: 2px solid rgb(50, 50, 50);
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
   display: none;
 }
 
@@ -82,11 +94,43 @@ html, body {
 
 }
 
+table, table tbody, .aladin-popup {
+  width: 270px;
+}
+
+table th {
+  text-align: left;
+  height: 30px;
+}
+
 
 </style>
 
 <!-- <script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.js" charset="utf-8"></script> -->
 <!-- TODO: make src .min.js -->
 <script type="text/javascript" src="static/aladin.min.js"></script>
+
+<script id="source-template" type="text/x-handlebars-template">
+
+  <div>
+    <table>
+      <tbody>
+        <tr>
+          <th>Source_Name</th>
+          <td>{{name}}</td>
+        </tr>
+        <tr>
+          <th>ra</th>
+          <td>{{ra}}</td>
+        </tr>
+        <tr>
+          <th>dec</th>
+          <td>{{dec}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</script>
 
 <script src="script.js" charset="utf-8"></script>
