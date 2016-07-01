@@ -45,7 +45,6 @@ function show_map() {
   console.log(map);
 }
 
-// var add_catalog = function(data) {
 function add_catalog(catalogName, catalogColor, data) {
   console.log("This is add_catalog");
   var catalog = data;
@@ -66,7 +65,6 @@ function add_catalog(catalogName, catalogColor, data) {
       name: catalog['Source_Name'][i.toString()],
       ra: catalog['RAJ2000'][i.toString()],
       dec: catalog['DEJ2000'][i.toString()],
-      // glon: catalog['GLON'][i.toString()]
       // glon: catalog['GLON'][i.toString()],
       // glat: catalog['GLAT'][i.toString()]
 
