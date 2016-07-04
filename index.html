@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 
+<!-- TODO delete "static" directory if we don't need to import locally -->
 
-<!-- <link rel="stylesheet" href="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+<link rel="stylesheet" href="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js" charset="utf-8"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js" charset="utf-8"></script>
 
-<link rel="stylesheet" href="static/aladin.css" />
+<!-- <link rel="stylesheet" href="static/aladin.css" />
 
-<script type="text/javascript" src="static/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="static/jquery-1.9.1.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
 <head>
 
-  <title>Gamma-Sky</title>
+  <title>gamma-sky</title>
 
 </head>
 
@@ -27,7 +28,7 @@
 
   <div id="aboutInfo">
 
-    <p>Gamma-Sky.net is an open-source and open-data webpage about the gamma-ray sky.</p>
+    <p>gamma-sky.net is an open-source and open-data webpage about the gamma-ray sky.</p>
 
     <p>More coming soon!</p>
 
@@ -96,39 +97,60 @@ html, body {
 
 table, table tbody, .aladin-popup {
   width: 270px;
+  text-align: left;
 }
 
 table th {
-  text-align: left;
   height: 30px;
 }
 
+.shift {
+  width: 200px;
+}
 
 </style>
 
-<!-- <script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.js" charset="utf-8"></script> -->
-<!-- TODO: make src .min.js -->
-<script type="text/javascript" src="static/aladin.min.js"></script>
+<script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="static/aladin.min.js"></script> -->
 
 <script id="source-template" type="text/x-handlebars-template">
 
   <div>
+
     <table>
       <tbody>
         <tr>
           <th>Source_Name</th>
           <td>{{name}}</td>
         </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
         <tr>
-          <th>RA</th>
+          <th>ra</th>
           <td>{{ra}}</td>
+          <th>dec</th>
+          <td>{{dec}}</td>
         </tr>
         <tr>
-          <th>DEC</th>
-          <td>{{dec}}</td>
+          <th>GLON</th>
+          <td>{{glon}}</td>
+          <th>GLAT</th>
+          <td>{{glat}}</td>
         </tr>
       </tbody>
     </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Assoc</th>
+          <td class="shift">{{assoc}}</td>
+      </tbody>
+    </table>
+
   </div>
 
 </script>

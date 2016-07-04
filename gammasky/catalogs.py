@@ -25,8 +25,10 @@ def make_3fgl_catalog_data():
         'Source_Name',
         'RAJ2000',
         'DEJ2000',
-        # 'GLON',
-        # 'GLAT'
+        'GLON',
+        'GLAT',
+        'ASSOC1'
+
     ]
 
     click.echo('Converting table to pandas dataframe...')
@@ -50,8 +52,9 @@ def make_2fhl_catalog_data():
       'Source_Name',
       'RAJ2000',
       'DEJ2000',
-    #   'GLON',
-    #   'GLAT'
+      'GLON',
+      'GLAT',
+      'ASSOC'
     ]
     # For debugging ... just select first 5 sources
     # table = table[:5]

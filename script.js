@@ -55,21 +55,41 @@ function add_catalog(catalogName, catalogColor, data) {
   });
   map.addCatalog(cat);
 
+
+  console.log(assoc_name);
+
   var n_sources = Object.keys(catalog.Source_Name).length;
   console.log(n_sources);
 
   for(var i=0; i < n_sources; i++) {
 
+    var row = i.toString();
+
+    var round_ra = Math.round(catalog['RAJ2000'][row] * 100) / 100;
+    var round_dec = Math.round(catalog['DEJ2000'][row] * 100) / 100;
+    var round_glon = Math.round(catalog['GLON'][row] * 100) / 100;
+    var round_glat = Math.round(catalog['GLAT'][row] * 100) / 100;
+
+    if(catalogName === "2FHL") {
+      var assoc_name = catalog["ASSOC"][row];
+    }
+    else if(catalogName === "3FGL") {
+      var assoc_name = catalog["ASSOC1"][row];
+    }
 
     var source = {
-      name: catalog['Source_Name'][i.toString()],
-      ra: catalog['RAJ2000'][i.toString()],
-      dec: catalog['DEJ2000'][i.toString()],
-      // glon: catalog['GLON'][i.toString()],
-      // glat: catalog['GLAT'][i.toString()]
+      name: catalog['Source_Name'][row],
+      ra: round_ra,
+      dec: round_dec,
+      glon: round_glon,
+      glat: round_glat,
+      assoc: assoc_name
 
     };
-    //TODO Have the above components for source generated from a helper function
+    //TODO Have the above components for source generated from a helper function'
+
+    //TODO Make pop-up say "Assoc" for 2FGL, "Assoc1" for 3FGL
+    //TODO If assoc for a certain source is blank, don't include Assoc in its pop-up.
 
     // console.log(source);
     var html_template = $("#source-template").html();
