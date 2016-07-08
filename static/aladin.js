@@ -2457,8 +2457,8 @@ Utils.getAjaxObject = function(url, method, dataType, useProxy) {
         else {
             urlToRequest = url;
         }
-        method = method ||Â 'GET';
-        dataType = dataType ||Â null;
+        method = method || 'GET';
+        dataType = dataType || null;
 
         return $.ajax({
             url: urlToRequest,
@@ -4843,7 +4843,7 @@ MOC = (function() {
         options = options || {};
         this.name = options.name || "MOC";
         this.color = options.color || Color.getNextColor();
-        this.opacity = options.opacity ||Â 1;
+        this.opacity = options.opacity || 1;
         this.opacity = Math.max(0, Math.min(1, this.opacity)); // 0 <= this.opacity <= 1
         this.lineWidth = options["lineWidth"] || 1;
 
@@ -4924,7 +4924,7 @@ MOC = (function() {
         for (var orderStr in jsonMOC) {
             if (jsonMOC.hasOwnProperty(orderStr)) {
                 order = parseInt(orderStr);
-                if (this.order===undefined ||Â order > this.order) {
+                if (this.order===undefined || order > this.order) {
                     this.order = order;
                 }
                 for (var k=0; k<jsonMOC[orderStr].length; k++) {
@@ -6755,11 +6755,11 @@ cds.Catalog = (function() {
     	this.sourceSize = options.sourceSize || 6;
     	this.markerSize = options.sourceSize || 12;
     	this.shape = options.shape || "square";
-        this.maxNbSources = options.limit ||Â undefined;
+        this.maxNbSources = options.limit || undefined;
         this.onClick = options.onClick || undefined;
 
-        this.raField = options.raField ||Â undefined; // ID or name of the field holding RA
-        this.decField = options.decField ||Â undefined; // ID or name of the field holding dec
+        this.raField = options.raField || undefined; // ID or name of the field holding RA
+        this.decField = options.decField || undefined; // ID or name of the field holding dec
 
         this.displayLabel = options.displayLabel || false;
         this.labelColor = options.labelColor || this.color;
@@ -7690,7 +7690,7 @@ HpxKey = (function() {
         this.dx = dx || 0; // shift in x (for all-sky tiles)
         this.dy = dy || 0; // shift in y (for all-sky tiles)
 
-        this.allskyTexture = allskyTexture ||Â undefined;
+        this.allskyTexture = allskyTexture || undefined;
         this.allskyTextureSize = allskyTextureSize;
 
         this.parente = 0; // if this key comes from an ancestor, length of the filiation
@@ -7704,7 +7704,7 @@ HpxKey = (function() {
         var hpxKey = new HpxKey(father.norder+1, father.npix*4 + childNb, father.hips, father.width/2, father.height/2,
                                 childNb==2 || childNb==3 ? father.dx+father.width/2 : father.dx, childNb==1 || childNb==3 ? father.dy+father.height/2 : father.dy, father.allskyTexture, father.allskyTextureSize);
         hpxKey.parente = father.parente + 1;
-        hpxKey.ancestor = father.ancestor ||Â father;
+        hpxKey.ancestor = father.ancestor || father;
 
 
         return hpxKey;
@@ -7754,8 +7754,8 @@ HpxKey = (function() {
                 if (!this.allskyTexture && !this.hips.tileSize) {
                     this.hips.tileSize = tile.img.width;
                 }
-                var img = this.allskyTexture ||Â tile.img;
-                var w = this.allskyTextureSize ||Â img.width;
+                var img = this.allskyTexture || tile.img;
+                var w = this.allskyTextureSize || img.width;
                 if (this.parente) {
                     w = w / Math.pow(2, this.parente);
                 }
@@ -10893,7 +10893,7 @@ Aladin = (function() {
 	};
 
     /**** CONSTANTS ****/
-    Aladin.VERSION = "2016-06-17"; // will be filled by the build.sh script
+    Aladin.VERSION = "2016-07-06"; // will be filled by the build.sh script
 
     Aladin.JSONP_PROXY = "http://alasky.u-strasbg.fr/cgi/JSONProxy";
 
