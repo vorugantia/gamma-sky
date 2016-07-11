@@ -1,6 +1,7 @@
 # gamma-sky.net
 
-Repository for http://gamma-sky.net/
+A portal to the gamma-ray sky
 
-Not implemented yet.
-Come back soon!
+* Webpage: http://gamma-sky.net/
+* Repository: https://github.com/gammapy/gamma-sky
+* Documentation: https://github.com/gammapy/gamma-sky/wiki
