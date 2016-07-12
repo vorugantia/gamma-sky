@@ -15,8 +15,8 @@ describe('App: GammaSky', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should have as title \'gamma-sky works!\'',
+  it('should have as title \'GammaSkyAppComponent\'',
       inject([GammaSkyAppComponent], (app: GammaSkyAppComponent) => {
-    expect(app.title).toEqual('gamma-sky works!');
+    expect(app.title).toEqual('GammaSkyAppComponent');
   }));
 });

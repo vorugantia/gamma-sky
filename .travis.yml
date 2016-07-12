@@ -1,0 +1,41 @@
+# This is the travis-ci configuration file for gamma-sky.net
+# Some notes are at the end of this file.
+
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - '6'
+
+addons:
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - google-chrome-stable
+    - google-chrome-beta
+
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+before_script:
+- npm install -g angular-cli
+- npm install -g karma
+- npm install
+- ng build
+
+script: karma start config/karma.conf.js --single-run
+
+
+# We use conda to install the Python dependencies
+# following the instructions here:
+# http://conda.pydata.org/docs/travis.html#using-conda-with-travis-ci
+#
+# And we install Node and the NPM dependencies
+# following the instructions here:
+# https://medium.com/from-the-couch/angular-2-with-travis-ci-922040e01937#.4mevdjoqc
+# See also:
+# https://github.com/antonybudianto/angular2-starter/blob/master/.travis.yml
+# https://github.com/mgechev/angular2-seed/blob/master/.travis.yml
