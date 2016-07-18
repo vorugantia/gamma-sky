@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck} from '@angular/core';
 declare var $: any;
 
 @Component({
@@ -8,18 +8,13 @@ declare var $: any;
   styleUrls: ["about-button.component.css"],
 })
 
-export class AboutButtonComponent implements DoCheck, OnInit {
+export class AboutButtonComponent implements DoCheck {
 
-  timesClicked: any;
+  toggle = false;
 
-  aboutButtonClick() {
+  onClick() {
     $("#aboutInfo").toggle();
-    this.timesClicked++;
-    if (this.timesClicked % 2 === 0) {
-        $("#aboutButton").html("About");
-    } else {
-        $("#aboutButton").html("Close");
-    }
+    this.toggle = !this.toggle;
   }
 
   pageWidth: any;
@@ -42,11 +37,15 @@ export class AboutButtonComponent implements DoCheck, OnInit {
     }
   }
 
-  ngOnInit() {
-    this.timesClicked = 0;
-  }
 
   ngDoCheck() {
+
+    if (this.toggle == false) {
+        $("#aboutButton").html("About");
+    } else {
+        $("#aboutButton").html("Close");
+    }
+
     this.resizeAboutMargin($(document).width());
     }
 }
