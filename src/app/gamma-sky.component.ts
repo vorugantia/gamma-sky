@@ -10,7 +10,6 @@ import {AboutButtonComponent} from "./about-button/about-button.component";
   styleUrls: ['gamma-sky.component.css']
 })
 export class GammaSkyAppComponent implements OnInit {
-  title = "gamma-sky";
 
   ngOnInit() {
   }
