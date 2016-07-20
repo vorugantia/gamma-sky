@@ -43,4 +43,3 @@ describe('Component: AladinMap', () => {
 })
 class AladinMapComponentTestController {
 }
-
