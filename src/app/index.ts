@@ -1,2 +1,2 @@
-export {environment} from './environment';
-export {GammaSkyAppComponent} from './gamma-sky.component';
+export * from './environment';
+export * from './app.component';
