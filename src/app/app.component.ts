@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import { MapViewComponent } from './map-view/map-view.component';
+// import { MapViewComponent } from './map-view/map-view.component';
+// import { CatViewComponent } from './cat-view/cat-view.component';
 
 @Component({
   moduleId: module.id,
