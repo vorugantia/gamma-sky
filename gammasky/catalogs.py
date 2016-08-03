@@ -20,7 +20,7 @@ __all__ = [
 def make_3fgl_catalog_data():
     click.secho('Making 3FGL catalog data...', fg='green')
 
-    out_dir = Path('data/cat')
+    out_dir = Path('src/app/data/cat')
     out_dir.mkdir(parents=True, exist_ok=True)
 
     table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/fermi/gll_psc_v16.fit.gz?raw=true')
@@ -47,7 +47,7 @@ def make_3fgl_catalog_data():
     df = table[cols].to_pandas()
     text = df.to_json()
 
-    filename = 'data/cat/cat_3fgl.json'
+    filename = 'src/app/data/cat/cat_3fgl.json'
     click.secho('Writing 3fgl {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         fh.write(text)
@@ -56,7 +56,7 @@ def make_3fgl_catalog_data():
 def make_2fhl_catalog_data():
     click.secho('Making 2FHL catalog data ...', fg='green')
 
-    out_dir = Path('data/cat')
+    out_dir = Path('src/app/data/cat')
     out_dir.mkdir(parents=True, exist_ok=True)
 
     table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/fermi/gll_psch_v08.fit.gz?raw=true')
@@ -80,7 +80,7 @@ def make_2fhl_catalog_data():
     df = table[cols].to_pandas()
     text = df.to_json()
 
-    filename = 'data/cat/cat_2fhl.json'
+    filename = 'src/app/data/cat/cat_2fhl.json'
     click.secho('Writing 2fhl {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         fh.write(text)
@@ -89,7 +89,7 @@ def make_2fhl_catalog_data():
 def make_snrcat_catalog_data():
     click.secho('Making SNRcat catalog data...', fg='green')
 
-    out_dir = Path('data/cat')
+    out_dir = Path('src/app/data/cat')
     out_dir.mkdir(parents=True, exist_ok=True)
 
     table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/snrcat.fits.gz?raw=true')
@@ -111,7 +111,7 @@ def make_snrcat_catalog_data():
     df = table[cols].to_pandas()
     text = df.to_json()
 
-    filename = 'data/cat/cat_snrcat.json'
+    filename = 'src/app/data/cat/cat_snrcat.json'
     click.secho('Writing SNRcat {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         fh.write(text)

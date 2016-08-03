@@ -1,3 +1,9 @@
+"use strict";
+
+// SystemJS configuration file, see links for more information
+// https://github.com/systemjs/systemjs
+// https://github.com/systemjs/systemjs/blob/master/docs/config-api.md
+
 /***********************************************************************************************
  * User Configuration.
  **********************************************************************************************/
@@ -18,6 +24,7 @@ const barrels: string[] = [
   '@angular/core',
   '@angular/common',
   '@angular/compiler',
+  '@angular/forms',
   '@angular/http',
   '@angular/router',
   '@angular/platform-browser',
@@ -29,7 +36,16 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
-  'app/aladin-map',
+  'app/map-view',
+  'app/cat-view',
+  'app/switch-view',
+  'app/map-view/map',
+  'app/map-view/about-button',
+  'app/cat-view/cat-search',
+  'app/cat-view/cat-help',
+  'app/cat-view/cat-source/cat-source-2fhl',
+  'app/widgets/cat-source/cat-source-3fgl',
+  'app/widgets/cat-source/cat-source-snrcat',
   /** @cli-barrel */
 ];
 
