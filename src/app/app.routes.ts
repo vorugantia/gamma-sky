@@ -1,6 +1,7 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 import { MapViewComponent } from './map-view/map-view.component';
 import { CatViewComponent } from './cat-view/cat-view.component';
+import { CatHelpComponent } from './cat-view/cat-help/cat-help.component';
 
 const routes: RouterConfig = [
 
@@ -10,7 +11,13 @@ const routes: RouterConfig = [
   },
   {
     path: 'cat',
-    component: CatViewComponent
+    component: CatViewComponent,
+    children: [
+      {
+        path: '',
+        component: CatHelpComponent
+      }
+    ]
   },
   {
     path: '',

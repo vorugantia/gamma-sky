@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { SwitchViewComponent } from '../switch-view/switch-view.component';
 import { CatSearchComponent } from './cat-search/cat-search.component';
 
@@ -7,7 +8,7 @@ import { CatSearchComponent } from './cat-search/cat-search.component';
   selector: 'cat-view',
   templateUrl: 'cat-view.component.html',
   styleUrls: ['cat-view.component.css'],
-  directives: [SwitchViewComponent, CatSearchComponent]
+  directives: [ROUTER_DIRECTIVES, SwitchViewComponent, CatSearchComponent]
 })
 export class CatViewComponent implements OnInit {
 
