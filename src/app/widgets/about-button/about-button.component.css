@@ -1,4 +1,6 @@
 #aboutButton {
+  font-family: monospace;
+  font-size: 15px;
   color: black;
   position: absolute; /*This was commented out before*/
   border: none;
