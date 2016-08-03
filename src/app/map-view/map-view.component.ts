@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { SwitchViewComponent } from '../switch-view/switch-view.component';
 import {Router} from '@angular/router';
+import {MapComponent} from './map/map.component';
 
 @Component({
   moduleId: module.id,
   selector: 'map-view',
   templateUrl: 'map-view.component.html',
   styleUrls: ['map-view.component.css'],
-  directives: [SwitchViewComponent]
+  directives: [SwitchViewComponent, MapComponent]
 })
 export class MapViewComponent implements OnInit {
 

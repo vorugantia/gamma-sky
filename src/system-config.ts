@@ -39,6 +39,7 @@ const barrels: string[] = [
   'app/map-view',
   'app/cat-view',
   'app/switch-view',
+  'app/map-view/map',
   /** @cli-barrel */
 ];
 
