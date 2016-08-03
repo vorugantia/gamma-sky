@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatSearchComponent implements OnInit {
 
-  constructor() { }
+  onClick() {
+    this.router.navigate(['/cat/2fhl']);
+  }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
