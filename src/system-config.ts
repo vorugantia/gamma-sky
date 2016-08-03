@@ -40,6 +40,7 @@ const barrels: string[] = [
   'app/cat-view',
   'app/switch-view',
   'app/map-view/map',
+  'app/map-view/about-button',
   /** @cli-barrel */
 ];
 
