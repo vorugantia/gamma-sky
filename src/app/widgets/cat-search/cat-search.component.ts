@@ -9,10 +9,6 @@ import { Router } from '@angular/router';
 })
 export class CatSearchComponent implements OnInit {
 
-  onClick() {
-    this.router.navigate(['/cat/2fhl']);
-  }
-
   onSelectChange(value) {
     this.router.navigate(['/cat', value]);
   }

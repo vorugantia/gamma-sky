@@ -5,9 +5,9 @@ import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
 import { MapComponent } from './map.component';
 
-describe('Component: Map', () => {
-  it('should create an instance', () => {
-    let component = new MapComponent();
-    expect(component).toBeTruthy();
-  });
-});
+// describe('Component: Map', () => {
+//   it('should create an instance', () => {
+//     let component = new MapComponent();
+//     expect(component).toBeTruthy();
+//   });
+// });

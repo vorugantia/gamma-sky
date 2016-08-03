@@ -11,21 +11,21 @@ import { SwitchViewComponent } from './switch-view.component';
 //     expect(component).toBeTruthy();
 //   });
 // });
-
-describe('Component: SwitchView', () => {
-  it('should create an instance', () => {
-    let component;
-
-    // beforeEachProviders(() => [
-    //   TestComponentBuilder,
-    //   SwitchViewComponent
-    // ]);
-
-    beforeEach(inject([TestComponentBuilder], SwitchViewComponent => {
-      component = new SwitchViewComponent();
-    }));
-
-    expect(component).toBeTruthy();
-
-  });
-});
+//
+// describe('Component: SwitchView', () => {
+//   it('should create an instance', () => {
+//     let component;
+//
+//     // beforeEachProviders(() => [
+//     //   TestComponentBuilder,
+//     //   SwitchViewComponent
+//     // ]);
+//
+//     beforeEach(inject([TestComponentBuilder], SwitchViewComponent => {
+//       component = new SwitchViewComponent();
+//     }));
+//
+//     expect(component).toBeTruthy();
+//
+//   });
+// });
