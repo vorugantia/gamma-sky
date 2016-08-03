@@ -13,6 +13,10 @@ export class CatSearchComponent implements OnInit {
     this.router.navigate(['/cat/2fhl']);
   }
 
+  onSelectChange(value) {
+    this.router.navigate(['/cat', value]);
+  }
+
   constructor(private router: Router) { }
 
   ngOnInit() {
