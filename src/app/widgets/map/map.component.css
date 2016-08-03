@@ -13,3 +13,17 @@ html, body {
   position: relative;
   z-index: 0;
 }
+
+.aladin-popup {
+  width: 270px;
+  text-align: left;
+}
+
+table, table tbody {
+  width: 270px;
+  text-align: left;
+}
+
+table th {
+  height: 30px;
+}
