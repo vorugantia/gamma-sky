@@ -11,19 +11,33 @@ declare var $: any;
 })
 export class SwitchViewComponent implements OnInit {
 
-  @Input() notCurrentView;
+  @Input() selectedView;
 
-  private toggle: boolean = false;
-  //
+  private buttonDisplay: string;
+
+  // private toggle: boolean = false;
+
+  changeButtonDisplay() {
+    if(this.selectedView == "map") {
+      this.buttonDisplay = "cat";
+    }
+    else if(this.selectedView == "cat") {
+      this.buttonDisplay = "map";
+    }
+    else {
+      console.log("Error on buttonDisplay in SwitchViewComponent");
+    }
+  }
+
   onClick() {
-    this.toggle = !this.toggle;
-    this.router.navigate([this.notCurrentView]);
+    this.changeButtonDisplay();
+    this.router.navigate([this.buttonDisplay])
   }
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-
+    this.changeButtonDisplay();
   }
 
 }

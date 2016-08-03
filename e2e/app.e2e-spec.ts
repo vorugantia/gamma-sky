@@ -7,8 +7,8 @@ describe('gamma-sky App', function() {
     page = new GammaSkyPage();
   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
+  // it('should display message saying app works', () => {
+  //   page.navigateTo();
+  //   expect(page.getParagraphText()).toEqual('app works!');
+  // });
 });

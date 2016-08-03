@@ -13,13 +13,13 @@ import {AboutButtonComponent} from '../../widgets/about-button/about-button.comp
 })
 export class MapViewComponent implements OnInit {
 
-  private notCurrentView;
+  private selectedView;
 
   constructor() { }
 
   ngOnInit() {
     console.log('MapViewComponent ngOnInit()');
-    this.notCurrentView = "cat";
+    this.selectedView = "map";
   }
 
 }

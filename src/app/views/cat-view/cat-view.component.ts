@@ -12,13 +12,13 @@ import { CatSearchComponent } from '../../widgets/cat-search/cat-search.componen
 })
 export class CatViewComponent implements OnInit {
 
-  private notCurrentView;
+  private selectedView;
 
   constructor() { }
 
   ngOnInit() {
     console.log('CatViewComponent ngOnInit()');
-    this.notCurrentView = "map";
+    this.selectedView = "cat";
   }
 
 }
