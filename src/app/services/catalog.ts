@@ -4,9 +4,23 @@ export class Catalog3FGL {
 
   public data: Source3FGL[];
 
+
   constructor(data) {
-    this.data = data as Source3FGL[];
+
+    var sources = [];
+    for(var i = 0; i < data.length; i++) {
+      var source = new Source3FGL(data[i]);
+      sources.push(source);
+    }
+    this.data = sources;
+
+    // this.data = data as Source3FGL[];
     console.log("Catalog3FGL: ", data);
+  }
+
+  get_source(id) {
+    console.log('get_source', id, this.data[id]);
+    return this.data[id];
   }
 
 }

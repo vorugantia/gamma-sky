@@ -33,14 +33,14 @@ export class CatalogService {
   getCatalog3FGL() {
     return this.http.get('app/data/cat/cat_3fgl.json')
       .toPromise()
-      .then(response => new Catalog3FGL( this.reformat(response.json()) ).data)
+      .then(response => new Catalog3FGL( this.reformat(response.json()) ))
       .catch(this.handleError);
   }
 
-  getSource3FGL(id: number) {
-    return this.getCatalog3FGL()
-      .then(sources => sources.find(source => source.id === id));
-  }
+  // getSource3FGL(id: number) {
+  //   return this.getCatalog3FGL()
+  //     .then(sources => sources.find(source => source.id === id));
+  // }
 
 
 

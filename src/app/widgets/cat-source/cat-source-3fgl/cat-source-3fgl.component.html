@@ -4,9 +4,11 @@
 
 <select *ngIf="catalog" (change)="onSelect($event.target.value)">
   <option value="">Choose a source</option>
-  <option *ngFor="let source of catalog" value="{{source.id}}">{{source.Source_Name}}</option>
+  <option *ngFor="let source of catalog.data" value="{{source.data.id}}">{{source.data.Source_Name}}</option>
 </select>
 
 <div *ngIf="selection">
-  <h3>{{catalog[selection].Source_Name}}</h3>
+  <h3>{{catalog.data[selection].data.Source_Name}}</h3>
+  <p>{{catalog.data[selection].data.RAJ2000}}</p>
+  <p>{{catalog.data[selection].get_score()}}</p>
 </div>

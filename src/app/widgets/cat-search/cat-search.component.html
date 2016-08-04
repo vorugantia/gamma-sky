@@ -8,4 +8,9 @@
     <option value="snrcat">SNRcat</option>
   </select>
 
+  <select *ngIf="selectedCat=='3fgl'" (change)="onSelect($event.target.value)">
+    <option value="">Choose a source</option>
+    <option *ngFor="let source of catalog" value="{{source.id}}">{{source.Source_Name}}</option>
+  </select>
+
 </p>

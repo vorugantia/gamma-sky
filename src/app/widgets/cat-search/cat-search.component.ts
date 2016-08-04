@@ -9,8 +9,11 @@ import { Router } from '@angular/router';
 })
 export class CatSearchComponent implements OnInit {
 
+  private selectedCat;
+
   onSelectChange(value) {
     this.router.navigate(['/cat', value]);
+    this.selectedCat = value;
   }
 
   constructor(private router: Router) { }

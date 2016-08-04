@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { Source3FGL } from '../../../services/source';
+import { Catalog3FGL } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
@@ -10,12 +11,14 @@ import { CatalogService } from '../../../services/catalog.service';
   styleUrls: ['cat-source-3fgl.component.css'],
   providers: [CatalogService]
 })
-export class CatSource3FGLComponent implements OnInit {
+export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
-  private catalog: Source3FGL[];
+  private catalog: Catalog3FGL;
   private error: any;
 
+  private sub;
   private selection;
+  private source;
 
   onSelect(selection) {
     this.selection = selection;
@@ -25,13 +28,15 @@ export class CatSource3FGLComponent implements OnInit {
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
         this.catalog = catalog;
-        console.log(this.catalog);
+        console.log('bbbbbb', this.catalog);
+        this.catalog.get_source(0).print_info();
       })
       .catch(error => this.error = error);
   }
 
   constructor(
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -40,6 +45,23 @@ export class CatSource3FGLComponent implements OnInit {
     this.getCatalog();
     console.log(this.catalog);
 
+    // this.sub = this.activatedRoute.params.subscribe(params => {
+    //   if (params['id'] !== undefined) {
+    //     let id = +params['id'];
+    //     console.log('id ', id);
+    //
+    //     this.catalogService.getSource3FGL(id)
+    //       .then(source => {
+    //         this.source = source;
+    //         console.log('this.source ', this.source);
+    //       });
+    //   }
+    // });
+
+  }
+
+  ngOnDestroy() {
+    // this.sub.unsubscribe();
   }
 
 }
