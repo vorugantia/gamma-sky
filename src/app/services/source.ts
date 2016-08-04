@@ -14,36 +14,39 @@ export class Source3FGL {
     this.data = data;
   }
 
-  print_info() {
-    console.log(this.data);
-    console.log('AAAA', this.data.RAJ2000);
-  }
-
-  get_score() {
-    return this.data.RAJ2000 + 42;
-  }
-
 }
 
 export class Source2FHL {
-  id: number;
-  Source_Name: string;
-  RAJ2000: number;
-  DEJ2000: number;
-  GLON: number;
-  GLAT: number;
-  ASSOC: string;
-  CLASS: string;
+  // id: number;
+  // Source_Name: string;
+  // RAJ2000: number;
+  // DEJ2000: number;
+  // GLON: number;
+  // GLAT: number;
+  // ASSOC: string;
+  // CLASS: string;
+
+  private data;
+
+  constructor(data) {
+    this.data = data;
+  }
 }
 
 export class SourceSNRcat {
-  id: number;
-  Source_Name: string;
-  RAJ2000: number;
-  DEJ2000: number;
-  GLON: number;
-  GLAT: number;
-  id_alt: string;  // This is the "Assoc" for SNRcat
-  size_radio_mean: number;
+  // id: number;
+  // Source_Name: string;
+  // RAJ2000: number;
+  // DEJ2000: number;
+  // GLON: number;
+  // GLAT: number;
+  // id_alt: string;  // This is the "Assoc" for SNRcat
+  // size_radio_mean: number;
+
+  private data;
+
+  constructor(data) {
+    this.data = data;
+  }
 
 }
