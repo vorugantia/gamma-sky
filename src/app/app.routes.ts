@@ -21,6 +21,7 @@ const routes: RouterConfig = [
         component: CatSource2FHLComponent
       },
       {
+        // path: '3fgl/:id',
         path: '3fgl',
         component: CatSource3FGLComponent
       },

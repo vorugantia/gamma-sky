@@ -2,6 +2,11 @@
   This is CatSource3FGLComponent
 </p>
 
-<ul *ngIf="catalog">
-  <li *ngFor="let source of catalog">{{source.Source_Name}}</li>
-</ul>
+<select *ngIf="catalog" (change)="onSelect($event.target.value)">
+  <option value="">Choose a source</option>
+  <option *ngFor="let source of catalog" value="{{source.id}}">{{source.Source_Name}}</option>
+</select>
+
+<div *ngIf="selection">
+  <h3>{{catalog[selection].Source_Name}}</h3>
+</div>

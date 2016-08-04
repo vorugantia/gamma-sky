@@ -15,9 +15,14 @@ export class CatSource3FGLComponent implements OnInit {
   private catalog: Source3FGL[];
   private error: any;
 
+  private selection;
+
+  onSelect(selection) {
+    this.selection = selection;
+  }
+
   getCatalog() {
-    this.catalogService
-      .getCatalog3FGL()
+    this.catalogService.getCatalog3FGL()
       .then(catalog => {
         this.catalog = catalog;
         console.log(this.catalog);
