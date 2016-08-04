@@ -1,3 +1,7 @@
 <p>
   This is CatSource3FGLComponent
 </p>
+
+<ul *ngIf="catalog">
+  <li *ngFor="let source of catalog">{{source.Source_Name}}</li>
+</ul>
