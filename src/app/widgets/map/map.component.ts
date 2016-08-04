@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
+// import { ViewEncapsulation } from '@angular/core';
 
 
 declare var A: any;
@@ -10,26 +10,13 @@ declare var $: any;
   selector: 'map',
   templateUrl: 'map.component.html',
   styleUrls: ['map.component.css'],
-  encapsulation: ViewEncapsulation.None  // This allows the MapComponent to define styles that can affect
-  // the whole application - what we need for #aladin-lite-div
+  // encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit, OnDestroy {
 
   private map;
   // private catalog;
   // private cat;
-
-  onInitConfig() {
-    document.body.style.backgroundColor = "black";
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-  }
-
-  onDestroyConfig() {
-    document.body.style.backgroundColor = "white";
-    document.body.style.overflow = "auto";
-    document.documentElement.style.overflow = "auto";
-  }
 
   showMap() {
     this.map = A.aladin("#aladin-lite-div", {
@@ -122,6 +109,24 @@ export class MapComponent implements OnInit, OnDestroy {
         {   // TODO Store template somewhere else
 
           popupDesc: `
+                      <style>
+
+                      .aladin-popup {
+                        width: 270px;
+                        text-align: left;
+                      }
+
+                      table, table tbody {
+                        width: 270px;
+                        text-align: left;
+                      }
+
+                      table th {
+                        height: 30px;
+                      }
+
+                      </style>
+
                       <div>
 
                         <h3 style='text-align:center'>` + Source.prefix + Source.name + `</h3>
@@ -228,7 +233,6 @@ export class MapComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     console.log('aladin map OnInit');
-    this.onInitConfig();
 
     this.showMap();
 
@@ -260,7 +264,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('aladin map OnDestroy');
-    this.onDestroyConfig();
 
   }
 
