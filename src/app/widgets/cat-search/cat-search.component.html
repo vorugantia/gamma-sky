@@ -15,14 +15,15 @@
   <h3>Select a source:</h3>
 
   <ng-select
-              [allowClear]='true'
-              [items]='items'
-              [disabled]='disabled'
-              (data)='refreshValue($event)'
-              (selected)='selected($event)'
-              (removed)='removed($event)'
-              (typed)='typed($event)'
-              placeholder='No source selected'>
+      [allowClear]='true'
+      [items]='items'
+      [disabled]='disabled'
+      (data)='refreshValue($event)'
+      (selected)='selected($event)'
+      (removed)='removed($event)'
+      (typed)='typed($event)'
+      placeholder='No source selected'
+  >
   </ng-select>
 
   <br>

@@ -18,13 +18,6 @@ import { Catalog3FGL } from '../../services/catalog';
 })
 export class CatSearchComponent implements OnInit {
 
-  // private selectedCat;
-  //
-  // onSelectChange(value) {
-  //   this.router.navigate(['/cat', value]);
-  //   this.selectedCat = value;
-  // }
-  // constructor(private router: Router) { }
 
   private catalog: Catalog3FGL;
   private error: any;
@@ -47,6 +40,9 @@ export class CatSearchComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
+  // To understand the code below, see ng2-select docs at:
+  // http://valor-software.com/ng2-select/
+
   public items:Array<any> = [];
 
   private value:any = {};
@@ -64,6 +60,8 @@ export class CatSearchComponent implements OnInit {
 
   public selected(value:any):void {
     console.log('Selected value is: ', value);
+
+    this.router.navigate(['/cat/3fgl', value.id])
   }
 
   public removed(value:any):void {
@@ -79,7 +77,8 @@ export class CatSearchComponent implements OnInit {
   }
 
   constructor(
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private router: Router
   ) {}
 
   ngOnInit() {
