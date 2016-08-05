@@ -1,16 +1,34 @@
 <p>
   This is CatSearchComponent
 
-  <select (change)="onSelectChange($event.target.value)">
+  <!-- <select (change)="onSelectChange($event.target.value)">
     <option value="">Choose a catalog</option>
     <option value="3fgl">3FGL</option>
     <option value="2fhl">2FHL</option>
     <option value="snrcat">SNRcat</option>
-  </select>
+  </select> -->
 
-  <select *ngIf="selectedCat=='3fgl'" (change)="onSelect($event.target.value)">
+  <!-- <select *ngIf="selectedCat=='3fgl'" (change)="onSelect($event.target.value)">
     <option value="">Choose a source</option>
     <option *ngFor="let source of catalog" value="{{source.id}}">{{source.Source_Name}}</option>
-  </select>
+  </select> -->
 
 </p>
+
+<div style="width:300px; margin-bottom:20px;">
+  <h3>Select a source:</h3>
+
+  <ng-select  [allowClear]='true'
+              [items]='items'
+              [disabled]='disabled'
+              (data)='refreshValue($event)'
+              (selected)='selected($event)'
+              (removed)='removed($event)'
+              (typed)='typed($event)'
+              placeholder='No source selected'>
+  </ng-select>
+
+  <br>
+  <pre>{{value.text}}</pre>
+
+</div>
