@@ -34,14 +34,20 @@ export class CatSearchComponent implements OnInit {
       .then(catalog => {
         this.catalog = catalog;
 
+        console.log(this.catalog, this.catalog.data);
+
         for(var i = 0; i < this.catalog.data.length; i++) {
-          this.items.push(this.catalog.data[i].data.Source_Name);
+          this.items.push({
+            text: this.catalog.data[i].data.Source_Name,
+            id: this.catalog.data[i].data.id
+          });
         }
+
       })
       .catch(error => this.error = error);
   }
 
-  public items:Array<string> = [];
+  public items:Array<any> = [];
 
   private value:any = {};
   private _disabledV:string = '0';
