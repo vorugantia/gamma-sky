@@ -20,23 +20,11 @@ import { StateService } from '../../services/state.service';
 export class CatSearchComponent implements OnInit {
 
   private selectedId;
-  private catalog: Catalog3FGL;
+  private catalog//: Catalog3FGL;
   private error: any;
 
   getCatalog() {
-    this.catalogService.getCatalog3FGL()
-      .then(catalog => {
-        this.catalog = catalog;
-
-        for(var i = 0; i < this.catalog.data.length; i++) {
-          this.items.push({
-            text: this.catalog.data[i].data.Source_Name,
-            id: this.catalog.data[i].data.id
-          });
-        }
-
-      })
-      .catch(error => this.error = error);
+    return this.catalogService.getCatalog3FGL();
   }
 
   // To understand the code below, see ng2-select docs at:
@@ -86,7 +74,19 @@ export class CatSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getCatalog();
+    this.getCatalog()
+    .then(catalog => {
+      this.catalog = catalog;
+
+      for(var i = 0; i < this.catalog.data.length; i++) {
+        this.items.push({
+          text: this.catalog.data[i].data.Source_Name,
+          id: this.catalog.data[i].data.id
+        });
+      }
+
+    })
+    .catch(error => this.error = error);
 
   }
 

@@ -46,6 +46,13 @@ export class CatalogService {
   //     .then(sources => sources.find(source => source.id === id));
   // }
 
+  getCatalog2FHL() {
+    return this.http.get('app/data/cat/cat_2fhl.json')
+      .toPromise()
+      .then(response => new Catalog2FHL( this.reformat(response.json()) ))
+      .catch(this.handleError);
+  }
+
 
 
 
