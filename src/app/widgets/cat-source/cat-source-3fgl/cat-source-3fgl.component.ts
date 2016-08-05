@@ -3,37 +3,38 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FGL } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
+import { CatDetailService } from '../../../services/cat-detail.service';
 
 @Component({
   moduleId: module.id,
   selector: 'cat-source-3fgl',
   templateUrl: 'cat-source-3fgl.component.html',
   styleUrls: ['cat-source-3fgl.component.css'],
-  providers: [CatalogService]
+  providers: [CatalogService, CatDetailService]
 })
 export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
-  private catalog: Catalog3FGL;
-  private error: any;
-
   private sub;
-  private selection;
+  private id;
   private source;
 
-  onSelect(selection) {
-    this.selection = selection;
-  }
+  private catalog: Catalog3FGL;
+  private error: any;
 
   getCatalog() {
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
         this.catalog = catalog;
+        console.log(catalog);
+        console.log(this.catalog);
       })
       .catch(error => this.error = error);
   }
 
+
   constructor(
     private catalogService: CatalogService,
+    private catDetailService: CatDetailService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -41,25 +42,26 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
     console.log("Routing to CatSource3FGLComponent...");
 
     this.getCatalog();
-    console.log(this.catalog);
 
-    // this.sub = this.activatedRoute.params.subscribe(params => {
-    //   if (params['id'] !== undefined) {
-    //     let id = +params['id'];
-    //     console.log('id ', id);
-    //
-    //     this.catalogService.getSource3FGL(id)
-    //       .then(source => {
-    //         this.source = source;
-    //         console.log('this.source ', this.source);
-    //       });
-    //   }
-    // });
+    // this.id = this.catDetailService.getSelectedId();
+
+    this.sub = this.activatedRoute.params.subscribe(params => {
+        let id = +params['id'];
+        console.log('id ', id);
+
+        this.id = id;
+
+        // this.catalogService.getSource3FGL(id)
+        //   .then(source => {
+        //     this.source = source;
+        //     console.log('this.source ', this.source);
+        //   });
+    });
 
   }
 
   ngOnDestroy() {
-    // this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
 }

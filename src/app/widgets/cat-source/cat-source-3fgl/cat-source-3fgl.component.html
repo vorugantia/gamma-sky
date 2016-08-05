@@ -2,13 +2,13 @@
   This is CatSource3FGLComponent
 </p>
 
-<select *ngIf="catalog" (change)="onSelect($event.target.value)">
+<!-- <select *ngIf="catalog" (change)="onSelect($event.target.value)">
   <option value="">Choose a source</option>
   <option *ngFor="let source of catalog.data" value="{{source.data.id}}">{{source.data.Source_Name}}</option>
-</select>
+</select> -->
 
-<div *ngIf="selection">
-  <h3>{{catalog.data[selection].data.Source_Name}}</h3>
-  <p>{{catalog.data[selection].data.RAJ2000}}</p>
-  <p>{{catalog.data[selection].data.DEJ2000}}</p>
+<div *ngIf="(catalog && id)">
+  <h3>Source Name: {{catalog.data[id].data.Source_Name}}</h3>
+  <p> RA: {{catalog.data[id].data.RAJ2000}}</p>
+  <p>DEC: {{catalog.data[id].data.DEJ2000}}</p>
 </div>

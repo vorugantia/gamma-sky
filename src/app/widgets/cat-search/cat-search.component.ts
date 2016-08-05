@@ -7,13 +7,14 @@ import { SELECT_DIRECTIVES } from 'ng2-select';
 
 import { CatalogService } from '../../services/catalog.service';
 import { Catalog3FGL } from '../../services/catalog';
+import { CatDetailService } from '../../services/cat-detail.service';
 
 @Component({
   moduleId: module.id,
   selector: 'cat-search',
   templateUrl: 'cat-search.component.html',
   styleUrls: ['cat-search.component.css'],
-  providers: [CatalogService],
+  providers: [CatalogService, CatDetailService],
   directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES]
 })
 export class CatSearchComponent implements OnInit {
@@ -26,8 +27,6 @@ export class CatSearchComponent implements OnInit {
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
         this.catalog = catalog;
-
-        console.log(this.catalog, this.catalog.data);
 
         for(var i = 0; i < this.catalog.data.length; i++) {
           this.items.push({
@@ -61,11 +60,15 @@ export class CatSearchComponent implements OnInit {
   public selected(value:any):void {
     console.log('Selected value is: ', value);
 
+    // this.catDetailService.setSelectedId(value.id);
+
     this.router.navigate(['/cat/3fgl', value.id])
   }
 
   public removed(value:any):void {
     console.log('Removed value is: ', value);
+
+    this.router.navigate(['/cat']);
   }
 
   public typed(value:any):void {
@@ -78,6 +81,7 @@ export class CatSearchComponent implements OnInit {
 
   constructor(
     private catalogService: CatalogService,
+    private catDetailService: CatDetailService,
     private router: Router
   ) {}
 

@@ -12,6 +12,10 @@ export class CatalogService {
 
 
   reformat(obj) {
+
+    // This function takes input of JSON data as an Object of Objects, and
+    // reformats it to an array of Objects.
+
     var arr = [];
 
     Object.keys(obj).forEach(k => {
