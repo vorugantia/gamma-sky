@@ -5,11 +5,15 @@ import { CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass } from '@angular/common';
 import { BUTTON_DIRECTIVES } from 'ng2-bootstrap';
 import { SELECT_DIRECTIVES } from 'ng2-select';
 
+import { CatalogService } from '../../services/catalog.service';
+import { Catalog3FGL } from '../../services/catalog';
+
 @Component({
   moduleId: module.id,
   selector: 'cat-search',
   templateUrl: 'cat-search.component.html',
   styleUrls: ['cat-search.component.css'],
+  providers: [CatalogService],
   directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES]
 })
 export class CatSearchComponent implements OnInit {
@@ -22,7 +26,22 @@ export class CatSearchComponent implements OnInit {
   // }
   // constructor(private router: Router) { }
 
-  public items:Array<string> = ['Item1', 'Item2', 'Item3'];
+  private catalog: Catalog3FGL;
+  private error: any;
+
+  getCatalog() {
+    this.catalogService.getCatalog3FGL()
+      .then(catalog => {
+        this.catalog = catalog;
+
+        for(var i = 0; i < this.catalog.data.length; i++) {
+          this.items.push(this.catalog.data[i].data.Source_Name);
+        }
+      })
+      .catch(error => this.error = error);
+  }
+
+  public items:Array<string> = [];
 
   private value:any = {};
   private _disabledV:string = '0';
@@ -53,9 +72,15 @@ export class CatSearchComponent implements OnInit {
     this.value = value;
   }
 
-  constructor() {}
+  constructor(
+    private catalogService: CatalogService
+  ) {}
 
   ngOnInit() {
+    this.getCatalog();
+
+
+    // this.items = this.catalog.data
   }
 
 }

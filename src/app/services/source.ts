@@ -1,5 +1,5 @@
 export class Source3FGL {
-  private data;
+  public data;
 
   // id: number;
   // Source_Name: string;
@@ -26,7 +26,7 @@ export class Source2FHL {
   // ASSOC: string;
   // CLASS: string;
 
-  private data;
+  public data;
 
   constructor(data) {
     this.data = data;
@@ -43,7 +43,7 @@ export class SourceSNRcat {
   // id_alt: string;  // This is the "Assoc" for SNRcat
   // size_radio_mean: number;
 
-  private data;
+  public data;
 
   constructor(data) {
     this.data = data;
