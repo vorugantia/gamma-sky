@@ -17,7 +17,7 @@ import { StateService } from '../../services/state.service';
   providers: [CatalogService],
   directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES]
 })
-export class CatSearchComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class CatSearchComponent implements OnInit {
 
   private selectedId;
   private catalog: Catalog3FGL;
