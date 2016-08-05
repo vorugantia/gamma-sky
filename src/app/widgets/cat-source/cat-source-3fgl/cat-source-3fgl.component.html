@@ -7,7 +7,7 @@
   <option *ngFor="let source of catalog.data" value="{{source.data.id}}">{{source.data.Source_Name}}</option>
 </select> -->
 
-<div *ngIf="(catalog && id)">
+<div *ngIf="(catalog)">
   <h3>Source Name: {{catalog.data[id].data.Source_Name}}</h3>
   <p> RA: {{catalog.data[id].data.RAJ2000}}</p>
   <p>DEC: {{catalog.data[id].data.DEJ2000}}</p>
