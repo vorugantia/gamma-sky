@@ -7,19 +7,19 @@ import { SELECT_DIRECTIVES } from 'ng2-select';
 
 import { CatalogService } from '../../services/catalog.service';
 import { Catalog3FGL } from '../../services/catalog';
-import { CatDetailService } from '../../services/cat-detail.service';
+import { StateService } from '../../services/state.service';
 
 @Component({
   moduleId: module.id,
   selector: 'cat-search',
   templateUrl: 'cat-search.component.html',
   styleUrls: ['cat-search.component.css'],
-  providers: [CatalogService, CatDetailService],
+  providers: [CatalogService],
   directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES]
 })
-export class CatSearchComponent implements OnInit {
+export class CatSearchComponent implements OnInit, AfterViewChecked, OnDestroy {
 
-
+  private selectedId;
   private catalog: Catalog3FGL;
   private error: any;
 
@@ -45,22 +45,22 @@ export class CatSearchComponent implements OnInit {
   public items:Array<any> = [];
 
   private value:any = {};
-  private _disabledV:string = '0';
-  private disabled:boolean = false;
+  // private _disabledV:string = '0';
+  // private disabled:boolean = false;
 
-  private get disabledV(): string {
-    return this._disabledV;
-  }
-
-  private set disabledV(value:string) {
-    this._disabledV = value;
-    this.disabled = this._disabledV === '1';
-  }
+  // private get disabledV(): string {
+  //   return this._disabledV;
+  // }
+  //
+  // private set disabledV(value:string) {
+  //   this._disabledV = value;
+  //   this.disabled = this._disabledV === '1';
+  // }
 
   public selected(value:any):void {
     console.log('Selected value is: ', value);
 
-    // this.catDetailService.setSelectedId(value.id);
+    // this.stateService.setSelectedId(value.id);
 
     this.router.navigate(['/cat/3fgl', value.id])
   }
@@ -81,15 +81,13 @@ export class CatSearchComponent implements OnInit {
 
   constructor(
     private catalogService: CatalogService,
-    private catDetailService: CatDetailService,
+    public stateService: StateService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.getCatalog();
 
-
-    // this.items = this.catalog.data
   }
 
 }

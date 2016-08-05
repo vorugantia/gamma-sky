@@ -3,14 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FGL } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
-import { CatDetailService } from '../../../services/cat-detail.service';
+import { StateService } from '../../../services/state.service';
 
 @Component({
   moduleId: module.id,
   selector: 'cat-source-3fgl',
   templateUrl: 'cat-source-3fgl.component.html',
   styleUrls: ['cat-source-3fgl.component.css'],
-  providers: [CatalogService, CatDetailService]
+  providers: [CatalogService]
 })
 export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
@@ -34,7 +34,7 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
   constructor(
     private catalogService: CatalogService,
-    private catDetailService: CatDetailService,
+    public stateService: StateService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -43,19 +43,12 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
     this.getCatalog();
 
-    // this.id = this.catDetailService.getSelectedId();
-
     this.sub = this.activatedRoute.params.subscribe(params => {
         let id = +params['id'];
         console.log('id ', id);
-
         this.id = id;
 
-        // this.catalogService.getSource3FGL(id)
-        //   .then(source => {
-        //     this.source = source;
-        //     console.log('this.source ', this.source);
-        //   });
+        // this.stateService.setSelectedId(id);
     });
 
   }
