@@ -1,49 +1,40 @@
-<!-- <p>
 
-  <select (change)="onSelectChange($event.target.value)">
-    <option value="">Choose a catalog</option>
-    <option value="3fgl">3FGL</option>
-    <option value="2fhl">2FHL</option>
-    <option value="snrcat">SNRcat</option>
-  </select>
+<div  id='catalog-select'>
 
+  <div class="btn-group btn-group-lg">
 
+    <label
+      class='btn btn-primary'
+      [(ngModel)]="selectedCatalog"
+      btnRadio="3fgl"
+      uncheckable
+      (click)='getCatalog("3FGL")'
+    >
+      3FGL
+    </label>
+    <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
+      2FHL
+    </label>
+    <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
+      SNRcat
+    </label>
 
-</p> -->
-
-<div style='width:300px; margin-bottom:20px;'>
-
-<h3>Select a catalog</h3>
-
-<div class="btn-group">
-
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="3fgl" uncheckable (click)='getCatalog("3FGL")'>
-    3FGL
-  </label>
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
-    2FHL
-  </label>
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
-    SNRcat
-  </label>
-
-</div>
+  </div>
 
 </div>
 
 
-<div style="width:300px; margin-bottom:20px;" *ngIf="catalog">
-  <h3>Select a source:</h3>
+<div id='source-select' *ngIf="catalog">
 
   <ng-select id='ng2-select'
-      [allowClear]='true'
-      [items]='items'
-      [disabled]='disabled'
-      (data)='refreshValue($event)'
-      (selected)='selected($event)'
-      (removed)='removed($event)'
-      (typed)='typed($event)'
-      placeholder='No source selected'
+    [allowClear]='true'
+    [items]='items'
+    [disabled]='disabled'
+    (data)='refreshValue($event)'
+    (selected)='selected($event)'
+    (removed)='removed($event)'
+    (typed)='typed($event)'
+    placeholder='No source selected'
   >
   </ng-select>
 
