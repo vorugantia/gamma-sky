@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { CORE_DIRECTIVES, NgClass } from '@angular/common';
 import { FORM_DIRECTIVES } from '@angular/forms';
-import { BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective } from 'ng2-bootstrap';
+import { BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap';
 import { SELECT_DIRECTIVES } from 'ng2-select';
 
 import { CatalogService } from '../../services/catalog.service';
@@ -16,7 +16,7 @@ import { StateService } from '../../services/state.service';
   templateUrl: 'cat-search.component.html',
   styleUrls: ['cat-search.component.css'],
   providers: [CatalogService],
-  directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective]
+  directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective, TOOLTIP_DIRECTIVES]
 })
 export class CatSearchComponent implements OnInit, DoCheck {
 
@@ -68,6 +68,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
   public items:Array<any> = [];
   private value:any = {};
   public selectedCatalog;
+  private tooltip;
 
   // private _disabledV:string = '0';
   private disabled:boolean = false;
@@ -132,10 +133,12 @@ export class CatSearchComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if(this.selectedCatalog == null) {
       this.disabled = true;
+      this.tooltip = true;
       // this.items = [];
     }
     else {
       this.disabled = false;
+      this.tooltip = false;
     }
   }
 

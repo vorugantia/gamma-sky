@@ -19,8 +19,6 @@
       SNRcat
     </button>
 
-    <!-- {{ selectedCatalog == null ? disabled=false : disabled=true }} -->
-
   </div>
 
 </div>
@@ -28,17 +26,23 @@
 
 <div id='source-select'>
 
-  <ng-select id='ng2-select'
-    [allowClear]='true'
-    [items]='items'
-    [disabled]='disabled'
-    (data)='refreshValue($event)'
-    (selected)='selected($event)'
-    (removed)='removed($event)'
-    (typed)='typed($event)'
-    placeholder='No source selected'
-  >
-  </ng-select>
+  <div class='form-group'>
+
+    <ng-select id='ng2-select'
+      [allowClear]='true'
+      [items]='items'
+      [disabled]='disabled'
+      (data)='refreshValue($event)'
+      (selected)='selected($event)'
+      (removed)='removed($event)'
+      (typed)='typed($event)'
+      placeholder='No source selected'
+      tooltip='Select a catalog first.'
+      [tooltipEnable]='tooltip'
+    >
+    </ng-select>
+
+  </div>
 
   <!-- <br>
   <pre>{{value.text}}</pre> -->
