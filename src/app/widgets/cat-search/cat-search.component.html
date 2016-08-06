@@ -11,6 +11,29 @@
 
 </p> -->
 
+<div style='width:300px; margin-bottom:20px;'>
+
+<h3>Select a catalog</h3>
+
+<div class="btn-group">
+
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="3FGL" uncheckable (click)='getCatalog("3FGL")'>
+    3FGL
+  </label>
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2FHL" uncheckable (click)='getCatalog("2FHL")'>
+    2FHL
+  </label>
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="SNRcat" uncheckable>
+    SNRcat
+  </label>
+
+</div>
+
+  {{selectedCatalog}}
+
+</div>
+
+
 <div style="width:300px; margin-bottom:20px;" *ngIf="catalog">
   <h3>Select a source:</h3>
 

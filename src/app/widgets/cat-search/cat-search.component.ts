@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass } from '@angular/common';
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap';
+import { CORE_DIRECTIVES, NgClass } from '@angular/common';
+import { FORM_DIRECTIVES } from '@angular/forms';
+import { BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective } from 'ng2-bootstrap';
 import { SELECT_DIRECTIVES } from 'ng2-select';
 
 import { CatalogService } from '../../services/catalog.service';
@@ -15,7 +16,7 @@ import { StateService } from '../../services/state.service';
   templateUrl: 'cat-search.component.html',
   styleUrls: ['cat-search.component.css'],
   providers: [CatalogService],
-  directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES]
+  directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective]
 })
 export class CatSearchComponent implements OnInit {
 
@@ -23,16 +24,46 @@ export class CatSearchComponent implements OnInit {
   private catalog//: Catalog3FGL;
   private error: any;
 
-  getCatalog() {
-    return this.catalogService.getCatalog3FGL();
+  public selectedCatalog;
+
+  getCatalog(catalog) {
+
+    var cat;
+
+    if(catalog == '3FGL') {
+      cat = this.catalogService.getCatalog3FGL();
+    }
+    else if(catalog == '2FHL') {
+      cat = this.catalogService.getCatalog2FHL();
+    }
+
+
+    cat.then(catalog => {
+      this.catalog = catalog;
+
+      if(this.items !== []) {
+        this.items = [];
+      }
+
+      for(var i = 0; i < this.catalog.data.length; i++) {
+        this.items.push({
+          text: this.catalog.data[i].data.Source_Name,
+          id: this.catalog.data[i].data.id
+        });
+      }
+
+    })
+    .catch(error => this.error = error);
   }
 
-  // To understand the code below, see ng2-select docs at:
+  // To understand the code below, see ng2-select and ng2-bootstrap docs at:
   // http://valor-software.com/ng2-select/
+  // https://valor-software.com/ng2-bootstrap/
 
   public items:Array<any> = [];
-
   private value:any = {};
+  public radioModel = "Middle";
+
   // private _disabledV:string = '0';
   // private disabled:boolean = false;
 
@@ -74,19 +105,19 @@ export class CatSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getCatalog()
-    .then(catalog => {
-      this.catalog = catalog;
-
-      for(var i = 0; i < this.catalog.data.length; i++) {
-        this.items.push({
-          text: this.catalog.data[i].data.Source_Name,
-          id: this.catalog.data[i].data.id
-        });
-      }
-
-    })
-    .catch(error => this.error = error);
+    // this.getCatalog();
+    // .then(catalog => {
+    //   this.catalog = catalog;
+    //
+    //   for(var i = 0; i < this.catalog.data.length; i++) {
+    //     this.items.push({
+    //       text: this.catalog.data[i].data.Source_Name,
+    //       id: this.catalog.data[i].data.id
+    //     });
+    //   }
+    //
+    // })
+    // .catch(error => this.error = error);
 
   }
 

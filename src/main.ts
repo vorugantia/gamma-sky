@@ -3,6 +3,7 @@ import { enableProdMode } from '@angular/core';
 import { AppComponent, environment } from './app/';
 import { appRouterProviders } from './app/app.routes';
 import { HTTP_PROVIDERS } from '@angular/http';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 // import { CatalogService } from './app/services/catalog.service';
 
 // import 'ng2-bootstrap/ng2-bootstrap.js';
@@ -15,5 +16,7 @@ if (environment.production) {
 bootstrap(AppComponent, [
   appRouterProviders,
   HTTP_PROVIDERS,
+  disableDeprecatedForms(),
+  provideForms(),
   // CatalogService
 ]);
