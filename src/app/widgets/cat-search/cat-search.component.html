@@ -23,13 +23,11 @@
   <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
     2FHL
   </label>
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable>
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
     SNRcat
   </label>
 
 </div>
-
-  {{selectedCatalog}}
 
 </div>
 

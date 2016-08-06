@@ -27,12 +27,19 @@ export class CatSearchComponent implements OnInit {
   getCatalog(catalog) {
 
     var cat;
+    var prefix;
 
     if(catalog == '3FGL') {
       cat = this.catalogService.getCatalog3FGL();
+      prefix = "";
     }
     else if(catalog == '2FHL') {
       cat = this.catalogService.getCatalog2FHL();
+      prefix = "";
+    }
+    else if(catalog == 'SNRcat') {
+      cat = this.catalogService.getCatalogSNRcat();
+      prefix = "SNRcat ";
     }
 
     cat.then(catalog => {
@@ -44,7 +51,7 @@ export class CatSearchComponent implements OnInit {
 
       for(var i = 0; i < this.catalog.data.length; i++) {
         this.items.push({
-          text: this.catalog.data[i].data.Source_Name,
+          text: prefix + this.catalog.data[i].data.Source_Name,
           id: this.catalog.data[i].data.id
         });
       }

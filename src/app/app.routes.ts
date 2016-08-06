@@ -26,8 +26,8 @@ const routes: RouterConfig = [
         component: CatSource3FGLComponent
       },
       {
-        path: 'snrcat',
-        // path: 'snrcat/:id',
+        // path: 'snrcat',
+        path: 'snrcat/:id',
         component: CatSourceSNRcatComponent
       },
       {

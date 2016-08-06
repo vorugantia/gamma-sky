@@ -53,6 +53,13 @@ export class CatalogService {
       .catch(this.handleError);
   }
 
+  getCatalogSNRcat() {
+    return this.http.get('app/data/cat/cat_snrcat.json')
+      .toPromise()
+      .then(response => new CatalogSNRcat( this.reformat(response.json()) ))
+      .catch(this.handleError);
+  }
+
 
 
 
