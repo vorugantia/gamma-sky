@@ -24,8 +24,6 @@ export class CatSearchComponent implements OnInit {
   private catalog//: Catalog3FGL;
   private error: any;
 
-  public selectedCatalog;
-
   getCatalog(catalog) {
 
     var cat;
@@ -36,7 +34,6 @@ export class CatSearchComponent implements OnInit {
     else if(catalog == '2FHL') {
       cat = this.catalogService.getCatalog2FHL();
     }
-
 
     cat.then(catalog => {
       this.catalog = catalog;
@@ -62,7 +59,7 @@ export class CatSearchComponent implements OnInit {
 
   public items:Array<any> = [];
   private value:any = {};
-  public radioModel = "Middle";
+  public selectedCatalog;
 
   // private _disabledV:string = '0';
   // private disabled:boolean = false;
@@ -81,7 +78,11 @@ export class CatSearchComponent implements OnInit {
 
     // this.stateService.setSelectedId(value.id);
 
-    this.router.navigate(['/cat/3fgl', value.id])
+    if(this.selectedCatalog == "3FGL") {
+      this.router.navigate(['/cat/3fgl', value.id]);
+    }
+    //else navigate to 2fhl
+
   }
 
   public removed(value:any):void {
