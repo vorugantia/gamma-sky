@@ -51,6 +51,7 @@ export class CatSearchComponent implements OnInit {
 
     })
     .catch(error => this.error = error);
+
   }
 
   // To understand the code below, see ng2-select and ng2-bootstrap docs at:
@@ -62,7 +63,7 @@ export class CatSearchComponent implements OnInit {
   public selectedCatalog;
 
   // private _disabledV:string = '0';
-  // private disabled:boolean = false;
+  private disabled:boolean = false;
 
   // private get disabledV(): string {
   //   return this._disabledV;
@@ -78,10 +79,8 @@ export class CatSearchComponent implements OnInit {
 
     // this.stateService.setSelectedId(value.id);
 
-    if(this.selectedCatalog == "3FGL") {
-      this.router.navigate(['/cat/3fgl', value.id]);
-    }
-    //else navigate to 2fhl
+      this.router.navigate(['/cat', this.selectedCatalog, value.id]);
+
 
   }
 

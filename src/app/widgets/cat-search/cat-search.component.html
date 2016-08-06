@@ -17,13 +17,13 @@
 
 <div class="btn-group">
 
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="3FGL" uncheckable (click)='getCatalog("3FGL")'>
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="3fgl" uncheckable (click)='getCatalog("3FGL")'>
     3FGL
   </label>
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2FHL" uncheckable (click)='getCatalog("2FHL")'>
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
     2FHL
   </label>
-  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="SNRcat" uncheckable>
+  <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable>
     SNRcat
   </label>
 
@@ -37,7 +37,7 @@
 <div style="width:300px; margin-bottom:20px;" *ngIf="catalog">
   <h3>Select a source:</h3>
 
-  <ng-select
+  <ng-select id='ng2-select'
       [allowClear]='true'
       [items]='items'
       [disabled]='disabled'

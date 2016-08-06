@@ -17,8 +17,8 @@ const routes: RouterConfig = [
     component: CatViewComponent,
     children: [
       {
-        path: '2fhl',
-        // path: '2fhl/:id',
+        // path: '2fhl',
+        path: '2fhl/:id',
         component: CatSource2FHLComponent
       },
       {
