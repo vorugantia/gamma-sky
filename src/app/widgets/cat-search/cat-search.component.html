@@ -3,7 +3,7 @@
 
   <div class="btn-group btn-group-lg">
 
-    <label
+    <button
       class='btn btn-primary'
       [(ngModel)]="selectedCatalog"
       btnRadio="3fgl"
@@ -11,13 +11,15 @@
       (click)='getCatalog("3FGL")'
     >
       3FGL
-    </label>
-    <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
+    </button>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
       2FHL
-    </label>
-    <label class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
+    </button>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
       SNRcat
-    </label>
+    </button>
+
+    <!-- {{ selectedCatalog == null ? disabled=false : disabled=true }} -->
 
   </div>
 

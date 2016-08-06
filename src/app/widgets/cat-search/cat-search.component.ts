@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CORE_DIRECTIVES, NgClass } from '@angular/common';
@@ -18,7 +18,7 @@ import { StateService } from '../../services/state.service';
   providers: [CatalogService],
   directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective]
 })
-export class CatSearchComponent implements OnInit {
+export class CatSearchComponent implements OnInit, DoCheck {
 
   private selectedId;
   private catalog//: Catalog3FGL;
@@ -112,6 +112,7 @@ export class CatSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     // this.getCatalog();
     // .then(catalog => {
     //   this.catalog = catalog;
@@ -126,6 +127,16 @@ export class CatSearchComponent implements OnInit {
     // })
     // .catch(error => this.error = error);
 
+  }
+
+  ngDoCheck() {
+    if(this.selectedCatalog == null) {
+      this.disabled = true;
+      // this.items = [];
+    }
+    else {
+      this.disabled = false;
+    }
   }
 
 }
