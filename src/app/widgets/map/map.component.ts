@@ -10,7 +10,7 @@ declare var $: any;
   moduleId: module.id,
   selector: 'map',
   templateUrl: 'map.component.html',
-  styleUrls: ['map.component.css']
+  styleUrls: ['map.component.css'],
   // encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit, OnDestroy {
@@ -109,7 +109,7 @@ export class MapComponent implements OnInit, OnDestroy {
       var marker = A.marker(
         catalog['RAJ2000'][row],
         catalog['DEJ2000'][row],
-        {   
+        {
           popupDesc: `` + popup.getDesc()
         });
 
