@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Make gamma-sky.net input data.
 """
 import click
@@ -11,6 +12,7 @@ def cli():
 @cli.command()
 def catalog():
     """Make catalog data"""
+    gammasky.make_tev_catalog_data()
     gammasky.make_3fgl_catalog_data()
     gammasky.make_2fhl_catalog_data()
     gammasky.make_snrcat_catalog_data()
