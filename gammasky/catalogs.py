@@ -23,8 +23,14 @@ def make_tev_catalog_data():
     table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/asdc-tegev.fits.gz?raw=true')
     cols = table.colnames
 
+    # For now, for testing, we just dump 5 sources
+    table = table[[0, 10, 50, 100, 150]]
+
     click.echo('Converting table to pandas dataframe...')
     df = table[cols].to_pandas()
+    # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
+    # The most efficient format should be "split" with DataFrame index dropped
+    # text = df.to_json(orient='records', double_precision=5)
     text = df.to_json()
 
     filename = 'src/app/data/cat/cat_tev.json'
