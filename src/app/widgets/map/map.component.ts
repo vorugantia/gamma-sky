@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Popup } from '../popup/popup';
 // import { ViewEncapsulation } from '@angular/core';
 
 
@@ -9,7 +10,7 @@ declare var $: any;
   moduleId: module.id,
   selector: 'map',
   templateUrl: 'map.component.html',
-  styleUrls: ['map.component.css'],
+  styleUrls: ['map.component.css']
   // encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit, OnDestroy {
@@ -103,73 +104,76 @@ export class MapComponent implements OnInit, OnDestroy {
         Source.prefix = "";
       }
 
+      var popup = new Popup("test");
+
       var marker = A.marker(
         catalog['RAJ2000'][row],
         catalog['DEJ2000'][row],
         {   // TODO Store template somewhere else
 
-          popupDesc: `
-                      <style>
-
-                      .aladin-popup {
-                        width: 270px;
-                        text-align: left;
-                      }
-
-                      table, table tbody {
-                        width: 270px;
-                        text-align: left;
-                      }
-
-                      table th {
-                        height: 30px;
-                      }
-
-                      </style>
-
-                      <div>
-
-                        <h3 style='text-align:center'>` + Source.prefix + Source.name + `</h3>
-
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>RA:</td>
-                                <th>` + Source.ra + `</th>
-                                <td>DEC:</td>
-                                <th>` + Source.dec + `</th>
-                              </tr>
-                              <tr>
-                                <td>GLON:</td>
-                                <th>` + Source.glon + `</th>
-                                <td>GLAT:</td>
-                                <th>` + Source.glat + `</th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>Assoc:</td>
-                                <th style='width:155px'>` + Source.assoc + `</th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>` + Source.lineFourLabel + `</td>
-                                <th style='width:155px'>` + Source.lineFour + `</th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                        </div>
-
-                        ` + this.SNRcatUrl(catalogName, Source.glon, Source.glat) + `
-                        `
+          popupDesc: `` + popup.getDesc()
+          // popupDesc: `
+          //             <style>
+          //
+          //             .aladin-popup {
+          //               width: 270px;
+          //               text-align: left;
+          //             }
+          //
+          //             table, table tbody {
+          //               width: 270px;
+          //               text-align: left;
+          //             }
+          //
+          //             table th {
+          //               height: 30px;
+          //             }
+          //
+          //             </style>
+          //
+          //             <div>
+          //
+          //               <h3 style='text-align:center'>` + Source.prefix + Source.name + `</h3>
+          //
+          //                 <table>
+          //                   <tbody>
+          //                     <tr>
+          //                       <td>RA:</td>
+          //                       <th>` + Source.ra + `</th>
+          //                       <td>DEC:</td>
+          //                       <th>` + Source.dec + `</th>
+          //                     </tr>
+          //                     <tr>
+          //                       <td>GLON:</td>
+          //                       <th>` + Source.glon + `</th>
+          //                       <td>GLAT:</td>
+          //                       <th>` + Source.glat + `</th>
+          //                     </tr>
+          //                   </tbody>
+          //                 </table>
+          //
+          //                 <table>
+          //                   <tbody>
+          //                     <tr>
+          //                       <td>Assoc:</td>
+          //                       <th style='width:155px'>` + Source.assoc + `</th>
+          //                     </tr>
+          //                   </tbody>
+          //                 </table>
+          //
+          //                 <table>
+          //                   <tbody>
+          //                     <tr>
+          //                       <td>` + Source.lineFourLabel + `</td>
+          //                       <th style='width:155px'>` + Source.lineFour + `</th>
+          //                     </tr>
+          //                   </tbody>
+          //                 </table>
+          //
+          //               </div>
+          //
+          //               ` + this.SNRcatUrl(catalogName, Source.glon, Source.glat) + `
+          //               `
 
         });
 
