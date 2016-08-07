@@ -1,15 +1,14 @@
 
 export class Popup {
 
-  private input;
+  private source;
 
   getDesc() {
-    return this.input;
+    return this.source.name;
   }
 
-  constructor(input) {
-    this.input = input;
-
+  constructor(source) {
+    this.source = source;
   }
 
 }

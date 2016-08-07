@@ -104,8 +104,8 @@ export class MapComponent implements OnInit, OnDestroy {
         Source.prefix = "";
       }
 
-      var popup = new Popup("test");
 
+      var popup = new Popup(Source);
       var marker = A.marker(
         catalog['RAJ2000'][row],
         catalog['DEJ2000'][row],
