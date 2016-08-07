@@ -1,3 +1,9 @@
 <p>
   This is CatSourceSNRcatComponent
 </p>
+
+<div *ngIf="(catalog)">
+  <h3>Source Name: {{catalog.data[id].data.Source_Name}}</h3>
+  <p> RA: {{catalog.data[id].data.RAJ2000}}</p>
+  <p>DEC: {{catalog.data[id].data.DEJ2000}}</p>
+</div>

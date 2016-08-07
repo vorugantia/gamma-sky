@@ -17,15 +17,17 @@ const routes: RouterConfig = [
     component: CatViewComponent,
     children: [
       {
-        path: '2fhl',
+        // path: '2fhl',
+        path: '2fhl/:id',
         component: CatSource2FHLComponent
       },
       {
-        path: '3fgl',
+        path: '3fgl/:id',
         component: CatSource3FGLComponent
       },
       {
-        path: 'snrcat',
+        // path: 'snrcat',
+        path: 'snrcat/:id',
         component: CatSourceSNRcatComponent
       },
       {

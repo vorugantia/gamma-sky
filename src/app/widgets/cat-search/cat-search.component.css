@@ -1,0 +1,10 @@
+#catalog-select {
+  padding-top: 30px;
+}
+
+#catalog-select, #source-select {
+  margin: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 300px;
+}

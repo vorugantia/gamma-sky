@@ -1,11 +1,52 @@
-<p>
-  This is CatSearchComponent
 
-  <select (change)="onSelectChange($event.target.value)">
-    <option value="">Choose a catalog</option>
-    <option value="3fgl">3FGL</option>
-    <option value="2fhl">2FHL</option>
-    <option value="snrcat">SNRcat</option>
-  </select>
+<div  id='catalog-select'>
 
-</p>
+  <div class="btn-group btn-group-lg">
+
+    <button
+      class='btn btn-primary'
+      [(ngModel)]="selectedCatalog"
+      btnRadio="3fgl"
+      uncheckable
+      (click)='getCatalog("3FGL")'
+    >
+      3FGL
+    </button>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
+      2FHL
+    </button>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
+      SNRcat
+    </button>
+
+  </div>
+
+</div>
+
+
+<div id='source-select'>
+
+  <div class='form-group'>
+
+    <ng-select id='ng2-select'
+      [allowClear]='true'
+      [items]='items'
+      [disabled]='disabled'
+      (data)='refreshValue($event)'
+      (selected)='selected($event)'
+      (removed)='removed($event)'
+      (typed)='typed($event)'
+      placeholder='No source selected'
+      tooltip='Select a catalog first.'
+      [tooltipEnable]='tooltip'
+    >
+    </ng-select>
+
+  </div>
+
+  <!-- <br>
+  <pre>{{value.text}}</pre> -->
+
+</div>
+
+<hr>
