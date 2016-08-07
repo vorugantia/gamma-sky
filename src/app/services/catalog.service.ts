@@ -3,8 +3,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 
-import { Source3FGL, Source2FHL, SourceSNRcat } from './source';
-import { Catalog3FGL, Catalog2FHL, CatalogSNRcat } from './catalog';
+import { SourceTeV, Source3FGL, Source2FHL, SourceSNRcat } from './source';
+import { CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat } from './catalog';
 
 
 @Injectable()
@@ -34,6 +34,13 @@ export class CatalogService {
     return arr;
   }
 
+  getCatalogTeV() {
+    return this.http.get('app/data/cat/cat_tev.json')
+      .toPromise()
+      .then(response => new CatalogTeV( this.reformat(response.json()) ))
+      .catch(this.handleError);
+  }
+
   getCatalog3FGL() {
     return this.http.get('app/data/cat/cat_3fgl.json')
       .toPromise()
@@ -59,9 +66,6 @@ export class CatalogService {
       .then(response => new CatalogSNRcat( this.reformat(response.json()) ))
       .catch(this.handleError);
   }
-
-
-
 
   private handleError(error: any) {
     console.error('An error occurred', error);

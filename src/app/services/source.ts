@@ -1,3 +1,22 @@
+export class SourceTeV {
+  public data;
+
+  // id: number;
+  // Source_Name: string;
+  // Other_Names: string;
+  // Type: string;
+  // RAJ: number;
+  // DEC: number;
+  // GLON: number;
+  // GLAT: number;
+
+  constructor(data) {
+    this.data = data;
+  }
+
+}
+
+
 export class Source3FGL {
   public data;
 
