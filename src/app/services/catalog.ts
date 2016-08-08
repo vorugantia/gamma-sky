@@ -22,6 +22,18 @@ export class CatalogTeV {
     console.log("CatalogTeV: ", data);
   }
 
+  getSource(id) {
+    for(var i = 0; i < this.data.length; i++) {
+      if(this.data[i].data.id == id) {
+        return this.data[i].data;
+      }
+      else {
+        console.error('getSource() id not found ', id);
+      }
+    }
+
+  }
+
 }
 
 
