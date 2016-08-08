@@ -74,27 +74,27 @@ export class MapComponent implements OnInit, OnDestroy {
     this.map.addCatalog(cat);
 
 
-    var n_sources = catalog.data.index.length;
+    var n_sources = catalog.getLength();
     console.log(catalogName, " # of sources: ", n_sources);
 
     for (var i = 0; i < n_sources; i++) {
 
       // var row = i.toString();
 
-      var round_ra = (Math.round(catalog.getSourceByRowIndex(i).data[raType] * 100) / 100).toFixed(2);
-      var round_dec = (Math.round(catalog.getSourceByRowIndex(i).data[decType] * 100) / 100).toFixed(2);
-      var round_glon = (Math.round(catalog.getSourceByRowIndex(i).data.GLON * 100) / 100).toFixed(2);
-      var round_glat = (Math.round(catalog.getSourceByRowIndex(i).data.GLAT * 100) / 100).toFixed(2);
+      var round_ra = (Math.round(catalog.getVal(i, raType) * 100) / 100).toFixed(2);
+      var round_dec = (Math.round(catalog.getVal(i, decType) * 100) / 100).toFixed(2);
+      var round_glon = (Math.round(catalog.getVal(i, "GLON") * 100) / 100).toFixed(2);
+      var round_glat = (Math.round(catalog.getVal(i, "GLAT") * 100) / 100).toFixed(2);
 
       var Source = <any>{                    // Can Source object be defined anywhere else, perhaps to be SHARED with CatViewComponent?
-        name: catalog.getSourceByRowIndex(i).data.Source_Name,
+        name: catalog.getVal(i, "Source_Name"),
         ra: round_ra,
         dec: round_dec,
         glon: round_glon,
         glat: round_glat
       };
 
-      Source.assoc = catalog.getSourceByRowIndex(i).data[assocType];
+      Source.assoc = catalog.getVal(i, assocType);
       Source.assocLabel = "Assoc:";
 
 
@@ -103,11 +103,11 @@ export class MapComponent implements OnInit, OnDestroy {
       //      - Set the RADIUS for SNRcat catalog.
       // TODO Split these up.
       if (catalogName === "3FGL" || catalogName === "2FHL" || catalogName === "TeV") {
-        Source.lineFour = catalog.getSourceByRowIndex(i).data[classType];
+        Source.lineFour = catalog.getVal(i, classType);
         Source.lineFourLabel = "Source Type:";
       }
       else if (catalogName === "SNRcat") {
-        Source.lineFour = ((Math.round(catalog.getSourceByRowIndex(i).data.size_radio_mean * 100) / 100) / 60).toFixed(2) + "&#176";
+        Source.lineFour = ((Math.round(catalog.getVal(i, "size_radio_mean") * 100) / 100) / 60).toFixed(2) + "&#176";
         Source.lineFourLabel = "Radius:";
         Source.SNRcatID = catalog.getSNRcatID(i, "snrcat_id");
       }
@@ -122,8 +122,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
       var popup = new Popup(Source, catalogName);
       var marker = A.marker(
-        catalog.getSourceByRowIndex(i).data[raType],
-        catalog.getSourceByRowIndex(i).data[decType],
+        catalog.getVal(i, raType),
+        catalog.getVal(i, decType),
         {
           popupDesc: `` + popup.getDesc()
         });
@@ -139,7 +139,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalog(
           '3FGL',
-          'red',
+          '#8e189d', //purple
           catalog
         );
       })
@@ -150,7 +150,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalog(
           '2FHL',
-          'blue',
+          '#1b3bad', //blue
           catalog
         );
       })
@@ -172,7 +172,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalog(
           'TeV',
-          '#8e189d', //purple
+          'red',
           catalog
         );
       })

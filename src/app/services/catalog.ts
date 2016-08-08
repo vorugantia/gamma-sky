@@ -29,6 +29,10 @@ class CatalogBase {
     return this.data.index[idx];
   }
 
+  getLength() {
+    return this.data.index.length;
+  }
+
   getVal(idx, colname) {
     return this.getSourceByRowIndex(idx).data[colname];
   }
@@ -81,8 +85,6 @@ class CatalogBase {
       return data;
   }
 }
-
-
 
 
 export class CatalogTeV extends CatalogBase {
