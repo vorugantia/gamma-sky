@@ -1,21 +1,42 @@
 """
 Prepare catalog data for the website.
 """
-import json
 from pathlib import Path
 import click
 from astropy.table import Table
 
 
 __all__ = [
+    'make_tev_catalog_data',
     'make_3fgl_catalog_data',
     'make_2fhl_catalog_data',
     'make_snrcat_catalog_data'
 
 ]
 
-# TODO Combine the two make_catalog_data functions
+def make_tev_catalog_data():
+    click.secho('Making TeV catalog data...', fg='green')
 
+    out_dir = Path('src/app/data/cat')
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/asdc-tegev.fits.gz?raw=true')
+    cols = table.colnames
+
+    # For now, for testing, we just dump 5 sources
+    table = table[[0, 10, 50, 100, 150]]
+
+    click.echo('Converting table to pandas dataframe...')
+    df = table[cols].to_pandas()
+    # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
+    # The most efficient format should be "split" with DataFrame index dropped
+    # text = df.to_json(orient='records', double_precision=5)
+    text = df.to_json()
+
+    filename = 'src/app/data/cat/cat_tev.json'
+    click.secho('Writing tev {}'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        fh.write(text)
 
 def make_3fgl_catalog_data():
     click.secho('Making 3FGL catalog data...', fg='green')
@@ -31,8 +52,7 @@ def make_3fgl_catalog_data():
         'GLON',
         'GLAT',
         'ASSOC1',
-        'CLASS1'
-
+        'CLASS1',
     ]
 
     # Making empty Assoc cells say "None"
@@ -67,7 +87,7 @@ def make_2fhl_catalog_data():
       'GLON',
       'GLAT',
       'ASSOC',
-      'CLASS'
+      'CLASS',
     ]
     # For debugging ... just select first 5 sources
     # table = table[:5]
@@ -100,7 +120,7 @@ def make_snrcat_catalog_data():
         'GLON',
         'GLAT',
         'id_alt',
-        'size_radio_mean'
+        'size_radio_mean',
     ]
 
     # Making empty Assoc cells say "None"
