@@ -44,6 +44,8 @@ export class MapComponent implements OnInit, OnDestroy {
     var catalog = data;
     var assocType;
     var classType;
+    var raType = "RAJ2000";
+    var decType = "DEJ2000";
 
     if (catalogName == "3FGL") {
       assocType = "ASSOC1";
@@ -55,6 +57,12 @@ export class MapComponent implements OnInit, OnDestroy {
     }
     else if (catalogName == "SNRcat") {
       assocType = "id_alt";
+    }
+    else if (catalogName == "TeV") {
+      assocType = "Other_Names";
+      classType = "TYPE";
+      raType = "RA";
+      decType = "DEC";
     }
 
     var cat = A.catalog({
@@ -73,8 +81,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
       // var row = i.toString();
 
-      var round_ra = (Math.round(catalog.getSourceByRowIndex(i).data.RAJ2000 * 100) / 100).toFixed(2);
-      var round_dec = (Math.round(catalog.getSourceByRowIndex(i).data.DEJ2000 * 100) / 100).toFixed(2);
+      var round_ra = (Math.round(catalog.getSourceByRowIndex(i).data[raType] * 100) / 100).toFixed(2);
+      var round_dec = (Math.round(catalog.getSourceByRowIndex(i).data[decType] * 100) / 100).toFixed(2);
       var round_glon = (Math.round(catalog.getSourceByRowIndex(i).data.GLON * 100) / 100).toFixed(2);
       var round_glat = (Math.round(catalog.getSourceByRowIndex(i).data.GLAT * 100) / 100).toFixed(2);
 
@@ -94,7 +102,7 @@ export class MapComponent implements OnInit, OnDestroy {
       //      - Set the SOURCE TYPE for 3FGL and 2FHL catalogs.
       //      - Set the RADIUS for SNRcat catalog.
       // TODO Split these up.
-      if (catalogName === "3FGL" || catalogName === "2FHL") {
+      if (catalogName === "3FGL" || catalogName === "2FHL" || catalogName === "TeV") {
         Source.lineFour = catalog.getSourceByRowIndex(i).data[classType];
         Source.lineFourLabel = "Source Type:";
       }
@@ -113,8 +121,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
       var popup = new Popup(Source, catalogName);
       var marker = A.marker(
-        catalog.getSourceByRowIndex(i).data.RAJ2000,
-        catalog.getSourceByRowIndex(i).data.DEJ2000,
+        catalog.getSourceByRowIndex(i).data[raType],
+        catalog.getSourceByRowIndex(i).data[decType],
         {
           popupDesc: `` + popup.getDesc()
         });
@@ -158,13 +166,17 @@ export class MapComponent implements OnInit, OnDestroy {
       })
       .catch(error => this.error = error);
   }
-  // getCatalogTeV() {
-  //   this.catalogService.getCatalogTeV()
-  //     .then(catalog => {
-  //       this.catalog = catalog;
-  //     })
-  //     .catch(error => this.error = error);
-  // }
+  getCatalogTeV() {
+    this.catalogService.getCatalogTeV()
+      .then(catalog => {
+        this.addCatalog(
+          'TeV',
+          '#8e189d', //purple
+          catalog
+        );
+      })
+      .catch(error => this.error = error);
+  }
 
   constructor(
     private catalogService: CatalogService
@@ -179,6 +191,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getCatalog3FGL();
     this.getCatalog2FHL();
     this.getCatalogSNRcat();
+    this.getCatalogTeV();
 
 
   }

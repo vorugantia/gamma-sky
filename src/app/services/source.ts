@@ -5,7 +5,7 @@ export class SourceTeV {
   // Source_Name: string;
   // Other_Names: string;
   // Type: string;
-  // RAJ: number;
+  // RA: number;
   // DEC: number;
   // GLON: number;
   // GLAT: number;

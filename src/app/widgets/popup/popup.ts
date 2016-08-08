@@ -57,7 +57,7 @@ export class Popup {
             <tbody>
               <tr>
                 <td>Assoc:</td>
-                <th style='width:155px'>` + this.source.assoc + `</th>
+                <th style='width:170px'>` + this.source.assoc + `</th>
               </tr>
             </tbody>
           </table>
@@ -66,7 +66,7 @@ export class Popup {
             <tbody>
               <tr>
                 <td>` + this.source.lineFourLabel + `</td>
-                <th style='width:155px'>` + this.source.lineFour + `</th>
+                <th style='width:170px'>` + this.source.lineFour + `</th>
               </tr>
             </tbody>
           </table>
