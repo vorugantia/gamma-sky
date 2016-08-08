@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Popup } from '../popup/popup';
 // import { ViewEncapsulation } from '@angular/core';
 
 
@@ -103,74 +104,13 @@ export class MapComponent implements OnInit, OnDestroy {
         Source.prefix = "";
       }
 
+
+      var popup = new Popup(Source, catalogName);
       var marker = A.marker(
         catalog['RAJ2000'][row],
         catalog['DEJ2000'][row],
-        {   // TODO Store template somewhere else
-
-          popupDesc: `
-                      <style>
-
-                      .aladin-popup {
-                        width: 270px;
-                        text-align: left;
-                      }
-
-                      table, table tbody {
-                        width: 270px;
-                        text-align: left;
-                      }
-
-                      table th {
-                        height: 30px;
-                      }
-
-                      </style>
-
-                      <div>
-
-                        <h3 style='text-align:center'>` + Source.prefix + Source.name + `</h3>
-
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>RA:</td>
-                                <th>` + Source.ra + `</th>
-                                <td>DEC:</td>
-                                <th>` + Source.dec + `</th>
-                              </tr>
-                              <tr>
-                                <td>GLON:</td>
-                                <th>` + Source.glon + `</th>
-                                <td>GLAT:</td>
-                                <th>` + Source.glat + `</th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>Assoc:</td>
-                                <th style='width:155px'>` + Source.assoc + `</th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>` + Source.lineFourLabel + `</td>
-                                <th style='width:155px'>` + Source.lineFour + `</th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                        </div>
-
-                        ` + this.SNRcatUrl(catalogName, Source.glon, Source.glat) + `
-                        `
-
+        {
+          popupDesc: `` + popup.getDesc()
         });
 
         cat.addSources([marker]);
@@ -179,54 +119,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
-
-
-  SNRcatUrl(catalog, glonInput, glatInput) {
-
-    if(catalog == "SNRcat") {
-
-        var glon = glonInput.toString();
-        var glat = glatInput.toString();
-
-        var glonD = glon.substring(0, (glon.length - 3));
-        var glonM = glon.substring((glon.length - 2), (glon.length - 1));
-
-        var operation;
-        var glatD;
-        var glatM = glat.substring((glat.length - 2), (glat.length - 1));
-        if(glat.substring(0, 1) == "-") {
-          glatD = glat.substring(1, (glat.length - 3));
-          operation = "m";
-        }
-        else {
-          glatD = glat.substring(0, (glat.length - 3));
-          operation = "p";
-        }
-
-        if(glonD.length == 1) {
-          glonD = "00" + glonD;
-        }
-        if(glonD.length == 2) {
-          glonD = "0" + glonD;
-        }
-
-        if(glatD.length == 1) {
-          glatD = "0" + glatD;
-        }
-
-        var UrlId = "G" + glonD + "." + glonM + operation + glatD + "." + glatM;
-
-        return `<div style='text-align:right; margin-right:4px; font-size:12px'>
-                  <a href='http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=` + UrlId + `' target='_blank'>
-                    View source on SNRcat
-                  </a>
-                </div>`;
-      }
-      else {
-        return "";
-      }
-
-  }
 
   constructor() { }
 

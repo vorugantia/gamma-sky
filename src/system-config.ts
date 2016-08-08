@@ -62,6 +62,7 @@ const barrels: string[] = [
   'app/cat-view/cat-source/cat-source-2fhl',
   'app/widgets/cat-source/cat-source-3fgl',
   'app/widgets/cat-source/cat-source-snrcat',
+  'app/widgets/popup',
   /** @cli-barrel */
 ];
 
