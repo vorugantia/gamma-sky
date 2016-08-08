@@ -1,9 +1,34 @@
-<p>
+<!-- <p>
   This is CatSourceTeVComponent
-</p>
+</p> -->
 
 <div *ngIf="(catalog)">
-  <h3>Source Name: {{catalog.data[id].data.Source_Name}}</h3>
-  <p> RA: {{catalog.data[id].data.RA}}</p>
-  <p>DEC: {{catalog.data[id].data.DEC}}</p>
+
+  <div class="container">
+
+    <div class="col-md-6">
+      <h3>Source Name:
+        {{catalog.getSourceByRowIndex(id).data.Source_Name}}</h3>
+      <ul>
+        <li>RA:
+          {{catalog.getSourceByRowIndex(id).data.RA}}</li>
+        <li>DEC:
+          {{catalog.getSourceByRowIndex(id).data.DEC}}</li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Spectrum</h3>
+      <img src="http://fermi.gsfc.nasa.gov/ssc/data/access/lat/4yr_catalog/3FGL-table/data/3FGL_lc_v5/3FGL_J0002d6p6218_lc.png" class="img-responsive" alt="Generic placeholder thumbnail">
+    </div>
+
+    <div class="col-md-6">
+      <h3>Full JSON data</h3>
+      <pre>
+          {{ catalog.getSourceByRowIndex(id) | json }}
+      </pre>
+    </div>
+    
+    
+  </div>
 </div>
