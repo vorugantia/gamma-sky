@@ -17,7 +17,7 @@ export class Popup {
 
       <style>
       .aladin-popup {
-        width: 270px;
+        width: 275px;
         text-align: left;
       }
 
