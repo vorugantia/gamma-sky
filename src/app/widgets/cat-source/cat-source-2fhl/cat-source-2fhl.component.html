@@ -1,9 +1,27 @@
-<p>
-  This is CatSource2FHLComponent
-</p>
 
 <div *ngIf="(catalog)">
-  <h3>Source Name: {{catalog.data[id].data.Source_Name}}</h3>
-  <p> RA: {{catalog.data[id].data.RAJ2000}}</p>
-  <p>DEC: {{catalog.data[id].data.DEJ2000}}</p>
+
+  <div class="container">
+
+    <div class="col-md-6">
+      <h3>Source Name:
+        {{catalog.getSourceByID(id).data.Source_Name}}</h3>
+      <ul>
+        <li>RA:
+          {{catalog.getSourceByID(id).data.RAJ2000}}</li>
+        <li>DEC:
+          {{catalog.getSourceByID(id).data.DEJ2000}}</li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Full JSON data</h3>
+      <pre>
+          {{ catalog.getSourceByID(id) | json }}
+      </pre>
+    </div>
+
+
+  </div>
+
 </div>

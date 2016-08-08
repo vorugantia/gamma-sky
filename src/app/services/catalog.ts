@@ -21,24 +21,28 @@ class CatalogBase {
   constructor(data, sourceClass) {
     this.data = data;
     this.sourceClass = sourceClass;
-    console.log("CatalogTeV: ", data);
+    console.log("Catalog: ", data);
     console.log(data.columns);
   }
 
+  getID(idx) {
+    return this.data.index[idx];
+  }
+
   getSourceByID(id) {
-      console.log('CatalogBase.getSourceByID id=', id);
-    for (var idx = 0; idx < this.data.length; idx++) {
-      if (this.data[idx].data.id == id) {
-        return this.getSourceByRowIndex(idx);
-      }
-      else {
-        console.error('getSource() id not found ', id);
+
+    let index = this.data.index;
+
+    for (var i = 0; i < index.length; i++) {
+      if (index[i] == id) {
+        // console.log("idx ", idx);
+        return this.getSourceByRowIndex(i);
       }
     }
   }
 
   getSourceByRowIndex(idx) {
-      console.log('CatalogBase.getSourceByRowIndex idx=', idx);
+      // console.log('CatalogBase.getSourceByRowIndex idx=', idx);
 
     let colNames = this.data.columns;
     let rowData = this.data.data[idx];
@@ -52,8 +56,8 @@ class CatalogBase {
       sourceData[colNames[i]] = rowData[i];
     }
     let source = new this.sourceClass(sourceData);
-    console.log(this.sourceClass);
-    console.log('CatalogBase.getSourceByRowIndex source=', source);
+    // console.log(this.sourceClass);
+    // console.log('CatalogBase.getSourceByRowIndex source=', source);
     return source;
   }
 
@@ -73,6 +77,8 @@ class CatalogBase {
       return data;
   }
 }
+
+
 
 
 export class CatalogTeV extends CatalogBase {

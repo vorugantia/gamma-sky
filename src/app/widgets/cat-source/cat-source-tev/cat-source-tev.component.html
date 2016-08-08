@@ -1,6 +1,3 @@
-<!-- <p>
-  This is CatSourceTeVComponent
-</p> -->
 
 <div *ngIf="(catalog)">
 
@@ -8,12 +5,12 @@
 
     <div class="col-md-6">
       <h3>Source Name:
-        {{catalog.getSourceByRowIndex(id).data.Source_Name}}</h3>
+        {{catalog.getSourceByID(id).data.Source_Name}}</h3>
       <ul>
         <li>RA:
-          {{catalog.getSourceByRowIndex(id).data.RA}}</li>
+          {{catalog.getSourceByID(id).data.RA}}</li>
         <li>DEC:
-          {{catalog.getSourceByRowIndex(id).data.DEC}}</li>
+          {{catalog.getSourceByID(id).data.DEC}}</li>
       </ul>
     </div>
 
@@ -25,10 +22,11 @@
     <div class="col-md-6">
       <h3>Full JSON data</h3>
       <pre>
-          {{ catalog.getSourceByRowIndex(id) | json }}
+          {{ catalog.getSourceByID(id) | json }}
       </pre>
     </div>
-    
-    
+
+
   </div>
+
 </div>

@@ -12,23 +12,23 @@ export class CatalogService {
 
 
   // reformat(obj) {
-  // 
+  //
   //   // This function takes input of JSON data as an Object of Objects, and
   //   // reformats it to an array of Objects.
-  // 
+  //
   //   var arr = [];
-  // 
+  //
   //   Object.keys(obj).forEach(k => {
   //     Object.keys(obj[k]).forEach(v => {
-  // 
+  //
   //       if (!arr[v]) {
   //         arr[v] = { id: v };
   //       }
   //       arr[v][k] = obj[k][v];
-  // 
+  //
   //     });
   //   });
-  // 
+  //
   //   console.log("arr: ", arr);
   //   return arr;
   // }
@@ -36,7 +36,10 @@ export class CatalogService {
   getCatalogTeV() {
     return this.http.get('app/data/cat/cat_tev.json')
       .toPromise()
-      .then(response => new CatalogTeV( response.json(), SourceTeV ))
+      .then(response => {
+        console.log(new CatalogTeV(response.json(), SourceTeV));
+        return new CatalogTeV( response.json(), SourceTeV )
+      })
       .catch(this.handleError);
   }
 
