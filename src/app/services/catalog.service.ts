@@ -20,7 +20,6 @@ export class CatalogService {
 
     Object.keys(obj).forEach(k => {
       Object.keys(obj[k]).forEach(v => {
-        // Short way:   (arr[v] = (arr[v] || { id: v }))[k] = obj[k][v];
 
         if (!arr[v]) {
           arr[v] = { id: v };

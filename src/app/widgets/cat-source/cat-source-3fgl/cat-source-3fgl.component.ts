@@ -25,8 +25,6 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
         this.catalog = catalog;
-        console.log(catalog);
-        console.log(this.catalog);
       })
       .catch(error => this.error = error);
   }

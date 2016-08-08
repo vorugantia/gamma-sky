@@ -7,7 +7,6 @@ import { BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective, TOOLT
 import { SELECT_DIRECTIVES } from 'ng2-select';
 
 import { CatalogService } from '../../services/catalog.service';
-import { Catalog3FGL } from '../../services/catalog';
 import { StateService } from '../../services/state.service';
 
 @Component({
@@ -41,6 +40,10 @@ export class CatSearchComponent implements OnInit, DoCheck {
     else if(catalog == 'SNRcat') {
       cat = this.catalogService.getCatalogSNRcat();
       prefix = "SNRcat ";
+    }
+    else if(catalog == 'TeV') {
+      cat = this.catalogService.getCatalogTeV();
+      prefix = "";
     }
 
     cat.then(catalog => {
