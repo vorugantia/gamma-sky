@@ -2,6 +2,7 @@
 //They should also have a "detailed view" button that links from popup to
 // CatViewComponent.
 
+import { SourceSNRcat } from '../../services/source';
 
 export class Popup {
 
@@ -28,6 +29,12 @@ export class Popup {
 
       table th {
         height: 30px;
+      }
+
+      #snrcat {
+        text-align: right;
+        margin-right: 4px;
+        font-size: 12px;
       }
 
       </style>
@@ -82,25 +89,24 @@ export class Popup {
 
     if(this.catalogName == "SNRcat") {
 
-        return `
-
-                <style>
+    return `  <style>
                   div {
                     text-align: right;
                     margin-right: 4px;
                     font-size: 12px;
                   }
-                </style>
+              </style>
+              <div id='snrcat'>
+                  <a href='` + new SourceSNRcat(this.source).getSNRcatUrl() + `' target='_blank'>
+                  View source on SNRcat
 
-                <div>
-                  <a href='http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=` + this.source.SNRcatID + `' target='_blank'>
-                    View source on SNRcat
                   </a>
-                </div>`;
-      }
-      else {
-        return "";
-      }
+              </div>
+              `;
+    }
+    else {
+      return "";
+    }
   }
 
   constructor(source, catalogName) {

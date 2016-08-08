@@ -68,4 +68,46 @@ export class SourceSNRcat {
     this.data = data;
   }
 
+  getSNRcatUrl() {
+
+    // This function returns the URL link to SNRcat, constructing the URL based
+    // on the source's RA and DEC (this is how SNRcat made their source URLs).
+
+        var glon = this.data.glon.toString();
+        var glat = this.data.glat.toString();
+
+        var glonD = glon.substring(0, (glon.length - 3));
+        var glonM = glon.substring((glon.length - 2), (glon.length - 1));
+
+        var operation;
+        var glatD;
+        var glatM = glat.substring((glat.length - 2), (glat.length - 1));
+        if(glat.substring(0, 1) == "-") {
+          glatD = glat.substring(1, (glat.length - 3));
+          operation = "m";
+        }
+        else {
+          glatD = glat.substring(0, (glat.length - 3));
+          operation = "p";
+        }
+
+        if(glonD.length == 1) {
+          glonD = "00" + glonD;
+        }
+        if(glonD.length == 2) {
+          glonD = "0" + glonD;
+        }
+
+        if(glatD.length == 1) {
+          glatD = "0" + glatD;
+        }
+
+        var UrlId = "G" + glonD + "." + glonM + operation + glatD + "." + glatM;
+
+        var url = "http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=" + UrlId;
+        return url;
+
+
+  }
+
 }
