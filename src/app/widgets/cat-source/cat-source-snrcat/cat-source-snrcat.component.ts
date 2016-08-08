@@ -9,7 +9,7 @@ import { StateService } from '../../../services/state.service';
   moduleId: module.id,
   selector: 'cat-source-snrcat',
   templateUrl: 'cat-source-snrcat.component.html',
-  styleUrls: ['cat-source-snrcat.component.css'],
+  // styleUrls: ['cat-source-snrcat.component.css'],
   providers: [CatalogService]
 })
 export class CatSourceSNRcatComponent implements OnInit, OnDestroy {

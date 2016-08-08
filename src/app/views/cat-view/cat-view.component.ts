@@ -9,7 +9,7 @@ import { StateService } from '../../services/state.service';
   moduleId: module.id,
   selector: 'cat-view',
   templateUrl: 'cat-view.component.html',
-  styleUrls: ['cat-view.component.css'],
+  // styleUrls: ['cat-view.component.css'],
   directives: [ROUTER_DIRECTIVES, SwitchViewComponent, CatSearchComponent],
   providers: [StateService]
 })

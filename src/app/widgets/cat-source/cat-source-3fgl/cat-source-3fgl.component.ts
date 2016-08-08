@@ -9,7 +9,7 @@ import { StateService } from '../../../services/state.service';
   moduleId: module.id,
   selector: 'cat-source-3fgl',
   templateUrl: 'cat-source-3fgl.component.html',
-  styleUrls: ['cat-source-3fgl.component.css'],
+  // styleUrls: ['cat-source-3fgl.component.css'],
   providers: [CatalogService]
 })
 export class CatSource3FGLComponent implements OnInit, OnDestroy {

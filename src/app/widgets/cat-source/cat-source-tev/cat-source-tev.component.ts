@@ -9,7 +9,7 @@ import { StateService } from '../../../services/state.service';
   moduleId: module.id,
   selector: 'cat-source-tev',
   templateUrl: 'cat-source-tev.component.html',
-  styleUrls: ['cat-source-tev.component.css'],
+  // styleUrls: ['cat-source-tev.component.css'],
   providers: [CatalogService]
 })
 export class CatSourceTeVComponent implements OnInit, OnDestroy {
