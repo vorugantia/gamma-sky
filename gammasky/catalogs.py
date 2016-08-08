@@ -3,6 +3,7 @@ Prepare catalog data for the website.
 """
 from pathlib import Path
 import click
+import numpy as np
 from astropy.table import Table
 
 
@@ -14,7 +15,7 @@ __all__ = [
 
 ]
 
-def make_tev_catalog_data():
+def make_tev_catalog_data(nrows=None):
     click.secho('Making TeV catalog data...', fg='green')
 
     out_dir = Path('src/app/data/cat')
@@ -23,22 +24,30 @@ def make_tev_catalog_data():
     table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/asdc-tegev.fits.gz?raw=true')
     cols = table.colnames
 
-    # For now, for testing, we just dump 5 sources
-    table = table[[0, 10, 50, 100, 150]]
+    if nrows:
+        row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
+        table = table[row_ids]
 
     click.echo('Converting table to pandas dataframe...')
     df = table[cols].to_pandas()
+    # http://stackoverflow.com/a/20491748/498873
+    # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html
+    # df.reset_index(drop=True)
+    df.index = df['id'].astype('int')
+    del df['id']
+    # import  IPython; IPython.embed()
+    
     # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
     # The most efficient format should be "split" with DataFrame index dropped
-    # text = df.to_json(orient='records', double_precision=5)
-    text = df.to_json()
+    text = df.to_json(orient='split', double_precision=5)
+    # text = df.to_json()
 
     filename = 'src/app/data/cat/cat_tev.json'
     click.secho('Writing tev {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         fh.write(text)
 
-def make_3fgl_catalog_data():
+def make_3fgl_catalog_data(nrows=None):
     click.secho('Making 3FGL catalog data...', fg='green')
 
     out_dir = Path('src/app/data/cat')
@@ -54,6 +63,10 @@ def make_3fgl_catalog_data():
         'ASSOC1',
         'CLASS1',
     ]
+
+    if nrows:
+        row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
+        table = table[row_ids]
 
     # Making empty Assoc cells say "None"
     assoc_mask = table['ASSOC1'].data == 26 * " "
@@ -73,7 +86,7 @@ def make_3fgl_catalog_data():
         fh.write(text)
 
 
-def make_2fhl_catalog_data():
+def make_2fhl_catalog_data(nrows=None):
     click.secho('Making 2FHL catalog data ...', fg='green')
 
     out_dir = Path('src/app/data/cat')
@@ -89,8 +102,10 @@ def make_2fhl_catalog_data():
       'ASSOC',
       'CLASS',
     ]
-    # For debugging ... just select first 5 sources
-    # table = table[:5]
+
+    if nrows:
+        row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
+        table = table[row_ids]
 
     # Making empty Assoc cells say "None"
     assoc_mask = table['ASSOC'].data == ""
@@ -106,7 +121,7 @@ def make_2fhl_catalog_data():
         fh.write(text)
 
 
-def make_snrcat_catalog_data():
+def make_snrcat_catalog_data(nrows=None):
     click.secho('Making SNRcat catalog data...', fg='green')
 
     out_dir = Path('src/app/data/cat')
@@ -122,6 +137,10 @@ def make_snrcat_catalog_data():
         'id_alt',
         'size_radio_mean',
     ]
+
+    if nrows:
+        row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
+        table = table[row_ids]
 
     # Making empty Assoc cells say "None"
     assoc_mask = table['id_alt'].data == "N/A"
