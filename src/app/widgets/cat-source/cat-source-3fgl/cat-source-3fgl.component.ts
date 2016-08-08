@@ -29,6 +29,37 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
       .catch(error => this.error = error);
   }
 
+  getUrl(sourceName, image) {
+
+    var imageType = image;
+
+    var name = sourceName.toString();
+    name = name.substring(6);
+    if(name.indexOf(" ") > 0) {
+      name = name.substring(0, name.length-1);
+    }
+
+    var string1 = name.substring(0, 4);
+    var string2 = name.substring(5, 6);
+    var operation = name.substring(6, 7);
+    var string3 = name.substring(7);
+
+    var operationLetter;
+    if(operation == "+") {
+      operationLetter = "p";
+    }
+    else {
+      operationLetter = "m";
+    }
+
+    var urlEnd = string1 + "d" + string2 + operationLetter + string3;
+
+    var url = "http://fermi.gsfc.nasa.gov/ssc/data/access/lat/4yr_catalog/3FGL-table/data/3FGL_" + imageType + "_v5/3FGL_J" + urlEnd + "_" + imageType + ".png";
+    // console.log("fermi 3fgl url: ", url);
+    return url;
+
+  }
+
 
   constructor(
     private catalogService: CatalogService,
