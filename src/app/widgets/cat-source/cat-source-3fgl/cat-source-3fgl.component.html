@@ -3,27 +3,27 @@
 
     <div class="col-md-4">
         <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
-        <h5>Basic Info: </h5>
+        <h5>Basic info: </h5>
         <ul>
             <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
             <li>ASSOC1: {{catalog.getSourceByID(id).data.ASSOC1}}</li>
             <li>CLASS1: {{catalog.getSourceByID(id).data.CLASS1}}</li>
         </ul>
-        <h5>Position Info:</h5>
+        <h5>Position info:</h5>
         <ul>        
             <li>RA: {{catalog.getSourceByID(id).data.RAJ2000}} deg</li>
             <li>DEC: {{catalog.getSourceByID(id).data.DEJ2000}} deg</li>
             <li>GLON: {{catalog.getSourceByID(id).data.GLON}} deg</li>
             <li>GLAT: {{catalog.getSourceByID(id).data.GLAT}} deg</li>
         </ul>
-        <h5>Spectral Info:</h5>
+        <h5>Spectral info:</h5>
         <ul>
             <li>TODO</li>
         </ul>
     </div>
 
     <div class="col-md-4">
-      <h3>Light Curve</h3>
+      <h3>Lightcurve</h3>
       <img src="{{getUrl(catalog.getSourceByID(id).data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
     </div>
 
