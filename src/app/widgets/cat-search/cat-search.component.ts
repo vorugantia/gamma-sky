@@ -56,9 +56,10 @@ export class CatSearchComponent implements OnInit, DoCheck {
       for(var i = 0; i < this.catalog.data.index.length; i++) {
         this.items.push({
           text: prefix + this.catalog.getSourceByRowIndex(i).data.Source_Name,
-          id: this.catalog.data.index[i]
+          id: this.catalog.getID(i).toString() // If not toString(), ng2-select thinks an id of 0 is null.
         });
       }
+      console.log('items: ', this.items);
 
     })
     .catch(error => this.error = error);

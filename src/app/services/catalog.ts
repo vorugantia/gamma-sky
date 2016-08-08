@@ -25,6 +25,10 @@ class CatalogBase {
     console.log(data.columns);
   }
 
+  getID(idx) {
+    return this.data.index[idx];
+  }
+
   getSourceByID(id) {
 
     let index = this.data.index;
