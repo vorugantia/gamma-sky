@@ -53,10 +53,10 @@ export class CatSearchComponent implements OnInit, DoCheck {
         this.items = [];
       }
 
-      for(var i = 0; i < this.catalog.data.length; i++) {
+      for(var i = 0; i < this.catalog.data.index.length; i++) {
         this.items.push({
-          text: prefix + this.catalog.data[i].data.Source_Name,
-          id: this.catalog.data[i].data.id
+          text: prefix + this.catalog.getSourceByRowIndex(i).data.Source_Name,
+          id: this.catalog.data.index[i]
         });
       }
 
