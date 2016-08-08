@@ -136,20 +136,28 @@ export class MapComponent implements OnInit, OnDestroy {
       })
       .catch(error => this.error = error);
   }
-  // getCatalog2FHL() {
-  //   this.catalogService.getCatalog2FHL()
-  //     .then(catalog => {
-  //
-  //     })
-  //     .catch(error => this.error = error);
-  // }
-  // getCatalogSNRcat() {
-  //   this.catalogService.getCatalogSNRcat()
-  //     .then(catalog => {
-  //
-  //     })
-  //     .catch(error => this.error = error);
-  // }
+  getCatalog2FHL() {
+    this.catalogService.getCatalog2FHL()
+      .then(catalog => {
+        this.addCatalog(
+          '2FHL',
+          'blue',
+          catalog
+        );
+      })
+      .catch(error => this.error = error);
+  }
+  getCatalogSNRcat() {
+    this.catalogService.getCatalogSNRcat()
+      .then(catalog => {
+        this.addCatalog(
+          'SNRcat',
+          'green',
+          catalog
+        );
+      })
+      .catch(error => this.error = error);
+  }
   // getCatalogTeV() {
   //   this.catalogService.getCatalogTeV()
   //     .then(catalog => {
@@ -169,30 +177,9 @@ export class MapComponent implements OnInit, OnDestroy {
     this.showMap();
 
     this.getCatalog3FGL();
+    this.getCatalog2FHL();
+    this.getCatalogSNRcat();
 
-    // $.getJSON('app/data/cat/cat_3fgl.json', (data) => {
-    //   this.addCatalog(
-    //     '3FGL',
-    //     'red',
-    //     data
-    //   );
-    // });
-    //
-    // $.getJSON('app/data/cat/cat_2fhl.json', (data) => {
-    //   this.addCatalog(
-    //     '2FHL',
-    //     'blue',
-    //     data
-    //   );
-    // });
-    //
-    // $.getJSON('app/data/cat/cat_snrcat.json', (data) => {
-    //   this.addCatalog(
-    //     'SNRcat',
-    //     'green',
-    //     data
-    //   );
-    // });
 
   }
 
