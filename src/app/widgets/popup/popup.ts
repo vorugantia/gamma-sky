@@ -1,3 +1,7 @@
+//TODO: Each catalog should have its own popup component, with its own links.
+//They should also have a "detailed view" button that links from popup to
+// CatViewComponent.
+
 
 export class Popup {
 
