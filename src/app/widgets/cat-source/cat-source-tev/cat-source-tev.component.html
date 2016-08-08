@@ -1,32 +1,33 @@
-
 <div *ngIf="(catalog)">
-
   <div class="container">
-
     <div class="col-md-6">
-      <h3>Source Name:
-        {{catalog.getSourceByID(id).data.Source_Name}}</h3>
+      <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
+      <h5>Basic Info</h5>
       <ul>
-        <li>RA:
-          {{catalog.getSourceByID(id).data.RA}}</li>
-        <li>DEC:
-          {{catalog.getSourceByID(id).data.DEC}}</li>
+          <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
+          <li>Other names: {{catalog.getSourceByID(id).data.Other_Names}}</li>
+          <li>Type: {{catalog.getSourceByID(id).data.TYPE}}</li>
+          <li>TODO: add link to TeVCat</li>
+          <li>TODO: add link to get data as JSON</li>
+      </ul>
+      <h5>Position Info:</h5>
+      <ul>
+          <li>RA: {{catalog.getSourceByID(id).data.RA}} deg</li>
+          <li>DEC: {{catalog.getSourceByID(id).data.DEC}} deg</li>
+          <li>GLON: {{catalog.getSourceByID(id).data.GLON}} deg</li>
+          <li>GLAT: {{catalog.getSourceByID(id).data.GLAT}} deg</li>
+      </ul>
+      <h5>Spectral Info:</h5>
+      <ul>
+          <li>TODO</li>
       </ul>
     </div>
-
-    <div class="col-md-6">
-      <h3>Spectrum</h3>
-      <img src="http://fermi.gsfc.nasa.gov/ssc/data/access/lat/4yr_catalog/3FGL-table/data/3FGL_lc_v5/3FGL_J0002d6p6218_lc.png" class="img-responsive" alt="Generic placeholder thumbnail">
-    </div>
-
-    <div class="col-md-6">
-      <h3>Full JSON data</h3>
-      <pre>
-          {{ catalog.getSourceByID(id) | json }}
-      </pre>
-    </div>
-
-
   </div>
-
 </div>
+<footer>
+    <div class="container">
+        <p>
+            Data from: <a href="http://www.asdc.asi.it/tgevcat/">TeGeV Catalogue @ ASDC (v2, July 2015)</a>
+        </p>        
+    </div>
+</footer>
