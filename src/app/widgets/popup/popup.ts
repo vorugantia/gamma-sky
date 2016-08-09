@@ -31,12 +31,6 @@ export class Popup {
         height: 30px;
       }
 
-      #snrcat {
-        text-align: right;
-        margin-right: 4px;
-        font-size: 12px;
-      }
-
       </style>
 
       <div>
