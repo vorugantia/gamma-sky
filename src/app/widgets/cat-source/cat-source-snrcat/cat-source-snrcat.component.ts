@@ -32,8 +32,8 @@ export class CatSourceSNRcatComponent implements OnInit, OnDestroy {
       .catch(error => this.error = error);
   }
 
-  getSNRcatUrl() {
-    //TODO implement
+  getSNRcatUrl(cat) {
+    return new SourceSNRcat(cat).getSNRcatUrl("snrcat_id");
   }
 
   constructor(

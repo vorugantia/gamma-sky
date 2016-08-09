@@ -122,8 +122,4 @@ export class CatalogSNRcat extends CatalogBase {
     console.log(source);
   }
 
-  getSNRcatID(idx) {
-    return this.getVal(idx, "snrcat_id");
-  }
-
 }

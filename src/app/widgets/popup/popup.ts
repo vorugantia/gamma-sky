@@ -97,7 +97,7 @@ export class Popup {
                   }
               </style>
               <div id='snrcat'>
-                  <a href='` + new SourceSNRcat(this.source).getSNRcatUrl() + `' target='_blank'>
+                  <a href='` + new SourceSNRcat(this.source).getSNRcatUrl("SNRcatID") + `' target='_blank'>
                   View source on SNRcat
 
                   </a>
