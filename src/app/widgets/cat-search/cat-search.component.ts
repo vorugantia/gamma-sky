@@ -33,7 +33,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
-        this.items = catalog.getCatSearchItems("");
+        this.items3FGL = catalog.getCatSearchItems("");
       })
       .catch(error => this.error = error);
 
@@ -105,6 +105,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.getCatalogs();
+
   }
 
   ngDoCheck() {
