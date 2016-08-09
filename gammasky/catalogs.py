@@ -138,9 +138,23 @@ def make_snrcat_catalog_data(nrows=None):
 
     table = Table.read('https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/snrcat.fits.gz?raw=true')
     table['Source_ID'] = np.arange(len(table), dtype=int)
+
+    # Add snrcat_id field that's used as part of the URL to link to SNRcat
+    # snrcat_id = []
+    # for source in table:
+    #     sign = 'p' if source['GLAT'] >= 0 else 'm'
+    #     s = 'G{:05.1f}{}{:04.1f}'.format(source['GLON'], sign, abs(source['GLAT']))
+    #     snrcat_id.append(s)
+    # table['snrcat_id'] = snrcat_id
+    table['snrcat_id'] = [
+        _.replace('+', 'p').replace('-', 'm')
+        for _ in table['Source_Name']
+    ]
+
     cols = [
         'Source_ID',
         'Source_Name',
+        'snrcat_id',
         'RAJ2000',
         'DEJ2000',
         'GLON',
@@ -148,7 +162,7 @@ def make_snrcat_catalog_data(nrows=None):
         'id_alt',
         'size_radio_mean',
     ]
-
+    
     if nrows:
         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
         table = table[row_ids]
