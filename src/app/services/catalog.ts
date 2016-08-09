@@ -29,6 +29,10 @@ class CatalogBase {
     return this.data.index[idx];
   }
 
+  getLength() {
+    return this.data.index.length;
+  }
+
   getVal(idx, colname) {
     return this.getSourceByRowIndex(idx).data[colname];
   }
@@ -83,8 +87,6 @@ class CatalogBase {
 }
 
 
-
-
 export class CatalogTeV extends CatalogBase {
 
   printInfo(idx) {
@@ -118,10 +120,6 @@ export class CatalogSNRcat extends CatalogBase {
   printInfo(idx) {
     let source = this.getSourceByRowIndex(idx);
     console.log(source);
-  }
-
-  getSNRcatID(idx) {
-    return this.getVal(idx, "snrcat_id");
   }
 
 }

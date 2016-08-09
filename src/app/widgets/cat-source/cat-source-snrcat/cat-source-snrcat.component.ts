@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CatalogSNRcat } from '../../../services/catalog';
+import { SourceSNRcat } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
 import { StateService } from '../../../services/state.service';
 
@@ -9,7 +10,7 @@ import { StateService } from '../../../services/state.service';
   moduleId: module.id,
   selector: 'cat-source-snrcat',
   templateUrl: 'cat-source-snrcat.component.html',
-  styleUrls: ['cat-source-snrcat.component.css'],
+  // styleUrls: ['cat-source-snrcat.component.css'],
   providers: [CatalogService]
 })
 export class CatSourceSNRcatComponent implements OnInit, OnDestroy {
@@ -27,10 +28,12 @@ export class CatSourceSNRcatComponent implements OnInit, OnDestroy {
         this.catalog = catalog;
         console.log(catalog);
 
-        console.log(this.catalog.getSNRcatID(this.id));
-
       })
       .catch(error => this.error = error);
+  }
+
+  getSNRcatUrl(cat) {
+    return new SourceSNRcat(cat).getSNRcatUrl("snrcat_id");
   }
 
   constructor(
@@ -48,6 +51,7 @@ export class CatSourceSNRcatComponent implements OnInit, OnDestroy {
       let id = +params['id'];
       console.log('id ', id);
       this.id = id;
+
     });
 
   }
