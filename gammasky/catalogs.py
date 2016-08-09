@@ -34,13 +34,13 @@ def make_tev_catalog_data(nrows=None):
     # http://stackoverflow.com/a/20491748/498873
     # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html
     # df.reset_index(drop=True)
-    df.index = df['id'].astype('int')
-    del df['id']
+    df.index = df['Source_ID'].astype('int')
+    del df['Source_ID']
     # import  IPython; IPython.embed()
     
     # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
     # The most efficient format should be "split" with DataFrame index dropped
-    text = df.to_json(**TO_JSON_KWARGS)
+    text = df.to_json(orient='split')
     # text = df.to_json()
 
     filename = 'src/app/data/cat/cat_tev.json'
