@@ -7,7 +7,11 @@
       <ul>
           <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
           <li>Other names: {{catalog.getSourceByID(id).data.id_alt}}</li>
-          <li>TODO: add link to SNRCat</li>
+          <li>
+            <a href="http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id={{catalog.getVal(id, 'snrcat_id')}}" target="_blank">
+              View in SNRcat
+            </a>
+          </li>
           <li>TODO: add link to get data as JSON</li>
       </ul>
       <h5>Position and morphology info:</h5>
@@ -19,19 +23,19 @@
           <li>Size: {{catalog.getSourceByID(id).data.size_radio_mean}} arcmin</li>
       </ul>
     </div>
-    
+
     <div class="col-md-4">
       <h3>Radio image</h3>
       <!-- <img src="{{getUrl(catalog.getSourceByID(id).data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" /> -->
       <p>TODO: put small Aladin widget here (maybe 2 x 2 deg), showing a radio image.</p>
     </div>
-    
+
   </div>
 </div>
 <footer>
     <div class="container">
         <p>
             Data from: <a href="http://www.physics.umanitoba.ca/snr/SNRcat/">SNRCat</a>
-        </p>        
+        </p>
     </div>
 </footer>

@@ -26,6 +26,9 @@ export class CatSourceSNRcatComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.catalog = catalog;
         console.log(catalog);
+
+        console.log(this.catalog.getSNRcatID(this.id));
+
       })
       .catch(error => this.error = error);
   }
