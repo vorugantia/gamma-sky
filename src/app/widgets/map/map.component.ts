@@ -60,7 +60,7 @@ export class MapComponent implements OnInit, OnDestroy {
     }
     else if (catalogName == "TeV") {
       assocType = "Other_Names";
-      classType = "TYPE";
+      classType = "CLASS";
       raType = "RA";
       decType = "DEC";
     }
@@ -104,7 +104,7 @@ export class MapComponent implements OnInit, OnDestroy {
       // TODO Split these up.
       if (catalogName === "3FGL" || catalogName === "2FHL" || catalogName === "TeV") {
         Source.lineFour = catalog.getVal(i, classType);
-        Source.lineFourLabel = "Source Type:";
+        Source.lineFourLabel = "Class:";
       }
       else if (catalogName === "SNRcat") {
         Source.lineFour = ((Math.round(catalog.getVal(i, "size_radio_mean") * 100) / 100) / 60).toFixed(2) + "&#176";
