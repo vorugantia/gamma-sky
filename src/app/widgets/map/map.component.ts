@@ -109,6 +109,7 @@ export class MapComponent implements OnInit, OnDestroy {
       else if (catalogName === "SNRcat") {
         Source.lineFour = ((Math.round(catalog.getSourceByRowIndex(i).data.size_radio_mean * 100) / 100) / 60).toFixed(2) + "&#176";
         Source.lineFourLabel = "Radius:";
+        Source.SNRcatID = catalog.getSNRcatID(i, "snrcat_id");
       }
 
       if (catalogName === "SNRcat") {
