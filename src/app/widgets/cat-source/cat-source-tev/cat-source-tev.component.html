@@ -6,20 +6,42 @@
       <ul>
           <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
           <li>Other names: {{catalog.getSourceByID(id).data.Other_Names}}</li>
-          <li>Type: {{catalog.getSourceByID(id).data.TYPE}}</li>
+          <li>Class: {{catalog.getSourceByID(id).data.CLASS}}</li>
           <li>TODO: add link to TeVCat</li>
           <li>TODO: add link to get data as JSON</li>
       </ul>
       <h5>Position info:</h5>
       <ul>
-          <li>RA: {{catalog.getSourceByID(id).data.RA}} deg</li>
-          <li>DEC: {{catalog.getSourceByID(id).data.DEC}} deg</li>
-          <li>GLON: {{catalog.getSourceByID(id).data.GLON}} deg</li>
-          <li>GLAT: {{catalog.getSourceByID(id).data.GLAT}} deg</li>
+          <li>RA: {{catalog.getSourceByID(id).ra_str()}}</li>
+          <li>DEC: {{catalog.getSourceByID(id).dec_str()}}</li>
+          <li>GLON: {{catalog.getSourceByID(id).glon_str()}}</li>
+          <li>GLAT: {{catalog.getSourceByID(id).glat_str()}}</li>
+      </ul>
+      <h5>Extension info:</h5>
+      <ul>
+          <li>{{catalog.getSourceByID(id).ext_str()}}</li>
+          <li>Semimajor: {{catalog.getSourceByID(id).semimajor_str()}}</li>
+          <li>Semiminor: {{catalog.getSourceByID(id).semiminor_str()}}</li>
+          <li>Rotation angle: {{catalog.getSourceByID(id).glat_str()}}</li>
       </ul>
       <h5>Spectral info:</h5>
       <ul>
-          <li>TODO</li>
+          <!-- <li>Differential flux: {{catalog.getSourceByID(id).flux_diff_str()}}</li> -->
+          <!-- <li>Integral flux: {{catalog.getSourceByID(id).flux_int_str()}}</li> -->
+          <li>Flux: {{ catalog.getSourceByID(id).flux_crab_str()}} </li>
+          <li>Spectral index: {{catalog.getSourceByID(id).spectral_index_str()}}</li>
+      </ul>
+      <h5>Distance info:</h5>
+      <ul>
+          <li>Distance: {{ catalog.getSourceByID(id).distance_str()}} </li>
+          <li>Redshift: {{catalog.getSourceByID(id).distance2_str()}}</li>
+      </ul>
+      <h5>Othe info:</h5>
+      <ul>
+          <li>Discoverer: {{ catalog.getSourceByID(id).data.Discoverer}} </li>
+          <li>Observatory: {{ catalog.getSourceByID(id).data.Observatory}} </li>
+          <li>Reference: {{ catalog.getSourceByID(id).data.Reference}} </li>
+          <li>Comments: {{ catalog.getSourceByID(id).data.Comments}} </li>
       </ul>
     </div>
   </div>
