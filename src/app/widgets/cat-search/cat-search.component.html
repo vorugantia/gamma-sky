@@ -8,17 +8,17 @@
       [(ngModel)]="selectedCatalog"
       btnRadio="3fgl"
       uncheckable
-      (click)='getCatalog("3FGL")'
+      (click)='setItems(items3FGL)'
     >
       3FGL
     </button>
-    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='getCatalog("2FHL")'>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="2fhl" uncheckable (click)='setItems(items2FHL)'>
       2FHL
     </button>
-    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='getCatalog("SNRcat")'>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="snrcat" uncheckable (click)='setItems(itemsSNRcat)'>
       SNRcat
     </button>
-    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="tev" uncheckable (click)='getCatalog("TeV")'>
+    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="tev" uncheckable (click)='setItems(itemsTeV)'>
       TeV
     </button>
 

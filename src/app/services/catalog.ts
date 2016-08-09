@@ -84,6 +84,19 @@ class CatalogBase {
       }
       return data;
   }
+
+  getCatSearchItems(prefix) {
+    let items = [];
+
+    for(var i = 0; i < this.getLength(); i++) {
+      items.push({
+        text: prefix + this.getVal(i, "Source_Name"),
+        id: this.getID(i).toString()
+      });
+    }
+    return items;
+  }
+
 }
 
 

@@ -20,50 +20,45 @@ import { StateService } from '../../services/state.service';
 export class CatSearchComponent implements OnInit, DoCheck {
 
   private selectedId;
-  private catalog;
+  // private catalog;
   private error: any;
 
+  private items3FGL;
+  private items2FHL;
+  private itemsSNRcat;
+  private itemsTeV;
 
-  getCatalog(catalog) {
 
-    var cat;
-    var prefix;
+  getCatalogs() {
 
-    if(catalog == '3FGL') {
-      cat = this.catalogService.getCatalog3FGL();
-      prefix = "";
-    }
-    else if(catalog == '2FHL') {
-      cat = this.catalogService.getCatalog2FHL();
-      prefix = "";
-    }
-    else if(catalog == 'SNRcat') {
-      cat = this.catalogService.getCatalogSNRcat();
-      prefix = "SNRcat ";
-    }
-    else if(catalog == 'TeV') {
-      cat = this.catalogService.getCatalogTeV();
-      prefix = "";
-    }
+    this.catalogService.getCatalog3FGL()
+      .then(catalog => {
+        this.items = catalog.getCatSearchItems("");
+      })
+      .catch(error => this.error = error);
 
-    cat.then(catalog => {
-      this.catalog = catalog;
+    this.catalogService.getCatalog2FHL()
+      .then(catalog => {
+        this.items2FHL = catalog.getCatSearchItems("");
+      })
+      .catch(error => this.error = error);
 
-      if(this.items !== []) {
-        this.items = [];
-      }
+    this.catalogService.getCatalogSNRcat()
+      .then(catalog => {
+        this.itemsSNRcat = catalog.getCatSearchItems("SNRcat ");
+      })
+      .catch(error => this.error = error);
 
-      for(var i = 0; i < this.catalog.data.index.length; i++) {
-        this.items.push({
-          text: prefix + this.catalog.getSourceByRowIndex(i).data.Source_Name,
-          id: this.catalog.getID(i).toString() // If not toString(), ng2-select thinks an id of 0 is null.
-        });
-      }
-      console.log('items: ', this.items);
+    this.catalogService.getCatalogTeV()
+      .then(catalog => {
+        this.itemsTeV = catalog.getCatSearchItems("");
+      })
+      .catch(error => this.error = error);
 
-    })
-    .catch(error => this.error = error);
+  }
 
+  setItems(items) {
+    this.items = items;
   }
 
 
@@ -71,34 +66,34 @@ export class CatSearchComponent implements OnInit, DoCheck {
   // http://valor-software.com/ng2-select/
   // https://valor-software.com/ng2-bootstrap/
 
-  public items:Array<any> = [];
-  private value:any = {};
+  public items: Array<any> = [];
+  private value: any = {};
   public selectedCatalog;
   private tooltip;
-  private disabled:boolean = false;
+  private disabled: boolean = false;
 
 
-  public selected(value:any):void {
+  public selected(value: any): void {
     console.log('Selected value is: ', value);
 
     // this.stateService.setSelectedId(value.id);
 
-      this.router.navigate(['/cat', this.selectedCatalog, value.id]);
+    this.router.navigate(['/cat', this.selectedCatalog, value.id]);
 
 
   }
 
-  public removed(value:any):void {
+  public removed(value: any): void {
     console.log('Removed value is: ', value);
 
     this.router.navigate(['/cat']);
   }
 
-  public typed(value:any):void {
+  public typed(value: any): void {
     console.log('New search input: ', value);
   }
 
-  public refreshValue(value:any):void {
+  public refreshValue(value: any): void {
     this.value = value;
   }
 
@@ -106,14 +101,14 @@ export class CatSearchComponent implements OnInit, DoCheck {
     private catalogService: CatalogService,
     public stateService: StateService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
-
+    this.getCatalogs();
   }
 
   ngDoCheck() {
-    if(this.selectedCatalog == null) {
+    if (this.selectedCatalog == null) {
       this.disabled = true;
       this.tooltip = true;
       // this.items = [];
