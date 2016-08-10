@@ -3,9 +3,11 @@ import { Popup } from '../popup/popup';
 // import { ViewEncapsulation } from '@angular/core';
 
 import {CatalogService} from '../../services/catalog.service';
+import {SURVEYS} from '../../data/maps/surveys';
 
 
 declare var A: any;
+declare var HpxImageSurvey: any;
 declare var $: any;
 
 @Component({
@@ -35,6 +37,12 @@ export class MapComponent implements OnInit, OnDestroy {
       showShareControl: true, //Hidden attribute, not yet working
       // showCatalog: false //Hidden attribute
     });
+  }
+
+  updateSurveys() {
+    setTimeout(() => {
+      HpxImageSurvey.SURVEYS = SURVEYS;
+    }, 1000);
   }
 
   addCatalog(catalogName, catalogColor, data) {
@@ -188,6 +196,8 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log('aladin map OnInit');
 
     this.showMap();
+
+    this.updateSurveys();
 
     this.getCatalog3FGL();
     this.getCatalog2FHL();
