@@ -53,7 +53,7 @@ export var SURVEYS: Survey[] = [
   {
     "id": "P/GLIMPSE360",
     "url": "http://www.spitzer.caltech.edu/glimpse360/aladin/data",
-    "name": "GLIMPSE360",
+    "name": "Spitzer GLIMPSE360",
     "maxOrder": 9,
     "frame": "equatorial",
     "format": "jpeg"
