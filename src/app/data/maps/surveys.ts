@@ -8,6 +8,12 @@ class Survey {
   "format": string;
 }
 
+// Database of available surveys (in HiPS file format): http://aladin.unistra.fr/hips/list
+
+// **Note: Some of the links for each survey DO NOT work in browser, but will still load an image in Aladin Lite.
+//         Conversely, some of the survey links do work but the image will not appear on Aladin Lite.
+//         Therefore, check each survey that you add to the list below.
+
 export var SURVEYS: Survey[] = [
 
   {
