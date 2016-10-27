@@ -1,7 +1,0 @@
-cython
-numpy
-pandas
-click
-astropy
-healpy
-git+https://github.com/gammapy/gammapy.git#egg=gammapy
