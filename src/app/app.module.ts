@@ -4,20 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-
 import { AppRoutingModule } from './app-routing.module';
-import { MapViewComponent } from './views/map-view/map-view.component';
+
+import { MapViewModule } from './views/map-view/map-view.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MapViewComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MapViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

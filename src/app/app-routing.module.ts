@@ -2,8 +2,8 @@ import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full'},
-  // { path: 'test', loadChildren: 'app/app.module#AppModule' }
+  { path: '', redirectTo: 'map', pathMatch: 'full'},
+  { path: 'map', loadChildren: 'app/views/map-view/map-view.module#MapViewModule' }
 ];
 
 @NgModule({
