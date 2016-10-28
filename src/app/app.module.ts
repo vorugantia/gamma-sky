@@ -6,10 +6,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { MapViewComponent } from './views/map-view/map-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapViewComponent
   ],
   imports: [
     BrowserModule,
