@@ -1,6 +1,8 @@
-#aladin-lite-div {
+#background {
+
+  background-color: black;
   height: 100%;
   width: 100%;
-  position: relative;
-  z-index: 0;
+  overflow: hidden;
+
 }
