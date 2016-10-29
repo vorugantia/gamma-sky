@@ -5,7 +5,10 @@ import { CatViewComponent } from './cat-view.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'test', pathMatch: 'full'},
-  { path: '',    component: CatViewComponent }
+  {
+    path: '',
+    component: CatViewComponent
+  }
 ];
 
 @NgModule({

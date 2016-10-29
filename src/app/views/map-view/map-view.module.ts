@@ -5,6 +5,7 @@ import { MapComponent } from '../../widgets/map/map.component';
 import { AboutComponent } from '../../widgets/about/about.component';
 
 import { MapViewRoutingModule } from './map-view-routing.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { CatalogService } from '../../services/catalog.service';
 
@@ -15,7 +16,8 @@ import { CatalogService } from '../../services/catalog.service';
     AboutComponent
   ],
   imports: [
-    MapViewRoutingModule
+    MapViewRoutingModule,
+    SharedModule
   ],
   providers: [
     CatalogService

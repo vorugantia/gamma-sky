@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { SwitchViewComponent } from '../switch-view/switch-view.component';
-// import {Router} from '@angular/router';
-// import {MapComponent} from '../../widgets/map/map.component';
-// import {AboutButtonComponent} from '../../widgets/about-button/about-button.component';
-
 @Component({
   selector: 'map-view',
   templateUrl: './map-view.component.html',
@@ -12,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapViewComponent implements OnInit {
 
+  private selectedView = "map";
+
   constructor() { }
 
   ngOnInit() {
+    console.log("MapViewComponent ngOnInit()");
+    // this.selectedView = "map";
   }
 
 }

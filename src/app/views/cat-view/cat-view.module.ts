@@ -4,6 +4,7 @@ import { CatViewComponent } from './cat-view.component';
 import { CatSearchComponent } from '../../widgets/cat-search/cat-search.component';
 
 import { CatViewRoutingModule } from './cat-view-routing.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { CatalogService } from '../../services/catalog.service';
 import { StateService } from '../../services/state.service';
@@ -14,7 +15,8 @@ import { StateService } from '../../services/state.service';
     CatSearchComponent
   ],
   imports: [
-    CatViewRoutingModule
+    CatViewRoutingModule,
+    SharedModule
   ],
   providers: [
     CatalogService,
