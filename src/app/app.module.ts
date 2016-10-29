@@ -7,17 +7,23 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { MapViewModule } from './views/map-view/map-view.module';
+import { CatViewModule } from './views/cat-view/cat-view.module';
+// import { CatViewComponent } from './views/cat-view/cat-view.component';
+// import { SwitchViewComponent } from './views/switch-view/switch-view.component';
 
 @NgModule({
   declarations: [
     AppComponent
+    // CatViewComponent,
+    // SwitchViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MapViewModule
+    MapViewModule,
+    CatViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
