@@ -5,6 +5,8 @@ import { MapComponent } from '../../widgets/map/map.component';
 
 import { MapViewRoutingModule } from './map-view-routing.module';
 
+import { CatalogService } from '../../services/catalog.service';
+
 @NgModule({
   declarations: [
     MapViewComponent,
@@ -13,6 +15,8 @@ import { MapViewRoutingModule } from './map-view-routing.module';
   imports: [
     MapViewRoutingModule
   ],
-  providers: []
+  providers: [
+    CatalogService
+  ]
 })
 export class MapViewModule { }
