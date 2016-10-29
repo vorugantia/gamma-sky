@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { CatViewComponent } from './cat-view.component';
+import { CatSearchComponent } from '../../widgets/cat-search/cat-search.component';
 
 import { CatViewRoutingModule } from './cat-view-routing.module';
 
@@ -9,7 +10,8 @@ import { StateService } from '../../services/state.service';
 
 @NgModule({
   declarations: [
-    CatViewComponent
+    CatViewComponent,
+    CatSearchComponent
   ],
   imports: [
     CatViewRoutingModule
