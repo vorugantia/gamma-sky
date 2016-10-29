@@ -15,7 +15,6 @@ export class CatViewComponent implements OnInit {
 
   ngOnInit() {
     console.log("CatViewComponent ngOnInit()");
-    // this.selectedView = "cat";
   }
 
 }

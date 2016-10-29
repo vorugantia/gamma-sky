@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-// import { SwitchViewComponent } from './views/switch-view/switch-view.component';
 
 import { MapViewModule } from './views/map-view/map-view.module';
 import { CatViewModule } from './views/cat-view/cat-view.module';
@@ -13,7 +12,6 @@ import { CatViewModule } from './views/cat-view/cat-view.module';
 @NgModule({
   declarations: [
     AppComponent
-    // SwitchViewComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,6 @@ export class MapViewComponent implements OnInit {
 
   ngOnInit() {
     console.log("MapViewComponent ngOnInit()");
-    // this.selectedView = "map";
   }
 
 }
