@@ -1,3 +1,46 @@
-<p>
-  cat-source-2fhl works!
-</p>
+<div *ngIf="(catalog)">
+  <div class="container">
+
+    <div class="col-md-4">
+        <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
+        <h5>Basic info: </h5>
+        <ul>
+            <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
+            <li>ASSOC: {{catalog.getSourceByID(id).data.ASSOC}}</li>
+            <li>CLASS: {{catalog.getSourceByID(id).data.CLASS}}</li>
+        </ul>
+        <h5>Position info:</h5>
+        <ul>
+            <li>RA: {{catalog.getSourceByID(id).data.RAJ2000}} deg</li>
+            <li>DEC: {{catalog.getSourceByID(id).data.DEJ2000}} deg</li>
+            <li>GLON: {{catalog.getSourceByID(id).data.GLON}} deg</li>
+            <li>GLAT: {{catalog.getSourceByID(id).data.GLAT}} deg</li>
+        </ul>
+        <h5>Spectral info:</h5>
+        <ul>
+            <li>TODO</li>
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+      <h3>Lightcurve</h3>
+      <p>TODO</p>
+      <!-- <img src="{{getUrl(catalog.getSourceByID(id).data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" /> -->
+    </div>
+
+    <div class="col-md-4">
+      <h3>Spectrum</h3>
+      <p>TODO</p>
+      <!-- <img src="{{getUrl(catalog.getSourceByID(id).data.Source_Name, 'spec')}}" class="img-responsive" alt="Spectrum" /> -->
+    </div>
+
+  </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>
+            Data from: <a href="http://fermi.gsfc.nasa.gov/ssc/data/access/lat/2FHL/">Fermi-LAT 2FHL Catalog</a>
+        </p>
+    </div>
+</footer>
