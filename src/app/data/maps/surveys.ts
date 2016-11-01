@@ -87,9 +87,23 @@ export var SURVEYS: Survey[] = [
     "maxOrder": 3,
     "frame": "galactic",
     "format": "png jpeg fits"
+  },
+  {
+    "id": "P/RASS",
+    "url": "http://cade.irap.omp.eu/documents/Ancillary/4Aladin/RASS",
+    "name": "ROSAT all-sky",
+    "maxOrder": 3,
+    "frame": "galactic",
+    "format": "jpeg fits"
+  },
+  {
+    "id": "P/XMM-Newton/EPIC",
+    "url": "http://skies.esac.esa.int/XMM-Newton/EPIC-RGB",
+    "name": "XMM-Newton EPIC",
+    "maxOrder": 7,
+    "frame": "equatorial",
+    "format": "jpeg"
   }
-
-
 
 
 ]
