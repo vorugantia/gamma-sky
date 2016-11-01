@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CatalogTeV } from '../../../services/catalog';
@@ -6,13 +6,11 @@ import { CatalogService } from '../../../services/catalog.service';
 import { StateService } from '../../../services/state.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'cat-source-tev',
-  templateUrl: 'cat-source-tev.component.html',
-  // styleUrls: ['cat-source-tev.component.css'],
-  providers: [CatalogService]
+  templateUrl: './cat-source-tev.component.html',
+  styleUrls: ['./cat-source-tev.component.css']
 })
-export class CatSourceTeVComponent implements OnInit, OnDestroy {
+export class CatSourceTeVComponent implements OnInit {
 
   private sub;
   private id;

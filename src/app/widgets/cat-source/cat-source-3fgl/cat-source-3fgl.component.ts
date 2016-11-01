@@ -6,11 +6,9 @@ import { CatalogService } from '../../../services/catalog.service';
 import { StateService } from '../../../services/state.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'cat-source-3fgl',
-  templateUrl: 'cat-source-3fgl.component.html',
-  // styleUrls: ['cat-source-3fgl.component.css'],
-  providers: [CatalogService]
+  templateUrl: './cat-source-3fgl.component.html',
+  styleUrls: ['./cat-source-3fgl.component.css']
 })
 export class CatSource3FGLComponent implements OnInit, OnDestroy {
 

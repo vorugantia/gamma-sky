@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-// import { MapViewComponent } from './map-view/map-view.component';
-// import { CatViewComponent } from './cat-view/cat-view.component';
+
+import { MapViewComponent } from './views/map-view/map-view.component';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  // styleUrls: ['app.component.css'],
-  directives: [ROUTER_DIRECTIVES]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'This is AppComponent';

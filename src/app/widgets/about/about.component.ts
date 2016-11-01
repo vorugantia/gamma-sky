@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 declare var $: any;
 
 @Component({
-  moduleId: module.id,
-  selector: 'about-button',
-  templateUrl: 'about-button.component.html',
-  styleUrls: ['about-button.component.css']
+  selector: 'about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
 })
-export class AboutButtonComponent implements OnInit {
+export class AboutComponent implements OnInit {
 
   private toggle: boolean;
   private aboutButtonRight;

@@ -23,13 +23,13 @@ export class SourceTeV {
     s += ') deg';
     return s;
   }
-  ra_str() { 
+  ra_str() {
       return this.data.RA.toFixed(pos_precision) + ' deg';
-    //   return this._pos_with_err_str('RA'); 
+    //   return this._pos_with_err_str('RA');
   }
-  dec_str() { 
+  dec_str() {
       return this.data.DEC.toFixed(pos_precision) + ' deg';
-    //   return this._pos_with_err_str('DEC'); 
+    //   return this._pos_with_err_str('DEC');
   }
   glon_str() { return this.data.GLON.toFixed(pos_precision) + ' deg'; }
   glat_str() { return this.data.GLAT.toFixed(pos_precision) + ' deg'; }
@@ -66,12 +66,12 @@ export class SourceTeV {
     s += ') ' + scale + ' ' + unit;
     return s;
   }
-  flux_diff_str() { 
+  flux_diff_str() {
       // TODO: doesn't work, sometimes values are None! Need if?
     //   return this._flux_str('Flux_Diff', 'cm^-2 s^-1 TeV^-1', 1e-11);
     return this.data['Flux_Diff'];
   }
-  flux_int_str() { 
+  flux_int_str() {
     return this.data['Flux_Int'];
   }
 

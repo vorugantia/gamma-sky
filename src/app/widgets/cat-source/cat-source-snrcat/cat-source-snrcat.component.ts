@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CatalogSNRcat } from '../../../services/catalog';
@@ -7,13 +7,11 @@ import { CatalogService } from '../../../services/catalog.service';
 import { StateService } from '../../../services/state.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'cat-source-snrcat',
-  templateUrl: 'cat-source-snrcat.component.html',
-  // styleUrls: ['cat-source-snrcat.component.css'],
-  providers: [CatalogService]
+  templateUrl: './cat-source-snrcat.component.html',
+  styleUrls: ['./cat-source-snrcat.component.css']
 })
-export class CatSourceSNRcatComponent implements OnInit, OnDestroy {
+export class CatSourceSNRcatComponent implements OnInit {
 
   private sub;
   private id;

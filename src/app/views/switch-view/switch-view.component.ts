@@ -4,10 +4,9 @@ import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
-  moduleId: module.id,
   selector: 'switch-view',
-  templateUrl: 'switch-view.component.html',
-  styleUrls: ['switch-view.component.css']
+  templateUrl: './switch-view.component.html',
+  styleUrls: ['./switch-view.component.css']
 })
 export class SwitchViewComponent implements OnInit {
 
@@ -15,8 +14,6 @@ export class SwitchViewComponent implements OnInit {
 
   private buttonDisplay: string;
   private route: string;
-
-  // private toggle: boolean = false;
 
   changeButtonDisplay() {
     if(this.selectedView == "map") {
@@ -28,7 +25,7 @@ export class SwitchViewComponent implements OnInit {
       this.route = "map";
     }
     else {
-      console.log("Error on buttonDisplay in SwitchViewComponent");
+      console.error("changeButtonDisplay() error in SwitchViewComponent");
     }
   }
 

@@ -3,21 +3,21 @@
 // import { By } from '@angular/platform-browser';
 // import { DebugElement } from '@angular/core';
 //
-// import { CatSource3fglComponent } from './cat-source-3fgl.component';
+// import { AboutComponent } from './about.component';
 //
-// describe('CatSource3fglComponent', () => {
-//   let component: CatSource3fglComponent;
-//   let fixture: ComponentFixture<CatSource3fglComponent>;
+// describe('AboutComponent', () => {
+//   let component: AboutComponent;
+//   let fixture: ComponentFixture<AboutComponent>;
 //
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ CatSource3fglComponent ]
+//       declarations: [ AboutComponent ]
 //     })
 //     .compileComponents();
 //   }));
 //
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(CatSource3fglComponent);
+//     fixture = TestBed.createComponent(AboutComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

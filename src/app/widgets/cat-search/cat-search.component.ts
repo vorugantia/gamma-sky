@@ -1,21 +1,13 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CORE_DIRECTIVES, NgClass } from '@angular/common';
-import { FORM_DIRECTIVES } from '@angular/forms';
-import { BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap';
-import { SELECT_DIRECTIVES } from 'ng2-select';
-
 import { CatalogService } from '../../services/catalog.service';
 import { StateService } from '../../services/state.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'cat-search',
-  templateUrl: 'cat-search.component.html',
-  styleUrls: ['cat-search.component.css'],
-  providers: [CatalogService],
-  directives: [SELECT_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, ButtonRadioDirective, ButtonCheckboxDirective, TOOLTIP_DIRECTIVES]
+  templateUrl: './cat-search.component.html',
+  styleUrls: ['./cat-search.component.css']
 })
 export class CatSearchComponent implements OnInit, DoCheck {
 

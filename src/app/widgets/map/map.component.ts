@@ -1,28 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Popup } from '../popup/popup';
-// import { ViewEncapsulation } from '@angular/core';
-
-import {CatalogService} from '../../services/catalog.service';
+import {Popup} from '../popup/popup';
 import {SURVEYS} from '../../data/maps/surveys';
 
+import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
 declare var HpxImageSurvey: any;
 declare var $: any;
 
 @Component({
-  moduleId: module.id,
   selector: 'map',
-  templateUrl: 'map.component.html',
-  styleUrls: ['map.component.css'],
-  providers: [CatalogService]
-  // encapsulation: ViewEncapsulation.None
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnDestroy {
 
   private map;
-  // private catalog;
-  // private cat;
   private error: any;
 
   showMap() {
@@ -46,8 +39,9 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   addCatalog(catalogName, catalogColor, data) {
-    console.log('Adding ', catalogName, ' catalog...');
+    console.log("Adding ", catalogName, " catalog...");
 
+    // Adjusting Column names of JSON files according to catalog name
 
     var catalog = data;
     var assocType;
@@ -55,37 +49,39 @@ export class MapComponent implements OnInit, OnDestroy {
     var raType = "RAJ2000";
     var decType = "DEJ2000";
 
-    if (catalogName == "3FGL") {
+    if(catalogName == "3FGL") {
       assocType = "ASSOC1";
       classType = "CLASS1";
     }
-    else if (catalogName == "2FHL") {
+    else if(catalogName == "2FHL") {
       assocType = "ASSOC";
       classType = "CLASS";
     }
-    else if (catalogName == "SNRcat") {
+    else if(catalogName == "SNRcat") {
       assocType = "id_alt";
     }
-    else if (catalogName == "TeV") {
+    else if(catalogName == "TeV") {
       assocType = "Other_Names";
       classType = "CLASS";
       raType = "RA";
       decType = "DEC";
     }
 
+
+    //Adding catalog markers and popups
+
     var cat = A.catalog({
       name: catalogName,
       color: catalogColor,
       sourceSize: 13,
-      // onClick: "showPopup"  //TODO Show popup on mouseover?
+      // onClick: showPopup
     });
     this.map.addCatalog(cat);
 
-
     var n_sources = catalog.getLength();
-    console.log(catalogName, " # of sources: ", n_sources);
+    console.log(catalogName, " # number of sources: ", n_sources);
 
-    for (var i = 0; i < n_sources; i++) {
+    for(var i = 0; i < n_sources; i++) {
 
       // var row = i.toString();
 
@@ -193,7 +189,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    console.log('aladin map OnInit');
+    console.log("aladin map onInit()");
 
     this.showMap();
 

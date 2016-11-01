@@ -1,22 +1,12 @@
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-import { AppComponent, environment } from './app/';
-import { appRouterProviders } from './app/app.routes';
-import { HTTP_PROVIDERS } from '@angular/http';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-// import { CatalogService } from './app/services/catalog.service';
+import './polyfills.ts';
 
-// import 'ng2-bootstrap/ng2-bootstrap.js';
-// import 'ng2-select/ng2-select.js';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+import { AppModule } from './app/';
 
 if (environment.production) {
   enableProdMode();
 }
 
-bootstrap(AppComponent, [
-  appRouterProviders,
-  HTTP_PROVIDERS,
-  disableDeprecatedForms(),
-  provideForms(),
-  // CatalogService
-]);
+platformBrowserDynamic().bootstrapModule(AppModule);
