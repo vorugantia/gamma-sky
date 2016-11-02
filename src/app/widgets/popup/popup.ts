@@ -73,7 +73,6 @@ export class Popup {
           </table>
 
         </div>
-
         ` + this.getSNRcatUrl() + `
 
     `;
@@ -84,7 +83,7 @@ export class Popup {
     if(this.catalogName == "SNRcat") {
 
     return `  <style>
-                  div {
+                  #snrcat {
                     text-align: right;
                     margin-right: 4px;
                     font-size: 12px;
