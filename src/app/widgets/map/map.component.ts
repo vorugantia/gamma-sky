@@ -16,6 +16,7 @@ declare var $: any;
 export class MapComponent implements OnInit, OnDestroy {
 
   private map;
+  private cat;
   private error: any;
 
   showMap() {
@@ -70,13 +71,13 @@ export class MapComponent implements OnInit, OnDestroy {
 
     //Adding catalog markers and popups
 
-    var cat = A.catalog({
+    this.cat = A.catalog({
       name: catalogName,
       color: catalogColor,
       sourceSize: 13,
       // onClick: showPopup
     });
-    this.map.addCatalog(cat);
+    this.map.addCatalog(this.cat);
 
     var n_sources = catalog.getLength();
     console.log(catalogName, " # number of sources: ", n_sources);
@@ -132,7 +133,10 @@ export class MapComponent implements OnInit, OnDestroy {
           popupDesc: `` + popup.getDesc()
         });
 
-        cat.addSources([marker]);
+        this.cat.addSources([marker]);
+
+        //This hides all catalogs on webpage startup.
+        // this.cat.hide();
 
     }
 
@@ -146,6 +150,8 @@ export class MapComponent implements OnInit, OnDestroy {
           '#8e189d', //purple
           catalog
         );
+        //This hides 3FGL catalog on webpage startup.
+        this.cat.hide();
       })
       .catch(error => this.error = error);
   }
@@ -157,6 +163,8 @@ export class MapComponent implements OnInit, OnDestroy {
           '#1b3bad', //blue
           catalog
         );
+        //This hides 2FHL catalog on webpage startup.
+        this.cat.hide();
       })
       .catch(error => this.error = error);
   }
@@ -168,6 +176,8 @@ export class MapComponent implements OnInit, OnDestroy {
           'green',
           catalog
         );
+        //This hides SNRcat catalog on webpage startup.
+        this.cat.hide();
       })
       .catch(error => this.error = error);
   }
@@ -179,6 +189,8 @@ export class MapComponent implements OnInit, OnDestroy {
           'red',
           catalog
         );
+        //This hides TeV catalog on webpage startup.
+        // this.cat.hide();
       })
       .catch(error => this.error = error);
   }
@@ -199,7 +211,6 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getCatalog2FHL();
     this.getCatalogSNRcat();
     this.getCatalogTeV();
-
 
   }
 

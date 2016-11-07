@@ -103,6 +103,14 @@ export var SURVEYS: Survey[] = [
     "maxOrder": 7,
     "frame": "equatorial",
     "format": "jpeg"
+  },
+  {
+    "id": "P/INTEGRAL/Color",
+    "url": "http://skies.esac.esa.int/Integral/color",
+    "name": "INTEGRAL IBIS Color",
+    "maxOrder": 3,
+    "frame": "equatorial",
+    "format": "jpeg"
   }
 
 
