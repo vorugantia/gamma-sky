@@ -4,13 +4,17 @@
       <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
       <h5>Basic info</h5>
       <ul>
-          <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
-          <li>Other names: {{catalog.getSourceByID(id).data.Other_Names}}</li>
-          <li>Class: {{catalog.getSourceByID(id).data.CLASS}}</li>
+          <li>Common name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
+          <li>Gamma names: {{catalog.getSourceByID(id).data.gamma_names}}</li>
+          <li>Other names: {{catalog.getSourceByID(id).data.other_names}}</li>
+          <!-- <li>Class: {{catalog.getSourceByID(id).data.CLASS}}</li> -->
           <li>TODO: add link to TeVCat</li>
           <li>TODO: add link to get data as JSON</li>
       </ul>
-      <h5>Position info:</h5>
+
+<!-- TODO: Reformat info below to fit the new TeV data. -->
+
+      <!-- <h5>Position info:</h5>
       <ul>
           <li>RA: {{catalog.getSourceByID(id).ra_str()}}</li>
           <li>DEC: {{catalog.getSourceByID(id).dec_str()}}</li>
@@ -26,8 +30,8 @@
       </ul>
       <h5>Spectral info:</h5>
       <ul>
-          <!-- <li>Differential flux: {{catalog.getSourceByID(id).flux_diff_str()}}</li> -->
-          <!-- <li>Integral flux: {{catalog.getSourceByID(id).flux_int_str()}}</li> -->
+          <li>Differential flux: {{catalog.getSourceByID(id).flux_diff_str()}}</li>
+          <li>Integral flux: {{catalog.getSourceByID(id).flux_int_str()}}</li>
           <li>Flux: {{ catalog.getSourceByID(id).flux_crab_str()}} </li>
           <li>Spectral index: {{catalog.getSourceByID(id).spectral_index_str()}}</li>
       </ul>
@@ -42,7 +46,7 @@
           <li>Observatory: {{ catalog.getSourceByID(id).data.Observatory}} </li>
           <li>Reference: {{ catalog.getSourceByID(id).data.Reference}} </li>
           <li>Comments: {{ catalog.getSourceByID(id).data.Comments}} </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </div>

@@ -46,6 +46,8 @@ def make_tev_catalog_data(nrows=None):
     df = table[cols].to_pandas()
     df.index = df['source_id'].astype('int')
     del df['source_id']
+    # Renaming "common_name" column to "Source_Name" for simplicity
+    df.rename(columns={'common_name': 'Source_Name'}, inplace=True)
     text = df.to_json(**TO_JSON_KWARGS)
 
     filename = 'src/app/data/cat/cat_tev.json'

@@ -75,7 +75,7 @@ export class MapComponent implements OnInit, OnDestroy {
       decType = "dec";
       glonType = "glon";
       glatType = "glat";
-      sourceNameType = "common_name";
+      // sourceNameType = "common_name";
     }
 
 
