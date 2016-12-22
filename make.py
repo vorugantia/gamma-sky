@@ -26,6 +26,12 @@ def cat_all(nrows):
     gammasky.make_snrcat_catalog_data(nrows=nrows)
 
 
+@cat.command('gamma-cat')
+@click.option('--nrows', type=int, default=None)
+def cat_tev(nrows):
+    """Dump gamma-cat catalog to JSON"""
+    gammasky.make_gammacat_data(nrows=nrows)
+
 @cat.command('tev')
 @click.option('--nrows', type=int, default=None)
 def cat_tev(nrows):

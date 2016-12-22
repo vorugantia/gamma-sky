@@ -11,9 +11,48 @@ __all__ = [
     'make_3fgl_catalog_data',
     'make_2fhl_catalog_data',
     'make_snrcat_catalog_data',
+    'make_gammacat_data'
 ]
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
+
+
+def make_gammacat_data(nrows=None):
+    click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
+
+    out_dir = Path('src/app/data/cat')
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    url = 'https://github.com/gammapy/gamma-cat/raw/master/docs/data/gammacat.fits.gz'
+    table = Table.read(url)
+    # gamma-cat already has a source_id column
+    cols = [
+        'source_id',
+        'common_name',
+        'gamma_names',
+        'other_names',
+        'ra',
+        'dec',
+        'glon',
+        'glat',
+    ]
+
+    if nrows:
+        row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
+        table = table[row_ids]
+
+    # TODO: Make empty gamma_names and other_names cols say "None"
+
+    click.echo('Converting table to pandas dataframe...')
+    df = table[cols].to_pandas()
+    df.index = df['source_id'].astype('int')
+    del df['source_id']
+    text = df.to_json(**TO_JSON_KWARGS)
+
+    filename = 'src/app/data/cat/cat_gamma-cat.json'
+    click.secho('Writing gamma-cat {}'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        fh.write(text)
 
 
 def make_tev_catalog_data(nrows=None):
