@@ -49,6 +49,9 @@ export class MapComponent implements OnInit, OnDestroy {
     var classType;
     var raType = "RAJ2000";
     var decType = "DEJ2000";
+    var glonType = "GLON";
+    var glatType = "GLAT";
+    var sourceNameType = "Source_Name";
 
     if(catalogName == "3FGL") {
       assocType = "ASSOC1";
@@ -61,11 +64,18 @@ export class MapComponent implements OnInit, OnDestroy {
     else if(catalogName == "SNRcat") {
       assocType = "id_alt";
     }
+    // else if(catalogName == "TeV") {
+    //   assocType = "Other_Names";
+    //   classType = "CLASS";
+    //   raType = "RA";
+    //   decType = "DEC";
+    // }
     else if(catalogName == "TeV") {
-      assocType = "Other_Names";
-      classType = "CLASS";
-      raType = "RA";
-      decType = "DEC";
+      raType = "ra";
+      decType = "dec";
+      glonType = "glon";
+      glatType = "glat";
+      sourceNameType = "common_name";
     }
 
 
@@ -88,11 +98,11 @@ export class MapComponent implements OnInit, OnDestroy {
 
       var round_ra = (Math.round(catalog.getVal(i, raType) * 100) / 100).toFixed(2);
       var round_dec = (Math.round(catalog.getVal(i, decType) * 100) / 100).toFixed(2);
-      var round_glon = (Math.round(catalog.getVal(i, "GLON") * 100) / 100).toFixed(2);
-      var round_glat = (Math.round(catalog.getVal(i, "GLAT") * 100) / 100).toFixed(2);
+      var round_glon = (Math.round(catalog.getVal(i, glonType) * 100) / 100).toFixed(2);
+      var round_glat = (Math.round(catalog.getVal(i, glatType) * 100) / 100).toFixed(2);
 
       var Source = <any>{                    // Can Source object be defined anywhere else, perhaps to be SHARED with CatViewComponent?
-        name: catalog.getVal(i, "Source_Name"),
+        name: catalog.getVal(i, sourceNameType),
         ra: round_ra,
         dec: round_dec,
         glon: round_glon,
