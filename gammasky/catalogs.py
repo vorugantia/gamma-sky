@@ -35,6 +35,7 @@ def make_tev_catalog_data(nrows=None):
         'glon',
         'glat',
     ]
+    # cols = table.colnames
 
     if nrows:
         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
@@ -56,7 +57,8 @@ def make_tev_catalog_data(nrows=None):
         fh.write(text)
 
 
-# def make_tev_catalog_data(nrows=None): # Old function
+# # Function for old TeV data:
+# def make_tev_catalog_data(nrows=None):
 #
 #     click.secho('Skipping TeV catalog ... need to switch to gamma-cat', fg='red')
 #     return
