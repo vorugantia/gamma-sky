@@ -42,6 +42,9 @@ export class SourceTeV {
   other_names_str() {
     return this.data.other_names.split(",").join(", ");
   }
+  gamma_names_str() {
+    return this.data.gamma_names.split(",").join(", ");
+  }
   //
   // ext_str() {
   //   if (this.data.Is_Extended === true) {
