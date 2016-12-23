@@ -5,6 +5,7 @@ import {Popup2FHL} from '../popup/popup-2fhl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
 import {SURVEYS} from '../../data/maps/surveys';
 
+// import {CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat} from '../../services/catalog';
 import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
@@ -47,8 +48,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
     var catalog = data;
 
-    //Adding catalog markers and popups
-
     this.cat = A.catalog({
       name: catalogName,
       color: catalogColor,
@@ -57,56 +56,38 @@ export class MapComponent implements OnInit, OnDestroy {
     });
     this.map.addCatalog(this.cat);
 
+
+    // Adding each individual source:
+
     var n_sources = catalog.getLength();
     console.log(catalogName, " # number of sources: ", n_sources);
 
     for(var i = 0; i < n_sources; i++) {
 
-      //Configuring the popup (since each catalog has different column names)
-
+      //Configuring the popup
       var popup;
-      var Source = <any>{                    // Can Source object be defined anywhere else, perhaps to be SHARED with CatViewComponent?
-        name: catalog.getVal(i, "Source_Name"),
-        ra: this.round(catalog.getVal(i, 'RAJ2000')),
-        dec: this.round(catalog.getVal(i, 'DEJ2000')),
-        glon: this.round(catalog.getVal(i, 'GLON')),
-        glat: this.round(catalog.getVal(i, 'GLAT')),
-      };
+      var ra = catalog.getVal(i, 'RAJ2000');
+      var dec = catalog.getVal(i, 'DEJ2000');
 
       if(catalogName == "TeV") {
-        Source.ra = this.round(catalog.getVal(i, 'ra'));
-        Source.dec = this.round(catalog.getVal(i, 'dec'));
-        Source.glon = this.round(catalog.getVal(i, 'glon'));
-        Source.glat = this.round(catalog.getVal(i, 'glat'));
-        Source.gammaNames = catalog.getVal(i, 'gamma_names');
-        Source.otherNames = catalog.getVal(i, 'other_names');
-        popup = new PopupTeV(Source);
+        ra = catalog.getVal(i, 'ra');
+        dec = catalog.getVal(i, 'dec');
+        popup = new PopupTeV(catalog.getSourceByID(i));
       }
-
       else if(catalogName == "3FGL") {
-        Source.assoc = catalog.getVal(i, 'ASSOC1');
-        Source.class = catalog.getVal(i, 'CLASS1');
-        popup = new Popup3FGL(Source);
+        popup = new Popup3FGL(catalog.getSourceByID(i));
       }
-
       else if(catalogName == "2FHL") {
-        Source.assoc = catalog.getVal(i, 'ASSOC');
-        Source.class = catalog.getVal(i, 'CLASS');
-        popup = new Popup2FHL(Source);
+        popup = new Popup2FHL(catalog.getSourceByID(i));
       }
-
       else {
-        Source.assoc = catalog.getVal(i, 'id_alt');
-        Source.radius = this.round(catalog.getVal(i, 'size_radio_mean')) + "&#176";
-        Source.SNRcatID = catalog.getVal(i, 'snrcat_id');
-        popup = new PopupSNRcat(Source);
+        popup = new PopupSNRcat(catalog.getSourceByID(i));
       }
 
-      //Adding the markers to the map, with popups configured above
-
+      //Adding the markers
       var marker = A.marker(
-        Source.ra,
-        Source.dec,
+        ra,
+        dec,
         {
           popupDesc: `` + popup.getDesc()
         });

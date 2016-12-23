@@ -3,7 +3,6 @@ import { SourceSNRcat } from '../../services/source';
 export class PopupSNRcat {
 
   private source;
-  // private catalogName;
 
   getDesc() {
 
@@ -31,21 +30,21 @@ export class PopupSNRcat {
 
       <div>
 
-        <h4 style='text-align:center'>` + this.source.name + `</h4>
+        <h4 style='text-align:center'>` + this.source.data.Source_Name + `</h4>
 
           <table>
             <tbody>
               <tr>
                 <td>RA:</td>
-                <th>` + this.source.ra + `</th>
+                <th>` + this.round(this.source.data.RAJ2000) + `</th>
                 <td>DEC:</td>
-                <th>` + this.source.dec + `</th>
+                <th>` + this.round(this.source.data.DEJ2000) + `</th>
               </tr>
               <tr>
                 <td>GLON:</td>
-                <th>` + this.source.glon + `</th>
+                <th>` + this.round(this.source.data.GLON) + `</th>
                 <td>GLAT:</td>
-                <th>` + this.source.glat + `</th>
+                <th>` + this.round(this.source.data.GLAT) + `</th>
               </tr>
             </tbody>
           </table>
@@ -54,7 +53,7 @@ export class PopupSNRcat {
             <tbody>
               <tr>
                 <td>Assoc:</td>
-                <th style='width:170px'>` + this.source.assoc + `</th>
+                <th style='width:170px'>` + this.source.data.id_alt + `</th>
               </tr>
             </tbody>
           </table>
@@ -63,7 +62,7 @@ export class PopupSNRcat {
             <tbody>
               <tr>
                 <td>Radius:</td>
-                <th style='width:170px'>` + this.source.radius + `</th>
+                <th style='width:170px'>` + this.source.data.size_radio_mean + `&#176</th>
               </tr>
             </tbody>
           </table>
@@ -72,6 +71,10 @@ export class PopupSNRcat {
         ` + this.getSNRcatUrl() + `
 
     `;
+  }
+
+  round(val) {
+    return (Math.round(val * 100) / 100).toFixed(2);
   }
 
   getSNRcatUrl() {
@@ -94,7 +97,6 @@ export class PopupSNRcat {
 
   constructor(source) {
     this.source = source;
-    // this.catalogName = catalogName;
   }
 
 }

@@ -16,7 +16,7 @@ export class SourceTeV {
     this.data = data;
   }
 
-// The below is for the old TeV data file. TODO: Format it to fit the new TeV data.
+// Methods for the old TeV data are commented out below. TODO: Format them to new TeV data for display in the detailed view.
 
   // _pos_with_err_str(name) {
   //   let s = '(' + this.data[name].toFixed(pos_precision);
@@ -25,16 +25,23 @@ export class SourceTeV {
   //   s += ') deg';
   //   return s;
   // }
-  // ra_str() {
-  //     return this.data.RA.toFixed(pos_precision) + ' deg';
-  //   //   return this._pos_with_err_str('RA');
-  // }
-  // dec_str() {
-  //     return this.data.DEC.toFixed(pos_precision) + ' deg';
-  //   //   return this._pos_with_err_str('DEC');
-  // }
-  // glon_str() { return this.data.GLON.toFixed(pos_precision) + ' deg'; }
-  // glat_str() { return this.data.GLAT.toFixed(pos_precision) + ' deg'; }
+  ra_str() {
+      return this.data.ra.toFixed(pos_precision) + ' deg';
+    //   return this._pos_with_err_str('RA');
+  }
+  dec_str() {
+      return this.data.dec.toFixed(pos_precision) + ' deg';
+    //   return this._pos_with_err_str('DEC');
+  }
+  glon_str() { return this.data.glon.toFixed(pos_precision) + ' deg'; }
+  glat_str() { return this.data.glat.toFixed(pos_precision) + ' deg'; }
+
+  class_str() {
+    return this.data.classes.split(",").join(", ");
+  }
+  other_names_str() {
+    return this.data.other_names.split(",").join(", ");
+  }
   //
   // ext_str() {
   //   if (this.data.Is_Extended === true) {

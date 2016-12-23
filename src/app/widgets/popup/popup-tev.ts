@@ -1,8 +1,9 @@
 
+
+
 export class PopupTeV {
 
   private source;
-  // private catalogName;
 
   getDesc() {
 
@@ -30,30 +31,21 @@ export class PopupTeV {
 
       <div>
 
-        <h4 style='text-align:center'>` + this.source.name + `</h4>
+        <h4 style='text-align:center'>` + this.source.data.Source_Name + `</h4>
 
           <table>
             <tbody>
               <tr>
                 <td>RA:</td>
-                <th>` + this.source.ra + `</th>
+                <th>` + this.round(this.source.data.ra) + `</th>
                 <td>DEC:</td>
-                <th>` + this.source.dec + `</th>
+                <th>` + this.round(this.source.data.dec) + `</th>
               </tr>
               <tr>
                 <td>GLON:</td>
-                <th>` + this.source.glon + `</th>
+                <th>` + this.round(this.source.data.glon) + `</th>
                 <td>GLAT:</td>
-                <th>` + this.source.glat + `</th>
-              </tr>
-            </tbody>
-          </table>
-
-          <table>
-            <tbody>
-              <tr>
-                <td>Gamma names:</td>
-                <th style='width:170px'>` + this.source.gammaNames + `</th>
+                <th>` + this.round(this.source.data.glat) + `</th>
               </tr>
             </tbody>
           </table>
@@ -62,7 +54,16 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Other names:</td>
-                <th style='width:170px'>` + this.source.otherNames + `</th>
+                <th style='width:170px'>` + this.source.other_names_str() + `</th>
+              </tr>
+            </tbody>
+          </table>
+
+          <table>
+            <tbody>
+              <tr>
+                <td>Class:</td>
+                <th style='width:170px'>` + this.source.class_str() + `</th>
               </tr>
             </tbody>
           </table>
@@ -72,9 +73,12 @@ export class PopupTeV {
     `;
   }
 
+  round(val) {
+    return (Math.round(val * 100) / 100).toFixed(2);
+  }
+
   constructor(source) {
     this.source = source;
-    // this.catalogName = catalogName;
   }
 
 }

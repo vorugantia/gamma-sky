@@ -2,7 +2,6 @@
 export class Popup2FHL {
 
   private source;
-  // private catalogName;
 
   getDesc() {
 
@@ -30,21 +29,21 @@ export class Popup2FHL {
 
       <div>
 
-        <h4 style='text-align:center'>` + this.source.name + `</h4>
+        <h4 style='text-align:center'>` + this.source.data.Source_Name + `</h4>
 
           <table>
             <tbody>
               <tr>
                 <td>RA:</td>
-                <th>` + this.source.ra + `</th>
+                <th>` + this.round(this.source.data.RAJ2000) + `</th>
                 <td>DEC:</td>
-                <th>` + this.source.dec + `</th>
+                <th>` + this.round(this.source.data.DEJ2000) + `</th>
               </tr>
               <tr>
                 <td>GLON:</td>
-                <th>` + this.source.glon + `</th>
+                <th>` + this.round(this.source.data.GLON) + `</th>
                 <td>GLAT:</td>
-                <th>` + this.source.glat + `</th>
+                <th>` + this.round(this.source.data.GLAT) + `</th>
               </tr>
             </tbody>
           </table>
@@ -53,7 +52,7 @@ export class Popup2FHL {
             <tbody>
               <tr>
                 <td>Assoc:</td>
-                <th style='width:170px'>` + this.source.assoc + `</th>
+                <th style='width:170px'>` + this.source.data.ASSOC + `</th>
               </tr>
             </tbody>
           </table>
@@ -62,7 +61,7 @@ export class Popup2FHL {
             <tbody>
               <tr>
                 <td>Class:</td>
-                <th style='width:170px'>` + this.source.class + `</th>
+                <th style='width:170px'>` + this.source.data.CLASS + `</th>
               </tr>
             </tbody>
           </table>
@@ -72,9 +71,12 @@ export class Popup2FHL {
     `;
   }
 
+  round(val) {
+    return (Math.round(val * 100) / 100).toFixed(2);
+  }
+
   constructor(source) {
     this.source = source;
-    // this.catalogName = catalogName;
   }
 
 }

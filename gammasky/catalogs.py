@@ -24,29 +24,24 @@ def make_tev_catalog_data(nrows=None):
 
     url = 'https://github.com/gammapy/gamma-cat/raw/master/docs/data/gammacat.fits.gz'
     table = Table.read(url)
-    # gamma-cat already has a source_id column
-    cols = [
-        'source_id',
-        'common_name',
-        'gamma_names',
-        'other_names',
-        'ra',
-        'dec',
-        'glon',
-        'glat',
-    ]
-    # cols = table.colnames  <-- Not working right now because I get the error: Cannot convert a table with multi-dimensional columns to a pandas DataFrame.
+    cols = [name for name in table.colnames if not 'sed' in name]
+    # cols = tuple(name for name in table.colnames if len(table[name].shape) <= 1)
+    # t2 = table[cols]
 
     if nrows:
         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
         table = table[row_ids]
 
     # TODO: Make empty gamma_names and other_names cols say "None"
+    # I am making index independent of source_id because the gamma-cat source_id is 1) unordered; 2) starts at 1 not 0; and 3) Skips id 76.
 
     click.echo('Converting table to pandas dataframe...')
     df = table[cols].to_pandas()
-    df.index = df['source_id'].astype('int')
-    del df['source_id']
+    # df.index = df['source_id'].astype('int')
+    order = range(162)
+    df.index = order
+    del df['source_id'] # Do we need source_id for gamma-sky.net?
+
     # Renaming "common_name" column to "Source_Name" for simplicity
     df.rename(columns={'common_name': 'Source_Name'}, inplace=True)
     text = df.to_json(**TO_JSON_KWARGS)
