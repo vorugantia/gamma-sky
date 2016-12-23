@@ -10,48 +10,85 @@ __all__ = [
     'make_tev_catalog_data',
     'make_3fgl_catalog_data',
     'make_2fhl_catalog_data',
-    'make_snrcat_catalog_data',
+    'make_snrcat_catalog_data'
 ]
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
 
 
 def make_tev_catalog_data(nrows=None):
-    # TODO: change to gamma-cat
-    click.secho('Skipping TeV catalog ... need to switch to gamma-cat', fg='red')
-    return
-
-    click.secho('Making TeV catalog data...', fg='green')
+    click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
 
     out_dir = Path('src/app/data/cat')
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    url = 'https://github.com/gammapy/gamma-cat/blob/master/other_cats/tgevcat/tgevcat.ecsv?raw=true'
-    table = Table.read(url, format='ascii.ecsv')
-    cols = table.colnames
+    url = 'https://github.com/gammapy/gamma-cat/raw/master/docs/data/gammacat.fits.gz'
+    table = Table.read(url)
+    cols = [name for name in table.colnames if not 'sed' in name]
+    # cols = tuple(name for name in table.colnames if len(table[name].shape) <= 1)
+    # t2 = table[cols]
 
     if nrows:
         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
         table = table[row_ids]
 
+    # TODO: Make empty gamma_names and other_names cols say "None"
+    # I am making index independent of source_id because the gamma-cat source_id is 1) unordered; 2) starts at 1 not 0; and 3) Skips id 76.
+
     click.echo('Converting table to pandas dataframe...')
     df = table[cols].to_pandas()
-    # http://stackoverflow.com/a/20491748/498873
-    # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html
-    # df.reset_index(drop=True)
-    df.index = df['Source_ID'].astype('int')
-    del df['Source_ID']
-    # import  IPython; IPython.embed()
+    # df.index = df['source_id'].astype('int')
+    order = range(162)
+    df.index = order
+    del df['source_id']
 
-    # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
-    # The most efficient format should be "split" with DataFrame index dropped
-    text = df.to_json(orient='split')
-    # text = df.to_json()
+    # Renaming "common_name" column to "Source_Name" for simplicity
+    df.rename(columns={'common_name': 'Source_Name'}, inplace=True)
+    text = df.to_json(**TO_JSON_KWARGS)
 
     filename = 'src/app/data/cat/cat_tev.json'
     click.secho('Writing tev {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         fh.write(text)
+
+
+# # Function for old TeV data:
+# def make_tev_catalog_data(nrows=None):
+#
+#     click.secho('Skipping TeV catalog ... need to switch to gamma-cat', fg='red')
+#     return
+#
+#     click.secho('Making TeV catalog data...', fg='green')
+#
+#     out_dir = Path('src/app/data/cat')
+#     out_dir.mkdir(parents=True, exist_ok=True)
+#
+#     url = 'https://github.com/gammapy/gamma-cat/blob/master/other_cats/tgevcat/tgevcat.ecsv?raw=true'
+#     table = Table.read(url, format='ascii.ecsv')
+#     cols = table.colnames
+#
+#     if nrows:
+#         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
+#         table = table[row_ids]
+#
+#     click.echo('Converting table to pandas dataframe...')
+#     df = table[cols].to_pandas()
+#     # http://stackoverflow.com/a/20491748/498873
+#     # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html
+#     # df.reset_index(drop=True)
+#     df.index = df['Source_ID'].astype('int')
+#     del df['Source_ID']
+#     # import  IPython; IPython.embed()
+#
+#     # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
+#     # The most efficient format should be "split" with DataFrame index dropped
+#     text = df.to_json(orient='split')
+#     # text = df.to_json()
+#
+#     filename = 'src/app/data/cat/cat_tev.json'
+#     click.secho('Writing tev {}'.format(filename), fg='green')
+#     with open(filename, 'w') as fh:
+#         fh.write(text)
 
 
 def make_3fgl_catalog_data(nrows=None):

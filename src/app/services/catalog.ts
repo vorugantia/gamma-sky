@@ -112,8 +112,8 @@ export class CatalogTeV extends CatalogBase {
 
 export class Catalog3FGL extends CatalogBase {
 
-  printInfo() {
-    let source = this.getSourceByRowIndex(0);
+  printInfo(idx) {
+    let source = this.getSourceByRowIndex(idx);
     console.log(source);
   }
 

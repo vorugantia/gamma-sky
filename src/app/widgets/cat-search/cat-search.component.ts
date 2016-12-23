@@ -37,7 +37,8 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
     this.catalogService.getCatalogSNRcat()
       .then(catalog => {
-        this.itemsSNRcat = catalog.getCatSearchItems("SNRcat ");
+        // this.itemsSNRcat = catalog.getCatSearchItems("SNRcat ");
+        this.itemsSNRcat = catalog.getCatSearchItems("");
       })
       .catch(error => this.error = error);
 

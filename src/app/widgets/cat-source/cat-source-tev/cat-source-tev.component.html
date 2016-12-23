@@ -4,13 +4,27 @@
       <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
       <h5>Basic info</h5>
       <ul>
-          <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
-          <li>Other names: {{catalog.getSourceByID(id).data.Other_Names}}</li>
-          <li>Class: {{catalog.getSourceByID(id).data.CLASS}}</li>
+          <li>Common name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
+          <li>Gamma names: {{catalog.getSourceByID(id).gamma_names_str()}}</li>
+          <li>Other names: {{catalog.getSourceByID(id).other_names_str()}}</li>
+          <li>Class: {{catalog.getSourceByID(id).class_str()}}</li>
           <li>TODO: add link to TeVCat</li>
           <li>TODO: add link to get data as JSON</li>
       </ul>
+
       <h5>Position info:</h5>
+      <ul>
+          <li>RA: {{catalog.getSourceByID(id).ra_str()}}</li>
+          <li>DEC: {{catalog.getSourceByID(id).dec_str()}}</li>
+          <li>GLON: {{catalog.getSourceByID(id).glon_str()}}</li>
+          <li>GLAT: {{catalog.getSourceByID(id).glat_str()}}</li>
+      </ul>
+
+
+
+<!-- Commented code below is what we did for the old TeV catalog. -->
+
+      <!-- <h5>Position info:</h5>
       <ul>
           <li>RA: {{catalog.getSourceByID(id).ra_str()}}</li>
           <li>DEC: {{catalog.getSourceByID(id).dec_str()}}</li>
@@ -26,8 +40,8 @@
       </ul>
       <h5>Spectral info:</h5>
       <ul>
-          <!-- <li>Differential flux: {{catalog.getSourceByID(id).flux_diff_str()}}</li> -->
-          <!-- <li>Integral flux: {{catalog.getSourceByID(id).flux_int_str()}}</li> -->
+          <li>Differential flux: {{catalog.getSourceByID(id).flux_diff_str()}}</li>
+          <li>Integral flux: {{catalog.getSourceByID(id).flux_int_str()}}</li>
           <li>Flux: {{ catalog.getSourceByID(id).flux_crab_str()}} </li>
           <li>Spectral index: {{catalog.getSourceByID(id).spectral_index_str()}}</li>
       </ul>
@@ -42,14 +56,14 @@
           <li>Observatory: {{ catalog.getSourceByID(id).data.Observatory}} </li>
           <li>Reference: {{ catalog.getSourceByID(id).data.Reference}} </li>
           <li>Comments: {{ catalog.getSourceByID(id).data.Comments}} </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </div>
 <footer>
     <div class="container">
         <p>
-            Data from: <a href="http://www.asdc.asi.it/tgevcat/">TeGeV Catalogue @ ASDC (v2, July 2015)</a>
+            Data from: <a href="https://gammapy.github.io/gamma-cat/">gamma-cat, an open TeV source catalog</a>
         </p>
     </div>
 </footer>

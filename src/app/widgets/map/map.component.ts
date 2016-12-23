@@ -1,7 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Popup} from '../popup/popup';
+import {PopupTeV} from '../popup/popup-tev';
+import {Popup3FGL} from '../popup/popup-3fgl';
+import {Popup2FHL} from '../popup/popup-2fhl';
+import {PopupSNRcat} from '../popup/popup-snrcat';
 import {SURVEYS} from '../../data/maps/surveys';
 
+// import {CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat} from '../../services/catalog';
 import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
@@ -42,34 +46,7 @@ export class MapComponent implements OnInit, OnDestroy {
   addCatalog(catalogName, catalogColor, data) {
     console.log("Adding ", catalogName, " catalog...");
 
-    // Adjusting Column names of JSON files according to catalog name
-
     var catalog = data;
-    var assocType;
-    var classType;
-    var raType = "RAJ2000";
-    var decType = "DEJ2000";
-
-    if(catalogName == "3FGL") {
-      assocType = "ASSOC1";
-      classType = "CLASS1";
-    }
-    else if(catalogName == "2FHL") {
-      assocType = "ASSOC";
-      classType = "CLASS";
-    }
-    else if(catalogName == "SNRcat") {
-      assocType = "id_alt";
-    }
-    else if(catalogName == "TeV") {
-      assocType = "Other_Names";
-      classType = "CLASS";
-      raType = "RA";
-      decType = "DEC";
-    }
-
-
-    //Adding catalog markers and popups
 
     this.cat = A.catalog({
       name: catalogName,
@@ -79,64 +56,45 @@ export class MapComponent implements OnInit, OnDestroy {
     });
     this.map.addCatalog(this.cat);
 
+
+    // Adding each individual source:
+
     var n_sources = catalog.getLength();
     console.log(catalogName, " # number of sources: ", n_sources);
 
     for(var i = 0; i < n_sources; i++) {
 
-      // var row = i.toString();
+      //Configuring the popup
+      var popup;
+      var ra = catalog.getVal(i, 'RAJ2000');
+      var dec = catalog.getVal(i, 'DEJ2000');
 
-      var round_ra = (Math.round(catalog.getVal(i, raType) * 100) / 100).toFixed(2);
-      var round_dec = (Math.round(catalog.getVal(i, decType) * 100) / 100).toFixed(2);
-      var round_glon = (Math.round(catalog.getVal(i, "GLON") * 100) / 100).toFixed(2);
-      var round_glat = (Math.round(catalog.getVal(i, "GLAT") * 100) / 100).toFixed(2);
-
-      var Source = <any>{                    // Can Source object be defined anywhere else, perhaps to be SHARED with CatViewComponent?
-        name: catalog.getVal(i, "Source_Name"),
-        ra: round_ra,
-        dec: round_dec,
-        glon: round_glon,
-        glat: round_glat
-      };
-
-      Source.assoc = catalog.getVal(i, assocType);
-      Source.assocLabel = "Assoc:";
-
-
-      // source.lineFour will:
-      //      - Set the SOURCE TYPE for 3FGL and 2FHL catalogs.
-      //      - Set the RADIUS for SNRcat catalog.
-      // TODO Split these up.
-      if (catalogName === "3FGL" || catalogName === "2FHL" || catalogName === "TeV") {
-        Source.lineFour = catalog.getVal(i, classType);
-        Source.lineFourLabel = "Class:";
+      if(catalogName == "TeV") {
+        ra = catalog.getVal(i, 'ra');
+        dec = catalog.getVal(i, 'dec');
+        popup = new PopupTeV(catalog.getSourceByID(i));
       }
-      else if (catalogName === "SNRcat") {
-        Source.lineFour = ((Math.round(catalog.getVal(i, "size_radio_mean") * 100) / 100) / 60).toFixed(2) + "&#176";
-        Source.lineFourLabel = "Radius:";
-        Source.SNRcatID = catalog.getVal(i, "snrcat_id");
+      else if(catalogName == "3FGL") {
+        popup = new Popup3FGL(catalog.getSourceByID(i));
       }
-
-      if (catalogName === "SNRcat") {
-        Source.prefix = "SNRcat ";
+      else if(catalogName == "2FHL") {
+        popup = new Popup2FHL(catalog.getSourceByID(i));
       }
       else {
-        Source.prefix = "";
+        popup = new PopupSNRcat(catalog.getSourceByID(i));
       }
 
-
-      var popup = new Popup(Source, catalogName);
+      //Adding the markers
       var marker = A.marker(
-        catalog.getVal(i, raType),
-        catalog.getVal(i, decType),
+        ra,
+        dec,
         {
           popupDesc: `` + popup.getDesc()
         });
 
         this.cat.addSources([marker]);
 
-        //This hides all catalogs on webpage startup.
-        // this.cat.hide();
+        //this.cat.hide() will hide all catalogs on webpage startup.
 
     }
 
@@ -193,6 +151,10 @@ export class MapComponent implements OnInit, OnDestroy {
         // this.cat.hide();
       })
       .catch(error => this.error = error);
+  }
+
+  round(val) {
+    return (Math.round(val * 100) / 100).toFixed(2);
   }
 
   constructor(
