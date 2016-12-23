@@ -40,7 +40,7 @@ def make_tev_catalog_data(nrows=None):
     # df.index = df['source_id'].astype('int')
     order = range(162)
     df.index = order
-    del df['source_id'] # Do we need source_id for gamma-sky.net?
+    del df['source_id']
 
     # Renaming "common_name" column to "Source_Name" for simplicity
     df.rename(columns={'common_name': 'Source_Name'}, inplace=True)
