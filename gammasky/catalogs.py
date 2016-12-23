@@ -35,7 +35,7 @@ def make_tev_catalog_data(nrows=None):
         'glon',
         'glat',
     ]
-    # cols = table.colnames
+    # cols = table.colnames  <-- Not working right now because I get the error: Cannot convert a table with multi-dimensional columns to a pandas DataFrame.
 
     if nrows:
         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
