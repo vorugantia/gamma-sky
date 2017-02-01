@@ -8,7 +8,7 @@ import { CatSource2FHLComponent } from '../../widgets/cat-source/cat-source-2fhl
 import { CatSourceSNRcatComponent } from '../../widgets/cat-source/cat-source-snrcat/cat-source-snrcat.component';
 import { CatSourceTeVComponent } from '../../widgets/cat-source/cat-source-tev/cat-source-tev.component';
 
-import { ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective, TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ButtonsModule, TooltipModule } from 'ng2-bootstrap';
 import { SelectModule } from 'ng2-select';
 
 import { CatViewRoutingModule } from './cat-view-routing.module';
@@ -31,8 +31,8 @@ import { StateService } from '../../services/state.service';
     CatViewRoutingModule,
     SharedModule,
 
-    ButtonsModule,
-    TooltipModule,
+    ButtonsModule.forRoot(),
+    TooltipModule.forRoot(),
     SelectModule
   ],
   providers: [

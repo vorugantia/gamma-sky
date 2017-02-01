@@ -111,6 +111,14 @@ export var SURVEYS: Survey[] = [
     "maxOrder": 3,
     "frame": "equatorial",
     "format": "jpeg"
+  },
+  {
+    "id": "P/SUZAKU",
+    "url": "http://darts.isas.jaxa.jp/pub/judo2/HiPS/suzaku",
+    "name": "SUZAKU",
+    "maxOrder": 6,
+    "frame": "equatorial",
+    "format": "png"
   }
 
 
