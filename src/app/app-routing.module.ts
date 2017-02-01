@@ -9,11 +9,11 @@ export const routes: Routes = [
   },
   {
     path: 'map',
-    loadChildren: 'app/views/map-view/map-view.module#MapViewModule'
+    loadChildren: './views/map-view/map-view.module#MapViewModule'
   },
   {
     path: 'cat',
-    loadChildren: 'app/views/cat-view/cat-view.module#CatViewModule'
+    loadChildren: './views/cat-view/cat-view.module#CatViewModule'
   }
 
 ];
