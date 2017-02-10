@@ -90,6 +90,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
     this.value = value;
   }
 
+
   constructor(
     private catalogService: CatalogService,
     public stateService: StateService,
@@ -104,12 +105,12 @@ export class CatSearchComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if (this.selectedCatalog == null) {
       this.disabled = true;
-      this.tooltip = true;
+      this.tooltip = false;
       // this.items = [];
     }
     else {
       this.disabled = false;
-      this.tooltip = false;
+      this.tooltip = true;
     }
   }
 

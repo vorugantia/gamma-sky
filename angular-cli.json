@@ -10,10 +10,15 @@
       "assets": [
         "assets",
         "favicon.ico",
+<<<<<<< Updated upstream
         "404.html",
         "app/data/cat",
         "app/data/maps",
         "static"
+=======
+        "app/data/cat",
+        "app/data/maps"
+>>>>>>> Stashed changes
       ],
       "index": "index.html",
       "main": "main.ts",
