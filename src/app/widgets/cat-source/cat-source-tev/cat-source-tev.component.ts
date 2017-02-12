@@ -25,6 +25,10 @@ export class CatSourceTeVComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
+  getSource() {
+    return this.catalog.getSourceByID(this.id);
+  }
+
   constructor(
     private catalogService: CatalogService,
     public stateService: StateService,

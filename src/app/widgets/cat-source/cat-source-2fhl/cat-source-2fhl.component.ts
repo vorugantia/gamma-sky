@@ -27,6 +27,10 @@ export class CatSource2FHLComponent implements OnInit, OnDestroy {
       .catch(error => this.error = error);
   }
 
+  getSource() {
+    return this.catalog.getSourceByID(this.id);
+  }
+
   constructor(
     private catalogService: CatalogService,
     public stateService: StateService,

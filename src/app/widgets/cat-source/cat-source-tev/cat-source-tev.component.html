@@ -1,23 +1,23 @@
 <div *ngIf="(catalog)">
   <div class="container">
     <div class="col-md-6">
-      <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
+      <h3>{{getSource().data.Source_Name}}</h3>
       <h5>Basic info</h5>
       <ul>
-          <li>Common name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
-          <li>Gamma names: {{catalog.getSourceByID(id).gamma_names_str()}}</li>
-          <li>Other names: {{catalog.getSourceByID(id).other_names_str()}}</li>
-          <li>Class: {{catalog.getSourceByID(id).class_str()}}</li>
+          <li>Common name: {{getSource().data.Source_Name}}</li>
+          <li>Gamma names: {{getSource().gamma_names_str()}}</li>
+          <li>Other names: {{getSource().other_names_str()}}</li>
+          <li>Class: {{getSource().class_str()}}</li>
           <li>TODO: add link to TeVCat</li>
           <li>TODO: add link to get data as JSON</li>
       </ul>
 
       <h5>Position info:</h5>
       <ul>
-          <li>RA: {{catalog.getSourceByID(id).ra_str()}}</li>
-          <li>DEC: {{catalog.getSourceByID(id).dec_str()}}</li>
-          <li>GLON: {{catalog.getSourceByID(id).glon_str()}}</li>
-          <li>GLAT: {{catalog.getSourceByID(id).glat_str()}}</li>
+          <li>RA: {{getSource().ra_str()}}</li>
+          <li>DEC: {{getSource().dec_str()}}</li>
+          <li>GLON: {{getSource().glon_str()}}</li>
+          <li>GLAT: {{getSource().glat_str()}}</li>
       </ul>
 
 
@@ -26,36 +26,36 @@
 
       <!-- <h5>Position info:</h5>
       <ul>
-          <li>RA: {{catalog.getSourceByID(id).ra_str()}}</li>
-          <li>DEC: {{catalog.getSourceByID(id).dec_str()}}</li>
-          <li>GLON: {{catalog.getSourceByID(id).glon_str()}}</li>
-          <li>GLAT: {{catalog.getSourceByID(id).glat_str()}}</li>
+          <li>RA: {{getSource().ra_str()}}</li>
+          <li>DEC: {{getSource().dec_str()}}</li>
+          <li>GLON: {{getSource().glon_str()}}</li>
+          <li>GLAT: {{getSource().glat_str()}}</li>
       </ul>
       <h5>Extension info:</h5>
       <ul>
-          <li>{{catalog.getSourceByID(id).ext_str()}}</li>
-          <li>Semimajor: {{catalog.getSourceByID(id).semimajor_str()}}</li>
-          <li>Semiminor: {{catalog.getSourceByID(id).semiminor_str()}}</li>
-          <li>Rotation angle: {{catalog.getSourceByID(id).glat_str()}}</li>
+          <li>{{getSource().ext_str()}}</li>
+          <li>Semimajor: {{getSource().semimajor_str()}}</li>
+          <li>Semiminor: {{getSource().semiminor_str()}}</li>
+          <li>Rotation angle: {{getSource().glat_str()}}</li>
       </ul>
       <h5>Spectral info:</h5>
       <ul>
-          <li>Differential flux: {{catalog.getSourceByID(id).flux_diff_str()}}</li>
-          <li>Integral flux: {{catalog.getSourceByID(id).flux_int_str()}}</li>
-          <li>Flux: {{ catalog.getSourceByID(id).flux_crab_str()}} </li>
-          <li>Spectral index: {{catalog.getSourceByID(id).spectral_index_str()}}</li>
+          <li>Differential flux: {{getSource().flux_diff_str()}}</li>
+          <li>Integral flux: {{getSource().flux_int_str()}}</li>
+          <li>Flux: {{ getSource().flux_crab_str()}} </li>
+          <li>Spectral index: {{getSource().spectral_index_str()}}</li>
       </ul>
       <h5>Distance info:</h5>
       <ul>
-          <li>Distance: {{ catalog.getSourceByID(id).distance_str()}} </li>
-          <li>Redshift: {{catalog.getSourceByID(id).distance2_str()}}</li>
+          <li>Distance: {{ getSource().distance_str()}} </li>
+          <li>Redshift: {{getSource().distance2_str()}}</li>
       </ul>
       <h5>Other info:</h5>
       <ul>
-          <li>Discoverer: {{ catalog.getSourceByID(id).data.Discoverer}} </li>
-          <li>Observatory: {{ catalog.getSourceByID(id).data.Observatory}} </li>
-          <li>Reference: {{ catalog.getSourceByID(id).data.Reference}} </li>
-          <li>Comments: {{ catalog.getSourceByID(id).data.Comments}} </li>
+          <li>Discoverer: {{ getSource().data.Discoverer}} </li>
+          <li>Observatory: {{ getSource().data.Observatory}} </li>
+          <li>Reference: {{ getSource().data.Reference}} </li>
+          <li>Comments: {{ getSource().data.Comments}} </li>
       </ul> -->
     </div>
   </div>

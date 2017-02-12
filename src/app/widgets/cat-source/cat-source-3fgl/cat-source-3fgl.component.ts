@@ -27,6 +27,10 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
       .catch(error => this.error = error);
   }
 
+  getSource() {
+    return this.catalog.getSourceByID(this.id);
+  }
+
   getUrl(sourceName, image) {
 
     var imageType = image;

@@ -2,19 +2,19 @@
   <div class="container">
 
     <div class="col-md-4">
-        <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
+        <h3>{{getSource().data.Source_Name}}</h3>
         <h5>Basic info: </h5>
         <ul>
-            <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
-            <li>ASSOC1: {{catalog.getSourceByID(id).data.ASSOC1}}</li>
-            <li>CLASS1: {{catalog.getSourceByID(id).data.CLASS1}}</li>
+            <li>Source name: {{getSource().data.Source_Name}}</li>
+            <li>ASSOC1: {{getSource().data.ASSOC1}}</li>
+            <li>CLASS1: {{getSource().data.CLASS1}}</li>
         </ul>
         <h5>Position info:</h5>
         <ul>
-            <li>RA: {{catalog.getSourceByID(id).data.RAJ2000}} deg</li>
-            <li>DEC: {{catalog.getSourceByID(id).data.DEJ2000}} deg</li>
-            <li>GLON: {{catalog.getSourceByID(id).data.GLON}} deg</li>
-            <li>GLAT: {{catalog.getSourceByID(id).data.GLAT}} deg</li>
+            <li>RA: {{getSource().data.RAJ2000}} deg</li>
+            <li>DEC: {{getSource().data.DEJ2000}} deg</li>
+            <li>GLON: {{getSource().data.GLON}} deg</li>
+            <li>GLAT: {{getSource().data.GLAT}} deg</li>
         </ul>
         <h5>Spectral info:</h5>
         <ul>
@@ -24,12 +24,12 @@
 
     <div class="col-md-4">
       <h3>Lightcurve</h3>
-      <img src="{{getUrl(catalog.getSourceByID(id).data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
+      <img src="{{getUrl(getSource().data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
     </div>
 
     <div class="col-md-4">
       <h3>Spectrum</h3>
-      <img src="{{getUrl(catalog.getSourceByID(id).data.Source_Name, 'spec')}}" class="img-responsive" alt="Spectrum" />
+      <img src="{{getUrl(getSource().data.Source_Name, 'spec')}}" class="img-responsive" alt="Spectrum" />
     </div>
 
   </div>
