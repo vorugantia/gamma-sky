@@ -15,7 +15,7 @@ export class CatSourceSNRcatComponent implements OnInit {
 
   private sub;
   private id;
-  private source;
+  // private source;
 
   private catalog: CatalogSNRcat;
   private error: any;
@@ -30,8 +30,8 @@ export class CatSourceSNRcatComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
-  getSNRcatUrl(cat) {
-    return new SourceSNRcat(cat).getSNRcatUrl("snrcat_id");
+  getSNRcatUrl(source) {
+    return new SourceSNRcat(this.catalog).getSNRcatUrl(source.data.snrcat_id);
   }
 
   constructor(

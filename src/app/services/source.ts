@@ -151,8 +151,8 @@ export class SourceSNRcat {
     this.data = data;
   }
 
-  getSNRcatUrl(snrcat_id) {
-    return "http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=" + this.data[snrcat_id];
+  getSNRcatUrl(snrcatId) {
+    return "http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=" + snrcatId;
   }
 
 }
