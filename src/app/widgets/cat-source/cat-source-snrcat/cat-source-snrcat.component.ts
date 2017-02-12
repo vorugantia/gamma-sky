@@ -30,6 +30,10 @@ export class CatSourceSNRcatComponent implements OnInit {
       .catch(error => this.error = error);
   }
 
+  getSource() {
+    return this.catalog.getSourceByID(this.id);
+  }
+
   getSNRcatUrl(source) {
     return new SourceSNRcat(this.catalog).getSNRcatUrl(source.data.snrcat_id);
   }

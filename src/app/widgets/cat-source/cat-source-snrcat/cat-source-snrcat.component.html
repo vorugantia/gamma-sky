@@ -5,10 +5,10 @@
       <h3>{{catalog.getSourceByID(id).data.Source_Name}}</h3>
       <h5>Basic info</h5>
       <ul>
-          <li>Source name: {{catalog.getSourceByID(id).data.Source_Name}}</li>
-          <li>Other names: {{catalog.getSourceByID(id).data.id_alt}}</li>
+          <li>Source name: {{getSource().data.Source_Name}}</li>
+          <li>Other names: {{getSource().data.id_alt}}</li>
           <li>
-            <a href="{{getSNRcatUrl(catalog.getSourceByID(id))}}" target="_blank">
+            <a href="{{ getSNRcatUrl(getSource()) }}" target="_blank">
               View in SNRcat
             </a>
           </li>
@@ -16,11 +16,11 @@
       </ul>
       <h5>Position and morphology info:</h5>
       <ul>
-          <li>RA: {{catalog.getSourceByID(id).data.RAJ2000}} deg</li>
-          <li>DEC: {{catalog.getSourceByID(id).data.DEJ2000}} deg</li>
-          <li>GLON: {{catalog.getSourceByID(id).data.GLON}} deg</li>
-          <li>GLAT: {{catalog.getSourceByID(id).data.GLAT}} deg</li>
-          <li>Size: {{catalog.getSourceByID(id).data.size_radio_mean}} arcmin</li>
+          <li>RA: {{getSource().data.RAJ2000}} deg</li>
+          <li>DEC: {{getSource().data.DEJ2000}} deg</li>
+          <li>GLON: {{getSource().data.GLON}} deg</li>
+          <li>GLAT: {{getSource().data.GLAT}} deg</li>
+          <li>Size: {{getSource().data.size_radio_mean}} arcmin</li>
       </ul>
     </div>
 
