@@ -55,9 +55,9 @@ export class CatSearchComponent implements OnInit, DoCheck {
   }
 
 
-  // To understand the code below, see ng2-select and ng2-bootstrap docs at:
+  // To understand the code below, see ng2-select and ngx-bootstrap docs at:
   // http://valor-software.com/ng2-select/
-  // https://valor-software.com/ng2-bootstrap/
+  // http://valor-software.com/ngx-bootstrap/
 
   public items: Array<any> = [];
   private value: any = {};
