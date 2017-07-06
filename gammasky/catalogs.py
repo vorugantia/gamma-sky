@@ -29,7 +29,12 @@ def make_3fhl_catalog_data():
     filename = 'src/app/data/cat/cat_3fhl.json'
     click.secho('Writing 3fhl {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
-        json.dump(cat._data_python_list, fh)
+        # Messy fix. First: With mask I replace np.nan with a stringified "NaN".
+        # Second: https://stackoverflow.com/questions/15272421/python-json-dumps
+        data = json.dumps(cat._data_python_list)
+        mask = data.replace('NaN', '"NaN"') # Or "null" or ""?
+        json.dump(json.loads(mask), fh)
+
 
 def make_tev_catalog_data(nrows=None):
     click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
