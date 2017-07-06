@@ -8,8 +8,8 @@ import { CatSource2FHLComponent } from '../../widgets/cat-source/cat-source-2fhl
 import { CatSourceSNRcatComponent } from '../../widgets/cat-source/cat-source-snrcat/cat-source-snrcat.component';
 import { CatSourceTeVComponent } from '../../widgets/cat-source/cat-source-tev/cat-source-tev.component';
 
-import { ButtonsModule, TooltipModule } from 'ng2-bootstrap';
-import { SelectModule } from 'ng2-select';
+import { ButtonsModule, TooltipModule } from 'ngx-bootstrap';
+import { SelectModule } from 'ng2-select-compat';
 
 import { CatViewRoutingModule } from './cat-view-routing.module';
 import { SharedModule } from '../../shared/shared.module';
