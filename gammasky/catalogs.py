@@ -5,8 +5,11 @@ from pathlib import Path
 import click
 import numpy as np
 from astropy.table import Table
+import json
+from gammapy.catalog import SourceCatalog3FHL # SourceCatalog3FGL, SourceCatalogGammaCat
 
 __all__ = [
+    'make_3fhl_catalog_data',
     'make_tev_catalog_data',
     'make_3fgl_catalog_data',
     'make_2fhl_catalog_data',
@@ -15,6 +18,18 @@ __all__ = [
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
 
+# TODO: Dump all data to JSON in this way, using Gammapy.
+def make_3fhl_catalog_data():
+    click.secho('Making 3FHL catalog data...', fg='green')
+
+    out_dir = Path('src/app/data/cat')
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    cat = SourceCatalog3FHL()
+    filename = 'src/app/data/cat/cat_3fhl.json'
+    click.secho('Writing 3fhl {}'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        json.dump(cat._data_python_list, fh)
 
 def make_tev_catalog_data(nrows=None):
     click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
