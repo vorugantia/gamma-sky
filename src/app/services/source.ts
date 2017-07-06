@@ -99,6 +99,12 @@ export class SourceTeV {
 
 }
 
+export class Source3FHL {
+  public data;
+  constructor(data) {
+    this.data = data;
+  }
+}
 
 export class Source3FGL {
   public data;

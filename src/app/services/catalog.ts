@@ -1,4 +1,4 @@
-import { SourceTeV, Source3FGL, Source2FHL, SourceSNRcat } from './source';
+import { SourceTeV, Source3FGL, Source2FHL, SourceSNRcat, Source3FHL } from './source';
 
 /**
  * Helper function to reformat the catalog data into array or source objects.
@@ -109,6 +109,13 @@ export class CatalogTeV extends CatalogBase {
 
 }
 
+export class Catalog3FHL extends CatalogBase {
+
+  printInfo(idx) {
+    console.log(this.data[idx]);
+  }
+
+}
 
 export class Catalog3FGL extends CatalogBase {
 

@@ -3,9 +3,10 @@ import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
 import {Popup2FHL} from '../popup/popup-2fhl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
+import {Popup3FHL} from '../popup/popup-3fhl';
 import {SURVEYS} from '../../data/maps/surveys';
 
-// import {CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat} from '../../services/catalog';
+// import {CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat, Catalog3FHL} from '../../services/catalog';
 import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
@@ -42,6 +43,53 @@ export class MapComponent implements OnInit, OnDestroy {
       HpxImageSurvey.SURVEYS = SURVEYS;
     }, 1000);
   }
+
+// TODO: Go through this function and replace data accesses with functions, which can be defined in catalog.ts.
+  addCatalogNew(catalogName, catalogColor, data) {
+    console.log("Adding ", catalogName, " catalog...");
+
+    var catalog = data;
+    console.log(catalog.data); // TODO remove
+
+    this.cat = A.catalog({
+      name: catalogName,
+      color: catalogColor,
+      sourceSize: 13,
+      // onClick: showPopup
+    });
+    this.map.addCatalog(this.cat);
+
+console.log("line 62", catalog.data[0].Source_Name); // TODO remove
+
+    // Adding each individual source:
+
+    var n_sources = catalog.data.length;
+    console.log(catalogName, " # number of sources: ", n_sources);
+
+    for(var i = 0; i < n_sources; i++) {
+
+      //Configuring the popup
+      var popup;
+      var ra = catalog.data[i]['RAJ2000'];
+      var dec = catalog.data[i]['DEJ2000'];
+      popup = new Popup3FHL(catalog.data[i]);
+
+
+      //Adding the markers
+      var marker = A.marker(
+        ra,
+        dec,
+        {
+          popupDesc: `` + popup.getDesc() //TODO fix popup.getDesc()
+        });
+      this.cat.addSources([marker]);
+
+        //this.cat.hide() will hide all catalogs on webpage startup.
+
+    }
+
+  }
+
 
   addCatalog(catalogName, catalogColor, data) {
     console.log("Adding ", catalogName, " catalog...");
@@ -98,6 +146,21 @@ export class MapComponent implements OnInit, OnDestroy {
 
     }
 
+  }
+
+  getCatalog3FHL() {
+    this.catalogService.getCatalog3FHL()
+      .then(catalog => {
+        this.addCatalogNew(
+          '3FHL',
+          '#ffffff', //TODO change color?
+          catalog
+        );
+        console.log("CAT: ", catalog); // TODO remove
+        //This hides 3FHL catalog on webpage startup.
+        // this.cat.hide();
+      })
+      .catch(error => this.error = error);
   }
 
   getCatalog3FGL() {
@@ -173,6 +236,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getCatalog2FHL();
     this.getCatalogSNRcat();
     this.getCatalogTeV();
+    this.getCatalog3FHL();
 
   }
 
