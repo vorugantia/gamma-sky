@@ -6,6 +6,8 @@ import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
 import {SURVEYS} from '../../data/maps/surveys';
 
+import {SourceTeV, Source3FHL} from '../../services/source';
+
 // import {CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat, Catalog3FHL} from '../../services/catalog';
 import {CatalogService} from '../../services/catalog.service';
 
@@ -65,9 +67,20 @@ export class MapComponent implements OnInit, OnDestroy {
     for(var i = 0; i < n_sources; i++) {
       //Configuring the popup
       var popup;
+
+      //TODO assign ra and dec to getra() and getdec() methods in source.ts.
+      //     maybe the popup constructor can be done in source.ts too?
       var ra = catalog.data[i]['RAJ2000'];
       var dec = catalog.data[i]['DEJ2000'];
-      popup = new Popup3FHL(catalog.data[i]);
+      if(catalogName == "TeV") {
+        ra = catalog.data[i].ra
+        dec = catalog.data[i].dec
+        // TODO if I pass SourceTeV to PopupTeV, I can access methods for the source.
+        popup = new PopupTeV(catalog.data[i]);
+      }
+      else {
+        popup = new Popup3FHL(catalog.data[i]);
+      }
 
       //Adding the markers
       var marker = A.marker(
@@ -147,7 +160,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalogNew(
           '3FHL',
-          '#ffffff', //TODO change color?
+          '#888888', //gray TODO: change color?
           catalog
         );
         //This hides 3FHL catalog on webpage startup.
@@ -198,7 +211,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getCatalogTeV() {
     this.catalogService.getCatalogTeV()
       .then(catalog => {
-        this.addCatalog(
+        this.addCatalogNew(
           'TeV',
           'red',
           catalog
@@ -230,7 +243,6 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getCatalogSNRcat();
     this.getCatalogTeV();
     this.getCatalog3FHL();
-
   }
 
   ngOnDestroy() {

@@ -21,8 +21,6 @@ class CatalogBase {
   constructor(data, sourceClass) {
     this.data = data;
     this.sourceClass = sourceClass;
-    console.log("Catalog: ", data);
-    console.log(data.columns);
   }
 
   getID(idx) {
@@ -103,8 +101,7 @@ class CatalogBase {
 export class CatalogTeV extends CatalogBase {
 
   printInfo(idx) {
-    let source = this.getSourceByRowIndex(idx);
-    console.log(source);
+    console.log(this.data[idx]);
   }
 
 }

@@ -31,21 +31,21 @@ export class PopupTeV {
 
       <div>
 
-        <h4 style='text-align:center'>` + this.source.data.Source_Name + `</h4>
+        <h4 style='text-align:center'>` + this.source.common_name + `</h4>
 
           <table>
             <tbody>
               <tr>
                 <td>RA:</td>
-                <th>` + this.round(this.source.data.ra) + `</th>
+                <th>` + this.round(this.source.ra) + `</th>
                 <td>DEC:</td>
-                <th>` + this.round(this.source.data.dec) + `</th>
+                <th>` + this.round(this.source.dec) + `</th>
               </tr>
               <tr>
                 <td>GLON:</td>
-                <th>` + this.round(this.source.data.glon) + `</th>
+                <th>` + this.round(this.source.glon) + `</th>
                 <td>GLAT:</td>
-                <th>` + this.round(this.source.data.glat) + `</th>
+                <th>` + this.round(this.source.glat) + `</th>
               </tr>
             </tbody>
           </table>
@@ -54,7 +54,7 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Other names:</td>
-                <th style='width:170px'>` + this.source.other_names_str() + `</th>
+                <th style='width:170px'>` + this.source.other_names + `</th>
               </tr>
             </tbody>
           </table>
@@ -63,7 +63,7 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Class:</td>
-                <th style='width:170px'>` + this.source.class_str() + `</th>
+                <th style='width:170px'>` + this.source.classes + `</th>
               </tr>
             </tbody>
           </table>
@@ -71,6 +71,7 @@ export class PopupTeV {
         </div>
 
     `;
+    // TODO use this.source.class_str() and this.source.other_names_str() instead.
   }
 
   round(val) {
