@@ -7,6 +7,7 @@ import numpy as np
 from astropy.table import Table
 import json
 from gammapy.catalog import SourceCatalog3FHL, SourceCatalogGammaCat, SourceCatalog3FGL
+from .utils import table_to_list_of_dict
 
 __all__ = [
     'make_tev_catalog_data',
@@ -64,50 +65,6 @@ def make_3fgl_catalog_data():
         mask = mask.replace('-Infinity', '"-inf"')
         json.dump(json.loads(mask), fh)
 
-def make_3fgl_catalog_data_old(nrows=None):
-    click.secho('Making 3FGL catalog data...', fg='green')
-
-    out_dir = Path('src/app/data/cat')
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    url = 'https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/fermi/gll_psc_v16.fit.gz?raw=true'
-    table = Table.read(url)
-    table['Source_ID'] = np.arange(len(table), dtype=int)
-    cols = [
-        'Source_ID',
-        'Source_Name',
-        'RAJ2000',
-        'DEJ2000',
-        'GLON',
-        'GLAT',
-        'ASSOC1',
-        'CLASS1',
-    ]
-
-    if nrows:
-        row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
-        table = table[row_ids]
-
-    # Making empty Assoc cells say "None"
-    assoc_mask = table['ASSOC1'].data == 26 * " "
-    table['ASSOC1'][assoc_mask] = "None" + (22 * " ")
-
-    # Making empty Class cells say "unk" to matck 2FHL
-    class_mask = table['CLASS1'].data == 5 * " "
-    table['CLASS1'][class_mask] = "unk" + (3 * " ")
-
-    click.echo('Converting table to pandas dataframe...')
-    df = table[cols].to_pandas()
-    df.index = df['Source_ID'].astype('int')
-    del df['Source_ID']
-    text = df.to_json(**TO_JSON_KWARGS)
-
-    filename = 'src/app/data/cat/cat_3fgl.json'
-    click.secho('Writing 3fgl {}'.format(filename), fg='green')
-    with open(filename, 'w') as fh:
-        fh.write(text)
-
-
 def make_2fhl_catalog_data(nrows=None):
     click.secho('Making 2FHL catalog data ...', fg='green')
 
@@ -147,8 +104,23 @@ def make_2fhl_catalog_data(nrows=None):
     with open(filename, 'w') as fh:
         fh.write(text)
 
+def make_snrcat_catalog_data():
+    click.secho('Making SNRcat catalog data...', fg='green')
 
-def make_snrcat_catalog_data(nrows=None):
+    out_dir = Path('src/app/data/cat')
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    url = 'https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/snrcat.fits.gz?raw=true'
+    table = Table.read(url)
+    list_of_dict = table_to_list_of_dict(table.filled())
+
+    filename = 'src/app/data/cat/cat_snrcat.json'
+    click.secho('Writing SNRcat {}'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        json.dump(list_of_dict, fh)
+
+
+def make_snrcat_catalog_data_old(nrows=None):
     click.secho('Making SNRcat catalog data...', fg='green')
 
     out_dir = Path('src/app/data/cat')

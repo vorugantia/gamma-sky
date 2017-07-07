@@ -17,14 +17,13 @@ def cat():
 
 
 @cat.command('all')
-@click.option('--nrows', type=int, default=None)
-def cat_all(nrows):
+def cat_all():
     """Dump all catalogs to JSON"""
     gammasky.make_tev_catalog_data()
     gammasky.make_3fhl_catalog_data()
-    gammasky.make_3fgl_catalog_data(nrows=nrows)
-    gammasky.make_2fhl_catalog_data(nrows=nrows)
-    gammasky.make_snrcat_catalog_data(nrows=nrows)
+    gammasky.make_3fgl_catalog_data()
+    # gammasky.make_2fhl_catalog_data()
+    gammasky.make_snrcat_catalog_data()
 
 @cat.command('tev')
 def cat_tev():
@@ -42,18 +41,16 @@ def cat_3fgl():
     gammasky.make_3fgl_catalog_data()
 
 
-@cat.command('2fhl')
-@click.option('--nrows', type=int, default=None)
-def cat_2fhl(nrows):
-    """Dump 2FHL catalog to JSON"""
-    gammasky.make_2fhl_catalog_data(nrows=nrows)
+# @cat.command('2fhl')
+# def cat_2fhl():
+#     """Dump 2FHL catalog to JSON"""
+#     gammasky.make_2fhl_catalog_data()
 
 
 @cat.command('snrcat')
-@click.option('--nrows', type=int, default=None)
-def cat_snrcat(nrows):
+def cat_snrcat():
     """Dump SNRCat catalog to JSON"""
-    gammasky.make_snrcat_catalog_data(nrows=nrows)
+    gammasky.make_snrcat_catalog_data()
 
 
 @cli.command()
