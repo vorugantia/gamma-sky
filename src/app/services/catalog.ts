@@ -117,8 +117,7 @@ export class Catalog3FHL extends CatalogBase {
 export class Catalog3FGL extends CatalogBase {
 
   printInfo(idx) {
-    let source = this.getSourceByRowIndex(idx);
-    console.log(source);
+    console.log(this.data[idx]);
   }
 
 }

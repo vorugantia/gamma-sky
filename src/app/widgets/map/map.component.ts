@@ -72,14 +72,17 @@ export class MapComponent implements OnInit, OnDestroy {
       //     maybe the popup constructor can be done in source.ts too?
       var ra = catalog.data[i]['RAJ2000'];
       var dec = catalog.data[i]['DEJ2000'];
-      if(catalogName == "TeV") {
+      if(catalogName == 'TeV') {
         ra = catalog.data[i].ra
         dec = catalog.data[i].dec
         // TODO if I pass SourceTeV to PopupTeV, I can access methods for the source.
         popup = new PopupTeV(catalog.data[i]);
       }
-      else {
+      else if(catalogName == '3FHL') {
         popup = new Popup3FHL(catalog.data[i]);
+      }
+      else {
+        popup = new Popup3FGL(catalog.data[i]);
       }
 
       //Adding the markers
@@ -97,64 +100,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
-
-  addCatalog(catalogName, catalogColor, data) {
-    console.log("Adding ", catalogName, " catalog...");
-
-    var catalog = data;
-
-    this.cat = A.catalog({
-      name: catalogName,
-      color: catalogColor,
-      sourceSize: 13,
-      // onClick: showPopup
-    });
-    this.map.addCatalog(this.cat);
-
-
-    // Adding each individual source:
-
-    var n_sources = catalog.getLength();
-    console.log(catalogName, " # number of sources: ", n_sources);
-
-    for(var i = 0; i < n_sources; i++) {
-
-      //Configuring the popup
-      var popup;
-      var ra = catalog.getVal(i, 'RAJ2000');
-      var dec = catalog.getVal(i, 'DEJ2000');
-
-      if(catalogName == "TeV") {
-        ra = catalog.getVal(i, 'ra');
-        dec = catalog.getVal(i, 'dec');
-        popup = new PopupTeV(catalog.getSourceByID(i));
-      }
-      else if(catalogName == "3FGL") {
-        popup = new Popup3FGL(catalog.getSourceByID(i));
-      }
-      else if(catalogName == "2FHL") {
-        popup = new Popup2FHL(catalog.getSourceByID(i));
-      }
-      else {
-        popup = new PopupSNRcat(catalog.getSourceByID(i));
-      }
-
-      //Adding the markers
-      var marker = A.marker(
-        ra,
-        dec,
-        {
-          popupDesc: `` + popup.getDesc()
-        });
-
-        this.cat.addSources([marker]);
-
-        //this.cat.hide() will hide all catalogs on webpage startup.
-
-    }
-
-  }
-
   getCatalog3FHL() {
     this.catalogService.getCatalog3FHL()
       .then(catalog => {
@@ -164,7 +109,7 @@ export class MapComponent implements OnInit, OnDestroy {
           catalog
         );
         //This hides 3FHL catalog on webpage startup.
-        // this.cat.hide();
+        this.cat.hide();
       })
       .catch(error => this.error = error);
   }
@@ -172,7 +117,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getCatalog3FGL() {
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
-        this.addCatalog(
+        this.addCatalogNew(
           '3FGL',
           '#8e189d', //purple
           catalog
@@ -182,32 +127,32 @@ export class MapComponent implements OnInit, OnDestroy {
       })
       .catch(error => this.error = error);
   }
-  getCatalog2FHL() {
-    this.catalogService.getCatalog2FHL()
-      .then(catalog => {
-        this.addCatalog(
-          '2FHL',
-          '#1b3bad', //blue
-          catalog
-        );
-        //This hides 2FHL catalog on webpage startup.
-        this.cat.hide();
-      })
-      .catch(error => this.error = error);
-  }
-  getCatalogSNRcat() {
-    this.catalogService.getCatalogSNRcat()
-      .then(catalog => {
-        this.addCatalog(
-          'SNRcat',
-          'green',
-          catalog
-        );
-        //This hides SNRcat catalog on webpage startup.
-        this.cat.hide();
-      })
-      .catch(error => this.error = error);
-  }
+  // getCatalog2FHL() {
+  //   this.catalogService.getCatalog2FHL()
+  //     .then(catalog => {
+  //       this.addCatalogNew(
+  //         '2FHL',
+  //         '#1b3bad', //blue
+  //         catalog
+  //       );
+  //       //This hides 2FHL catalog on webpage startup.
+  //       this.cat.hide();
+  //     })
+  //     .catch(error => this.error = error);
+  // }
+  // getCatalogSNRcat() {
+  //   this.catalogService.getCatalogSNRcat()
+  //     .then(catalog => {
+  //       this.addCatalogNew(
+  //         'SNRcat',
+  //         'green',
+  //         catalog
+  //       );
+  //       //This hides SNRcat catalog on webpage startup.
+  //       this.cat.hide();
+  //     })
+  //     .catch(error => this.error = error);
+  // }
   getCatalogTeV() {
     this.catalogService.getCatalogTeV()
       .then(catalog => {
@@ -239,8 +184,8 @@ export class MapComponent implements OnInit, OnDestroy {
     this.updateSurveys();
 
     this.getCatalog3FGL();
-    this.getCatalog2FHL();
-    this.getCatalogSNRcat();
+    // this.getCatalog2FHL();
+    // this.getCatalogSNRcat();
     this.getCatalogTeV();
     this.getCatalog3FHL();
   }

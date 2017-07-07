@@ -10,29 +10,6 @@ import { CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat, Catalog3FHL } from
 @Injectable()
 export class CatalogService {
 
-
-  // reformat(obj) {
-  //
-  //   // This function takes input of JSON data as an Object of Objects, and
-  //   // reformats it to an array of Objects.
-  //
-  //   var arr = [];
-  //
-  //   Object.keys(obj).forEach(k => {
-  //     Object.keys(obj[k]).forEach(v => {
-  //
-  //       if (!arr[v]) {
-  //         arr[v] = { id: v };
-  //       }
-  //       arr[v][k] = obj[k][v];
-  //
-  //     });
-  //   });
-  //
-  //   console.log("arr: ", arr);
-  //   return arr;
-  // }
-
   getCatalogTeV() {
     return this.http.get('app/data/cat/cat_tev.json')
       .toPromise()
@@ -56,11 +33,6 @@ export class CatalogService {
       .then(response => new Catalog3FGL( response.json(), Source3FGL ))
       .catch(this.handleError);
   }
-
-  // getSource3FGL(id: number) {
-  //   return this.getCatalog3FGL()
-  //     .then(sources => sources.find(source => source.id === id));
-  // }
 
   getCatalog2FHL() {
     return this.http.get('app/data/cat/cat_2fhl.json')
