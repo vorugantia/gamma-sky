@@ -101,6 +101,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
     }
 
+    console.log(catalogName, " loading done");
+
   }
 
   getCatalog3FHL() {
@@ -108,7 +110,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalogNew(
           '3FHL',
-          '#888888', //gray TODO: change color?
+          '#DB7F00',
           catalog
         );
         //This hides 3FHL catalog on webpage startup.
@@ -122,7 +124,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalogNew(
           '3FGL',
-          '#8e189d', //purple
+          '#09518D',
           catalog
         );
         //This hides 3FGL catalog on webpage startup.
@@ -148,7 +150,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalogNew(
           'SNRcat',
-          'green',
+          '#00A525',
           catalog
         );
         //This hides SNRcat catalog on webpage startup.
@@ -161,7 +163,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .then(catalog => {
         this.addCatalogNew(
           'TeV',
-          'red',
+          '#DA0000',
           catalog
         );
         //This hides TeV catalog on webpage startup.
