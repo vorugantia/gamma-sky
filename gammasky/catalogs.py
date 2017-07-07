@@ -9,14 +9,28 @@ import json
 from gammapy.catalog import SourceCatalog3FHL, SourceCatalogGammaCat # SourceCatalog3FGL
 
 __all__ = [
-    'make_3fhl_catalog_data',
     'make_tev_catalog_data',
+    'make_3fhl_catalog_data',
     'make_3fgl_catalog_data',
     'make_2fhl_catalog_data',
     'make_snrcat_catalog_data'
 ]
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
+
+def make_tev_catalog_data():
+    click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
+
+    out_dir = Path('src/app/data/cat')
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    cat = SourceCatalogGammaCat()
+    filename = 'src/app/data/cat/cat_tev.json'
+    click.secho('Writing tev {}'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        data = json.dumps(cat._data_python_list)
+        mask = data.replace('NaN', 'null') # Or "'Nan'" or ""?
+        json.dump(json.loads(mask), fh)
 
 def make_3fhl_catalog_data():
     click.secho('Making 3FHL catalog data...', fg='green')
@@ -31,21 +45,7 @@ def make_3fhl_catalog_data():
         # Messy fix. First: With mask I replace np.nan with a stringified "NaN".
         # Second: https://stackoverflow.com/a/23417340
         data = json.dumps(cat._data_python_list)
-        mask = data.replace('NaN', '"NaN"') # Or "null" or ""?
-        json.dump(json.loads(mask), fh)
-
-def make_tev_catalog_data():
-    click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
-
-    out_dir = Path('src/app/data/cat')
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    cat = SourceCatalogGammaCat()
-    filename = 'src/app/data/cat/cat_tev.json'
-    click.secho('Writing tev {}'.format(filename), fg='green')
-    with open(filename, 'w') as fh:
-        data = json.dumps(cat._data_python_list)
-        mask = data.replace('NaN', '"NaN"') # Or "null" or ""?
+        mask = data.replace('NaN', 'null')
         json.dump(json.loads(mask), fh)
 
 def make_tev_catalog_data_old(nrows=None):
