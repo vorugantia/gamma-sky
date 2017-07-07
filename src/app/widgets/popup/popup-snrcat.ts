@@ -3,6 +3,7 @@ import { SourceSNRcat } from '../../services/source';
 export class PopupSNRcat {
 
   private source;
+  private sourceSNRcat;
 
   getDesc() {
 
@@ -30,21 +31,21 @@ export class PopupSNRcat {
 
       <div>
 
-        <h4 style='text-align:center'>` + this.source.data.Source_Name + `</h4>
+        <h4 style='text-align:center'>` + this.source.Source_Name + `</h4>
 
           <table>
             <tbody>
               <tr>
                 <td>RA:</td>
-                <th>` + this.round(this.source.data.RAJ2000) + `</th>
+                <th>` + this.round(this.source.RAJ2000) + `</th>
                 <td>DEC:</td>
-                <th>` + this.round(this.source.data.DEJ2000) + `</th>
+                <th>` + this.round(this.source.DEJ2000) + `</th>
               </tr>
               <tr>
                 <td>GLON:</td>
-                <th>` + this.round(this.source.data.GLON) + `</th>
+                <th>` + this.round(this.source.GLON) + `</th>
                 <td>GLAT:</td>
-                <th>` + this.round(this.source.data.GLAT) + `</th>
+                <th>` + this.round(this.source.GLAT) + `</th>
               </tr>
             </tbody>
           </table>
@@ -53,7 +54,7 @@ export class PopupSNRcat {
             <tbody>
               <tr>
                 <td>Assoc:</td>
-                <th style='width:170px'>` + this.source.data.id_alt + `</th>
+                <th style='width:170px'>` + this.source.id_alt + `</th>
               </tr>
             </tbody>
           </table>
@@ -62,7 +63,7 @@ export class PopupSNRcat {
             <tbody>
               <tr>
                 <td>Radius:</td>
-                <th style='width:170px'>` + this.source.data.size_radio_mean + `&#176</th>
+                <th style='width:170px'>` + this.source.size_radio_mean + `&#176</th>
               </tr>
             </tbody>
           </table>
@@ -87,7 +88,7 @@ export class PopupSNRcat {
                   }
               </style>
               <div id='snrcat'>
-                  <a href='` + new SourceSNRcat(this.source).getSNRcatUrl(this.getSNRcatId()) + `' target='_blank'>
+                  <a href='` + this.sourceSNRcat.getSNRcatUrl(this.getSNRcatId()) + `' target='_blank'>
                   View source on SNRcat
 
                   </a>
@@ -97,11 +98,12 @@ export class PopupSNRcat {
   }
 
   getSNRcatId() {
-    return this.source.data.snrcat_id;
+    return this.source.snrcat_id;
   }
 
   constructor(source) {
     this.source = source;
+    this.sourceSNRcat = new SourceSNRcat(this.source);
   }
 
 }

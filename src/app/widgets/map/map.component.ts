@@ -81,8 +81,11 @@ export class MapComponent implements OnInit, OnDestroy {
       else if(catalogName == '3FHL') {
         popup = new Popup3FHL(catalog.data[i]);
       }
-      else {
+      else if(catalogName == '3FGL') {
         popup = new Popup3FGL(catalog.data[i]);
+      }
+      else {
+        popup = new PopupSNRcat(catalog.data[i]);
       }
 
       //Adding the markers
@@ -140,19 +143,19 @@ export class MapComponent implements OnInit, OnDestroy {
   //     })
   //     .catch(error => this.error = error);
   // }
-  // getCatalogSNRcat() {
-  //   this.catalogService.getCatalogSNRcat()
-  //     .then(catalog => {
-  //       this.addCatalogNew(
-  //         'SNRcat',
-  //         'green',
-  //         catalog
-  //       );
-  //       //This hides SNRcat catalog on webpage startup.
-  //       this.cat.hide();
-  //     })
-  //     .catch(error => this.error = error);
-  // }
+  getCatalogSNRcat() {
+    this.catalogService.getCatalogSNRcat()
+      .then(catalog => {
+        this.addCatalogNew(
+          'SNRcat',
+          'green',
+          catalog
+        );
+        //This hides SNRcat catalog on webpage startup.
+        this.cat.hide();
+      })
+      .catch(error => this.error = error);
+  }
   getCatalogTeV() {
     this.catalogService.getCatalogTeV()
       .then(catalog => {
@@ -185,7 +188,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
     this.getCatalog3FGL();
     // this.getCatalog2FHL();
-    // this.getCatalogSNRcat();
+    this.getCatalogSNRcat();
     this.getCatalogTeV();
     this.getCatalog3FHL();
   }

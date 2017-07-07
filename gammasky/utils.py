@@ -12,6 +12,9 @@ def table_to_list_of_dict(table) :
         data = OrderedDict()
         for name in table.colnames:
             val = row[name]
+            # TODO: The below is not working, find a fix
+            # if val in {np.nan}:
+            #     val = None
             if isinstance(val, np.int64):
                 val = int(val)
             elif isinstance(val, np.int32):

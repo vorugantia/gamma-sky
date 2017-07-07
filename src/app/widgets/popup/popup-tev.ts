@@ -1,9 +1,9 @@
-
-
+import { SourceTeV } from '../../services/source';
 
 export class PopupTeV {
 
   private source;
+  private sourceTeV;
 
   getDesc() {
 
@@ -54,7 +54,7 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Other names:</td>
-                <th style='width:170px'>` + this.source.other_names + `</th>
+                <th style='width:170px'>` + this.sourceTeV.other_names_str() + `</th>
               </tr>
             </tbody>
           </table>
@@ -63,7 +63,7 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Class:</td>
-                <th style='width:170px'>` + this.source.classes + `</th>
+                <th style='width:170px'>` + this.sourceTeV.class_str() + `</th>
               </tr>
             </tbody>
           </table>
@@ -71,7 +71,7 @@ export class PopupTeV {
         </div>
 
     `;
-    // TODO use this.source.class_str() and this.source.other_names_str() instead.
+
   }
 
   round(val) {
@@ -80,6 +80,7 @@ export class PopupTeV {
 
   constructor(source) {
     this.source = source;
+    this.sourceTeV = new SourceTeV(this.source);
   }
 
 }

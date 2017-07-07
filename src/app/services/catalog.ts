@@ -134,8 +134,7 @@ export class Catalog2FHL extends CatalogBase {
 export class CatalogSNRcat extends CatalogBase {
 
   printInfo(idx) {
-    let source = this.getSourceByRowIndex(idx);
-    console.log(source);
+    console.log(this.data[idx]);
   }
 
 }
