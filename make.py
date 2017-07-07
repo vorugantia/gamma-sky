@@ -19,8 +19,9 @@ def cat():
 @cat.command('all')
 @click.option('--nrows', type=int, default=None)
 def cat_all(nrows):
-    """Dump TeV catalog to JSON"""
-    gammasky.make_tev_catalog_data(nrows=nrows)
+    """Dump all catalogs to JSON"""
+    gammasky.make_tev_catalog_data()
+    gammasky.make_3fhl_catalog_data()
     gammasky.make_3fgl_catalog_data(nrows=nrows)
     gammasky.make_2fhl_catalog_data(nrows=nrows)
     gammasky.make_snrcat_catalog_data(nrows=nrows)
@@ -29,7 +30,7 @@ def cat_all(nrows):
 @click.option('--nrows', type=int, default=None)
 def cat_tev(nrows):
     """Dump TeV catalog to JSON"""
-    gammasky.make_tev_catalog_data(nrows=nrows)
+    gammasky.make_tev_catalog_data()
 
 @cat.command('3fhl')
 @click.option('--nrows', type=int, default=None)

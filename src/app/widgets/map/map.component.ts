@@ -49,7 +49,6 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log("Adding ", catalogName, " catalog...");
 
     var catalog = data;
-    console.log(catalog.data); // TODO remove
 
     this.cat = A.catalog({
       name: catalogName,
@@ -59,28 +58,23 @@ export class MapComponent implements OnInit, OnDestroy {
     });
     this.map.addCatalog(this.cat);
 
-console.log("line 62", catalog.data[0].Source_Name); // TODO remove
-
     // Adding each individual source:
-
     var n_sources = catalog.data.length;
     console.log(catalogName, " # number of sources: ", n_sources);
 
     for(var i = 0; i < n_sources; i++) {
-
       //Configuring the popup
       var popup;
       var ra = catalog.data[i]['RAJ2000'];
       var dec = catalog.data[i]['DEJ2000'];
       popup = new Popup3FHL(catalog.data[i]);
 
-
       //Adding the markers
       var marker = A.marker(
         ra,
         dec,
         {
-          popupDesc: `` + popup.getDesc() //TODO fix popup.getDesc()
+          popupDesc: `` + popup.getDesc()
         });
       this.cat.addSources([marker]);
 
@@ -156,7 +150,6 @@ console.log("line 62", catalog.data[0].Source_Name); // TODO remove
           '#ffffff', //TODO change color?
           catalog
         );
-        console.log("CAT: ", catalog); // TODO remove
         //This hides 3FHL catalog on webpage startup.
         // this.cat.hide();
       })

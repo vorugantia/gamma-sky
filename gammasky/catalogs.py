@@ -6,7 +6,7 @@ import click
 import numpy as np
 from astropy.table import Table
 import json
-from gammapy.catalog import SourceCatalog3FHL # SourceCatalog3FGL, SourceCatalogGammaCat
+from gammapy.catalog import SourceCatalog3FHL, SourceCatalogGammaCat # SourceCatalog3FGL
 
 __all__ = [
     'make_3fhl_catalog_data',
@@ -18,7 +18,6 @@ __all__ = [
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
 
-# TODO: Dump all data to JSON in this way, using Gammapy.
 def make_3fhl_catalog_data():
     click.secho('Making 3FHL catalog data...', fg='green')
 
@@ -30,13 +29,26 @@ def make_3fhl_catalog_data():
     click.secho('Writing 3fhl {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         # Messy fix. First: With mask I replace np.nan with a stringified "NaN".
-        # Second: https://stackoverflow.com/questions/15272421/python-json-dumps
+        # Second: https://stackoverflow.com/a/23417340
         data = json.dumps(cat._data_python_list)
         mask = data.replace('NaN', '"NaN"') # Or "null" or ""?
         json.dump(json.loads(mask), fh)
 
+def make_tev_catalog_data():
+    click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
 
-def make_tev_catalog_data(nrows=None):
+    out_dir = Path('src/app/data/cat')
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    cat = SourceCatalogGammaCat()
+    filename = 'src/app/data/cat/cat_tev.json'
+    click.secho('Writing tev {}'.format(filename), fg='green')
+    with open(filename, 'w') as fh:
+        data = json.dumps(cat._data_python_list)
+        mask = data.replace('NaN', '"NaN"') # Or "null" or ""?
+        json.dump(json.loads(mask), fh)
+
+def make_tev_catalog_data_old(nrows=None):
     click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
 
     out_dir = Path('src/app/data/cat')
@@ -70,46 +82,6 @@ def make_tev_catalog_data(nrows=None):
     click.secho('Writing tev {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         fh.write(text)
-
-
-# # Function for old TeV data:
-# def make_tev_catalog_data(nrows=None):
-#
-#     click.secho('Skipping TeV catalog ... need to switch to gamma-cat', fg='red')
-#     return
-#
-#     click.secho('Making TeV catalog data...', fg='green')
-#
-#     out_dir = Path('src/app/data/cat')
-#     out_dir.mkdir(parents=True, exist_ok=True)
-#
-#     url = 'https://github.com/gammapy/gamma-cat/blob/master/other_cats/tgevcat/tgevcat.ecsv?raw=true'
-#     table = Table.read(url, format='ascii.ecsv')
-#     cols = table.colnames
-#
-#     if nrows:
-#         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
-#         table = table[row_ids]
-#
-#     click.echo('Converting table to pandas dataframe...')
-#     df = table[cols].to_pandas()
-#     # http://stackoverflow.com/a/20491748/498873
-#     # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html
-#     # df.reset_index(drop=True)
-#     df.index = df['Source_ID'].astype('int')
-#     del df['Source_ID']
-#     # import  IPython; IPython.embed()
-#
-#     # For to_json options see http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
-#     # The most efficient format should be "split" with DataFrame index dropped
-#     text = df.to_json(orient='split')
-#     # text = df.to_json()
-#
-#     filename = 'src/app/data/cat/cat_tev.json'
-#     click.secho('Writing tev {}'.format(filename), fg='green')
-#     with open(filename, 'w') as fh:
-#         fh.write(text)
-
 
 def make_3fgl_catalog_data(nrows=None):
     click.secho('Making 3FGL catalog data...', fg='green')
