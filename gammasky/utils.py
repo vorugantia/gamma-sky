@@ -1,4 +1,5 @@
 import numpy as np
+import json
 from collections import OrderedDict
 
 __all__ = [
@@ -37,3 +38,22 @@ def table_to_list_of_dict(table) :
         rows.append(data)
 
     return rows
+
+
+def dump_to_json(cat, filename):
+    with open(filename, 'w') as fh:
+        data = cat._data_python_list
+        for row in data:
+            for key, value in row.items():
+                if value == np.nan:
+                    row[key] = None
+                elif value == np.inf:
+                    row[key] = None
+        json.dump(data, fh)
+
+    # Old way:
+    # with open(filename, 'w') as fh:
+        # data = json.dumps(cat._data_python_list)
+        # mask = data.replace('NaN', 'null')
+        # json.dump(json.loads(mask), fh)
+
