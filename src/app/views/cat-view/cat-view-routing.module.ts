@@ -6,6 +6,7 @@ import { CatHelpComponent } from '../../widgets/cat-help/cat-help.component';
 import { CatSource3FGLComponent } from '../../widgets/cat-source/cat-source-3fgl/cat-source-3fgl.component';
 import { CatSourceSNRcatComponent } from '../../widgets/cat-source/cat-source-snrcat/cat-source-snrcat.component';
 import { CatSourceTeVComponent } from '../../widgets/cat-source/cat-source-tev/cat-source-tev.component';
+import { CatSource3FHLComponent } from '../../widgets/cat-source/cat-source-3fhl/cat-source-3fhl.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'test', pathMatch: 'full'},
@@ -21,10 +22,10 @@ const routes: Routes = [
         path: '3fgl/:id',
         component: CatSource3FGLComponent
       },
-      // {
-      //   path: '3fhl/:id',
-      //   component: CatSource3FHLComponent
-      // },
+      {
+        path: '3fhl/:id',
+        component: CatSource3FHLComponent
+      },
       {
         path: 'snrcat/:id',
         component: CatSourceSNRcatComponent

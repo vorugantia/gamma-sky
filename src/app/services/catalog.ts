@@ -35,6 +35,11 @@ class CatalogBase {
     return this.getSourceByRowIndex(idx).data[colname];
   }
 
+  //For new datatype
+  getSource(idx) {
+    return this.data[idx];
+  }
+
   getSourceByID(id) {
 
     let index = this.data.index;
