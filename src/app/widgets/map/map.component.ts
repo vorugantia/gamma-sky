@@ -169,7 +169,6 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log("aladin map onInit()");
 
     this.showMap();
-
     this.updateSurveys();
 
     this.getCatalog3FGL();
@@ -180,7 +179,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('aladin map OnDestroy');
-
   }
 
 }
