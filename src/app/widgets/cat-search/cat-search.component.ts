@@ -16,7 +16,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
   private error: any;
 
   private items3FGL;
-  private items2FHL;
+  // private items3FHL;
   private itemsSNRcat;
   private itemsTeV;
 
@@ -29,11 +29,11 @@ export class CatSearchComponent implements OnInit, DoCheck {
       })
       .catch(error => this.error = error);
 
-    this.catalogService.getCatalog2FHL()
-      .then(catalog => {
-        this.items2FHL = catalog.getCatSearchItems("");
-      })
-      .catch(error => this.error = error);
+    // this.catalogService.getCatalog3FHL()
+    //   .then(catalog => {
+    //     this.items3FHL = catalog.getCatSearchItems("");
+    //   })
+    //   .catch(error => this.error = error);
 
     this.catalogService.getCatalogSNRcat()
       .then(catalog => {

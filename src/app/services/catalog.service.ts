@@ -3,8 +3,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 
-import { SourceTeV, Source3FGL, Source2FHL, SourceSNRcat, Source3FHL } from './source';
-import { CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat, Catalog3FHL } from './catalog';
+import { SourceTeV, Source3FGL, SourceSNRcat, Source3FHL } from './source';
+import { CatalogTeV, Catalog3FGL, CatalogSNRcat, Catalog3FHL } from './catalog';
 
 
 @Injectable()
@@ -31,13 +31,6 @@ export class CatalogService {
     return this.http.get('app/data/cat/cat_3fgl.json')
       .toPromise()
       .then(response => new Catalog3FGL( response.json(), Source3FGL ))
-      .catch(this.handleError);
-  }
-
-  getCatalog2FHL() {
-    return this.http.get('app/data/cat/cat_2fhl.json')
-      .toPromise()
-      .then(response => new Catalog2FHL( response.json(), Source2FHL ))
       .catch(this.handleError);
   }
 

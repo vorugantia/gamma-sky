@@ -13,7 +13,6 @@ __all__ = [
     'make_tev_catalog_data',
     'make_3fhl_catalog_data',
     'make_3fgl_catalog_data',
-    # 'make_2fhl_catalog_data',
     'make_snrcat_catalog_data'
 ]
 
@@ -75,45 +74,6 @@ def make_3fgl_catalog_data():
         mask = data.replace('NaN', 'null') # Or "'Nan'" or ""?
         mask = mask.replace('-Infinity', '"-inf"')
         json.dump(json.loads(mask), fh)
-
-# def make_2fhl_catalog_data(nrows=None):
-#     click.secho('Making 2FHL catalog data ...', fg='green')
-#
-#     out_dir = Path('src/app/data/cat')
-#     out_dir.mkdir(parents=True, exist_ok=True)
-#
-#     url = 'https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/fermi/gll_psch_v08.fit.gz?raw=true'
-#     table = Table.read(url)
-#     table['Source_ID'] = np.arange(len(table), dtype=int)
-#     cols = [
-#         'Source_ID',
-#         'Source_Name',
-#         'RAJ2000',
-#         'DEJ2000',
-#         'GLON',
-#         'GLAT',
-#         'ASSOC',
-#         'CLASS',
-#     ]
-#
-#     if nrows:
-#         row_ids = np.linspace(0, len(table), nrows, dtype=int, endpoint=False)
-#         table = table[row_ids]
-#
-#     # Making empty Assoc cells say "None"
-#     assoc_mask = table['ASSOC'].data == ""
-#     table['ASSOC'][assoc_mask] = "None"
-#
-#     click.echo('Converting table to pandas dataframe ...')
-#     df = table[cols].to_pandas()
-#     df.index = df['Source_ID'].astype('int')
-#     del df['Source_ID']
-#     text = df.to_json(**TO_JSON_KWARGS)
-#
-#     filename = 'src/app/data/cat/cat_2fhl.json'
-#     click.secho('Writing 2fhl {}'.format(filename), fg='green')
-#     with open(filename, 'w') as fh:
-#         fh.write(text)
 
 def make_snrcat_catalog_data():
     click.secho('Making SNRcat catalog data...', fg='green')

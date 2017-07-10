@@ -22,7 +22,6 @@ def cat_all():
     gammasky.make_tev_catalog_data()
     gammasky.make_3fhl_catalog_data()
     gammasky.make_3fgl_catalog_data()
-    # gammasky.make_2fhl_catalog_data()
     gammasky.make_snrcat_catalog_data()
 
 @cat.command('tev')
@@ -39,13 +38,6 @@ def cat_tev():
 def cat_3fgl():
     """Dump 3FGL catalog to JSON"""
     gammasky.make_3fgl_catalog_data()
-
-
-# @cat.command('2fhl')
-# def cat_2fhl():
-#     """Dump 2FHL catalog to JSON"""
-#     gammasky.make_2fhl_catalog_data()
-
 
 @cat.command('snrcat')
 def cat_snrcat():

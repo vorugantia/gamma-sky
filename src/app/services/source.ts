@@ -65,23 +65,6 @@ export class Source3FGL {
 
 }
 
-export class Source2FHL {
-  // id: number;
-  // Source_Name: string;
-  // RAJ2000: number;
-  // DEJ2000: number;
-  // GLON: number;
-  // GLAT: number;
-  // ASSOC: string;
-  // CLASS: string;
-
-  public data;
-
-  constructor(data) {
-    this.data = data;
-  }
-}
-
 export class SourceSNRcat {
   // id: number;
   // Source_Name: string;

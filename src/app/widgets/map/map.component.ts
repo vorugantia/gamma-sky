@@ -1,14 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
-import {Popup2FHL} from '../popup/popup-2fhl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
 import {SURVEYS} from '../../data/maps/surveys';
 
 import {SourceTeV, Source3FHL} from '../../services/source';
 
-// import {CatalogTeV, Catalog3FGL, Catalog2FHL, CatalogSNRcat, Catalog3FHL} from '../../services/catalog';
 import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
@@ -132,19 +130,7 @@ export class MapComponent implements OnInit, OnDestroy {
       })
       .catch(error => this.error = error);
   }
-  // getCatalog2FHL() {
-  //   this.catalogService.getCatalog2FHL()
-  //     .then(catalog => {
-  //       this.addCatalogNew(
-  //         '2FHL',
-  //         '#1b3bad', //blue
-  //         catalog
-  //       );
-  //       //This hides 2FHL catalog on webpage startup.
-  //       this.cat.hide();
-  //     })
-  //     .catch(error => this.error = error);
-  // }
+
   getCatalogSNRcat() {
     this.catalogService.getCatalogSNRcat()
       .then(catalog => {
@@ -189,7 +175,6 @@ export class MapComponent implements OnInit, OnDestroy {
     this.updateSurveys();
 
     this.getCatalog3FGL();
-    // this.getCatalog2FHL();
     this.getCatalogSNRcat();
     this.getCatalogTeV();
     this.getCatalog3FHL();
