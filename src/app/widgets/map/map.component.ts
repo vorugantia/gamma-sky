@@ -4,9 +4,6 @@ import {Popup3FGL} from '../popup/popup-3fgl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
 import {SURVEYS} from '../../data/maps/surveys';
-
-import {SourceTeV, Source3FHL} from '../../services/source';
-
 import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
@@ -63,28 +60,11 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log(catalogName, " # number of sources: ", n_sources);
 
     for(var i = 0; i < n_sources; i++) {
-      //Configuring the popup
-      var popup;
 
-      //TODO assign ra and dec to getra() and getdec() methods in source.ts.
-      //     maybe the popup constructor can be done in source.ts too?
-      var ra = catalog.data[i]['RAJ2000'];
-      var dec = catalog.data[i]['DEJ2000'];
-      if(catalogName == 'TeV') {
-        ra = catalog.data[i].ra
-        dec = catalog.data[i].dec
-        // TODO if I pass SourceTeV to PopupTeV, I can access methods for the source.
-        popup = new PopupTeV(catalog.data[i]);
-      }
-      else if(catalogName == '3FHL') {
-        popup = new Popup3FHL(catalog.data[i]);
-      }
-      else if(catalogName == '3FGL') {
-        popup = new Popup3FGL(catalog.data[i]);
-      }
-      else {
-        popup = new PopupSNRcat(catalog.data[i]);
-      }
+      //Configuring the popup
+      var popup = this.initializePopup(catalogName, catalog, i);
+      var ra = catalog.data[i][catalog.raCol];
+      var dec = catalog.data[i][catalog.decCol];
 
       //Adding the markers
       var marker = A.marker(
@@ -96,11 +76,29 @@ export class MapComponent implements OnInit, OnDestroy {
       this.cat.addSources([marker]);
 
         //this.cat.hide() will hide all catalogs on webpage startup.
-
     }
 
     console.log(catalogName, " loading done");
 
+  }
+
+  initializePopup(catalogName, catalog, source) {
+    var popup;
+
+    if(catalogName == 'TeV') {
+      popup = new PopupTeV(catalog.data[source]);
+    }
+    else if(catalogName == '3FHL') {
+      popup = new Popup3FHL(catalog.data[source]);
+    }
+    else if(catalogName == '3FGL') {
+      popup = new Popup3FGL(catalog.data[source]);
+    }
+    else {
+      popup = new PopupSNRcat(catalog.data[source]);
+    }
+
+    return popup;
   }
 
   getCatalog3FHL() {

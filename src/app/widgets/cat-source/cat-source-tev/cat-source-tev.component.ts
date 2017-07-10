@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { CatalogTeV } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
-import { StateService } from '../../../services/state.service';
 
 @Component({
   selector: 'cat-source-tev',
@@ -26,12 +25,11 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   getSource() {
-    return this.catalog.getSourceByID(this.id);
+    return this.catalog.getSource(this.id);
   }
 
   constructor(
     private catalogService: CatalogService,
-    public stateService: StateService,
     private activatedRoute: ActivatedRoute
   ) { }
 

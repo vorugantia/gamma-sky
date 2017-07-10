@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FGL } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
-import { StateService } from '../../../services/state.service';
 
 @Component({
   selector: 'cat-source-3fgl',
@@ -28,7 +27,7 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
   }
 
   getSource() {
-    return this.catalog.getSourceByID(this.id);
+    return this.catalog.getSource(this.id);
   }
 
   getUrl(sourceName, image) {
@@ -57,15 +56,12 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
     var urlEnd = string1 + "d" + string2 + operationLetter + string3;
 
     var url = "http://fermi.gsfc.nasa.gov/ssc/data/access/lat/4yr_catalog/3FGL-table/data/3FGL_" + imageType + "_v5/3FGL_J" + urlEnd + "_" + imageType + ".png";
-    // console.log("fermi 3fgl url: ", url);
     return url;
 
   }
 
-
   constructor(
     private catalogService: CatalogService,
-    public stateService: StateService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -78,8 +74,6 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
         let id = +params['id'];
         console.log('id ', id);
         this.id = id;
-
-        // this.stateService.setSelectedId(id);
     });
 
   }

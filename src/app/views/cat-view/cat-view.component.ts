@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StateService } from '../../services/state.service';
-
 @Component({
   selector: 'cat-view',
   templateUrl: './cat-view.component.html',
@@ -11,7 +9,7 @@ export class CatViewComponent implements OnInit {
 
   private selectedView = "cat";
 
-  constructor(public stateService: StateService) { }
+  constructor() { }
 
   ngOnInit() {
     console.log("CatViewComponent ngOnInit()");

@@ -15,7 +15,6 @@ import { CatViewRoutingModule } from './cat-view-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 
 import { CatalogService } from '../../services/catalog.service';
-import { StateService } from '../../services/state.service';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { StateService } from '../../services/state.service';
     SelectModule
   ],
   providers: [
-    CatalogService,
-    StateService
+    CatalogService
   ]
 })
 export class CatViewModule { }

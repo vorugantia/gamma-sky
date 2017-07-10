@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FHL } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
-import { StateService } from '../../../services/state.service';
 
 @Component({
   selector: 'cat-source-3fhl',
@@ -31,7 +30,6 @@ export class CatSource3FHLComponent implements OnInit {
 
   constructor(
     private catalogService: CatalogService,
-    public stateService: StateService,
     private activatedRoute: ActivatedRoute
   ) {}
 

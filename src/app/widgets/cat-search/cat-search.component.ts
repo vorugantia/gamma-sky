@@ -2,7 +2,6 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CatalogService } from '../../services/catalog.service';
-import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'cat-search',
@@ -25,26 +24,25 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
-        this.items3FGL = catalog.getCatSearchItems("");
+        this.items3FGL = catalog.getCatSearchItems();
       })
       .catch(error => this.error = error);
 
     this.catalogService.getCatalog3FHL()
       .then(catalog => {
-        this.items3FHL = catalog.getCatSearchItems("");
+        this.items3FHL = catalog.getCatSearchItems();
       })
       .catch(error => this.error = error);
 
     this.catalogService.getCatalogSNRcat()
       .then(catalog => {
-        // this.itemsSNRcat = catalog.getCatSearchItems("SNRcat ");
-        this.itemsSNRcat = catalog.getCatSearchItems("");
+        this.itemsSNRcat = catalog.getCatSearchItems();
       })
       .catch(error => this.error = error);
 
     this.catalogService.getCatalogTeV()
       .then(catalog => {
-        this.itemsTeV = catalog.getCatSearchItems("");
+        this.itemsTeV = catalog.getCatSearchItems();
       })
       .catch(error => this.error = error);
 
@@ -69,8 +67,6 @@ export class CatSearchComponent implements OnInit, DoCheck {
   public selected(value: any): void {
     console.log('Selected value is: ', value);
 
-    // this.stateService.setSelectedId(value.id);
-
     this.router.navigate(['/cat', this.selectedCatalog, value.id]);
 
 
@@ -93,7 +89,6 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
   constructor(
     private catalogService: CatalogService,
-    public stateService: StateService,
     private router: Router
   ) { }
 

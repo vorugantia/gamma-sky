@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CatalogSNRcat } from '../../../services/catalog';
 import { SourceSNRcat } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
-import { StateService } from '../../../services/state.service';
 
 @Component({
   selector: 'cat-source-snrcat',
@@ -31,7 +30,7 @@ export class CatSourceSNRcatComponent implements OnInit {
   }
 
   getSource() {
-    return this.catalog.getSourceByID(this.id);
+    return this.catalog.getSource(this.id);
   }
 
   getSNRcatUrl(source) {
@@ -40,7 +39,6 @@ export class CatSourceSNRcatComponent implements OnInit {
 
   constructor(
     private catalogService: CatalogService,
-    public stateService: StateService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -53,7 +51,6 @@ export class CatSourceSNRcatComponent implements OnInit {
       let id = +params['id'];
       console.log('id ', id);
       this.id = id;
-
     });
 
   }

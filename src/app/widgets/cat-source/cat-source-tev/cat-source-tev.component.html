@@ -1,9 +1,13 @@
 <div *ngIf="(catalog)">
   <div class="container">
     <div class="col-md-6">
-      <h3>{{getSource().data.Source_Name}}</h3>
+      <h3>{{getSource().common_name}}</h3>
+
       <h5>Basic info</h5>
       <ul>
+        <li>Common name: {{getSource().common_name}}</li>
+      </ul>
+      <!-- <ul>
           <li>Common name: {{getSource().data.Source_Name}}</li>
           <li>Gamma names: {{getSource().gamma_names_str()}}</li>
           <li>Other names: {{getSource().other_names_str()}}</li>
@@ -18,45 +22,8 @@
           <li>DEC: {{getSource().dec_str()}}</li>
           <li>GLON: {{getSource().glon_str()}}</li>
           <li>GLAT: {{getSource().glat_str()}}</li>
-      </ul>
-
-
-
-<!-- Commented code below is what we did for the old TeV catalog. -->
-
-      <!-- <h5>Position info:</h5>
-      <ul>
-          <li>RA: {{getSource().ra_str()}}</li>
-          <li>DEC: {{getSource().dec_str()}}</li>
-          <li>GLON: {{getSource().glon_str()}}</li>
-          <li>GLAT: {{getSource().glat_str()}}</li>
-      </ul>
-      <h5>Extension info:</h5>
-      <ul>
-          <li>{{getSource().ext_str()}}</li>
-          <li>Semimajor: {{getSource().semimajor_str()}}</li>
-          <li>Semiminor: {{getSource().semiminor_str()}}</li>
-          <li>Rotation angle: {{getSource().glat_str()}}</li>
-      </ul>
-      <h5>Spectral info:</h5>
-      <ul>
-          <li>Differential flux: {{getSource().flux_diff_str()}}</li>
-          <li>Integral flux: {{getSource().flux_int_str()}}</li>
-          <li>Flux: {{ getSource().flux_crab_str()}} </li>
-          <li>Spectral index: {{getSource().spectral_index_str()}}</li>
-      </ul>
-      <h5>Distance info:</h5>
-      <ul>
-          <li>Distance: {{ getSource().distance_str()}} </li>
-          <li>Redshift: {{getSource().distance2_str()}}</li>
-      </ul>
-      <h5>Other info:</h5>
-      <ul>
-          <li>Discoverer: {{ getSource().data.Discoverer}} </li>
-          <li>Observatory: {{ getSource().data.Observatory}} </li>
-          <li>Reference: {{ getSource().data.Reference}} </li>
-          <li>Comments: {{ getSource().data.Comments}} </li>
       </ul> -->
+
     </div>
   </div>
 </div>
