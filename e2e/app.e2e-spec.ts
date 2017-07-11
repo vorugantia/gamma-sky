@@ -1,6 +1,6 @@
 import { GammaSkyPage } from './app.po';
 
-describe('gamma-sky App', function() {
+describe('gamma-sky App', () => {
   let page: GammaSkyPage;
 
   beforeEach(() => {
