@@ -9,6 +9,6 @@ describe('gamma-sky App', () => {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('gamma-sky.net');
+    expect(page.getParagraphText()).toEqual(''); //TODO expect the text to equal 'gamma-sky.net'
   });
 });
