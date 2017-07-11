@@ -44,10 +44,12 @@ def cat_snrcat():
     """Dump SNRCat catalog to JSON"""
     gammasky.make_snrcat_catalog_data()
 
-@cat.command('3fhl_source')
+@cat.command('sources')
 def source_3fhl():
-    """TEST - Dump 3FHL source items to JSON"""
+    """TEST"""
     gammasky.make_3fhl_source_data()
+    gammasky.make_tev_source_data()
+    gammasky.make_3fgl_source_data()
 
 @cli.command()
 def maps():
