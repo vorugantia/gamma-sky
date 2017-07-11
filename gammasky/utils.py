@@ -42,30 +42,57 @@ def table_to_list_of_dict(table):
     return rows
 
 
+# def dump_list_to_json(cat, filename):
+#     with open(filename, 'w') as fh:
+#         data = cat._data_python_list
+#         for row in data:
+#             for key, value in row.items():
+#                 try:
+#                     if np.isnan(value):
+#                         data[key] = None
+#                     elif np.isinf(value):
+#                         data[key] = None
+#                 except:
+#                     pass
+#         json.dump(data, fh)
+#
+#
+# def dump_dict_to_json(source, filename):
+#     with open(filename, 'w') as fh:
+#         data = source._data_python_dict
+#         for key, value in data.items():
+#             try:
+#                 if np.isnan(value):
+#                     data[key] = None
+#                 elif np.isinf(value):
+#                     data[key] = None
+#             except:
+#                 pass
+#         json.dump(data, fh)
+
+
+    # with open(filename, 'w') as fh:
+        # data = json.dumps(cat._data_python_list)
+        # mask = data.replace('NaN', 'null')
+        # json.dump(json.loads(mask), fh)
+
+
+
+# I'm switching to the below code because the for loop in the above code is skipping over some np.nan/np.inf values.
+# Some values in the dict are 2D arrays (e.g. Unc_Flux_History in 3FGL). The code to iterate through every single
+# item in this complex data format would be very messy (and would run very slowly), so now I'm doing a string-edit
+# of the lists/dicts.
+
+# Using this new code makes these two methods very similar - perhaps they can be merged into one?
 def dump_list_to_json(cat, filename):
     with open(filename, 'w') as fh:
-        data = cat._data_python_list
-        for row in data:
-            for key, value in row.items():
-                try:
-                    if np.isnan(value):
-                        data[key] = None
-                    elif np.isinf(value):
-                        data[key] = None
-                except:
-                    pass
-        json.dump(data, fh)
+        data = json.dumps(cat._data_python_list)
+        mask = data.replace('NaN', 'null').replace('-Infinity', 'null').replace('Infinity', 'null')
+        json.dump(json.loads(mask), fh)
 
 
 def dump_dict_to_json(source, filename):
     with open(filename, 'w') as fh:
-        data = source._data_python_dict
-        for key, value in data.items():
-            try:
-                if np.isnan(value):
-                    data[key] = None
-                elif np.isinf(value):
-                    data[key] = None
-            except:
-                pass
-        json.dump(data, fh)
+        data = json.dumps(source._data_python_dict)
+        mask = data.replace('NaN', 'null').replace('-Infinity', 'null').replace('Infinity', 'null')
+        json.dump(json.loads(mask), fh)
