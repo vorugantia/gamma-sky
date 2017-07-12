@@ -3,7 +3,7 @@ import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
-import {SURVEYS} from '../../data/maps/surveys';
+import {SURVEYS} from '../../services/surveys';
 import {CatalogService} from '../../services/catalog.service';
 
 declare var A: any;
