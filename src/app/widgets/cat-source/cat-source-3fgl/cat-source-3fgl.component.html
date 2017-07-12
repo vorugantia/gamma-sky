@@ -2,10 +2,10 @@
   <div class="container">
 
     <div class="col-md-4">
-        <h3>{{getSource().Source_Name}}</h3>
+        <h3>{{source.data.Source_Name}}</h3>
         <h5>Basic info: </h5>
         <ul>
-          <li>Source Name: {{getSource().Source_Name}}</li>
+          <li>Source Name: {{source.data.Source_Name}}</li>
         </ul>
 
         <!-- <ul>
@@ -28,12 +28,12 @@
 
     <div class="col-md-4">
       <h3>Lightcurve</h3>
-      <img src="{{getUrl(getSource().Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
+      <img src="{{getUrl(source.data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
     </div>
 
     <div class="col-md-4">
       <h3>Spectrum</h3>
-      <img src="{{getUrl(getSource().Source_Name, 'spec')}}" class="img-responsive" alt="Spectrum" />
+      <img src="{{getUrl(source.data.Source_Name, 'spec')}}" class="img-responsive" alt="Spectrum" />
     </div>
 
   </div>

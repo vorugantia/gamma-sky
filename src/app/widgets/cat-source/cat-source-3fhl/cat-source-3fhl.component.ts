@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FHL } from '../../../services/catalog';
+import { Source3FHL } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
@@ -13,9 +14,9 @@ export class CatSource3FHLComponent implements OnInit {
 
   private sub;
   private id;
-  private source;
 
   private catalog: Catalog3FHL;
+  private source: Source3FHL;
   private error: any;
 
   getCatalog() {
@@ -25,7 +26,9 @@ export class CatSource3FHLComponent implements OnInit {
   }
 
   getSource() {
-    return this.catalog.getSource(this.id);
+    this.catalogService.getSource3FHL(this.id)
+      .then(source => { this.source = source; })
+      .catch (error => this.error = error);
   }
 
   constructor(
@@ -42,6 +45,7 @@ export class CatSource3FHLComponent implements OnInit {
       let id = +params['id'];
       console.log('id ', id);
       this.id = id;
+      this.getSource();
     });
 
   }

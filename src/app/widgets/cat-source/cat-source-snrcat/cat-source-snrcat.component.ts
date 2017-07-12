@@ -14,7 +14,6 @@ export class CatSourceSNRcatComponent implements OnInit {
 
   private sub;
   private id;
-  // private source;
 
   private catalog: CatalogSNRcat;
   private error: any;

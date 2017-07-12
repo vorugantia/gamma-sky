@@ -57,6 +57,27 @@ export class CatalogService {
       .catch(this.handleError);
   }
 
+  getSource3FHL(id) {
+    return this.http.get(this.getSourceDirectory('3fhl', id))
+      .toPromise()
+      .then(response => new Source3FHL( response.json() ))
+      .catch(this.handleError);
+  }
+
+  getSource3FGL(id) {
+    return this.http.get(this.getSourceDirectory('3fgl', id))
+      .toPromise()
+      .then(response => new Source3FGL( response.json() ))
+      .catch(this.handleError);
+  }
+
+  getSourceSNRcat(id) {
+    return this.http.get(this.getSourceDirectory('snrcat', id))
+      .toPromise()
+      .then(response => new SourceSNRcat( response.json() ))
+      .catch(this.handleError);
+  }
+
 
   private handleError(error: any) {
     console.error('An error occurred', error);

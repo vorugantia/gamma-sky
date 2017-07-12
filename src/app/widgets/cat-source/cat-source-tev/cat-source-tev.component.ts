@@ -26,8 +26,6 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   getSource() {
-    // return this.catalog.getSource(this.id);
-    //TODO call catalogService to get the source here, instead of fetching the source from the cat.json file.
     this.catalogService.getSourceTeV(this.id)
       .then(source => { this.source = source; })
       .catch (error => this.error = error);
