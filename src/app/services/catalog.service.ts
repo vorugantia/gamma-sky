@@ -11,7 +11,8 @@ import { CatalogTeV, Catalog3FGL, CatalogSNRcat, Catalog3FHL } from './catalog';
 export class CatalogService {
 
   getCatalogTeV() {
-    return this.http.get('app/data/cat/cat_tev.json')
+    // return this.http.get('app/data/cat/cat_tev.json')
+    return this.http.get('data/cat/tev/cat.json')
       .toPromise()
       .then(response => {
         console.log(new CatalogTeV(response.json(), SourceTeV));
@@ -21,21 +22,21 @@ export class CatalogService {
   }
 
   getCatalog3FHL() {
-    return this.http.get('app/data/cat/cat_3fhl.json')
+    return this.http.get('data/cat/3fhl/cat.json')
       .toPromise()
       .then(response => new Catalog3FHL( response.json(), Source3FHL ))
       .catch(this.handleError);
   }
 
   getCatalog3FGL() {
-    return this.http.get('app/data/cat/cat_3fgl.json')
+    return this.http.get('data/cat/3fgl/cat.json')
       .toPromise()
       .then(response => new Catalog3FGL( response.json(), Source3FGL ))
       .catch(this.handleError);
   }
 
   getCatalogSNRcat() {
-    return this.http.get('app/data/cat/cat_snrcat.json')
+    return this.http.get('data/cat/snrcat/cat.json')
       .toPromise()
       .then(response => new CatalogSNRcat( response.json(), SourceSNRcat ))
       .catch(this.handleError);

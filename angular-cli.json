@@ -14,6 +14,7 @@
         "CNAME",
         "app/data/cat",
         "app/data/maps",
+        "data",
         "static"
       ],
       "index": "index.html",
@@ -51,7 +52,7 @@
 ],
 "test": {
   "karma": {
-    "config": "./karma.conf.js"
+    "config": "config/karma.conf.js"
   }
 },
 "defaults": {
