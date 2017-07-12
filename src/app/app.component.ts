@@ -8,5 +8,5 @@ import { MapViewComponent } from './views/map-view/map-view.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'This is AppComponent';
+  // title = 'gamma-sky.net';
 }

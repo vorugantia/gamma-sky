@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CatalogTeV } from '../../../services/catalog';
+import { Catalog3FHL } from '../../../services/catalog';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
-  selector: 'cat-source-tev',
-  templateUrl: './cat-source-tev.component.html',
-  styleUrls: ['./cat-source-tev.component.css']
+  selector: 'cat-source-3fhl',
+  templateUrl: './cat-source-3fhl.component.html',
+  styleUrls: ['./cat-source-3fhl.component.css']
 })
-export class CatSourceTeVComponent implements OnInit {
+export class CatSource3FHLComponent implements OnInit {
 
   private sub;
   private id;
   private source;
 
-  private catalog: CatalogTeV;
+  private catalog: Catalog3FHL;
   private error: any;
 
   getCatalog() {
-    this.catalogService.getCatalogTeV()
-      .then(catalog => { this.catalog = catalog; })
+    this.catalogService.getCatalog3FHL()
+      .then(catalog => {this.catalog = catalog; })
       .catch(error => this.error = error);
   }
 
@@ -31,10 +31,10 @@ export class CatSourceTeVComponent implements OnInit {
   constructor(
     private catalogService: CatalogService,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
-    console.log("Routing to CatSourceTeVComponent...");
+    console.log("Routing to CatSource3FHLComponent...");
 
     this.getCatalog();
 
@@ -43,6 +43,7 @@ export class CatSourceTeVComponent implements OnInit {
       console.log('id ', id);
       this.id = id;
     });
+
   }
 
   ngOnDestroy() {

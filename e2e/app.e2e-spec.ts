@@ -1,6 +1,6 @@
 import { GammaSkyPage } from './app.po';
 
-describe('gamma-sky App', function() {
+describe('gamma-sky App', () => {
   let page: GammaSkyPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('gamma-sky App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual(''); //TODO expect the text to equal 'gamma-sky.net'
   });
 });

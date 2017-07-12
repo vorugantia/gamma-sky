@@ -1,5 +1,5 @@
 
-export class Popup2FHL {
+export class Popup3FHL {
 
   private source;
 
@@ -29,21 +29,21 @@ export class Popup2FHL {
 
       <div>
 
-        <h4 style='text-align:center'>` + this.source.data.Source_Name + `</h4>
+        <h4 style='text-align:center'>` + this.source.Source_Name + `</h4>
 
           <table>
             <tbody>
               <tr>
                 <td>RA:</td>
-                <th>` + this.round(this.source.data.RAJ2000) + `</th>
+                <th>` + this.round(this.source.RAJ2000) + `</th>
                 <td>DEC:</td>
-                <th>` + this.round(this.source.data.DEJ2000) + `</th>
+                <th>` + this.round(this.source.DEJ2000) + `</th>
               </tr>
               <tr>
                 <td>GLON:</td>
-                <th>` + this.round(this.source.data.GLON) + `</th>
+                <th>` + this.round(this.source.GLON) + `</th>
                 <td>GLAT:</td>
-                <th>` + this.round(this.source.data.GLAT) + `</th>
+                <th>` + this.round(this.source.GLAT) + `</th>
               </tr>
             </tbody>
           </table>
@@ -52,7 +52,7 @@ export class Popup2FHL {
             <tbody>
               <tr>
                 <td>Assoc:</td>
-                <th style='width:170px'>` + this.source.data.ASSOC + `</th>
+                <th style='width:170px'>` + this.source.ASSOC1 + `</th>
               </tr>
             </tbody>
           </table>
@@ -61,7 +61,7 @@ export class Popup2FHL {
             <tbody>
               <tr>
                 <td>Class:</td>
-                <th style='width:170px'>` + this.source.data.CLASS + `</th>
+                <th style='width:170px'>` + this.source.CLASS + `</th>
               </tr>
             </tbody>
           </table>

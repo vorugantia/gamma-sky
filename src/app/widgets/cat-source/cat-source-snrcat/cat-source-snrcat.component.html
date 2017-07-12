@@ -2,9 +2,14 @@
   <div class="container">
 
     <div class="col-md-6">
-      <h3>{{getSource().data.Source_Name}}</h3>
+      <h3>{{getSource().Source_Name}}</h3>
       <h5>Basic info</h5>
+
       <ul>
+        <li>Source name: {{getSource().Source_Name}}</li>
+      </ul>
+
+      <!-- <ul>
           <li>Source name: {{getSource().data.Source_Name}}</li>
           <li>Other names: {{getSource().data.id_alt}}</li>
           <li>
@@ -26,9 +31,9 @@
 
     <div class="col-md-4">
       <h3>Radio image</h3>
-      <!-- <img src="{{getUrl(getSource().data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" /> -->
+      <img src="{{getUrl(getSource().data.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
       <p>TODO: put small Aladin widget here (maybe 2 x 2 deg), showing a radio image.</p>
-    </div>
+    </div> -->
 
   </div>
 </div>
