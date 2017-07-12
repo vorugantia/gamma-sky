@@ -69,8 +69,6 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log("Routing to CatSource3FGLComponent...");
 
-    this.getCatalog();
-
     this.sub = this.activatedRoute.params.subscribe(params => {
         let id = +params['id'];
         console.log('id ', id);
@@ -78,6 +76,7 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
         this.getSource();
     });
 
+    this.getCatalog();
   }
 
   ngOnDestroy() {

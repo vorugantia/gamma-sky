@@ -39,8 +39,6 @@ export class CatSource3FHLComponent implements OnInit {
   ngOnInit() {
     console.log("Routing to CatSource3FHLComponent...");
 
-    this.getCatalog();
-
     this.sub = this.activatedRoute.params.subscribe(params => {
       let id = +params['id'];
       console.log('id ', id);
@@ -48,6 +46,7 @@ export class CatSource3FHLComponent implements OnInit {
       this.getSource();
     });
 
+    this.getCatalog();
   }
 
   ngOnDestroy() {

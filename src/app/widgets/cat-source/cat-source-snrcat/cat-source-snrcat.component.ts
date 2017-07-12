@@ -44,7 +44,6 @@ export class CatSourceSNRcatComponent implements OnInit {
   ngOnInit() {
     console.log("Routing to CatSourceSNRcatComponent...");
 
-    this.getCatalog();
 
     this.sub = this.activatedRoute.params.subscribe(params => {
       let id = +params['id'];
@@ -52,6 +51,7 @@ export class CatSourceSNRcatComponent implements OnInit {
       this.id = id;
     });
 
+    this.getCatalog();
   }
 
   ngOnDestroy() {

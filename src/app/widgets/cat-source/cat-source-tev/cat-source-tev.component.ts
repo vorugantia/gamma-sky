@@ -39,14 +39,14 @@ export class CatSourceTeVComponent implements OnInit {
   ngOnInit() {
     console.log("Routing to CatSourceTeVComponent...");
 
-    this.getCatalog();
-
     this.sub = this.activatedRoute.params.subscribe(params => {
       let id = +params['id'];
       console.log('id ', id);
       this.id = id;
       this.getSource();
     });
+
+    this.getCatalog();
   }
 
   ngOnDestroy() {
