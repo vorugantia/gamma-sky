@@ -1,28 +1,105 @@
 <div *ngIf="(catalog)">
   <div class="container">
     <div class="col-md-6">
-      <h3>{{d.common_name}}</h3>
+      <h2>{{d.common_name}}</h2><br>
 
-      <h5>Basic info</h5>
+      <h4><b>Basic Info</b></h4>
       <ul>
         <li>Common name: {{d.common_name}}</li>
-      </ul>
-      <!-- <ul>
-          <li>Common name: {{getSource().data.Source_Name}}</li>
-          <li>Gamma names: {{getSource().gamma_names_str()}}</li>
-          <li>Other names: {{getSource().other_names_str()}}</li>
-          <li>Class: {{getSource().class_str()}}</li>
-          <li>TODO: add link to TeVCat</li>
-          <li>TODO: add link to get data as JSON</li>
+        <li>Gamma names: {{source.gamma_names_str()}}</li>
+        <li>Fermi names: {{source.fermi_names_str()}}</li>
+        <li>Other names: {{source.other_names_str()}}</li>
+        <!-- TODO: Combine the three above into one "Other names"? -->
+        <li>Location: {{d.where}}</li>
+        <li>Class: {{source.class_str()}}</li>
+        <br>
+        <li>TeVCat ID: {{d.tevcat_id}}</li>
+        <li>TevCat2 ID: {{d.tevcat2_id}}</li>
+        <li>TeVCat name: {{d.tevcat_name}}</li>
+        <br>
+        <li>TGeVCat ID: {{d.tgevcat_id}}</li>
+        <li>TGeVCat name: {{d.tgevcat_name}}</li>
+        <br>
+        <li>Discoverer: {{d.discoverer}}</li>
+        <li>Discovery date: {{d.discovery_date}}</li>
+        <li>Seen by: {{d.seen_by}}</li>
+        <li>Reference: {{d.reference_id}}</li>
       </ul>
 
-      <h5>Position info:</h5>
+      <br>
+      <h4><b>Position Info</b></h4>
+      <p>
+        <u>SIMBAD</u>
+      </p>
       <ul>
-          <li>RA: {{getSource().ra_str()}}</li>
-          <li>DEC: {{getSource().dec_str()}}</li>
-          <li>GLON: {{getSource().glon_str()}}</li>
-          <li>GLAT: {{getSource().glat_str()}}</li>
-      </ul> -->
+        <li>RA: {{source.formatf(d.ra)}} deg</li>
+        <li>DEC: {{source.formatf(d.dec)}} deg</li>
+        <li>GLON: {{source.formatf(d.glon)}} deg</li>
+        <li>GLAT: {{source.formatf(d.glat)}} deg</li>
+      </ul>
+      <p>
+        <u>Measurement</u>
+      </p>
+      <ul>
+        <li>RA: {{source.formatf(d.pos_ra)}} deg</li>
+        <li>DEC: {{source.formatf(d.pos_dec)}} deg</li>
+        <li>GLON: {{source.formatf(d.pos_glon)}} deg</li>
+        <li>GLAT: {{source.formatf(d.pos_glat)}} deg</li>
+        <li>Position error: {{source.formatf(d.pos_err)}} deg</li>
+      </ul>
+
+      <br>
+      <h4><b>Morphology Info</b></h4>
+      <ul>
+        <li>Morphology model type: {{d.morph_type}}</li>
+        <li>Sigma: {{source.formatf(d.morph_sigma)}} deg</li>
+        <li>Sigma error: {{source.formatf(d.morph_sigma_err)}} deg</li>
+        <li>Sigma2: {{source.formatf(d.morph_sigma2)}} deg</li>
+        <li>Sigma2 error: {{source.formatf(d.morph_sigma2_err)}} deg</li>
+        <li>Position angle: {{source.formatf(d.morph_pa)}} deg</li>
+        <li>Position angle error: {{source.formatf(d.morph_pa_err)}} deg</li>
+        <li>Position angle frame: {{d.morph_pa_frame}}</li>
+      </ul>
+
+      <br>
+      <h4><b>Spectral Info</b></h4>
+      <ul>
+        <li>Significance: {{source.formatf(d.significance)}}</li>
+        <li>Livetime: {{source.formatf(d.livetime)}} h</li>
+        <br>
+      </ul>
+      <div id="spec" style="margin-top:-10px; margin-bottom:20px">
+        <ul>
+          {{source.get_spec_parameters()}}
+        </ul>
+      </div>
+      <ul>
+        <li>energy range min: {{source.formatp(d.spec_erange_min)}} TeV</li>
+        <li>energy range max: {{source.formatp(d.spec_erange_max)}} TeV</li>
+        <li>theta: {{source.formatp(d.spec_theta)}} deg</li>
+      </ul>
+      <p>
+        <u>Derived fluxes</u>
+      </p>
+      <ul>
+        <li>Spectral model norm (1 TeV): {{source.format_error(d.spec_dnde_1TeV, d.spec_dnde_1TeV_err)}} cm-2 s-1 TeV-1 (statistical)</li>
+        <li>Integrated flux (&lt;1 TeV): {{source.format_error(d.spec_flux_1TeV, d.spec_flux_1TeV_err)}} cm-2 s-1 (statistical)</li>
+        <li>Integrated flux (&lt;1 TeV): {{source.format_error(d.spec_flux_1TeV_crab, d.spec_flux_1TeV_crab_err)}} cm-2 s-1 (crab units)</li>
+        <li>Integrated flux (1-10 TeV): {{source.format_error(d.spec_eflux_1TeV_10TeV, d.spec_eflux_1TeV_10TeV_err)}} erg cm-2 s-1</li>
+      </ul>
+
+      <br>
+      <h4><b>Spectral Points</b></h4>
+      <ul>
+        <li>SED reference id: {{d.sed_reference_id}}</li>
+        <li>Number of spectral points: {{d.sed_n_points}}</li>
+        <li>Number of upper limits: {{d.sed_n_ul}}</li>
+      </ul>
+      <br>
+      <p>
+        <u>Flux table:</u>
+      </p>
+      <p>To be implemented</p>
 
     </div>
   </div>
