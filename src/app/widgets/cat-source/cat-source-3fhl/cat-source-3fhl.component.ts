@@ -14,6 +14,7 @@ export class CatSource3FHLComponent implements OnInit {
 
   private sub;
   private id;
+  private d;
 
   private catalog: Catalog3FHL;
   private source: Source3FHL;
@@ -27,7 +28,10 @@ export class CatSource3FHLComponent implements OnInit {
 
   getSource() {
     this.catalogService.getSource3FHL(this.id)
-      .then(source => { this.source = source; })
+      .then(source => {
+        this.source = source;
+        this.d = source.data;
+      })
       .catch (error => this.error = error);
   }
 

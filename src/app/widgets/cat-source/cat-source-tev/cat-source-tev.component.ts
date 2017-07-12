@@ -14,6 +14,7 @@ export class CatSourceTeVComponent implements OnInit {
 
   private sub;
   private id;
+  private d;
 
   private catalog: CatalogTeV;
   private source: SourceTeV;
@@ -27,7 +28,10 @@ export class CatSourceTeVComponent implements OnInit {
 
   getSource() {
     this.catalogService.getSourceTeV(this.id)
-      .then(source => { this.source = source; })
+      .then(source => {
+        this.source = source;
+        this.d = source.data;
+      })
       .catch (error => this.error = error);
   }
 

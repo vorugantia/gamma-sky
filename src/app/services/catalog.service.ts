@@ -14,10 +14,7 @@ export class CatalogService {
   getCatalogTeV() {
     return this.http.get('data/cat/tev/cat.json')
       .toPromise()
-      .then(response => {
-        console.log(new CatalogTeV(response.json(), SourceTeV));
-        return new CatalogTeV( response.json(), SourceTeV )
-      })
+      .then(response => new CatalogTeV( response.json(), SourceTeV ))
       .catch(this.handleError);
   }
 

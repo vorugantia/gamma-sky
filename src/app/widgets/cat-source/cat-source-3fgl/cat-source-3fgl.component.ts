@@ -14,6 +14,7 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
   private sub;
   private id;
+  private d;
 
   private catalog: Catalog3FGL;
   private source: Source3FGL;
@@ -27,7 +28,10 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
   getSource() {
     this.catalogService.getSource3FGL(this.id)
-      .then(source => { this.source = source; })
+      .then(source => {
+        this.source = source;
+        this.d = source.data;
+      })
       .catch (error => this.error = error);
   }
 
