@@ -7,7 +7,7 @@ import numpy as np
 from astropy.table import Table
 import json
 from gammapy.catalog import SourceCatalog3FHL, SourceCatalogGammaCat, SourceCatalog3FGL
-from .utils import table_to_list_of_dict, dump_list_to_json, dump_dict_to_json
+from .utils import table_to_list_of_dict, dump_to_json
 
 __all__ = [
     'make_tev_catalog_data',
@@ -33,10 +33,11 @@ def make_3fhl_catalog_data():
     cols = ['Source_Name', 'RAJ2000', 'DEJ2000',
             'GLON', 'GLAT', 'ASSOC1', 'CLASS']
     cat.table = cat.table[cols]
+    data = cat._data_python_list
 
     filename = 'src/app/data/cat/3fhl/cat.json'
     click.secho('Writing 3fhl {}'.format(filename), fg='green')
-    dump_list_to_json(cat, filename)
+    dump_to_json(data, filename)
 
 
 def make_3fhl_source_data():
@@ -44,16 +45,13 @@ def make_3fhl_source_data():
 
     cat = SourceCatalog3FHL()
     for source in cat:
-        # For testing, only process some of the sources
-        if source.index == 10:
-            break
-
         out_dir = Path('src/app/data/cat/3fhl/sources/{:04d}'.format(source.index))
         out_dir.mkdir(parents=True, exist_ok=True)
 
+        data = source._data_python_dict
         filename = 'src/app/data/cat/3fhl/sources/{:04d}/data.json'.format(source.index)
         click.secho('Writing: {}'.format(filename), fg='green')
-        dump_dict_to_json(source, filename)
+        dump_to_json(data, filename)
 
 
 def make_tev_catalog_data():
@@ -66,10 +64,11 @@ def make_tev_catalog_data():
     cols = ['common_name', 'ra', 'dec', 'glon', 'glat',
             'other_names', 'classes']
     cat.table = cat.table[cols]
+    data = cat._data_python_list
 
     filename = 'src/app/data/cat/tev/cat.json'
     click.secho('Writing tev {}'.format(filename), fg='green')
-    dump_list_to_json(cat, filename)
+    dump_to_json(data, filename)
 
 
 def make_tev_source_data():
@@ -77,16 +76,13 @@ def make_tev_source_data():
 
     cat = SourceCatalogGammaCat()
     for source in cat:
-        # For testing, only process some of the sources
-        if source.index == 10:
-            break
-
         out_dir = Path('src/app/data/cat/tev/sources/{:04d}'.format(source.index))
         out_dir.mkdir(parents=True, exist_ok=True)
 
+        data = source._data_python_dict
         filename = 'src/app/data/cat/tev/sources/{:04d}/data.json'.format(source.index)
         click.secho('Writing: {}'.format(filename), fg='green')
-        dump_dict_to_json(source, filename)
+        dump_to_json(data, filename)
 
 
 def make_3fgl_catalog_data():
@@ -99,10 +95,11 @@ def make_3fgl_catalog_data():
     cols = ['Source_Name', 'RAJ2000', 'DEJ2000', 'GLON',
             'GLAT', 'ASSOC1', 'CLASS1']
     cat.table = cat.table[cols]
+    data = cat._data_python_list
 
     filename = 'src/app/data/cat/3fgl/cat.json'
     click.secho('Writing 3fgl {}'.format(filename), fg='green')
-    dump_list_to_json(cat, filename)
+    dump_to_json(data, filename)
 
 
 def make_3fgl_source_data():
@@ -110,16 +107,13 @@ def make_3fgl_source_data():
 
     cat = SourceCatalog3FGL()
     for source in cat:
-        # For testing, only process some of the sources
-        if source.index == 10:
-            break
-
         out_dir = Path('src/app/data/cat/3fgl/sources/{:04d}'.format(source.index))
         out_dir.mkdir(parents=True, exist_ok=True)
 
+        data = source._data_python_dict
         filename = 'src/app/data/cat/3fgl/sources/{:04d}/data.json'.format(source.index)
         click.secho('Writing: {}'.format(filename), fg='green')
-        dump_dict_to_json(source, filename)
+        dump_to_json(data, filename)
 
 
 def make_snrcat_catalog_data():
