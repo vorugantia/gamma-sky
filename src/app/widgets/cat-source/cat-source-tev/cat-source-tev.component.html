@@ -32,60 +32,63 @@
         <u>SIMBAD</u>
       </p>
       <ul>
-        <li>RA: {{source.formatf(d.ra)}} deg</li>
-        <li>DEC: {{source.formatf(d.dec)}} deg</li>
-        <li>GLON: {{source.formatf(d.glon)}} deg</li>
-        <li>GLAT: {{source.formatf(d.glat)}} deg</li>
+        <li>RA: {{source.format(d.ra, false, 'deg')}}</li>
+        <li>DEC: {{source.format(d.dec, false, 'deg')}}</li>
+        <li>GLON: {{source.format(d.glon, false, 'deg')}}</li>
+        <li>GLAT: {{source.format(d.glat, false, 'deg')}}</li>
       </ul>
       <p>
         <u>Measurement</u>
       </p>
       <ul>
-        <li>RA: {{source.formatf(d.pos_ra)}} deg</li>
-        <li>DEC: {{source.formatf(d.pos_dec)}} deg</li>
-        <li>GLON: {{source.formatf(d.pos_glon)}} deg</li>
-        <li>GLAT: {{source.formatf(d.pos_glat)}} deg</li>
-        <li>Position error: {{source.formatf(d.pos_err)}} deg</li>
+        <li>RA: {{source.format(d.pos_ra, false, 'deg')}}</li>
+        <li>DEC: {{source.format(d.pos_dec, false, 'deg')}}</li>
+        <li>GLON: {{source.format(d.pos_glon, false, 'deg')}}</li>
+        <li>GLAT: {{source.format(d.pos_glat, false, 'deg')}}</li>
+        <li>Position error: {{source.format(d.pos_err, false, 'deg')}}</li>
       </ul>
 
       <br>
       <h4><b>Morphology Info</b></h4>
       <ul>
         <li>Morphology model type: {{d.morph_type}}</li>
-        <li>Sigma: {{source.formatf(d.morph_sigma)}} deg</li>
-        <li>Sigma error: {{source.formatf(d.morph_sigma_err)}} deg</li>
-        <li>Sigma2: {{source.formatf(d.morph_sigma2)}} deg</li>
-        <li>Sigma2 error: {{source.formatf(d.morph_sigma2_err)}} deg</li>
-        <li>Position angle: {{source.formatf(d.morph_pa)}} deg</li>
-        <li>Position angle error: {{source.formatf(d.morph_pa_err)}} deg</li>
+        <li>Sigma: {{source.format(d.morph_sigma, false, 'deg')}}</li>
+        <li>Sigma error: {{source.format(d.morph_sigma_err, false, 'deg')}}</li>
+        <li>Sigma2: {{source.format(d.morph_sigma2, false, 'deg')}}</li>
+        <li>Sigma2 error: {{source.format(d.morph_sigma2_err, false, 'deg')}} </li>
+        <li>Position angle: {{source.format(d.morph_pa, false, 'deg')}}</li>
+        <li>Position angle error: {{source.format(d.morph_pa_err, false, 'deg')}}
+        </li>
         <li>Position angle frame: {{d.morph_pa_frame}}</li>
       </ul>
 
       <br>
       <h4><b>Spectral Info</b></h4>
       <ul>
-        <li>Significance: {{source.formatf(d.significance)}}</li>
-        <li>Livetime: {{source.formatf(d.livetime)}} h</li>
+        <li>Significance: {{source.format(d.significance, false)}}</li>
+        <li>Livetime: {{source.format(d.livetime, false, 'h')}}</li>
         <br>
       </ul>
-      <div id="spec" style="margin-top:-10px; margin-bottom:20px">
+      <!-- <div id="spec" style="margin-top:-10px; margin-bottom:20px">
         <ul>
           {{source.get_spec_parameters()}}
         </ul>
-      </div>
+      </div> -->
       <ul>
-        <li>energy range min: {{source.formatp(d.spec_erange_min)}} TeV</li>
-        <li>energy range max: {{source.formatp(d.spec_erange_max)}} TeV</li>
-        <li>theta: {{source.formatp(d.spec_theta)}} deg</li>
+        <li>energy range min: {{source.format(d.spec_erange_min, true, 'TeV')}}
+        </li>
+        <li>energy range max: {{source.format(d.spec_erange_max, true, 'TeV')}}
+        </li>
+        <li>theta: {{source.format(d.spec_theta, true, 'deg')}}</li>
       </ul>
       <p>
         <u>Derived fluxes</u>
       </p>
       <ul>
-        <li>Spectral model norm (1 TeV): {{source.format_error(d.spec_dnde_1TeV, d.spec_dnde_1TeV_err)}} cm-2 s-1 TeV-1 (statistical)</li>
-        <li>Integrated flux (&lt;1 TeV): {{source.format_error(d.spec_flux_1TeV, d.spec_flux_1TeV_err)}} cm-2 s-1 (statistical)</li>
-        <li>Integrated flux (&lt;1 TeV): {{source.format_error(d.spec_flux_1TeV_crab, d.spec_flux_1TeV_crab_err)}} cm-2 s-1 (crab units)</li>
-        <li>Integrated flux (1-10 TeV): {{source.format_error(d.spec_eflux_1TeV_10TeV, d.spec_eflux_1TeV_10TeV_err)}} erg cm-2 s-1</li>
+        <li>Spectral model norm (1 TeV): {{source.format_error(d.spec_dnde_1TeV, d.spec_dnde_1TeV_err, true, 'cm-2 s-1 TeV-1 (stat.)')}}</li>
+        <li>Integrated flux (&lt;1 TeV): {{source.format_error(d.spec_flux_1TeV, d.spec_flux_1TeV_err, true, 'cm-2 s-1 (stat.)')}} </li>
+        <li>Integrated flux (&lt;1 TeV): {{source.format_error(d.spec_flux_1TeV_crab, d.spec_flux_1TeV_crab_err, true, 'cm-2 s-1 (crab units)')}}</li>
+        <li>Integrated flux (1-10 TeV): {{source.format_error(d.spec_eflux_1TeV_10TeV, d.spec_eflux_1TeV_10TeV_err, true, 'erg cm-2 s-1')}} </li>
       </ul>
 
       <br>
