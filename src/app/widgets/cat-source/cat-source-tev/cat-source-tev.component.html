@@ -6,23 +6,21 @@
       <h4><b>Basic Info</b></h4>
       <ul>
         <li>Common name: {{d.common_name}}</li>
-        <li>Gamma names: {{source.gamma_names_str()}}</li>
-        <li>Fermi names: {{source.fermi_names_str()}}</li>
-        <li>Other names: {{source.other_names_str()}}</li>
+        <li>Gamma names: {{source.comma_space(d.gamma_names)}}</li>
+        <li>Fermi names: {{source.comma_space(d.fermi_names)}}</li>
+        <li>Other names: {{source.comma_space(d.other_names)}}</li>
         <!-- TODO: Combine the three above into one "Other names"? -->
         <li>Location: {{d.where}}</li>
-        <li>Class: {{source.class_str()}}</li>
+        <li>Class: {{source.comma_space(d.classes)}}</li>
         <br>
-        <li>TeVCat ID: {{d.tevcat_id}}</li>
-        <li>TevCat2 ID: {{d.tevcat2_id}}</li>
-        <li>TeVCat name: {{d.tevcat_name}}</li>
-        <br>
-        <li>TGeVCat ID: {{d.tgevcat_id}}</li>
-        <li>TGeVCat name: {{d.tgevcat_name}}</li>
+        <li>TeVCat name: {{d.tevcat_name}}
+          (TeVCat ID: <a href={{source.get_tevcat_url()}} target='_blank'>{{d.tevcat_id}}</a>,
+          TeVCat2 ID: <a href={{source.get_tevcat2_url()}} target="_blank">{{d.tevcat2_id}}</a>)</li>
+        <li>TGeVCat name: {{d.tgevcat_name}} (ID: {{d.tgevcat_id}})</li>
         <br>
         <li>Discoverer: {{d.discoverer}}</li>
         <li>Discovery date: {{d.discovery_date}}</li>
-        <li>Seen by: {{d.seen_by}}</li>
+        <li>Seen by: {{source.comma_space(d.seen_by)}}</li>
         <li>Reference: {{d.reference_id}}</li>
       </ul>
 

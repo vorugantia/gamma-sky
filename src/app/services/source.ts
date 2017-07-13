@@ -42,18 +42,15 @@ class SourceBase {
 
 export class SourceTeV extends SourceBase {
 
-  class_str() {
-    return this.data.classes.split(",").join(", ");
+  comma_space(val) {
+    return val.split(',').join(', ');
   }
 
-  gamma_names_str() {
-    return this.data.gamma_names.split(",").join(", ");
+  get_tevcat_url() {
+    return `http://tevcat.uchicago.edu/?mode=1;id=${this.data.tevcat_id}`;
   }
-  fermi_names_str() {
-    return this.data.fermi_names.split(",").join(", ");
-  }
-  other_names_str() {
-    return this.data.other_names.split(",").join(", ");
+  get_tevcat2_url() {
+    return `http://tevcat2.uchicago.edu/sources/${this.data.tevcat2_id}`;
   }
 
   // get_spec_parameters() {
@@ -117,7 +114,7 @@ export class Source3FGL extends SourceBase {
 export class SourceSNRcat extends SourceBase {
 
   getSNRcatUrl(snrcatId) {
-    return "http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=" + snrcatId;
+    return `http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=${snrcatId}`;
   }
 
 }
