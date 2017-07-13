@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FGL } from '../../../services/catalog';
+import { Source3FGL } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
@@ -13,21 +14,25 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
   private sub;
   private id;
-  private source;
+  private d;
 
   private catalog: Catalog3FGL;
+  private source: Source3FGL;
   private error: any;
 
   getCatalog() {
     this.catalogService.getCatalog3FGL()
-      .then(catalog => {
-        this.catalog = catalog;
-      })
+      .then(catalog => { this.catalog = catalog; })
       .catch(error => this.error = error);
   }
 
   getSource() {
-    return this.catalog.getSource(this.id);
+    this.catalogService.getSource3FGL(this.id)
+      .then(source => {
+        this.source = source;
+        this.d = source.data;
+      })
+      .catch (error => this.error = error);
   }
 
   getUrl(sourceName, image) {
@@ -68,14 +73,14 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log("Routing to CatSource3FGLComponent...");
 
-    this.getCatalog();
-
     this.sub = this.activatedRoute.params.subscribe(params => {
         let id = +params['id'];
         console.log('id ', id);
         this.id = id;
+        this.getSource();
     });
 
+    this.getCatalog();
   }
 
   ngOnDestroy() {

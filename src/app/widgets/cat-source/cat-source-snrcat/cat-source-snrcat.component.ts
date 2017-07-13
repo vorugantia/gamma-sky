@@ -14,7 +14,6 @@ export class CatSourceSNRcatComponent implements OnInit {
 
   private sub;
   private id;
-  // private source;
 
   private catalog: CatalogSNRcat;
   private error: any;
@@ -45,7 +44,6 @@ export class CatSourceSNRcatComponent implements OnInit {
   ngOnInit() {
     console.log("Routing to CatSourceSNRcatComponent...");
 
-    this.getCatalog();
 
     this.sub = this.activatedRoute.params.subscribe(params => {
       let id = +params['id'];
@@ -53,6 +51,7 @@ export class CatSourceSNRcatComponent implements OnInit {
       this.id = id;
     });
 
+    this.getCatalog();
   }
 
   ngOnDestroy() {
