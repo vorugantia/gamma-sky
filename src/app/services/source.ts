@@ -24,7 +24,12 @@ class SourceBase {
   }
 
   format_error(val, val_err, precision:boolean, unit:String='') {
-    return `${this.format(val, precision)} +- ${this.format(val_err, precision)} ${unit}`;
+    if(val == null) {
+      return this.handle_null();
+    }
+    else {
+      return `${this.format(val, precision)} +/- ${this.format(val_err, precision)} ${unit}`;
+    }
   }
 
   formatp(val) {
@@ -51,6 +56,15 @@ export class SourceTeV extends SourceBase {
   }
   get_tevcat2_url() {
     return `http://tevcat2.uchicago.edu/sources/${this.data.tevcat2_id}`;
+  }
+
+  format_stat_sys(val, err_stat, err_syst, precision:boolean, unit:String='') {
+    if(val == null) {
+      return this.handle_null();
+    }
+    else {
+      return `${this.format(val, precision)} +/- ${this.format(err_stat, precision)} (stat.) +/- ${this.format(err_syst, precision)} (syst.) ${unit}`;
+    }
   }
 
   // get_spec_parameters() {
