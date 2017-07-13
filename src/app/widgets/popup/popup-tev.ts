@@ -54,7 +54,7 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Other names:</td>
-                <th style='width:170px'>` + this.sourceTeV.other_names_str() + `</th>
+                <th style='width:170px'>` + this.sourceTeV.comma_space(this.source.other_names) + `</th>
               </tr>
             </tbody>
           </table>
@@ -63,7 +63,7 @@ export class PopupTeV {
             <tbody>
               <tr>
                 <td>Class:</td>
-                <th style='width:170px'>` + this.sourceTeV.class_str() + `</th>
+                <th style='width:170px'>` + this.sourceTeV.comma_space(this.source.classes) + `</th>
               </tr>
             </tbody>
           </table>

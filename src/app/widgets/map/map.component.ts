@@ -60,7 +60,6 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log(catalogName, " # number of sources: ", n_sources);
 
     for(var i = 0; i < n_sources; i++) {
-
       //Configuring the popup
       var popup = this.initializePopup(catalogName, catalog, i);
       var ra = catalog.data[i][catalog.raCol];
@@ -74,6 +73,10 @@ export class MapComponent implements OnInit, OnDestroy {
           popupDesc: `` + popup.getDesc()
         });
       this.cat.addSources([marker]);
+
+      if(catalogName == 'TeV') {
+        console.log('bbb');
+      }
 
         //this.cat.hide() will hide all catalogs on webpage startup.
     }

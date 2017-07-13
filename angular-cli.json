@@ -12,8 +12,6 @@
         "favicon.ico",
         "404.html",
         "CNAME",
-        "app/data/cat",
-        "app/data/maps",
         "data",
         "static"
       ],
