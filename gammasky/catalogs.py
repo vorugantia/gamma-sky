@@ -8,6 +8,7 @@ from astropy.table import Table
 import json
 from gammapy.catalog import SourceCatalog3FHL, SourceCatalogGammaCat, SourceCatalog3FGL
 from .utils import table_to_list_of_dict, dump_to_json
+from .config import DATA_DIR
 
 __all__ = [
     'make_tev_catalog_data',
@@ -21,11 +22,10 @@ __all__ = [
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
 
-
 def make_3fhl_catalog_data():
     click.secho('Making 3FHL catalog data...', fg='green')
 
-    out_dir = Path('src/app/data/cat/3fhl')
+    out_dir = DATA_DIR / 'cat/3fhl'
     out_dir.mkdir(parents=True, exist_ok=True)
 
     cat = SourceCatalog3FHL()
@@ -35,7 +35,7 @@ def make_3fhl_catalog_data():
     cat.table = cat.table[cols]
     data = cat._data_python_list
 
-    filename = 'src/app/data/cat/3fhl/cat.json'
+    filename = out_dir / 'cat.json'
     click.secho('Writing 3fhl {}'.format(filename), fg='green')
     dump_to_json(data, filename)
 
@@ -45,11 +45,11 @@ def make_3fhl_source_data():
 
     cat = SourceCatalog3FHL()
     for source in cat:
-        out_dir = Path('src/app/data/cat/3fhl/sources/{:04d}'.format(source.index))
+        out_dir = DATA_DIR / 'cat/3fhl/sources/{:04d}'.format(source.index)
         out_dir.mkdir(parents=True, exist_ok=True)
 
         data = source._data_python_dict
-        filename = 'src/app/data/cat/3fhl/sources/{:04d}/data.json'.format(source.index)
+        filename = out_dir / 'data.json'
         click.secho('Writing: {}'.format(filename), fg='green')
         dump_to_json(data, filename)
 
@@ -57,7 +57,7 @@ def make_3fhl_source_data():
 def make_tev_catalog_data():
     click.secho('Making TeV catalog data (from gamma-cat)...', fg='green')
 
-    out_dir = Path('src/app/data/cat/tev')
+    out_dir = DATA_DIR / 'cat/tev'
     out_dir.mkdir(parents=True, exist_ok=True)
 
     cat = SourceCatalogGammaCat()
@@ -66,7 +66,7 @@ def make_tev_catalog_data():
     cat.table = cat.table[cols]
     data = cat._data_python_list
 
-    filename = 'src/app/data/cat/tev/cat.json'
+    filename = out_dir / 'cat.json'
     click.secho('Writing tev {}'.format(filename), fg='green')
     dump_to_json(data, filename)
 
@@ -76,11 +76,11 @@ def make_tev_source_data():
 
     cat = SourceCatalogGammaCat()
     for source in cat:
-        out_dir = Path('src/app/data/cat/tev/sources/{:04d}'.format(source.index))
+        out_dir = DATA_DIR / 'cat/tev/sources/{:04d}'.format(source.index)
         out_dir.mkdir(parents=True, exist_ok=True)
 
         data = source._data_python_dict
-        filename = 'src/app/data/cat/tev/sources/{:04d}/data.json'.format(source.index)
+        filename = out_dir / 'data.json'
         click.secho('Writing: {}'.format(filename), fg='green')
         dump_to_json(data, filename)
 
@@ -88,7 +88,7 @@ def make_tev_source_data():
 def make_3fgl_catalog_data():
     click.secho('Making 3FGL catalog data...', fg='green')
 
-    out_dir = Path('src/app/data/cat/3fgl')
+    out_dir = DATA_DIR / 'cat/3fgl'
     out_dir.mkdir(parents=True, exist_ok=True)
 
     cat = SourceCatalog3FGL()
@@ -97,7 +97,7 @@ def make_3fgl_catalog_data():
     cat.table = cat.table[cols]
     data = cat._data_python_list
 
-    filename = 'src/app/data/cat/3fgl/cat.json'
+    filename = out_dir / 'cat.json'
     click.secho('Writing 3fgl {}'.format(filename), fg='green')
     dump_to_json(data, filename)
 
@@ -107,11 +107,11 @@ def make_3fgl_source_data():
 
     cat = SourceCatalog3FGL()
     for source in cat:
-        out_dir = Path('src/app/data/cat/3fgl/sources/{:04d}'.format(source.index))
+        out_dir = DATA_DIR / 'cat/3fgl/sources/{:04d}'.format(source.index)
         out_dir.mkdir(parents=True, exist_ok=True)
 
         data = source._data_python_dict
-        filename = 'src/app/data/cat/3fgl/sources/{:04d}/data.json'.format(source.index)
+        filename = out_dir / 'data.json'
         click.secho('Writing: {}'.format(filename), fg='green')
         dump_to_json(data, filename)
 
@@ -119,7 +119,7 @@ def make_3fgl_source_data():
 def make_snrcat_catalog_data():
     click.secho('Making SNRcat catalog data...', fg='green')
 
-    out_dir = Path('src/app/data/cat/snrcat')
+    out_dir = DATA_DIR / 'cat/snrcat'
     out_dir.mkdir(parents=True, exist_ok=True)
 
     url = 'https://github.com/gammapy/gammapy-extra/blob/master/datasets/catalogs/snrcat.fits.gz?raw=true'
@@ -133,7 +133,7 @@ def make_snrcat_catalog_data():
         ]
     list_of_dict = table_to_list_of_dict(table.filled())
 
-    filename = 'src/app/data/cat/snrcat/cat.json'
+    filename = out_dir / 'cat.json'
     click.secho('Writing SNRcat {}'.format(filename), fg='green')
     with open(filename, 'w') as fh:
         json.dump(list_of_dict, fh)
