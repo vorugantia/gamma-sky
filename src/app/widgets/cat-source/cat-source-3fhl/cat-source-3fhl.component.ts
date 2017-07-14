@@ -35,6 +35,15 @@ export class CatSource3FHLComponent implements OnInit {
       .catch (error => this.error = error);
   }
 
+  isExtended() {
+    return this.source.is_extended();
+  }
+  isLogParabola() {
+    if(this.d.SpectrumType.trim() == 'LogParabola')
+      return true;
+    return false;
+  }
+
   constructor(
     private catalogService: CatalogService,
     private activatedRoute: ActivatedRoute
