@@ -68,14 +68,6 @@ export class CatalogService {
       .catch(this.handleError);
   }
 
-  getSourceSNRcat(id) {
-    return this.http.get(this.getSourceDirectory('snrcat', id))
-      .toPromise()
-      .then(response => new SourceSNRcat( response.json() ))
-      .catch(this.handleError);
-  }
-
-
   private handleError(error: any) {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
