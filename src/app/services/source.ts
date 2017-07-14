@@ -43,6 +43,13 @@ class SourceBase {
     return "No data";
   }
 
+  join_entries(arr) {
+    var entries = arr.filter(entry => {
+      return /\S/.test(entry);
+    });
+    return entries.toString().replace(/,/g, ', ');
+  }
+
 }
 
 export class SourceTeV extends SourceBase {
@@ -72,14 +79,10 @@ export class SourceTeV extends SourceBase {
 export class Source3FHL extends SourceBase {
 
   join_assoc() {
-    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM, this.data.ASSOC_TEV];
-    for(var i = 0; i < assocs.length; i++) {
-      var a = assocs[i].trim();
-      if(a.length == 0)
-        assocs.splice(i, i++);
-    }
-    var s = assocs.join(', ');
-    return s.replace(/,\s*$/, ""); //Removes comma + any whitespace after it.
+    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM,
+                  this.data.ASSOC_TEV];
+                  
+    return this.join_entries(assocs);
   }
 
   tevcat_flag() {
@@ -114,6 +117,12 @@ export class Source3FHL extends SourceBase {
 
 export class Source3FGL extends SourceBase {
 
+  join_assoc() {
+    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_TEV,
+    this.data.ASSOC_GAM1, this.data.ASSOC_GAM2, this.data.ASSOC_GAM3];
+
+    return this.join_entries(assocs);
+  }
 }
 
 export class SourceSNRcat extends SourceBase {

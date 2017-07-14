@@ -1,29 +1,17 @@
 <div *ngIf="(catalog)">
   <div class="container">
-
     <div class="col-md-4">
-        <h3>{{d.Source_Name}}</h3>
-        <h5>Basic info: </h5>
+        <h2>{{d.Source_Name}}</h2><br>
+
+        <h4><b>Basic Info</b></h4>
         <ul>
           <li>Source Name: {{d.Source_Name}}</li>
+          <li>Extended name: {{d.Extended_Source_Name}}</li>
+          <li>Associations: {{source.join_assoc()}}</li>
+          <li>Other names:</li>
         </ul>
 
-        <!-- <ul>
-            <li>Source name: {{getSource().data.Source_Name}}</li>
-            <li>ASSOC1: {{getSource().data.ASSOC1}}</li>
-            <li>CLASS1: {{getSource().data.CLASS1}}</li>
-        </ul>
-        <h5>Position info:</h5>
-        <ul>
-            <li>RA: {{getSource().data.RAJ2000}} deg</li>
-            <li>DEC: {{getSource().data.DEJ2000}} deg</li>
-            <li>GLON: {{getSource().data.GLON}} deg</li>
-            <li>GLAT: {{getSource().data.GLAT}} deg</li>
-        </ul>
-        <h5>Spectral info:</h5>
-        <ul>
-            <li>TODO</li>
-        </ul>-->
+
     </div>
 
     <div class="col-md-4">
