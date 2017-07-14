@@ -50,6 +50,19 @@ class SourceBase {
     return entries.toString().replace(/,/g, ', ');
   }
 
+  tevcat_flag() {
+    // Only works for 3FHL and 3FGL.
+    var flag = this.data.TEVCAT_FLAG;
+    if(flag == 'N')
+      return "No TeV association";
+    else if(flag == 'P')
+      return "Small TeV source";
+    else if(flag == 'E')
+      return "Extended TeV source (diameter > 40 arcmins)";
+    else
+      return "N/A";
+  }
+
 }
 
 export class SourceTeV extends SourceBase {
@@ -81,20 +94,8 @@ export class Source3FHL extends SourceBase {
   join_assoc() {
     var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM,
                   this.data.ASSOC_TEV];
-                  
-    return this.join_entries(assocs);
-  }
 
-  tevcat_flag() {
-    var flag = this.data.TEVCAT_FLAG;
-    if(flag == 'N')
-      return "No TeV association";
-    else if(flag == 'P')
-      return "Small TeV source";
-    else if(flag == 'E')
-      return "Extended TeV source (diameter > 40 arcmins)";
-    else
-      return "N/A";
+    return this.join_entries(assocs);
   }
 
   bayesian_blocks() {
@@ -123,6 +124,14 @@ export class Source3FGL extends SourceBase {
 
     return this.join_entries(assocs);
   }
+
+  join_other_names() {
+    var other_names = [this.data['0FGL_Name'], this.data['1FGL_Name'],
+                       this.data['2FGL_Name'], this.data['1FHL_Name']];
+
+    return this.join_entries(other_names);
+  }
+
 }
 
 export class SourceSNRcat extends SourceBase {
