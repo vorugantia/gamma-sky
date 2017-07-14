@@ -12,10 +12,6 @@
         <li>Class: {{d.CLASS}}</li>
         <li>TeVCat flag: {{source.tevcat_flag()}}</li>
       </ul>
-      <ul>
-        <li>Significance (10 GeV - 2 TeV): {{source.format(d.Signif_Avg, false)}}</li>
-        <li>Npred: {{source.format(d.Npred, true)}}</li>
-      </ul>
 
       <br>
       <h4><b>Position Info</b></h4>
@@ -34,6 +30,10 @@
 
       <br>
       <h4><b>Model Info</b></h4>
+      <ul>
+        <li>Significance (10 GeV - 2 TeV): {{source.format(d.Signif_Avg, false)}}</li>
+        <li>Npred: {{source.format(d.Npred, true)}}</li>
+      </ul>
 
       <div *ngIf=isExtended()>
         <p>

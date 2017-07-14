@@ -13,9 +13,6 @@
           <li>Class: {{d.CLASS1}}</li>
           <li>TeVCat flag: {{source.tevcat_flag()}}</li>
         </ul>
-        <ul>
-          <li>Significance (100 MeV - 300 GeV): {{source.format(d.Signif_Avg, false)}}</li>
-        </ul>
 
         <br>
         <h4><b>Position Info</b></h4>
@@ -37,6 +34,9 @@
 
         <br>
         <h4><b>Spectral Info</b></h4>
+        <ul>
+          <li>Significance (100 MeV - 300 GeV): {{source.format(d.Signif_Avg, false)}}</li>
+        </ul>
 
         <ul>
           <li>Spectrum type: {{d.SpectrumType}}</li>
