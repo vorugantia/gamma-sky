@@ -14,7 +14,7 @@
       </ul>
       <ul>
         <li>Significance (10 GeV - 2 TeV): {{source.format(d.Signif_Avg, false)}}</li>
-        <li>Predicted n. events in model: {{source.format(d.Npred, true)}}</li>
+        <li>Npred: {{source.format(d.Npred, true)}}</li>
       </ul>
 
       <br>
@@ -46,14 +46,19 @@
 
       <ul>
         <li>Spectrum type: {{d.SpectrumType}}</li>
-        <li>Significance curvature: {{source.format(d.Signif_Curve, true)}}</li>
-        <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
-        <li *ngIf=isLogParabola()>beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
-        <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'GeV')}}</li>
+        <ul>
+          <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
+          <li *ngIf='isLogParabola()'>Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
+          <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'GeV')}}</li>
+          <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 GeV-1')}}</li>
+        </ul>
+      </ul>
+
+      <ul>
         <li>Power law index: {{source.format_error(d.PowerLaw_Index, d.Unc_PowerLaw_Index, false)}}</li>
-        <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 GeV-1')}}</li>
         <li>Integral flux (10 GeV - 1 TeV): {{source.format_error(d.Flux, d.Unc_Flux, true, 'cm-2 s-1')}}</li>
         <li>Energy flux (10 GeV - 1 TeV): {{source.format_error(d.Energy_Flux, d.Unc_Energy_Flux, true, 'erg cm-2 s-1')}}</li>
+        <li>Significance curvature: {{source.format(d.Signif_Curve, true)}}</li>
       </ul>
 
       <br>

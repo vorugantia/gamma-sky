@@ -38,6 +38,11 @@ export class CatSource3FHLComponent implements OnInit {
   isExtended() {
     return this.source.is_extended();
   }
+  isPowerLaw() {
+    if(this.d.SpectrumType.trim() == 'PowerLaw')
+      return true;
+    return false;
+  }
   isLogParabola() {
     if(this.d.SpectrumType.trim() == 'LogParabola')
       return true;

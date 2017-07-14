@@ -13,6 +13,9 @@
           <li>Class: {{d.CLASS1}}</li>
           <li>TeVCat flag: {{source.tevcat_flag()}}</li>
         </ul>
+        <ul>
+          <li>Significance (100 MeV - 300 GeV): {{source.format(d.Signif_Avg, false)}}</li>
+        </ul>
 
         <br>
         <h4><b>Position Info</b></h4>
@@ -34,17 +37,45 @@
 
         <br>
         <h4><b>Spectral Info</b></h4>
+
         <ul>
           <li>Spectrum type: {{d.SpectrumType}}</li>
-          <li>Significance (100 MeV - 300 GeV): {{source.format(d.Signif_Avg, false)}}</li>
+          <div *ngIf=isPowerLaw()>
+            <ul>
+              <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
+              <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'MeV')}}</li>
+              <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
+            </ul>
+          </div>
+          <div *ngIf=isLogParabola()>
+            <ul>
+              <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
+              <li>Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
+              <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'MeV')}}</li>
+              <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
+            </ul>
+          </div>
+          <div *ngIf=isECPL()>
+            <ul>
+              <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
+              <li>Cutoff energy: {{source.format_error(d.Cutoff, d.Unc_Cutoff, false, 'MeV')}}</li>
+              <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'MeV')}}</li>
+              <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
+            </ul>
+          </div>
+          <div *ngIf=isSuperECPL()>
+            <ul>
+              <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
+              <li>Exponential index: {{source.format_error(d.Exp_Index, d.Unc_Exp_Index, false)}}</li>
+              <li>Cutoff energy: {{source.format_error(d.Cutoff, d.Unc_Cutoff, false, 'MeV')}}</li>
+              <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'MeV')}}</li>
+              <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
+            </ul>
+          </div>
+        </ul>
+        <ul>
           <li>Significance curvature: {{source.format(d.Signif_Curve, true)}}</li>
-          <li *ngIf=isLogParabola()>Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
-          <li *ngIf=isPLExpCutoff()>Cutoff energy: {{source.format_error(d.Cutoff, d.Unc_Cutoff, false, 'MeV')}}</li>
-          <li *ngIf=isPLSuperExpCutoff()>Exponential index: {{source.format_error(d.Exp_Index, d.Unc_Exp_Index, false)}}</li>
-          <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'MeV')}}</li>
           <li>Power law index: {{source.format(d.PowerLaw_Index, false)}}</li>
-          <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
-          <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
           <li>Integral flux (1 - 100 GeV): {{source.format_error(d.Flux1000, d.Unc_Flux1000, true, 'cm-2 s-1')}}</li>
           <li>Energy flux (100 MeV - 100 GeV): {{source.format_error(d.Energy_Flux100, d.Unc_Energy_Flux100, true, 'erg cm-2 s-1')}}</li>
         </ul>
@@ -80,12 +111,12 @@
     </div>
 
     <div class="col-md-4">
-      <h3>Lightcurve</h3>
+      <h3><b>Lightcurve</b></h3>
       <img src="{{getUrl(d.Source_Name, 'lc')}}" class="img-responsive" alt="Light curve" />
     </div>
 
     <div class="col-md-4">
-      <h3>Spectrum</h3>
+      <h3><b>Spectrum</b></h3>
       <img src="{{getUrl(d.Source_Name, 'spec')}}" class="img-responsive" alt="Spectrum" />
     </div>
 
