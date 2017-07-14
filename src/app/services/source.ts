@@ -43,6 +43,26 @@ class SourceBase {
     return "No data";
   }
 
+  join_entries(arr) {
+    var entries = arr.filter(entry => {
+      return /\S/.test(entry);
+    });
+    return entries.toString().replace(/,/g, ', ');
+  }
+
+  tevcat_flag() {
+    // Only works for 3FHL and 3FGL.
+    var flag = this.data.TEVCAT_FLAG;
+    if(flag == 'N')
+      return "No TeV association";
+    else if(flag == 'P')
+      return "Small TeV source";
+    else if(flag == 'E')
+      return "Extended TeV source (diameter > 40 arcmins)";
+    else
+      return "N/A";
+  }
+
 }
 
 export class SourceTeV extends SourceBase {
@@ -72,26 +92,10 @@ export class SourceTeV extends SourceBase {
 export class Source3FHL extends SourceBase {
 
   join_assoc() {
-    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM, this.data.ASSOC_TEV];
-    for(var i = 0; i < assocs.length; i++) {
-      var a = assocs[i].trim();
-      if(a.length == 0)
-        assocs.splice(i, i++);
-    }
-    var s = assocs.join(', ');
-    return s.replace(/,\s*$/, ""); //Removes comma + any whitespace after it.
-  }
+    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM,
+                  this.data.ASSOC_TEV];
 
-  tevcat_flag() {
-    var flag = this.data.TEVCAT_FLAG;
-    if(flag == 'N')
-      return "No TeV association";
-    else if(flag == 'P')
-      return "Small TeV source";
-    else if(flag == 'E')
-      return "Extended TeV source (diameter > 40 arcmins)";
-    else
-      return "N/A";
+    return this.join_entries(assocs);
   }
 
   bayesian_blocks() {
@@ -113,6 +117,20 @@ export class Source3FHL extends SourceBase {
 }
 
 export class Source3FGL extends SourceBase {
+
+  join_assoc() {
+    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_TEV,
+    this.data.ASSOC_GAM1, this.data.ASSOC_GAM2, this.data.ASSOC_GAM3];
+
+    return this.join_entries(assocs);
+  }
+
+  join_other_names() {
+    var other_names = [this.data['0FGL_Name'], this.data['1FGL_Name'],
+                       this.data['2FGL_Name'], this.data['1FHL_Name']];
+
+    return this.join_entries(other_names);
+  }
 
 }
 

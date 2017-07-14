@@ -72,27 +72,33 @@
       <div *ngIf=show_spec_pl()>
         <ul>
           <li>Spectrum type: pl</li>
-          <li>norm: {{source.format_stat_sys(d.spec_pl_norm, d.spec_pl_norm_err, d.spec_pl_norm_err_sys, true, 'cm-2 s-1 TeV-1' )}}</li>
-          <li>index: {{source.format_stat_sys(d.spec_pl_index, d.spec_pl_index_err, d.spec_pl_index_err_sys, true)}}</li>
-          <li>reference: {{source.format(d.spec_pl_e_ref, true, 'TeV')}}</li>
+          <ul>
+            <li>norm: {{source.format_stat_sys(d.spec_pl_norm, d.spec_pl_norm_err, d.spec_pl_norm_err_sys, true, 'cm-2 s-1 TeV-1' )}}</li>
+            <li>index: {{source.format_stat_sys(d.spec_pl_index, d.spec_pl_index_err, d.spec_pl_index_err_sys, true)}}</li>
+            <li>reference: {{source.format(d.spec_pl_e_ref, true, 'TeV')}}</li>
+          </ul>
         </ul>
       </div>
       <div *ngIf=show_spec_pl2()>
         <ul>
           <li>Spectrum type: pl2 (integral pl)</li>
-          <li>flux: {{source.format_stat_sys(d.spec_pl2_flux, d.spec_pl2_flux_err, d.spec_pl2_flux_err_sys, true, 'cm-2 s-1')}}</li>
-          <li>index: {{source.format_stat_sys(d.spec_pl2_index, d.spec_pl2_index_err, d.spec_pl2_index_err_sys, true)}}</li>
-          <li>e_min: {{source.format(d.spec_pl2_e_min, true, 'TeV')}}</li>
-          <li>e_max: {{source.format(d.spec_pl2_e_max, true, 'TeV')}}</li>
+          <ul>
+            <li>flux: {{source.format_stat_sys(d.spec_pl2_flux, d.spec_pl2_flux_err, d.spec_pl2_flux_err_sys, true, 'cm-2 s-1')}}</li>
+            <li>index: {{source.format_stat_sys(d.spec_pl2_index, d.spec_pl2_index_err, d.spec_pl2_index_err_sys, true)}}</li>
+            <li>e_min: {{source.format(d.spec_pl2_e_min, true, 'TeV')}}</li>
+            <li>e_max: {{source.format(d.spec_pl2_e_max, true, 'TeV')}}</li>
+          </ul>
         </ul>
       </div>
       <div *ngIf=show_spec_ecpl()>
         <ul>
           <li>Spectrum type: ecpl</li>
-          <li>norm: {{source.format_stat_sys(d.spec_ecpl_norm, d.spec_ecpl_norm_err, d.spec_ecpl_norm_err_sys, true, 'cm-2 s-1 TeV-1')}}</li>
-          <li>index: {{source.format_stat_sys(d.spec_ecpl_index, d.spec_ecpl_index_err, d.spec_ecpl_index_err_sys, true)}}</li>
-          <li>e_cut: {{source.format_stat_sys(d.spec_ecpl_e_cut, d.spec_ecpl_e_cut_err, d.spec_ecpl_e_cut_err_sys, true, 'TeV')}}</li>
-          <li>reference: {{source.format(d.spec_ecpl_e_ref, true, 'TeV')}}</li>
+          <ul>
+            <li>norm: {{source.format_stat_sys(d.spec_ecpl_norm, d.spec_ecpl_norm_err, d.spec_ecpl_norm_err_sys, true, 'cm-2 s-1 TeV-1')}}</li>
+            <li>index: {{source.format_stat_sys(d.spec_ecpl_index, d.spec_ecpl_index_err, d.spec_ecpl_index_err_sys, true)}}</li>
+            <li>e_cut: {{source.format_stat_sys(d.spec_ecpl_e_cut, d.spec_ecpl_e_cut_err, d.spec_ecpl_e_cut_err_sys, true, 'TeV')}}</li>
+            <li>reference: {{source.format(d.spec_ecpl_e_ref, true, 'TeV')}}</li>
+          </ul>
         </ul>
       </div>
       <div *ngIf=no_spec()>

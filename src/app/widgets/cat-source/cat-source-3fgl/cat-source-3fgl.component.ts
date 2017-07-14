@@ -65,6 +65,33 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
   }
 
+  isPowerLaw() {
+    if(this.d.SpectrumType.trim() == 'PowerLaw')
+      return true;
+    return false;
+  }
+  isLogParabola() {
+    if(this.d.SpectrumType.trim() == 'LogParabola')
+      return true;
+    return false;
+  }
+  isECPL() {
+    if(this.d.SpectrumType.trim() == 'PLExpCutoff')
+      return true;
+    return false;
+  }
+  isSuperECPL() {
+    if(this.d.SpectrumType.trim() == 'PLSuperExpCutoff')
+      return true;
+    return false;
+  }
+
+  peakMeasured() {
+    if(this.d.Signif_Peak != null)
+      return true;
+    return false;
+  }
+
   constructor(
     private catalogService: CatalogService,
     private activatedRoute: ActivatedRoute
