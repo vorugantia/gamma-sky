@@ -71,6 +71,45 @@ export class SourceTeV extends SourceBase {
 
 export class Source3FHL extends SourceBase {
 
+  join_assoc() {
+    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM, this.data.ASSOC_TEV];
+    for(var i = 0; i < assocs.length; i++) {
+      var a = assocs[i].trim();
+      if(a.length == 0)
+        assocs.splice(i, i++);
+    }
+    var s = assocs.join(', ');
+    return s.replace(/,\s*$/, ""); //Removes comma + any whitespace after it.
+  }
+
+  tevcat_flag() {
+    var flag = this.data.TEVCAT_FLAG;
+    if(flag == 'N')
+      return "No TeV association";
+    else if(flag == 'P')
+      return "Small TeV source";
+    else if(flag == 'E')
+      return "Extended TeV source (diameter > 40 arcmins)";
+    else
+      return "N/A";
+  }
+
+  bayesian_blocks() {
+    var bayesBlocks = this.data.Variability_BayesBlocks;
+    var msg;
+    if(bayesBlocks == 1)
+      msg = '1 (not variable)';
+    else if(bayesBlocks == -1)
+      msg = 'Could not be tested';
+    else
+      msg = bayesBlocks.toString();
+    return msg;
+  }
+
+  is_extended() {
+    return this.data.Extended_Source_Name.trim() != '';
+  }
+
 }
 
 export class Source3FGL extends SourceBase {
