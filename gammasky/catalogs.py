@@ -71,18 +71,20 @@ def make_tev_catalog_data():
     dump_to_json(data, filename)
 
 
-def make_tev_source_data():
+def make_tev_source_data(start, end):
     click.secho('Making source data from TeV catalog...', fg='green')
+    index = np.arange(start, end)
 
     cat = SourceCatalogGammaCat()
     for source in cat:
-        out_dir = DATA_DIR / 'cat/tev/sources/{:04d}'.format(source.index)
-        out_dir.mkdir(parents=True, exist_ok=True)
+        if source.index in index:
+            out_dir = DATA_DIR / 'cat/tev/sources/{:04d}'.format(source.index)
+            out_dir.mkdir(parents=True, exist_ok=True)
 
-        data = source._data_python_dict
-        filename = out_dir / 'data.json'
-        click.secho('Writing: {}'.format(filename), fg='green')
-        dump_to_json(data, filename)
+            data = source._data_python_dict
+            filename = out_dir / 'data.json'
+            click.secho('Writing: {}'.format(filename), fg='green')
+            dump_to_json(data, filename)
 
 
 def make_3fgl_catalog_data():

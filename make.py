@@ -63,9 +63,12 @@ def source_all():
 
 
 @source.command('tev')
-def source_tev():
+@click.option('--start', default=0)
+@click.option('--end', default=162)
+def source_tev(start, end):
     """Dump TeV source objects to JSON"""
-    gammasky.make_tev_source_data()
+    '''Write all sources by default. For testing, pass a start + end index.'''
+    gammasky.make_tev_source_data(start, end)
 
 
 @source.command('3fhl')
@@ -84,6 +87,16 @@ def source_3fgl():
 def maps():
     """Make map data"""
     gammasky.make_maps_data()
+
+
+@cli.command()
+@click.pass_context
+def all(ctx):
+    """Dump all data to JSON"""
+    ctx.invoke(cat_all)
+    ctx.invoke(source_all)
+    ctx.invoke(maps)
+
 
 
 if __name__ == '__main__':
