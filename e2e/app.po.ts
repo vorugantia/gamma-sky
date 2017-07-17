@@ -13,4 +13,8 @@ export class GammaSkyPage {
     return element(by.id(id)).getText();
   }
 
+  clickButton(text) {
+    return element(by.buttonText(text)).click();
+  }
+
 }

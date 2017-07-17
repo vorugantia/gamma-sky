@@ -7,7 +7,7 @@ describe('gamma-sky App', () => {
     page = new GammaSkyPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should initialize the webpage', () => {
     page.navigateTo('/');
 
     expect(page.getTextByTags('app-root h1')).toEqual('');
@@ -18,10 +18,17 @@ describe('gamma-sky App', () => {
     expect(page.getTextById('e2e-source-tev-name')).toEqual('CTA 1');
 
     page.navigateTo('/#/cat/3fhl/0');
-    expect(page.getTextById('e2e-source-3fhl-name' )).toEqual('3FHL J0001.2-0748');
+    expect(page.getTextById('e2e-source-3fhl-name')).toEqual('3FHL J0001.2-0748');
 
     page.navigateTo('/#/cat/3fgl/0');
     expect(page.getTextById('e2e-source-3fgl-name')).toEqual('3FGL J0000.1+6545');
+  });
+
+  it('should click "About" button in Map View and read text', () => {
+    page.navigateTo('/#/map');
+
+    page.clickButton('About');
+    expect(page.getTextById('aboutInfo')).toContain('Gamma-sky.net');
   });
 
 });
