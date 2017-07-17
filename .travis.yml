@@ -28,7 +28,7 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
 - conda info -a
-- conda create -q -n test-environment python=3.5 pip
+- conda create -q -n test-environment python=3.6 pip
 - source activate test-environment
 - conda config --add channels conda-forge
 - conda install cython numpy pandas click astropy healpy
