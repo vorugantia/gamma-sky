@@ -70,7 +70,6 @@ def source_tev(sources):
     """Dump TeV source objects to JSON"""
     gammasky.make_tev_source_data(sources)
 
-
 @source.command('3fhl')
 @click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
 def source_3fhl(sources):
@@ -99,6 +98,11 @@ def all(ctx):
     ctx.invoke(source_all)
     ctx.invoke(maps)
 
+
+@cli.command('fetch-data')
+def fetch_data():
+    """Dump input data files"""
+    gammasky.fetch_all_data()
 
 
 if __name__ == '__main__':

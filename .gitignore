@@ -1,5 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# input data files for webpage build
+input_data/3fhl.fits.gz
+input_data/3fgl.fits.gz
+input_data/gammacat.fits.gz
+
 # static data
 /src/data
 
