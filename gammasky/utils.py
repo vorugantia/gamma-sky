@@ -51,16 +51,9 @@ def dump_to_json(data, filename):
     with open(filename, 'w') as fh:
         json.dump(data, fh)
 
-#
-# def dump_list_to_json(cat, filename):
-#     with open(filename, 'w') as fh:
-#         data = json.dumps(cat._data_python_list)
-#         mask = data.replace('NaN', 'null').replace('-Infinity', 'null').replace('Infinity', 'null')
-#         json.dump(json.loads(mask), fh)
-#
-#
-# def dump_dict_to_json(source, filename):
-#     with open(filename, 'w') as fh:
-#         data = json.dumps(source._data_python_dict)
-#         mask = data.replace('NaN', 'null').replace('-Infinity', 'null').replace('Infinity', 'null')
-#         json.dump(json.loads(mask), fh)
+
+def get_selected_sources(cat, sources):
+    if sources == 'all':
+        return list(range(len(cat.table)))
+    else:
+        return [int(_) for _ in sources.split(',')]

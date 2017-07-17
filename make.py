@@ -22,12 +22,13 @@ def source():
 
 
 @cat.command('all')
-def cat_all():
+@click.pass_context
+def cat_all(ctx):
     """Dump all catalogs to JSON"""
-    gammasky.make_tev_catalog_data()
-    gammasky.make_3fhl_catalog_data()
-    gammasky.make_3fgl_catalog_data()
-    gammasky.make_snrcat_catalog_data()
+    ctx.invoke(cat_tev)
+    ctx.invoke(cat_3fhl)
+    ctx.invoke(cat_3fgl)
+    ctx.invoke(cat_snrcat)
 
 
 @cat.command('tev')
@@ -37,7 +38,7 @@ def cat_tev():
 
 
 @cat.command('3fhl')
-def cat_tev():
+def cat_3fhl():
     """Dump 3FHL catalog to JSON"""
     gammasky.make_3fhl_catalog_data()
 
@@ -55,32 +56,33 @@ def cat_snrcat():
 
 
 @source.command('all')
-def source_all():
+@click.pass_context
+def source_all(ctx):
     """Dump all source objects to JSON"""
-    gammasky.make_3fhl_source_data()
-    gammasky.make_tev_source_data()
-    gammasky.make_3fgl_source_data()
+    ctx.invoke(source_tev)
+    ctx.invoke(source_3fhl)
+    ctx.invoke(source_3fgl)
 
 
 @source.command('tev')
-@click.option('--start', default=0)
-@click.option('--end', default=162)
-def source_tev(start, end):
+@click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
+def source_tev(sources):
     """Dump TeV source objects to JSON"""
-    '''Write all sources by default. For testing, pass a start + end index.'''
-    gammasky.make_tev_source_data(start, end)
+    gammasky.make_tev_source_data(sources)
 
 
 @source.command('3fhl')
-def source_3fhl():
+@click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
+def source_3fhl(sources):
     """Dump 3FHL source objects to JSON"""
-    gammasky.make_3fhl_source_data()
+    gammasky.make_3fhl_source_data(sources)
 
 
 @source.command('3fgl')
-def source_3fgl():
+@click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
+def source_3fgl(sources):
     """Dump 3FGL source objects to JSON"""
-    gammasky.make_3fgl_source_data()
+    gammasky.make_3fgl_source_data(sources)
 
 
 @cli.command()
