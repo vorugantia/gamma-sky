@@ -22,12 +22,13 @@ def source():
 
 
 @cat.command('all')
-def cat_all():
+@click.pass_context
+def cat_all(ctx):
     """Dump all catalogs to JSON"""
-    gammasky.make_tev_catalog_data()
-    gammasky.make_3fhl_catalog_data()
-    gammasky.make_3fgl_catalog_data()
-    gammasky.make_snrcat_catalog_data()
+    ctx.invoke(cat_tev)
+    ctx.invoke(cat_3fhl)
+    ctx.invoke(cat_3fgl)
+    ctx.invoke(cat_snrcat)
 
 
 @cat.command('tev')
@@ -37,7 +38,7 @@ def cat_tev():
 
 
 @cat.command('3fhl')
-def cat_tev():
+def cat_3fhl():
     """Dump 3FHL catalog to JSON"""
     gammasky.make_3fhl_catalog_data()
 
@@ -55,35 +56,53 @@ def cat_snrcat():
 
 
 @source.command('all')
-def source_all():
+@click.pass_context
+def source_all(ctx):
     """Dump all source objects to JSON"""
-    gammasky.make_3fhl_source_data()
-    gammasky.make_tev_source_data()
-    gammasky.make_3fgl_source_data()
+    ctx.invoke(source_tev)
+    ctx.invoke(source_3fhl)
+    ctx.invoke(source_3fgl)
 
 
 @source.command('tev')
-def source_tev():
+@click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
+def source_tev(sources):
     """Dump TeV source objects to JSON"""
-    gammasky.make_tev_source_data()
-
+    gammasky.make_tev_source_data(sources)
 
 @source.command('3fhl')
-def source_3fhl():
+@click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
+def source_3fhl(sources):
     """Dump 3FHL source objects to JSON"""
-    gammasky.make_3fhl_source_data()
+    gammasky.make_3fhl_source_data(sources)
 
 
 @source.command('3fgl')
-def source_3fgl():
+@click.option('--sources', default='all', help='Either "all" or comma-separated string of source IDs')
+def source_3fgl(sources):
     """Dump 3FGL source objects to JSON"""
-    gammasky.make_3fgl_source_data()
+    gammasky.make_3fgl_source_data(sources)
 
 
 @cli.command()
 def maps():
     """Make map data"""
     gammasky.make_maps_data()
+
+
+@cli.command()
+@click.pass_context
+def all(ctx):
+    """Dump all data to JSON"""
+    ctx.invoke(cat_all)
+    ctx.invoke(source_all)
+    ctx.invoke(maps)
+
+
+@cli.command('fetch-data')
+def fetch_data():
+    """Dump input data files"""
+    gammasky.fetch_all_data()
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ import numpy as np
 from astropy.table import Table
 import json
 from gammapy.catalog import SourceCatalog3FHL, SourceCatalogGammaCat, SourceCatalog3FGL
-from .utils import table_to_list_of_dict, dump_to_json
+from .utils import table_to_list_of_dict, dump_to_json, get_selected_sources
 from .config import DATA_DIR
 
 __all__ = [
@@ -40,11 +40,13 @@ def make_3fhl_catalog_data():
     dump_to_json(data, filename)
 
 
-def make_3fhl_source_data():
+def make_3fhl_source_data(sources):
     click.secho('Making source data from 3FHL...', fg='green')
 
     cat = SourceCatalog3FHL()
-    for source in cat:
+    sources = get_selected_sources(cat, sources)
+    for idx in sources:
+        source = cat[idx]
         out_dir = DATA_DIR / 'cat/3fhl/sources/{:04d}'.format(source.index)
         out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -71,11 +73,13 @@ def make_tev_catalog_data():
     dump_to_json(data, filename)
 
 
-def make_tev_source_data():
+def make_tev_source_data(sources):
     click.secho('Making source data from TeV catalog...', fg='green')
 
     cat = SourceCatalogGammaCat()
-    for source in cat:
+    sources = get_selected_sources(cat, sources)
+    for idx in sources:
+        source = cat[idx]
         out_dir = DATA_DIR / 'cat/tev/sources/{:04d}'.format(source.index)
         out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -102,11 +106,13 @@ def make_3fgl_catalog_data():
     dump_to_json(data, filename)
 
 
-def make_3fgl_source_data():
+def make_3fgl_source_data(sources):
     click.secho('Making source data from 3FGL...', fg='green')
 
     cat = SourceCatalog3FGL()
-    for source in cat:
+    sources = get_selected_sources(cat, sources)
+    for idx in sources:
+        source = cat[idx]
         out_dir = DATA_DIR / 'cat/3fgl/sources/{:04d}'.format(source.index)
         out_dir.mkdir(parents=True, exist_ok=True)
 
