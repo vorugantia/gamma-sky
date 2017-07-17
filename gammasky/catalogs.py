@@ -28,7 +28,7 @@ def make_3fhl_catalog_data():
     out_dir = DATA_DIR / 'cat/3fhl'
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    cat = SourceCatalog3FHL()
+    cat = SourceCatalog3FHL(filename='input_data/3fhl.fits.gz')
     # Indexing table - this is all the data we need for MapView.
     cols = ['Source_Name', 'RAJ2000', 'DEJ2000',
             'GLON', 'GLAT', 'ASSOC1', 'CLASS']
@@ -43,7 +43,7 @@ def make_3fhl_catalog_data():
 def make_3fhl_source_data(sources):
     click.secho('Making source data from 3FHL...', fg='green')
 
-    cat = SourceCatalog3FHL()
+    cat = SourceCatalog3FHL(filename='input_data/3fhl.fits.gz')
     sources = get_selected_sources(cat, sources)
     for idx in sources:
         source = cat[idx]
@@ -62,7 +62,7 @@ def make_tev_catalog_data():
     out_dir = DATA_DIR / 'cat/tev'
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    cat = SourceCatalogGammaCat()
+    cat = SourceCatalogGammaCat(filename='input_data/gammacat.fits.gz')
     cols = ['common_name', 'ra', 'dec', 'glon', 'glat',
             'other_names', 'classes']
     cat.table = cat.table[cols]
@@ -76,7 +76,7 @@ def make_tev_catalog_data():
 def make_tev_source_data(sources):
     click.secho('Making source data from TeV catalog...', fg='green')
 
-    cat = SourceCatalogGammaCat()
+    cat = SourceCatalogGammaCat(filename='input_data/gammacat.fits.gz')
     sources = get_selected_sources(cat, sources)
     for idx in sources:
         source = cat[idx]
@@ -95,7 +95,7 @@ def make_3fgl_catalog_data():
     out_dir = DATA_DIR / 'cat/3fgl'
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    cat = SourceCatalog3FGL()
+    cat = SourceCatalog3FGL(filename='input_data/3fgl.fits.gz')
     cols = ['Source_Name', 'RAJ2000', 'DEJ2000', 'GLON',
             'GLAT', 'ASSOC1', 'CLASS1']
     cat.table = cat.table[cols]
@@ -109,7 +109,7 @@ def make_3fgl_catalog_data():
 def make_3fgl_source_data(sources):
     click.secho('Making source data from 3FGL...', fg='green')
 
-    cat = SourceCatalog3FGL()
+    cat = SourceCatalog3FGL(filename='input_data/3fgl.fits.gz')
     sources = get_selected_sources(cat, sources)
     for idx in sources:
         source = cat[idx]

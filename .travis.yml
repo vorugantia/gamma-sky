@@ -42,8 +42,7 @@ before_script:
 
 script:
 - python make.py fetch-data
-- ls input_data/
-#- python make.py test-dataset
+- python make.py test-dataset
 - ng build
 - ng e2e
 - karma start config/karma.conf.js --single-run

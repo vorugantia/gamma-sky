@@ -99,6 +99,17 @@ def all(ctx):
     ctx.invoke(maps)
 
 
+@cli.command('test-dataset')
+@click.option('--sources', default='0')
+@click.pass_context
+def test_dataset(ctx, sources):
+    """Dump all data needed for testing."""
+    ctx.invoke(cat_all)
+    ctx.forward(source_tev)
+    ctx.forward(source_3fhl)
+    ctx.forward(source_3fgl)
+
+
 @cli.command('fetch-data')
 def fetch_data():
     """Dump input data files"""
