@@ -42,13 +42,13 @@ def table_to_list_of_dict(table):
     return rows
 
 
-def dump_to_json(data, filename):
+def dump_to_json(data, path):
     # Replace all instances of NaN and Inf values (which are not valid JSON) with null
     text = json.dumps(data)
     text = text.replace('NaN', 'null').replace('-Infinity', 'null').replace('Infinity', 'null')
     data = json.loads(text)
 
-    with open(filename, 'w') as fh:
+    with path.open('w') as fh:
         json.dump(data, fh)
 
 

@@ -28,7 +28,7 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
 - conda info -a
-- conda create -q -n test-environment python=3.5 pip
+- conda create -q -n test-environment python=3.6 pip
 - source activate test-environment
 - conda config --add channels conda-forge
 - conda install cython numpy pandas click astropy healpy
@@ -42,8 +42,7 @@ before_script:
 
 script:
 - python make.py fetch-data
-- ls input_data/
-#- python make.py test-dataset
+- python make.py test-dataset
 - ng build
 - ng e2e
 - karma start config/karma.conf.js --single-run
