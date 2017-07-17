@@ -1,11 +1,20 @@
 import { browser, element, by } from 'protractor';
 
 export class GammaSkyPage {
-  navigateTo() {
-    return browser.get('/');
+  navigateTo(url) {
+    return browser.get(url);
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getTextByTags(tags) {
+    return element(by.css(tags)).getText();
   }
+
+  getTextById(id) {
+    return element(by.id(id)).getText();
+  }
+
+  clickButton(text) {
+    return element(by.buttonText(text)).click();
+  }
+
 }
