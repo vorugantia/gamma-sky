@@ -5,9 +5,12 @@ export class GammaSkyPage {
     return browser.get(url);
   }
 
-  getParagraphText(dom) {
-    return element(by.css(dom)).getText();
+  getTextByTags(tags) {
+    return element(by.css(tags)).getText();
   }
 
+  getTextById(id) {
+    return element(by.id(id)).getText();
+  }
 
 }
