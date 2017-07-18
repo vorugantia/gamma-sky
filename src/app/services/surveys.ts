@@ -122,7 +122,7 @@ export var SURVEYS: Survey[] = [
   },
   {
     "id": "P/SPITZER/IRAC4",
-    "url": "../../data/temp/IRAC4",
+    "url": "../../data/maps/IRAC4",
     "name": "LOCAL",
     "maxOrder": 3,
     "frame": "galactic",
