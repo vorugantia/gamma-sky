@@ -119,6 +119,14 @@ export var SURVEYS: Survey[] = [
     "maxOrder": 6,
     "frame": "equatorial",
     "format": "png"
+  },
+  {
+    "id": "P/SPITZER/IRAC4",
+    "url": "../../data/temp/IRAC4",
+    "name": "LOCAL",
+    "maxOrder": 3,
+    "frame": "galactic",
+    "format": "jpeg"
   }
 
 
