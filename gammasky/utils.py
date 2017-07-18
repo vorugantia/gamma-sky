@@ -1,6 +1,5 @@
 import numpy as np
 import json
-import os  # TODO remove
 from collections import OrderedDict
 
 __all__ = [

@@ -6,6 +6,7 @@ __all__ = [
     'make_maps_data',
 ]
 
+
 def make_maps_data():
     click.secho('Preparing maps data...', fg='green')
     click.secho('This code is incomplete - for now dump IRAC4 data from hips-extra on GitHub.', fg='red')

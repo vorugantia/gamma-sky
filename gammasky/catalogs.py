@@ -22,6 +22,7 @@ __all__ = [
 
 TO_JSON_KWARGS = dict(orient='split', double_precision=5)
 
+
 def make_3fhl_catalog_data():
     click.secho('Making 3FHL catalog data...', fg='green')
 
@@ -136,7 +137,7 @@ def make_snrcat_catalog_data():
     table['snrcat_id'] = [
         _.replace('+', 'p').replace('-', 'm')
         for _ in table['Source_Name']
-        ]
+    ]
     list_of_dict = table_to_list_of_dict(table.filled())
 
     filename = out_dir / 'cat.json'

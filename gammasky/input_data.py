@@ -7,7 +7,6 @@ __all__ = [
 
 
 def fetch_all_data():
-
     # Catalogs
     fetch_data(
         'https://github.com/gammapy/gammapy-extra/raw/master/datasets/catalogs/fermi/gll_psch_v11.fit.gz',
