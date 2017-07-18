@@ -33,6 +33,9 @@ install:
 - conda config --add channels conda-forge
 - conda install cython numpy pandas click astropy healpy
 - pip install git+https://github.com/gammapy/gammapy.git#egg=gammapy
+- conda install -c conda-forge healpy
+- pip install git+https://github.com/hipspy/hips.git#egg=hips
+
 
 
 before_script:
