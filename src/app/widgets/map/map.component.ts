@@ -26,6 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
       fullScreen: true,
       showFullscreenControl: false,
       survey: "P/Fermi/color",
+      // survey: "P/Fermi/color/10GeV",
       cooFrame: "galactic",
       target: "0 +0",
       fov: 180,

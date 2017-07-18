@@ -121,13 +121,11 @@ export var SURVEYS: Survey[] = [
     "format": "png"
   },
   {
-    "id": "P/SPITZER/IRAC4",
-    "url": "../../data/maps/IRAC4",
-    "name": "LOCAL",
+    "id": "P/Fermi/color/10GeV",
+    "url": "../../data/maps/Fermi10GeV",
+    "name": "Fermi above 10 GeV",
     "maxOrder": 3,
     "frame": "galactic",
     "format": "jpeg"
   }
-
-
 ]
