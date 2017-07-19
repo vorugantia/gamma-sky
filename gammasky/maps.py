@@ -1,14 +1,18 @@
+import logging
 import click
 import subprocess
 from pathlib import Path
 import numpy as np
 import healpy as hp
+from astropy.table import Table
 from hips import HipsTile, HipsTileMeta
 from .config import DATA_DIR
 
 __all__ = [
     'make_maps_data',
 ]
+
+log = logging.getLogger(__name__)
 
 # Config options as global variables
 out_path = Path('src/data/maps')
@@ -17,6 +21,8 @@ energy_bands = [
     dict(min=30, max=100),
     dict(min=100, max=2000),
 ]
+orders = [1]
+shift_order = 9
 
 
 def make_maps_data_test():
@@ -47,13 +53,43 @@ def make_maps_data():
 
 def make_healpix_maps():
     click.secho('Making Fermi-LAT HEALPix maps ...')
-    for energy_band in energy_bands:
-        make_healpix_map_for_energy_band(energy_band)
+    for order in orders:
+        for energy_band in energy_bands:
+            make_healpix_map_for_energy_band(energy_band, order)
 
 
-def make_healpix_map_for_energy_band(energy_band):
-    click.secho(f'Making HEALPix map for energy band: {energy_band}', fg='green')
-    # TODO: implement
+def make_healpix_map_for_energy_band(energy_band, order):
+    click.secho(f'Making HEALPix map for energy band: {energy_band} and order: {order}', fg='green')
+
+    # Select events in energy band
+    table = Table.read('input_data/fermi_hgps_events_selected.fits.gz', hdu=1)
+    energy = table['ENERGY'].quantity.to('GeV').value
+    mask = (energy_band['min'] <= energy) & (energy < energy_band['max'])
+    table = table[mask]
+    log.info(f'Number of events: {len(table)}')
+
+    # Bin the events into a HEALPix counts map
+    nside = hp.order2nside(order + shift_order)
+    ipix = hp.ang2pix(
+        nside=nside, nest=True, lonlat=True,
+        theta=table['L'], phi=table['B'],
+    )
+    npix = hp.nside2npix(nside)
+    log.debug(f'Number of pixels: {npix}')
+    resolution = np.rad2deg(hp.nside2resol(nside))
+    log.debug(f'Pixel resolution: {resolution} deg')
+    image = np.bincount(ipix, minlength=npix)
+    image = image.astype('float32')
+
+    # TODO: smoothing the HEALPix map with default setting is very slow.
+    # Maybe chunk the data into local WCS maps and then stitch back together?
+    # For now: no smoothing
+    # image = hp.smoothing(image, sigma=np.deg2rad(0.1))
+
+    path = out_path / 'Fermi10GeV_healpix_maps' / 'energy_{min}_{max}.fits.gz'.format_map(energy_band)
+    path.parent.mkdir(exist_ok=True, parents=True)
+    log.info(f'Writing {path}')
+    hp.write_map(str(path), image, coord='G', nest=True)
 
 
 def make_hips_from_healpix():
@@ -66,11 +102,11 @@ def make_hips_from_healpix():
     make_hips_allsky_jpeg_file()
 
     # Make all HiPS JPG tiles
-    make_hips_tiles()
+    # make_hips_tiles()
 
 
 def make_hips_properties_file():
-    txt ="""
+    txt = """
 creator_did         = ivo://MPIK/P/Fermi/10GeV
 obs_title           = Fermi High-Energy Image (>10GeV)
 client_category     = Image/Gamma-ray/Fermi

@@ -24,11 +24,15 @@ def fetch_all_data():
     # Maps
     fetch_data(
         'https://github.com/gammapy/gammapy-fermi-lat-data/raw/master/fermi-hgps/fermi_hgps_counts_hpx.fits.gz',
-        'fermi_hgps_counts_hpx.fits.gz'
+        'fermi_hgps_counts_hpx.fits.gz',
     )
     fetch_data(
         'https://github.com/gammapy/gammapy-fermi-lat-data/raw/master/fermi-hgps/fermi_hgps_exposure_hpx.fits.gz',
-        'fermi_hgps_exposure_hpx.fits.gz'
+        'fermi_hgps_exposure_hpx.fits.gz',
+    )
+    fetch_data(
+        'https://github.com/gammapy/gammapy-fermi-lat-data/raw/master/fermi-hgps/fermi_hgps_events_selected.fits.gz',
+        'fermi_hgps_events_selected.fits.gz',
     )
 
 
