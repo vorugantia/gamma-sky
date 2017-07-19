@@ -15,7 +15,6 @@ __all__ = [
 log = logging.getLogger(__name__)
 
 # Config options as global variables
-out_path = Path('src/data/maps')
 energy_bands = [
     dict(min=10, max=30),
     dict(min=30, max=100),
@@ -45,7 +44,7 @@ def make_maps_data():
     """
     click.secho('Making Fermi-LAT high-energy maps ...', fg='green')
     # Step 1: loop over 3 energy bands: make FITS HEALPix images
-    make_healpix_maps()
+    # make_healpix_maps()
 
     # Step 2: convert HEALPix to HiPS
     make_hips_from_healpix()
@@ -86,7 +85,7 @@ def make_healpix_map_for_energy_band(energy_band, order):
     # For now: no smoothing
     # image = hp.smoothing(image, sigma=np.deg2rad(0.1))
 
-    path = out_path / 'Fermi10GeV_healpix_maps' / 'energy_{min}_{max}.fits.gz'.format_map(energy_band)
+    path = DATA_DIR / 'maps' / 'Fermi10GeV_healpix_maps' / 'energy_{min}_{max}.fits.gz'.format_map(energy_band)
     path.parent.mkdir(exist_ok=True, parents=True)
     log.info(f'Writing {path}')
     hp.write_map(str(path), image, coord='G', nest=True)
@@ -102,7 +101,8 @@ def make_hips_from_healpix():
     make_hips_allsky_jpeg_file()
 
     # Make all HiPS JPG tiles
-    # make_hips_tiles()
+    for order in orders:
+        make_hips_tiles(order)
 
 
 def make_hips_properties_file():
@@ -113,7 +113,7 @@ client_category     = Image/Gamma-ray/Fermi
 client_sort_key     = 00-00-00
 hips_release_date   = 2017-07-19T10:52Z
 hips_version        = 1.4
-hips_order          = 3
+hips_order          = 1
 hips_tile_width     = 512
 hips_tile_format    = jpeg
 hips_frame          = galactic
@@ -124,8 +124,9 @@ hips_rgb_green      = 30-100GeV
 hips_rgb_blue       = 100-2000GeV
 hips_glu_tag        = P-Fermi-10GeV.hpx
     """
-    path = Path(DATA_DIR / 'maps/Fermi10GeV/properties')
-    click.secho(f'Writing properties file to {path}', fg='green')
+    path = DATA_DIR / 'maps/Fermi10GeV/properties'
+    path.parent.mkdir(exist_ok=True, parents=True)
+    click.secho(f'Writing {path}', fg='green')
     path.write_text(txt)
 
 
@@ -133,22 +134,20 @@ def make_hips_allsky_jpeg_file():
     pass
 
 
-def make_hips_tiles():
+def make_hips_tiles(order):
     click.secho('Making HiPS image tiles ...', fg='green')
-    npix = hp.nside2npix(hp.order2nside(order=3))
-    for ipix in range(npix)[:10]:
-        make_hips_tile_for_index(ipix)
+    npix = hp.nside2npix(hp.order2nside(order=order))
+    for ipix in range(npix):
+        make_hips_tile_for_index(ipix, order)
 
 
-def make_hips_tile_for_index(ipix):
+def make_hips_tile_for_index(ipix, order):
     click.secho(f'Making HiPS tile for index {ipix}', fg='green')
-    meta = HipsTileMeta(order=3, ipix=ipix, file_format='jpg', frame='galactic')
+    meta = HipsTileMeta(order=order, ipix=ipix, file_format='jpg', frame='galactic')
     data = np.random.randint(low=0, high=255, size=(512, 512, 3), dtype='uint8')
     tile = HipsTile.from_numpy(meta, data)
-    filename = out_path / 'Fermi10GeV' / meta.tile_default_url  # 'Norder3' / 'Dir0' /
 
-    if not filename.parent.is_dir():
-        click.secho(f'Mkdir {filename.parent}')
-        filename.parent.mkdir(parents=True)
-    click.secho(f'Writing {filename}', fg='green')
-    tile.write(filename)
+    path = DATA_DIR / 'maps' / 'Fermi10GeV' / meta.tile_default_path
+    path.parent.mkdir(exist_ok=True, parents=True)
+    click.secho(f'Writing {path}', fg='green')
+    tile.write(path)

@@ -15,12 +15,12 @@ class Survey {
 //         Therefore, check each survey that you add to the list below.
 
 export var SURVEYS: Survey[] = [
-  
+
   {
     "id": "P/Fermi/10GeV",
     "url": "../../data/maps/Fermi10GeV",
     "name": "Fermi above 10 GeV",
-    "maxOrder": 3,
+    "maxOrder": 1,
     "frame": "galactic",
     "format": "jpeg"
   },
