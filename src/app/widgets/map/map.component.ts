@@ -26,7 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
       fullScreen: true,
       showFullscreenControl: false,
       survey: "P/Fermi/color",
-      // survey: "P/Fermi/color/10GeV",
+      // survey: "P/Fermi/10GeV",
       cooFrame: "galactic",
       target: "0 +0",
       fov: 180,
@@ -34,6 +34,7 @@ export class MapComponent implements OnInit, OnDestroy {
       showShareControl: true, //Hidden attribute, not yet working
       // showCatalog: false //Hidden attribute
     });
+
   }
 
   updateSurveys() {
@@ -74,10 +75,6 @@ export class MapComponent implements OnInit, OnDestroy {
           popupDesc: `` + popup.getDesc()
         });
       this.cat.addSources([marker]);
-
-      if(catalogName == 'TeV') {
-        console.log('bbb');
-      }
 
         //this.cat.hide() will hide all catalogs on webpage startup.
     }
