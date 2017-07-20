@@ -15,6 +15,7 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { CatalogService } from '../../services/catalog.service';
 
+
 @NgModule({
   declarations: [
     CatViewComponent,
