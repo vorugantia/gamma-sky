@@ -12,3 +12,7 @@
   text-align: center;
   width: 320px;
 }
+
+md-input-container {
+  width: 200px;
+}

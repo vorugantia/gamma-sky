@@ -24,14 +24,31 @@ export class CatSearchComponent implements OnInit, DoCheck {
   private itemsTeV;
 
   myControl;
-  options = [
-    new User('Crab'),
-    new User('Vela X'),
-    new User('Galactic Center')
-  ];
+  options = [];
   selectedName;
-  filteredOptions: Observable<User[]>;
+  filteredOptions: Observable<any[]>;
 
+  getCatSearchItems() {
+    let items = [];
+
+    this.catalogService.getCatalogTeV()
+      .then(catalog => this.makeSearchItems(catalog, items, 'common_name'))
+      .catch(error => this.error = error);
+    this.options = items;
+
+    this.catalogService.getCatalog3FHL()
+      .then(catalog => this.makeSearchItems(catalog, items))
+      .catch(error => this.error = error);
+    this.options.concat(items);
+
+    this.catalogService.getCatalog3FGL()
+      .then(catalog => this.makeSearchItems(catalog, items))
+      .catch(error => this.error = error);
+    this.options.concat(items);
+  }
+
+
+  //TODO remove the three methods below - they are for the old autocomplete (NOT makeSearchItems())
   getCatSearchItemsTeV() {
     let items = [];
     this.catalogService.getCatalogTeV()
@@ -102,28 +119,28 @@ export class CatSearchComponent implements OnInit, DoCheck {
   }
 
   // Filter the angular2 material dropdown
-  // filter(name: string): User[] {
-  //    return this.options.filter(option => new RegExp(`^${name}`, 'gi').test(option.name));
+  // filter(text: string): any[] {
+  //    return this.options.filter(option => new RegExp(`^${text}`, 'gi').test(option.text));
   // }
-  public filter(val: string): User[] {
+  public filter(val: string): any[] {
   return val ? this.options.filter(s =>
-    s.name.toLowerCase().includes(val.toLowerCase()))
+    s.text.toLowerCase().includes(val.toLowerCase()))
              : this.options;
   }
 
   // Maps controled value to desired display value in dropdown
-  public displayFn(user: User): string {
-    return user ? user.name : user;
+  public displayFn(option: any): string {
+    return option ? option.text : option;
   }
 
   // When an item is selected
   onSelected(evt: MdOptionSelectionChange, option) {
-    if(evt.source.selected) { //If a source is selected vs. un-selected
-      console.log("selected ", option.name);
-      this.selectedName = option.name;
+    if(evt.source.selected) { //If an option is selected vs. un-selected
+      console.log("selected ", option.text);
+      this.selectedName = option.text;
     }
     else {
-      console.log('un-selected ', option.name);
+      console.log('un-selected ', option.text);
     }
   }
 
@@ -136,14 +153,16 @@ export class CatSearchComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
+    this.getCatSearchItems();
     this.getCatSearchItemsTeV();
     this.getCatSearchItems3FHL();
     this.getCatSearchItems3FGL();
 
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
-      .map(user => user && typeof user === 'object' ? user.name : user)
-      .map(name => name ? this.filter(name) : this.options.slice());
+      .map(option => option && typeof option === 'object' ? option.text
+                                                          : option)
+      .map(text => text ? this.filter(text) : this.options.slice());
 
     this.selectedName = 'None selected';
 
@@ -161,11 +180,4 @@ export class CatSearchComponent implements OnInit, DoCheck {
     }
   }
 
-}
-
-class User {
-  public name;
-  constructor(name) {
-    this.name = name;
-  }
 }

@@ -50,7 +50,7 @@
 </div>
 
 <br>
-<div>
+<div style='text-align:center'>
   <h2>Angular2 Material:</h2>
 
   <md-input-container>
@@ -59,11 +59,11 @@
 
   <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
      <md-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)="onSelected($event, option)">
-        {{ option.name }}
+        {{ option.text }}
      </md-option>
   </md-autocomplete>
 
-  <div style='text-align:center'>
+  <div>
     Selected: {{selectedName}}
   </div>
 
