@@ -32,46 +32,35 @@ export class CatSearchComponent implements OnInit, DoCheck {
   selectedName;
   filteredOptions: Observable<User[]>;
 
-  //
-  // getCatSearchItems3FGL() {
-  //   this.catalogService.getCatalog3FGL()
-  //     .then(catalog => {
-  //       let items = [];
-  //
-  //       for(var i = 0; i < this.data.length; i++) {
-  //         items.push({
-  //           text: this.getVal(i, this.sourceNameCol),
-  //           id: i.toString()
-  //         });
-  //       }
-  //       items3FGL =items;
-  //     })
-  // }
-
-  getCatalogs() {
-
-    // this.getCatSearchItems3FGL();
-
-    // TODO: Do the above
-
-    this.catalogService.getCatalog3FGL()
-      .then(catalog => {
-        this.items3FGL = catalog.getCatSearchItems();
-      })
-      .catch(error => this.error = error);
-
-    this.catalogService.getCatalog3FHL()
-      .then(catalog => {
-        this.items3FHL = catalog.getCatSearchItems();
-      })
-      .catch(error => this.error = error);
-
+  getCatSearchItemsTeV() {
+    let items = [];
     this.catalogService.getCatalogTeV()
-      .then(catalog => {
-        this.itemsTeV = catalog.getCatSearchItems();
-      })
+      .then(catalog => this.makeSearchItems(catalog, items, 'common_name'))
       .catch(error => this.error = error);
+    this.itemsTeV = items;
+  }
+  getCatSearchItems3FHL() {
+    let items = [];
+    this.catalogService.getCatalog3FHL()
+      .then(catalog => this.makeSearchItems(catalog, items))
+      .catch(error => this.error = error);
+    this.items3FHL = items;
+  }
+  getCatSearchItems3FGL() {
+    let items = [];
+    this.catalogService.getCatalog3FGL()
+      .then(catalog => this.makeSearchItems(catalog, items))
+      .catch(error => this.error = error);
+    this.items3FGL = items;
+  }
 
+  makeSearchItems(catalog, items, nameCol = 'Source_Name') {
+    for(var i = 0; i < catalog.data.length; i++) {
+      items.push({
+        text: catalog.data[i][nameCol],
+        id: i.toString()
+      });
+    }
   }
 
   setItems(items) {
@@ -147,7 +136,9 @@ export class CatSearchComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.getCatalogs();
+    this.getCatSearchItemsTeV();
+    this.getCatSearchItems3FHL();
+    this.getCatSearchItems3FGL();
 
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)

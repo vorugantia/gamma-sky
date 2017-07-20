@@ -15,26 +15,6 @@ class CatalogBase {
   public raCol = "RAJ2000";
   public decCol = "DEJ2000";
 
-  getVal(idx, colname) {
-    return this.getSource(idx)[colname];
-  }
-
-  getSource(idx) {
-    return this.data[idx];
-  }
-
-  getCatSearchItems() {
-    let items = [];
-
-    for(var i = 0; i < this.data.length; i++) {
-      items.push({
-        text: this.getVal(i, this.sourceNameCol),
-        id: i.toString()
-      });
-    }
-    return items;
-  }
-
 }
 
 export class CatalogTeV extends CatalogBase {
