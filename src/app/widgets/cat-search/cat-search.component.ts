@@ -15,21 +15,17 @@ import { CatalogService } from '../../services/catalog.service';
 })
 export class CatSearchComponent implements OnInit, DoCheck {
 
-  // private selectedId;
-  // private catalog;
-  private error: any;
-
-  private items3FGL;
-  private items3FHL;
-  private itemsTeV;
-
-  myControl;
-  options = [];
   private selectedCat;
   private selectedId;
   private selectedName;
+  private error: any;
+
+  myControl;
+  options = [];
   filteredOptions: Observable<any[]>;
 
+
+  // Get search entries from CatalogService
   getCatSearchItems() {
     let items = [];
 
@@ -49,30 +45,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
     this.options.concat(items);
   }
 
-
-  //TODO remove the three methods below - they are for the old autocomplete (NOT makeSearchItems())
-  getCatSearchItemsTeV() {
-    let items = [];
-    this.catalogService.getCatalogTeV()
-      .then(catalog => this.makeSearchItems(catalog, items, 'common_name'))
-      .catch(error => this.error = error);
-    this.itemsTeV = items;
-  }
-  getCatSearchItems3FHL() {
-    let items = [];
-    this.catalogService.getCatalog3FHL()
-      .then(catalog => this.makeSearchItems(catalog, items))
-      .catch(error => this.error = error);
-    this.items3FHL = items;
-  }
-  getCatSearchItems3FGL() {
-    let items = [];
-    this.catalogService.getCatalog3FGL()
-      .then(catalog => this.makeSearchItems(catalog, items))
-      .catch(error => this.error = error);
-    this.items3FGL = items;
-  }
-
+  // Creates individual source objects for each search entry
   makeSearchItems(catalog, items, nameCol = 'Source_Name') {
     for(var i = 0; i < catalog.data.length; i++) {
       items.push({
@@ -83,55 +56,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
     }
   }
 
-  setItems(items) {
-    this.items = items;
-  }
-
-
-  // To understand the code below, see ng2-select and ngx-bootstrap docs at:
-  // http://valor-software.com/ng2-select/
-  // http://valor-software.com/ngx-bootstrap/
-
-  public items: Array<any> = [];
-  private value: any = {};
-  public selectedCatalog;
-  private tooltip;
-  private disabled: boolean = false;
-
-
-  public selected(value: any): void {
-    console.log('Selected value is: ', value);
-
-    this.router.navigate(['/cat', this.selectedCatalog, value.id]);
-
-
-  }
-
-  public removed(value: any): void {
-    console.log('Removed value is: ', value);
-
-    this.router.navigate(['/cat']);
-  }
-
-  public typed(value: any): void {
-    console.log('New search input: ', value);
-  }
-
-  public refreshValue(value: any): void {
-    this.value = value;
-  }
-
-  // Filter the angular2 material dropdown
-  // filter(name: string): any[] {
-  //    return this.options.filter(option => new RegExp(`^${name}`, 'gi').test(option.name));
-  // }
-
-  // public filter(val: string): any[] {
-  // return val ? this.options.filter(s =>
-  //   s.name.toLowerCase().includes(val.toLowerCase()))
-  //                          .slice(0,100)
-  //            : this.options;
-  // }
+  // Filter items in autocomplete; showing first 5 results for now.
   public filter(val: string): any[] {
     let results;
 
@@ -139,7 +64,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
       results = this.options.filter( function(s) {
         return s.name.toLowerCase().includes(val.toLowerCase())
       })
-      results = results.slice(0,5); // 5 options removes the scrollbar.
+      results = results.slice(0,5);
     }
     else {
       results = [];
@@ -148,14 +73,12 @@ export class CatSearchComponent implements OnInit, DoCheck {
     return results;
   }
 
-
-
-  // Maps controled value to desired display value in dropdown
+  // Maps controlled value to desired display value in dropdown
   public displayFn(option: any): string {
     return option ? option.name : option;
   }
 
-  // When an item is selected
+  // When an item is selected/decselected
   onSelected(evt: MdOptionSelectionChange, option) {
     if(evt.source.selected) { //If an option is selected vs. un-selected
       this.selectedCat = option.cat;
@@ -165,6 +88,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
       this.router.navigate(['/cat', this.selectedCat, this.selectedId]);
     }
     else {
+      // this.router.navigate(['/cat']);
       //TODO Go to CatHelpComponent (once we add "remove selection" button)
     }
   }
@@ -179,9 +103,6 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.getCatSearchItems();
-    this.getCatSearchItemsTeV();
-    this.getCatSearchItems3FHL();
-    this.getCatSearchItems3FGL();
 
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
@@ -190,20 +111,9 @@ export class CatSearchComponent implements OnInit, DoCheck {
       .map(name => name ? this.filter(name)
                         : []);//this.options.slice());
 
-    this.selectedName = 'None selected';
-
   }
 
   ngDoCheck() {
-    if (this.selectedCatalog == null) {
-      this.disabled = true;
-      this.tooltip = false;
-      // this.items = [];
-    }
-    else {
-      this.disabled = false;
-      this.tooltip = true;
-    }
   }
 
 }

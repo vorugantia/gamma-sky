@@ -1,79 +1,29 @@
 
-<div  id='catalog-select'>
-
-  <div class="btn-group btn-group-lg">
-
-    <button
-      class='btn btn-primary'
-      [(ngModel)]="selectedCatalog"
-      btnRadio="3fgl"
-      uncheckable
-      (click)='setItems(items3FGL)'
-    >
-      3FGL
-    </button>
-    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="3fhl" uncheckable (click)='setItems(items3FHL)'>
-      3FHL
-    </button>
-    <button class='btn btn-primary' [(ngModel)]="selectedCatalog" btnRadio="tev" uncheckable (click)='setItems(itemsTeV)'>
-      TeV
-    </button>
-
-  </div>
-
-</div>
-
-
 <div id='source-select'>
 
-  <div class='form-group'>
+  <div id='search-field'>
 
-    <ng-select id='ng2-select'
-      [allowClear]='true'
-      [items]='items'
-      [disabled]='disabled'
-      (data)='refreshValue($event)'
-      (selected)='selected($event)'
-      (removed)='removed($event)'
-      (typed)='typed($event)'
-      placeholder='No source selected'
-      tooltip='Select a catalog first.'
-      [isDisabled]='tooltip'
-    >
-    </ng-select>
+    <md-input-container>
+       <input type="text"
+              mdInput placeholder="Select source"
+              [formControl]="myControl"
+              [mdAutocomplete]="auto"
+        >
+    </md-input-container>
+
+    <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
+        <md-option *ngFor="let option of filteredOptions | async"
+                   [value]="option"
+                   (onSelectionChange)="onSelected($event, option)"
+        >
+          {{ option.name }}
+        </md-option>
+    </md-autocomplete>
 
   </div>
 
-  <!-- <br>
-  <pre>{{value.text}}</pre> -->
 
 </div>
 
-<br>
-<div style='text-align:center'>
-  <h2>Angular2 Material:</h2>
-
-  <md-input-container>
-     <input type="text"
-            mdInput placeholder="Select source"
-            [formControl]="myControl"
-            [mdAutocomplete]="auto"
-      >
-  </md-input-container>
-
-  <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
-      <md-option *ngFor="let option of filteredOptions | async"
-                 [value]="option"
-                 (onSelectionChange)="onSelected($event, option)"
-      >
-        {{ option.name }}
-      </md-option>
-  </md-autocomplete>
-
-  <div>
-    Selected: {{selectedName}}
-  </div>
-
-</div>
 
 <hr>

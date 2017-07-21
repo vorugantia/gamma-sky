@@ -1,18 +1,13 @@
-#catalog-select {
-  padding-top: 30px;
-  margin: auto;
-  margin-bottom: 20px;
-  text-align: center;
-  width: 400px;
-}
 
 #source-select {
+  padding-top: 30px;
   margin: auto;
   margin-bottom: 20px;
   text-align: center;
   width: 320px;
 }
 
-md-input-container {
+#search-field {
   width: 200px;
+  text-align: center;
 }
