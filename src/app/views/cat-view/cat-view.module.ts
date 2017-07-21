@@ -7,9 +7,6 @@ import { CatSource3FGLComponent } from '../../widgets/cat-source/cat-source-3fgl
 import { CatSourceTeVComponent } from '../../widgets/cat-source/cat-source-tev/cat-source-tev.component';
 import { CatSource3FHLComponent } from '../../widgets/cat-source/cat-source-3fhl/cat-source-3fhl.component';
 
-import { ButtonsModule, TooltipModule } from 'ngx-bootstrap';
-import { SelectModule } from 'ng2-select-compat';
-
 import { CatViewRoutingModule } from './cat-view-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 
@@ -27,11 +24,7 @@ import { CatalogService } from '../../services/catalog.service';
   ],
   imports: [
     CatViewRoutingModule,
-    SharedModule,
-
-    ButtonsModule.forRoot(),
-    TooltipModule.forRoot(),
-    SelectModule
+    SharedModule
   ],
   providers: [
     CatalogService
