@@ -4,10 +4,10 @@
   margin: auto;
   margin-bottom: 20px;
   text-align: center;
-  width: 320px;
+  width: 400px;
 }
 
-#search-field {
-  width: 200px;
-  text-align: center;
+md-input-container {
+  width: 250px;
+  /*background-color: lightgray;*/
 }
