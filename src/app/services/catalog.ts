@@ -19,6 +19,8 @@ class CatalogBase {
 
 export class CatalogTeV extends CatalogBase {
 
+  public catName = 'tev';
+
   public sourceNameCol = "common_name";
   public raCol = "ra";
   public decCol = "dec";
@@ -31,6 +33,8 @@ export class CatalogTeV extends CatalogBase {
 
 export class Catalog3FHL extends CatalogBase {
 
+  public catName = '3fhl';
+
   printInfo(idx) {
     console.log(this.data[idx]);
   }
@@ -38,6 +42,8 @@ export class Catalog3FHL extends CatalogBase {
 }
 
 export class Catalog3FGL extends CatalogBase {
+
+  public catName = '3fgl';
 
   printInfo(idx) {
     console.log(this.data[idx]);

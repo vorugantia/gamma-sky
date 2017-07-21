@@ -15,7 +15,7 @@ import { CatalogService } from '../../services/catalog.service';
 })
 export class CatSearchComponent implements OnInit, DoCheck {
 
-  private selectedId;
+  // private selectedId;
   // private catalog;
   private error: any;
 
@@ -25,7 +25,9 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
   myControl;
   options = [];
-  selectedName;
+  private selectedCat;
+  private selectedId;
+  private selectedName;
   filteredOptions: Observable<any[]>;
 
   getCatSearchItems() {
@@ -74,8 +76,9 @@ export class CatSearchComponent implements OnInit, DoCheck {
   makeSearchItems(catalog, items, nameCol = 'Source_Name') {
     for(var i = 0; i < catalog.data.length; i++) {
       items.push({
-        text: catalog.data[i][nameCol],
-        id: i.toString()
+        cat: catalog.catName,
+        id: i.toString(),
+        name: catalog.data[i][nameCol],
       });
     }
   }
@@ -119,28 +122,50 @@ export class CatSearchComponent implements OnInit, DoCheck {
   }
 
   // Filter the angular2 material dropdown
-  // filter(text: string): any[] {
-  //    return this.options.filter(option => new RegExp(`^${text}`, 'gi').test(option.text));
+  // filter(name: string): any[] {
+  //    return this.options.filter(option => new RegExp(`^${name}`, 'gi').test(option.name));
+  // }
+
+  // public filter(val: string): any[] {
+  // return val ? this.options.filter(s =>
+  //   s.name.toLowerCase().includes(val.toLowerCase()))
+  //                          .slice(0,100)
+  //            : this.options;
   // }
   public filter(val: string): any[] {
-  return val ? this.options.filter(s =>
-    s.text.toLowerCase().includes(val.toLowerCase()))
-             : this.options;
+    let results;
+
+    if(val) {
+      results = this.options.filter( function(s) {
+        return s.name.toLowerCase().includes(val.toLowerCase())
+      })
+      results = results.slice(0,5); // 5 options removes the scrollbar.
+    }
+    else {
+      results = [];
+    }
+
+    return results;
   }
+
+
 
   // Maps controled value to desired display value in dropdown
   public displayFn(option: any): string {
-    return option ? option.text : option;
+    return option ? option.name : option;
   }
 
   // When an item is selected
   onSelected(evt: MdOptionSelectionChange, option) {
     if(evt.source.selected) { //If an option is selected vs. un-selected
-      console.log("selected ", option.text);
-      this.selectedName = option.text;
+      this.selectedCat = option.cat;
+      this.selectedId = option.id;
+      this.selectedName = option.name;
+
+      this.router.navigate(['/cat', this.selectedCat, this.selectedId]);
     }
     else {
-      console.log('un-selected ', option.text);
+      //TODO Go to CatHelpComponent (once we add "remove selection" button)
     }
   }
 
@@ -160,9 +185,10 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
-      .map(option => option && typeof option === 'object' ? option.text
+      .map(option => option && typeof option === 'object' ? option.name
                                                           : option)
-      .map(text => text ? this.filter(text) : this.options.slice());
+      .map(name => name ? this.filter(name)
+                        : []);//this.options.slice());
 
     this.selectedName = 'None selected';
 
