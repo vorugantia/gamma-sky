@@ -1,3 +1,4 @@
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
@@ -5,6 +6,8 @@ import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
 import {SURVEYS} from '../../services/surveys';
 import {CatalogService} from '../../services/catalog.service';
+
+import {Observable} from 'rxjs/Rx';
 
 declare var A: any;
 declare var HpxImageSurvey: any;
@@ -44,7 +47,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
 // TODO: Go through this function and replace data accesses with functions, which can be defined in catalog.ts.
-  addCatalogNew(catalogName, catalogColor, data) {
+  addCatalog(catalogName, catalogColor, data) {
     console.log("Adding ", catalogName, " catalog...");
 
     var catalog = data;
@@ -105,7 +108,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getCatalog3FHL() {
     this.catalogService.getCatalog3FHL()
       .then(catalog => {
-        this.addCatalogNew(
+        this.addCatalog(
           '3FHL',
           '#DB7F00',
           catalog
@@ -119,7 +122,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getCatalog3FGL() {
     this.catalogService.getCatalog3FGL()
       .then(catalog => {
-        this.addCatalogNew(
+        this.addCatalog(
           '3FGL',
           '#09518D',
           catalog
@@ -133,7 +136,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getCatalogSNRcat() {
     this.catalogService.getCatalogSNRcat()
       .then(catalog => {
-        this.addCatalogNew(
+        this.addCatalog(
           'SNRcat',
           '#00A525',
           catalog
@@ -144,21 +147,26 @@ export class MapComponent implements OnInit, OnDestroy {
       .catch(error => this.error = error);
   }
   getCatalogTeV() {
+    // this.catalogService.getCatalogTeV()
+    //   .then(catalog => {
+    //     this.addCatalogNew(
+    //       'TeV',
+    //       '#DA0000',
+    //       catalog
+    //     );
+    //     //This hides TeV catalog on webpage startup.
+    //     // this.cat.hide();
+    //   })
+    //   .catch(error => this.error = error);
     this.catalogService.getCatalogTeV()
-      .then(catalog => {
-        this.addCatalogNew(
+      .subscribe(catalog => {
+        this.addCatalog(
           'TeV',
           '#DA0000',
           catalog
         );
-        //This hides TeV catalog on webpage startup.
-        // this.cat.hide();
       })
-      .catch(error => this.error = error);
-  }
-
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
+      // .catch(error => this.error = error);
   }
 
   constructor(

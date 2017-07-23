@@ -29,10 +29,13 @@ export class CatSearchComponent implements OnInit, DoCheck {
   getCatSearchItems() {
     let items = [];
 
+    // this.catalogService.getCatalogTeV()
+    //   .then(catalog => this.makeSearchItems(catalog, items, 'common_name'))
+    //   .catch(error => this.error = error);
     this.catalogService.getCatalogTeV()
-      .then(catalog => this.makeSearchItems(catalog, items, 'common_name'))
-      .catch(error => this.error = error);
-    this.options = items;
+      .subscribe(catalog => this.makeSearchItems(catalog, items, 'common_name'))
+      // .catch(error => this.error = error);
+      this.options = items;
 
     this.catalogService.getCatalog3FHL()
       .then(catalog => this.makeSearchItems(catalog, items))
@@ -77,6 +80,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
   public displayFn(option: any): string {
     return option ? option.name : option;
   }
+
 
   // When an item is selected/decselected
   onSelected(evt: MdOptionSelectionChange, option) {

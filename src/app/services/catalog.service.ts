@@ -13,10 +13,16 @@ export class CatalogService {
 // Fetch catalog data
   getCatalogTeV() {
     return this.http.get('data/cat/tev/cat.json')
-      .toPromise()
-      .then(response => new CatalogTeV( response.json(), SourceTeV ))
+      .map(res => res.json())
+      .map(cat => new CatalogTeV(cat, SourceTeV))
       .catch(this.handleError);
   }
+  // getCatalogTeV() {
+  //   return this.http.get('data/cat/tev/cat.json')
+  //     .toPromise()
+  //     .then(response => new CatalogTeV( response.json(), SourceTeV ))
+  //     .catch(this.handleError);
+  // }
 
   getCatalog3FHL() {
     return this.http.get('data/cat/3fhl/cat.json')
