@@ -22,17 +22,15 @@ export class CatSource3FHLComponent implements OnInit {
 
   getCatalog() {
     this.catalogService.getCatalog3FHL()
-      .then(catalog => {this.catalog = catalog; })
-      .catch(error => this.error = error);
+      .subscribe(catalog => this.catalog = catalog );
   }
 
   getSource() {
     this.catalogService.getSource3FHL(this.id)
-      .then(source => {
+      .subscribe(source => {
         this.source = source;
         this.d = source.data;
-      })
-      .catch (error => this.error = error);
+      });
   }
 
   isExtended() {

@@ -29,22 +29,16 @@ export class CatSearchComponent implements OnInit, DoCheck {
   getCatSearchItems() {
     let items = [];
 
-    // this.catalogService.getCatalogTeV()
-    //   .then(catalog => this.makeSearchItems(catalog, items, 'common_name'))
-    //   .catch(error => this.error = error);
     this.catalogService.getCatalogTeV()
       .subscribe(catalog => this.makeSearchItems(catalog, items, 'common_name'))
-      // .catch(error => this.error = error);
       this.options = items;
 
     this.catalogService.getCatalog3FHL()
-      .then(catalog => this.makeSearchItems(catalog, items))
-      .catch(error => this.error = error);
+      .subscribe(catalog => this.makeSearchItems(catalog, items))
     this.options.concat(items);
 
     this.catalogService.getCatalog3FGL()
-      .then(catalog => this.makeSearchItems(catalog, items))
-      .catch(error => this.error = error);
+      .subscribe(catalog => this.makeSearchItems(catalog, items))
     this.options.concat(items);
   }
 

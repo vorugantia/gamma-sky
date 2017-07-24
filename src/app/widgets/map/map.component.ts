@@ -107,7 +107,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   getCatalog3FHL() {
     this.catalogService.getCatalog3FHL()
-      .then(catalog => {
+      .subscribe(catalog => {
         this.addCatalog(
           '3FHL',
           '#DB7F00',
@@ -116,12 +116,11 @@ export class MapComponent implements OnInit, OnDestroy {
         //This hides 3FHL catalog on webpage startup.
         this.cat.hide();
       })
-      .catch(error => this.error = error);
   }
 
   getCatalog3FGL() {
     this.catalogService.getCatalog3FGL()
-      .then(catalog => {
+      .subscribe(catalog => {
         this.addCatalog(
           '3FGL',
           '#09518D',
@@ -130,12 +129,11 @@ export class MapComponent implements OnInit, OnDestroy {
         //This hides 3FGL catalog on webpage startup.
         this.cat.hide();
       })
-      .catch(error => this.error = error);
   }
 
   getCatalogSNRcat() {
     this.catalogService.getCatalogSNRcat()
-      .then(catalog => {
+      .subscribe(catalog => {
         this.addCatalog(
           'SNRcat',
           '#00A525',
@@ -144,20 +142,8 @@ export class MapComponent implements OnInit, OnDestroy {
         //This hides SNRcat catalog on webpage startup.
         this.cat.hide();
       })
-      .catch(error => this.error = error);
   }
   getCatalogTeV() {
-    // this.catalogService.getCatalogTeV()
-    //   .then(catalog => {
-    //     this.addCatalogNew(
-    //       'TeV',
-    //       '#DA0000',
-    //       catalog
-    //     );
-    //     //This hides TeV catalog on webpage startup.
-    //     // this.cat.hide();
-    //   })
-    //   .catch(error => this.error = error);
     this.catalogService.getCatalogTeV()
       .subscribe(catalog => {
         this.addCatalog(
@@ -166,7 +152,6 @@ export class MapComponent implements OnInit, OnDestroy {
           catalog
         );
       })
-      // .catch(error => this.error = error);
   }
 
   constructor(

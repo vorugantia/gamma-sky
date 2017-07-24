@@ -21,20 +21,16 @@ export class CatSourceTeVComponent implements OnInit {
   private error: any;
 
   getCatalog() {
-    // this.catalogService.getCatalogTeV()
-    //   .then(catalog => { this.catalog = catalog; })
-    //   .catch(error => this.error = error);
     this.catalogService.getCatalogTeV()
       .subscribe(catalog => this.catalog = catalog);
   }
 
   getSource() {
     this.catalogService.getSourceTeV(this.id)
-      .then(source => {
+      .subscribe(source => {
         this.source = source;
         this.d = source.data;
-      })
-      .catch (error => this.error = error);
+      });
   }
 
   show_spec_pl() {

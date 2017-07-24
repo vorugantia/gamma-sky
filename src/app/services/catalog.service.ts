@@ -17,31 +17,25 @@ export class CatalogService {
       .map(cat => new CatalogTeV(cat, SourceTeV))
       .catch(this.handleError);
   }
-  // getCatalogTeV() {
-  //   return this.http.get('data/cat/tev/cat.json')
-  //     .toPromise()
-  //     .then(response => new CatalogTeV( response.json(), SourceTeV ))
-  //     .catch(this.handleError);
-  // }
 
   getCatalog3FHL() {
     return this.http.get('data/cat/3fhl/cat.json')
-      .toPromise()
-      .then(response => new Catalog3FHL( response.json(), Source3FHL ))
+      .map(res => res.json())
+      .map(cat => new Catalog3FHL(cat, Source3FHL))
       .catch(this.handleError);
   }
 
   getCatalog3FGL() {
     return this.http.get('data/cat/3fgl/cat.json')
-      .toPromise()
-      .then(response => new Catalog3FGL( response.json(), Source3FGL ))
+      .map(res => res.json())
+      .map(cat => new Catalog3FGL(cat, Source3FGL))
       .catch(this.handleError);
   }
 
   getCatalogSNRcat() {
     return this.http.get('data/cat/snrcat/cat.json')
-      .toPromise()
-      .then(response => new CatalogSNRcat( response.json(), SourceSNRcat ))
+      .map(res => res.json())
+      .map(cat => new CatalogSNRcat(cat, SourceSNRcat))
       .catch(this.handleError);
   }
 
@@ -55,29 +49,29 @@ export class CatalogService {
 
   getSourceTeV(id) {
     return this.http.get(this.getSourceDirectory('tev', id))
-      .toPromise()
-      .then(response => new SourceTeV( response.json() ))
+      .map(res => res.json())
+      .map(source => new SourceTeV(source))
       .catch(this.handleError);
   }
 
   getSource3FHL(id) {
     return this.http.get(this.getSourceDirectory('3fhl', id))
-      .toPromise()
-      .then(response => new Source3FHL( response.json() ))
+      .map(res => res.json())
+      .map(source => new Source3FHL(source))
       .catch(this.handleError);
   }
 
   getSource3FGL(id) {
     return this.http.get(this.getSourceDirectory('3fgl', id))
-      .toPromise()
-      .then(response => new Source3FGL( response.json() ))
+      .map(res => res.json())
+      .map(source => new Source3FGL(source))
       .catch(this.handleError);
   }
 
   getSourceSNRcat(id) {
     return this.http.get(this.getSourceDirectory('snrcat', id))
-      .toPromise()
-      .then(response => new SourceSNRcat( response.json() ))
+      .map(res => res.json())
+      .map(source => new SourceSNRcat(source))
       .catch(this.handleError);
   }
 
