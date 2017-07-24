@@ -8,7 +8,8 @@ import { CatalogService } from '../../../services/catalog.service';
 @Component({
   selector: 'cat-source-3fhl',
   templateUrl: './cat-source-3fhl.component.html',
-  styleUrls: ['./cat-source-3fhl.component.css']
+  styleUrls: ['./cat-source-3fhl.component.css'],
+  providers: [CatalogService]
 })
 export class CatSource3FHLComponent implements OnInit {
 

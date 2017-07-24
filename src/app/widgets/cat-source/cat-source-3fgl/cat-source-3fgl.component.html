@@ -1,5 +1,5 @@
 <div *ngIf="(catalog)">
-  <div class="container">
+  <div class="container" *ngIf="(source)">
 
     <div class="col-md-4">
         <h2 id='e2e-source-3fgl-name'>{{d.Source_Name}}</h2><br>
@@ -40,14 +40,14 @@
 
         <ul>
           <li>Spectrum type: {{d.SpectrumType}}</li>
-          <div *ngIf=isPowerLaw()>
+          <div *ngIf="isPowerLaw()">
             <ul>
               <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
               <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'MeV')}}</li>
               <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
             </ul>
           </div>
-          <div *ngIf=isLogParabola()>
+          <div *ngIf="isLogParabola()">
             <ul>
               <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
               <li>Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
@@ -55,7 +55,7 @@
               <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
             </ul>
           </div>
-          <div *ngIf=isECPL()>
+          <div *ngIf="isECPL()">
             <ul>
               <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
               <li>Cutoff energy: {{source.format_error(d.Cutoff, d.Unc_Cutoff, false, 'MeV')}}</li>
@@ -63,7 +63,7 @@
               <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 MeV-1')}}</li>
             </ul>
           </div>
-          <div *ngIf=isSuperECPL()>
+          <div *ngIf="isSuperECPL()">
             <ul>
               <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
               <li>Exponential index: {{source.format_error(d.Exp_Index, d.Unc_Exp_Index, false)}}</li>
@@ -94,7 +94,7 @@
         <ul>
           <li>Variability index: {{source.format(d.Variability_Index, false)}}</li>
         </ul>
-        <div *ngIf=peakMeasured()>
+        <div *ngIf="peakMeasured()">
           <ul>
             <li>Significance peak (100 MeV - 100 GeV): {{source.format(d.Signif_Peak, false)}}</li>
             <li>Integral flux peak (100 MeV - 100 GeV): {{source.format_error(d.Flux_Peak, d.Unc_Flux_Peak, true, 'cm-2 s-1')}}</li>
@@ -102,7 +102,7 @@
             <li>Peak interval: {{source.format(d.Peak_Interval, true, 's')}}</li>
           </ul>
         </div>
-        <div *ngIf=!(peakMeasured())>
+        <div *ngIf="!(peakMeasured())">
           <p>
             No peak measured for this source.
           </p>

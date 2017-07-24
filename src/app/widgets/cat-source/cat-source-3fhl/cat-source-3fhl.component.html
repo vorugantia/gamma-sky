@@ -1,6 +1,6 @@
 <div *ngIf="(catalog)">
   <div class="container">
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="(source)">
       <h2 id='e2e-source-3fhl-name'>{{d.Source_Name}}</h2><br>
 
       <h4><b>Basic Info</b></h4>
@@ -35,7 +35,7 @@
         <li>Npred: {{source.format(d.Npred, true)}}</li>
       </ul>
 
-      <div *ngIf=isExtended()>
+      <div *ngIf="isExtended()">
         <p>
           <u>Extended source information</u>
         </p>

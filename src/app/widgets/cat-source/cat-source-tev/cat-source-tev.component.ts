@@ -8,7 +8,8 @@ import { CatalogService } from '../../../services/catalog.service';
 @Component({
   selector: 'cat-source-tev',
   templateUrl: './cat-source-tev.component.html',
-  styleUrls: ['./cat-source-tev.component.css']
+  styleUrls: ['./cat-source-tev.component.css'],
+  providers: [CatalogService]
 })
 export class CatSourceTeVComponent implements OnInit {
 
@@ -34,22 +35,22 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   show_spec_pl() {
-    if(this.source.data.spec_type == 'pl')
+    if(this.d.spec_type == 'pl')
       return true;
     return false;
   }
   show_spec_pl2() {
-    if(this.source.data.spec_type == 'pl2')
+    if(this.d.spec_type == 'pl2')
       return true;
     return false;
   }
   show_spec_ecpl() {
-    if(this.source.data.spec_type == 'ecpl')
+    if(this.d.spec_type == 'ecpl')
       return true;
     return false;
   }
   no_spec() {
-    if(this.source.data.spec_type == 'none')
+    if(this.d.spec_type == 'none')
       return true;
     return false;
   }

@@ -1,6 +1,6 @@
 <div *ngIf="(catalog)">
   <div class="container">
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="(source)">
       <h2 id='e2e-source-tev-name'>{{d.common_name}}</h2><br>
 
       <h4><b>Basic Info</b></h4>
@@ -69,7 +69,7 @@
         <li>Livetime: {{source.format(d.livetime, false, 'h')}}</li>
       </ul>
 
-      <div *ngIf=show_spec_pl()>
+      <div *ngIf="show_spec_pl()">
         <ul>
           <li>Spectrum type: pl</li>
           <ul>
@@ -79,7 +79,7 @@
           </ul>
         </ul>
       </div>
-      <div *ngIf=show_spec_pl2()>
+      <div *ngIf="show_spec_pl2()">
         <ul>
           <li>Spectrum type: pl2 (integral pl)</li>
           <ul>
@@ -90,7 +90,7 @@
           </ul>
         </ul>
       </div>
-      <div *ngIf=show_spec_ecpl()>
+      <div *ngIf="show_spec_ecpl()">
         <ul>
           <li>Spectrum type: ecpl</li>
           <ul>
@@ -101,7 +101,7 @@
           </ul>
         </ul>
       </div>
-      <div *ngIf=no_spec()>
+      <div *ngIf="no_spec()">
         <ul>
           <li>Spectral model not yet implemented.</li>
         </ul>
