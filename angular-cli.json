@@ -12,7 +12,8 @@
         "favicon.ico",
         "404.html",
         "CNAME",
-        "data",
+        "data/cat",
+        "data/maps/Fermi10GeV",
         "static"
       ],
       "index": "index.html",
