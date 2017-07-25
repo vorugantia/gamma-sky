@@ -47,7 +47,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
     for(var i = 0; i < catalog.data.length; i++) {
       items.push({
         cat: catalog.catName,
-        id: i.toString(),
+        id: catalog.data[i]['source_id'].toString(),
         name: catalog.data[i][nameCol],
       });
     }

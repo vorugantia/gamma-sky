@@ -14,7 +14,7 @@ describe('gamma-sky App', () => {
   });
 
   it('should display tev source name in source detail view', () => {
-    page.navigateTo('/#/cat/tev/0')
+    page.navigateTo('/#/cat/tev/1')
         .then(() => {
           return expect<any>(page.getTextById('e2e-source-tev-name')).toEqual('CTA 1')
     });

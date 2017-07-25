@@ -35,6 +35,9 @@ def make_3fhl_catalog_data():
             'GLON', 'GLAT', 'ASSOC1', 'CLASS']
     cat.table = cat.table[cols]
     data = cat._data_python_list
+    for i in range(len(data)):
+        data[i]['source_id'] = data[i]['catalog_row_index']
+        del data[i]['catalog_row_index']
 
     filename = out_dir / 'cat.json'
     click.secho('Writing 3fhl {}'.format(filename), fg='green')
@@ -48,10 +51,12 @@ def make_3fhl_source_data(sources):
     sources = get_selected_sources(cat, sources)
     for idx in sources:
         source = cat[idx]
-        out_dir = DATA_DIR / 'cat/3fhl/sources/{:04d}'.format(source.index)
-        out_dir.mkdir(parents=True, exist_ok=True)
-
         data = source._data_python_dict
+        data['source_id'] = data['catalog_row_index']
+        del data['catalog_row_index']
+
+        out_dir = DATA_DIR / 'cat/3fhl/sources/{:04d}'.format(data['source_id'])
+        out_dir.mkdir(parents=True, exist_ok=True)
         filename = out_dir / 'data.json'
         click.secho('Writing: {}'.format(filename), fg='green')
         dump_to_json(data, filename)
@@ -64,7 +69,7 @@ def make_tev_catalog_data():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     cat = SourceCatalogGammaCat(filename='input_data/gammacat.fits.gz')
-    cols = ['common_name', 'ra', 'dec', 'glon', 'glat',
+    cols = ['source_id', 'common_name', 'ra', 'dec', 'glon', 'glat',
             'other_names', 'classes']
     cat.table = cat.table[cols]
     data = cat._data_python_list
@@ -81,10 +86,10 @@ def make_tev_source_data(sources):
     sources = get_selected_sources(cat, sources)
     for idx in sources:
         source = cat[idx]
-        out_dir = DATA_DIR / 'cat/tev/sources/{:04d}'.format(source.index)
-        out_dir.mkdir(parents=True, exist_ok=True)
-
         data = source._data_python_dict
+
+        out_dir = DATA_DIR / 'cat/tev/sources/{:04d}'.format(data['source_id'])
+        out_dir.mkdir(parents=True, exist_ok=True)
         filename = out_dir / 'data.json'
         click.secho('Writing: {}'.format(filename), fg='green')
         dump_to_json(data, filename)
@@ -101,6 +106,9 @@ def make_3fgl_catalog_data():
             'GLAT', 'ASSOC1', 'CLASS1']
     cat.table = cat.table[cols]
     data = cat._data_python_list
+    for i in range(len(data)):
+        data[i]['source_id'] = data[i]['catalog_row_index']
+        del data[i]['catalog_row_index']
 
     filename = out_dir / 'cat.json'
     click.secho('Writing 3fgl {}'.format(filename), fg='green')
@@ -114,10 +122,12 @@ def make_3fgl_source_data(sources):
     sources = get_selected_sources(cat, sources)
     for idx in sources:
         source = cat[idx]
-        out_dir = DATA_DIR / 'cat/3fgl/sources/{:04d}'.format(source.index)
-        out_dir.mkdir(parents=True, exist_ok=True)
-
         data = source._data_python_dict
+        data['source_id'] = data['catalog_row_index']
+        del data['catalog_row_index']
+
+        out_dir = DATA_DIR / 'cat/3fgl/sources/{:04d}'.format((data['source_id']))
+        out_dir.mkdir(parents=True, exist_ok=True)
         filename = out_dir / 'data.json'
         click.secho('Writing: {}'.format(filename), fg='green')
         dump_to_json(data, filename)
