@@ -94,7 +94,7 @@ def maps():
 @cli.command()
 @click.pass_context
 def all(ctx):
-    """Dump all data to JSON"""
+    """Generate all data for the webpage"""
     ctx.invoke(cat_all)
     ctx.invoke(source_all)
     ctx.invoke(maps)
