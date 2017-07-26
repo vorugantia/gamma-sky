@@ -4,10 +4,13 @@ import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
-import {SURVEYS} from '../../services/surveys';
 import {CatalogService} from '../../services/catalog.service';
 
 import {Observable} from 'rxjs/Rx';
+
+// config
+import {SURVEYS} from '../../services/surveys';
+import {MAP_STATE} from '../../services/map-state';
 
 declare var A: any;
 declare var HpxImageSurvey: any;
@@ -20,31 +23,12 @@ declare var $: any;
 })
 export class MapComponent implements OnInit, OnDestroy {
 
-
-  // constructor(routeParams: RouteParams){
-  //   let myPassedData: any = routeParams.params;
-  //   console.log(myPassedData.someProperty); #Prints "SomeValue"
-
   private map;
   private cat;
   private error: any;
 
   showMap() {
-    // router_opts = get_bla()
-    // opts = map_state.merge_with_defaults(router_opts)
-    this.map = A.aladin("#aladin-lite-div", {
-      fullScreen: true,
-      showFullscreenControl: false,
-      survey: "P/Fermi/color",
-      // survey: "P/Fermi/10GeV",
-      cooFrame: "galactic",
-      target: "0 +0",
-      fov: 180,
-      allowFullZoomout: true, //Hidden attribute
-      showShareControl: true, //Hidden attribute, not yet working
-      // showCatalog: false //Hidden attribute
-    });
-
+    this.map = A.aladin("#aladin-lite-div", MAP_STATE);
   }
 
   updateSurveys() {
