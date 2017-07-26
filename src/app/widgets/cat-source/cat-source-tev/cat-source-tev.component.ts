@@ -55,9 +55,14 @@ export class CatSourceTeVComponent implements OnInit {
     return false;
   }
 
+  goToMap() {
+    this.router.navigate(['map']);
+  }
+
   constructor(
     private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
