@@ -4,8 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { MapViewComponent } from './map-view.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'test', pathMatch: 'full'},
-  { path: '',    component: MapViewComponent }
+  // { path: '',    component: MapViewComponent }
+
+  {
+    path: '',
+    component: MapViewComponent,
+    children: [
+      {
+        path: '?target=:target',
+        component: MapViewComponent
+      },
+    ]
+  }
 ];
 
 @NgModule({

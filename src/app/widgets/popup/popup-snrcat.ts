@@ -1,35 +1,16 @@
+import { PopupBase } from './popup';
 import { SourceSNRcat } from '../../services/source';
 
-export class PopupSNRcat {
+export class PopupSNRcat extends PopupBase {
 
-  private source;
-  private sourceSNRcat;
+  private sourceSNRcat = new SourceSNRcat(this.source);
 
   getDesc() {
-
     // This function returns the whole template to be displayed in the
     // MapComponent's popups.
-
     return `
 
-      <style>
-      .aladin-popup {
-        width: 280px;
-        text-align: left;
-      }
-
-      table, table tbody {
-        width: 270px;
-        text-align: left;
-      }
-
-      table th {
-        height: 30px;
-      }
-
-      </style>
-
-      <div>
+      <div class='popup-info'>
 
         <h4 style='text-align:center'>` + this.source.Source_Name + `</h4>
 
@@ -74,36 +55,20 @@ export class PopupSNRcat {
     `;
   }
 
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
-  }
-
   getSNRcatUrl() {
 
-    return `  <style>
-                  #snrcat {
-                    text-align: right;
-                    margin-right: 4px;
-                    font-size: 12px;
-                  }
-              </style>
-              <div id='snrcat'>
-                  <a href='` + this.sourceSNRcat.getSNRcatUrl(this.getSNRcatId()) + `' target='_blank'>
-                  View source on SNRcat
-
-                  </a>
-              </div>
+    return `
+        <div class='popup-link'>
+            <a href='` + this.sourceSNRcat.getSNRcatUrl(this.getSNRcatId()) + `' target='_blank'>
+            View source on SNRcat
+            </a>
+        </div>
               `;
 
   }
 
   getSNRcatId() {
     return this.source.snrcat_id;
-  }
-
-  constructor(source) {
-    this.source = source;
-    this.sourceSNRcat = new SourceSNRcat(this.source);
   }
 
 }

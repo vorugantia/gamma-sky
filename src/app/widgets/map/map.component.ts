@@ -4,10 +4,14 @@ import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
-import {SURVEYS} from '../../services/surveys';
 import {CatalogService} from '../../services/catalog.service';
 
+import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Rx';
+
+// config
+import {SURVEYS} from '../../services/surveys';
+import {MAP_STATE} from '../../services/map-state';
 
 declare var A: any;
 declare var HpxImageSurvey: any;
@@ -24,20 +28,18 @@ export class MapComponent implements OnInit, OnDestroy {
   private cat;
   private error: any;
 
-  showMap() {
-    this.map = A.aladin("#aladin-lite-div", {
-      fullScreen: true,
-      showFullscreenControl: false,
-      survey: "P/Fermi/color",
-      // survey: "P/Fermi/10GeV",
-      cooFrame: "galactic",
-      target: "0 +0",
-      fov: 180,
-      allowFullZoomout: true, //Hidden attribute
-      showShareControl: true, //Hidden attribute, not yet working
-      // showCatalog: false //Hidden attribute
-    });
+  // Used to configure view
+  private sub;
+  private target;
 
+  showMap() {
+    // Configure view
+    let opts = MAP_STATE;
+    opts.target = this.target;
+
+    // Initialize Aladin Lite
+    this.map = A.aladin("#aladin-lite-div", opts);
+    // this.map.gotoRaDec(83.63, 22.01);
   }
 
   updateSurveys() {
@@ -155,12 +157,23 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
 
     console.log("aladin map onInit()");
+
+    // Grabs the 'target' query parameter from the URL, to set Aladin map view.
+    this.sub = this.activatedRoute
+          .queryParams
+          .subscribe(params => {
+            // The || gives a default value if no parameter is returned.
+            // (Adding (+) before params[...] would convert string to number)
+            this.target = params['target'] || "0 +0";
+            console.log("target: ", this.target);
+          });
 
     this.showMap();
     this.updateSurveys();
@@ -173,6 +186,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('aladin map OnDestroy');
+    this.sub.unsubscribe();
   }
 
 }

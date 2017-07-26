@@ -91,9 +91,15 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  goToMap() {
+    let target = this.source.getTargetString();
+    this.router.navigate(['map'], {queryParams: { target: target } });
+  }
+
   constructor(
     private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {

@@ -1,35 +1,16 @@
+import { PopupBase } from './popup';
 import { SourceTeV } from '../../services/source';
 
-export class PopupTeV {
+export class PopupTeV extends PopupBase {
 
-  private source;
-  private sourceTeV;
+  private sourceTeV = new SourceTeV(this.source);
 
   getDesc() {
-
     // This function returns the whole template to be displayed in the
     // MapComponent's popups.
-
     return `
 
-      <style>
-      .aladin-popup {
-        width: 280px;
-        text-align: left;
-      }
-
-      table, table tbody {
-        width: 270px;
-        text-align: left;
-      }
-
-      table th {
-        height: 30px;
-      }
-
-      </style>
-
-      <div>
+      <div class='popup-info'>
 
         <h4 style='text-align:center'>` + this.source.common_name + `</h4>
 
@@ -69,18 +50,8 @@ export class PopupTeV {
           </table>
 
         </div>
-
+        ` + this.getCatLink('tev') + `
     `;
-
-  }
-
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
-  }
-
-  constructor(source) {
-    this.source = source;
-    this.sourceTeV = new SourceTeV(this.source);
   }
 
 }

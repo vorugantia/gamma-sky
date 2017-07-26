@@ -3,6 +3,9 @@
     <div class="col-md-6" *ngIf="(source)">
       <h2 id='e2e-source-3fhl-name'>{{d.Source_Name}}</h2><br>
 
+      <button (click)="goToMap()">See source on map</button>
+      <br>
+
       <h4><b>Basic Info</b></h4>
       <ul>
         <li>Source name: {{d.Source_Name}}</li>

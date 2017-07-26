@@ -55,9 +55,15 @@ export class CatSourceTeVComponent implements OnInit {
     return false;
   }
 
+  goToMap() {
+    let target = this.source.getTargetString('glon', 'glat');
+    this.router.navigate(['map'], { queryParams: { target: target } });
+  }
+
   constructor(
     private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {

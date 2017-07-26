@@ -1,34 +1,13 @@
+import { PopupBase } from './popup';
 
-
-export class Popup3FGL {
-
-  private source;
+export class Popup3FGL extends PopupBase {
 
   getDesc() {
-
     // This function returns the whole template to be displayed in the
     // MapComponent's popups.
-
     return `
 
-      <style>
-      .aladin-popup {
-        width: 280px;
-        text-align: left;
-      }
-
-      table, table tbody {
-        width: 270px;
-        text-align: left;
-      }
-
-      table th {
-        height: 30px;
-      }
-
-      </style>
-
-      <div>
+      <div class='popup-info'>
 
         <h4 style='text-align:center'>` + this.source.Source_Name + `</h4>
 
@@ -68,16 +47,8 @@ export class Popup3FGL {
           </table>
 
         </div>
-
+        ` + this.getCatLink('3fgl') + `
     `;
-  }
-
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
-  }
-
-  constructor(source) {
-    this.source = source;
   }
 
 }

@@ -43,15 +43,23 @@ export class CatSource3FHLComponent implements OnInit {
     return false;
   }
 
+  goToMap() {
+    let target = this.source.getTargetString();
+    this.router.navigate(['map'], {queryParams: { target: target } });
+  }
+
   constructor(
     private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     console.log("Routing to CatSource3FHLComponent...");
 
+    // TODO params will be replaced by paramMap. (https://angular.io/guide/router#parammap-api) - I made this switch already in MapComponent.
     this.sub = this.activatedRoute.params.subscribe(params => {
+      // (the (+) converts string to number)
       let id = +params['id'];
       console.log('id ', id);
       this.id = id;
