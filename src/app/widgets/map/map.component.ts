@@ -6,6 +6,7 @@ import {PopupSNRcat} from '../popup/popup-snrcat';
 import {Popup3FHL} from '../popup/popup-3fhl';
 import {CatalogService} from '../../services/catalog.service';
 
+import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Rx';
 
 // config
@@ -27,13 +28,18 @@ export class MapComponent implements OnInit, OnDestroy {
   private cat;
   private error: any;
 
+  // Used to configure view
+  private sub;
+  private target;
+
   showMap() {
     // Configure view
     let opts = MAP_STATE;
-    opts.target = 'Crab';
+    opts.target = this.target;
 
     // Initialize Aladin Lite
     this.map = A.aladin("#aladin-lite-div", opts);
+    // this.map.gotoRaDec(83.63, 22.01);
   }
 
   updateSurveys() {
@@ -151,12 +157,23 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
 
     console.log("aladin map onInit()");
+
+    // Grabs the 'target' query parameter from the URL, to set Aladin map view.
+    this.sub = this.activatedRoute
+          .queryParams
+          .subscribe(params => {
+            // The || gives a default value if no parameter is returned.
+            // (Adding (+) before params[...] would convert string to number)
+            this.target = params['target'] || MAP_STATE.target;
+            console.log(this.target);
+          });
 
     this.showMap();
     this.updateSurveys();
@@ -169,6 +186,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('aladin map OnDestroy');
+    this.sub.unsubscribe();
   }
 
 }

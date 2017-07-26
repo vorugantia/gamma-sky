@@ -56,14 +56,21 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   goToMap() {
-    // this.router.navigate(
-    //   ['map'],
-    //   { queryParams: {
-    //       ra: this.d.ra,
-    //       dec: this.d.dec
-    //   }}
-    // );
-    this.router.navigate(['map']);
+    let formattedGlon = this.source.format(this.d.glon, false).toString();
+    let formattedGlat = this.source.format(this.d.glat, false).toString();
+    let target = formattedGlon + formattedGlat;
+    // this.source.format() keeps a hanging space at the end of each value:
+    target = target.slice(0, -1);
+    console.log(target);
+
+
+    this.router.navigate(
+      ['map'], {
+        queryParams: {
+          target: target
+        }
+      });
+    // this.router.navigate(['map']);
   }
 
   constructor(
