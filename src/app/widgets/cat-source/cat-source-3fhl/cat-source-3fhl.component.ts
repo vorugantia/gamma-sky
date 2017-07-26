@@ -43,15 +43,32 @@ export class CatSource3FHLComponent implements OnInit {
     return false;
   }
 
+  //TODO this code has been repeated for the three cats. Can it be added to catalog.service.ts?
+  goToMap() {
+    let formattedGlon = this.source.format(this.d.GLON, false).toString();
+    let formattedGlat = this.source.format(this.d.GLAT, false).toString();
+    let target = formattedGlon + formattedGlat;
+    // this.source.format() keeps a hanging space at the end of each value:
+    target = target.slice(0, -1);
+
+    this.router.navigate(
+      ['map'], {
+        queryParams: {
+          target: target
+        }
+      });
+  }
+
   constructor(
     private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     console.log("Routing to CatSource3FHLComponent...");
 
-    // TODO params will be replaced by paramMap  https://angular.io/guide/router#parammap-api
+    // TODO params will be replaced by paramMap. (https://angular.io/guide/router#parammap-api) - I made this switch already in MapComponent.
     this.sub = this.activatedRoute.params.subscribe(params => {
       // (the (+) converts string to number)
       let id = +params['id'];

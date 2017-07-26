@@ -61,8 +61,6 @@ export class CatSourceTeVComponent implements OnInit {
     let target = formattedGlon + formattedGlat;
     // this.source.format() keeps a hanging space at the end of each value:
     target = target.slice(0, -1);
-    console.log(target);
-
 
     this.router.navigate(
       ['map'], {
@@ -70,7 +68,6 @@ export class CatSourceTeVComponent implements OnInit {
           target: target
         }
       });
-    // this.router.navigate(['map']);
   }
 
   constructor(
