@@ -171,8 +171,8 @@ export class MapComponent implements OnInit, OnDestroy {
           .subscribe(params => {
             // The || gives a default value if no parameter is returned.
             // (Adding (+) before params[...] would convert string to number)
-            this.target = params['target'] || MAP_STATE.target;
-            console.log(this.target);
+            this.target = params['target'] || "0 +0";
+            console.log("target: ", this.target);
           });
 
     this.showMap();

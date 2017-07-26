@@ -65,7 +65,7 @@ export class PopupTeV {
     return `
         <div class='popup-link'>
           <a href="#cat/tev/`+this.source.source_id+`">
-            More information
+            Go to details page
           </a>
         </div>
     `

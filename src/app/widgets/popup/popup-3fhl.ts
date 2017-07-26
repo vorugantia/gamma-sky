@@ -63,7 +63,7 @@ export class Popup3FHL {
     return `
         <div class='popup-link'>
           <a href="#cat/3fhl/`+this.source.source_id+`">
-            More information
+            Go to details page
           </a>
         </div>
     `

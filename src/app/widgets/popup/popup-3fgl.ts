@@ -64,7 +64,7 @@ export class Popup3FGL {
     return `
         <div class='popup-link'>
           <a href="#cat/3fgl/`+this.source.source_id+`">
-            More information
+            Go to details page
           </a>
         </div>
     `
