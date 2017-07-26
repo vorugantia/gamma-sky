@@ -67,12 +67,23 @@ export class Popup3FHL {
           </table>
 
         </div>
-
+        ` + this.getSourceDetailUrl() + `
     `;
   }
 
   round(val) {
     return (Math.round(val * 100) / 100).toFixed(2);
+  }
+
+  getSourceDetailUrl() {
+
+    return `
+        <div class='popup-link'>
+          <a href="#cat/3fhl/`+this.source.source_id+`">
+            More information
+          </a>
+        </div>
+    `
   }
 
   constructor(source) {

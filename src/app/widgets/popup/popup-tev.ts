@@ -71,7 +71,6 @@ export class PopupTeV {
         </div>
         ` + this.getSourceDetailUrl() + `
     `;
-
   }
 
   round(val) {
@@ -81,15 +80,7 @@ export class PopupTeV {
   getSourceDetailUrl() {
 
     return `
-        <style>
-          #tev {
-            text-align: right;
-            margin-right: 4px;
-            font-size: 12px;
-          }
-        </style>
-
-        <div id='tev'>
+        <div class='popup-link'>
           <a href="#cat/tev/`+this.source.source_id+`">
             More information
           </a>
