@@ -69,13 +69,32 @@ export class PopupTeV {
           </table>
 
         </div>
-
+        ` + this.getSourceDetailUrl() + `
     `;
 
   }
 
   round(val) {
     return (Math.round(val * 100) / 100).toFixed(2);
+  }
+
+  getSourceDetailUrl() {
+
+    return `
+        <style>
+          #tev {
+            text-align: right;
+            margin-right: 4px;
+            font-size: 12px;
+          }
+        </style>
+
+        <div id='tev'>
+          <a href="#cat/tev/`+this.source.source_id+`">
+            More information
+          </a>
+        </div>
+    `
   }
 
   constructor(source) {
