@@ -12,24 +12,7 @@ export class PopupSNRcat {
 
     return `
 
-      <style>
-      .aladin-popup {
-        width: 280px;
-        text-align: left;
-      }
-
-      table, table tbody {
-        width: 270px;
-        text-align: left;
-      }
-
-      table th {
-        height: 30px;
-      }
-
-      </style>
-
-      <div>
+      <div class='popup-info'>
 
         <h4 style='text-align:center'>` + this.source.Source_Name + `</h4>
 
@@ -80,19 +63,12 @@ export class PopupSNRcat {
 
   getSNRcatUrl() {
 
-    return `  <style>
-                  #snrcat {
-                    text-align: right;
-                    margin-right: 4px;
-                    font-size: 12px;
-                  }
-              </style>
-              <div id='snrcat'>
-                  <a href='` + this.sourceSNRcat.getSNRcatUrl(this.getSNRcatId()) + `' target='_blank'>
-                  View source on SNRcat
-
-                  </a>
-              </div>
+    return `
+        <div class='popup-link'>
+            <a href='` + this.sourceSNRcat.getSNRcatUrl(this.getSNRcatId()) + `' target='_blank'>
+            View source on SNRcat
+            </a>
+        </div>
               `;
 
   }

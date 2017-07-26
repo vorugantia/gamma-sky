@@ -11,24 +11,7 @@ export class Popup3FGL {
 
     return `
 
-      <style>
-      .aladin-popup {
-        width: 280px;
-        text-align: left;
-      }
-
-      table, table tbody {
-        width: 270px;
-        text-align: left;
-      }
-
-      table th {
-        height: 30px;
-      }
-
-      </style>
-
-      <div>
+      <div class='popup-info'>
 
         <h4 style='text-align:center'>` + this.source.Source_Name + `</h4>
 

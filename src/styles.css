@@ -1,6 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+/*Popups*/
+.aladin-popup {
+  width: 280px;
+  text-align: left;
+}
+
+.popup-info table, .popup-info table tbody {
+  width: 270px;
+  text-align: left;
+}
+
+.popup-info table th {
+  height: 30px;
+}
+
 .popup-link {
   text-align: right;
   margin-right: 4px;
