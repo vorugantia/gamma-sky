@@ -28,7 +28,12 @@ export class MapComponent implements OnInit, OnDestroy {
   private error: any;
 
   showMap() {
-    this.map = A.aladin("#aladin-lite-div", MAP_STATE);
+    // Configure view
+    let opts = MAP_STATE;
+    opts.target = 'Crab';
+
+    // Initialize Aladin Lite
+    this.map = A.aladin("#aladin-lite-div", opts);
   }
 
   updateSurveys() {

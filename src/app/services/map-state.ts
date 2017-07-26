@@ -10,7 +10,7 @@ class MapState {
 }
 
 // This config file is used to set the default view of the Aladin Lite widget.
-// The view can be changed by accessing MAP_STATE before initializing Map View.
+// Changing properties in MAP_STATE (as local var) changes the Aladin map view.
 export let MAP_STATE: MapState = {
   fullScreen: true,
   showFullscreenControl: false,
