@@ -56,6 +56,13 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   goToMap() {
+    // this.router.navigate(
+    //   ['map'],
+    //   { queryParams: {
+    //       ra: this.d.ra,
+    //       dec: this.d.dec
+    //   }}
+    // );
     this.router.navigate(['map']);
   }
 

@@ -20,11 +20,18 @@ declare var $: any;
 })
 export class MapComponent implements OnInit, OnDestroy {
 
+
+  // constructor(routeParams: RouteParams){
+  //   let myPassedData: any = routeParams.params;
+  //   console.log(myPassedData.someProperty); #Prints "SomeValue"
+
   private map;
   private cat;
   private error: any;
 
   showMap() {
+    // router_opts = get_bla()
+    // opts = map_state.merge_with_defaults(router_opts)
     this.map = A.aladin("#aladin-lite-div", {
       fullScreen: true,
       showFullscreenControl: false,
