@@ -1,110 +1,28 @@
-//TODO: Each catalog should have its own popup component, with its own links.
-//They should also have a "detailed view" button that links from popup to
-// CatViewComponent.
 
-import { SourceSNRcat } from '../../services/source';
+class PopupBase {
 
-export class Popup {
+  public source;
+  constructor(source) {
+    this.source = source;
+  }
 
-  private source;
-  private catalogName;
+  public round(val) {
+    return val.toFixed(3);
+  }
 
-  getDesc() {
+  public getCatLink(cat) {
 
-    // This function returns the whole template to be displayed in the
-    // MapComponent's popups.
+    let url = '#cat/' + cat + '/' + this.source.source_id;
 
     return `
-
-      <style>
-      .aladin-popup {
-        width: 280px;
-        text-align: left;
-      }
-
-      table, table tbody {
-        width: 270px;
-        text-align: left;
-      }
-
-      table th {
-        height: 30px;
-      }
-
-      </style>
-
-      <div>
-
-        <h4 style='text-align:center'>` + this.source.prefix + this.source.name + `</h4>
-
-          <table>
-            <tbody>
-              <tr>
-                <td>RA:</td>
-                <th>` + this.source.ra + `</th>
-                <td>DEC:</td>
-                <th>` + this.source.dec + `</th>
-              </tr>
-              <tr>
-                <td>GLON:</td>
-                <th>` + this.source.glon + `</th>
-                <td>GLAT:</td>
-                <th>` + this.source.glat + `</th>
-              </tr>
-            </tbody>
-          </table>
-
-          <table>
-            <tbody>
-              <tr>
-                <td>Assoc:</td>
-                <th style='width:170px'>` + this.source.assoc + `</th>
-              </tr>
-            </tbody>
-          </table>
-
-          <table>
-            <tbody>
-              <tr>
-                <td>` + this.source.lineFourLabel + `</td>
-                <th style='width:170px'>` + this.source.lineFour + `</th>
-              </tr>
-            </tbody>
-          </table>
-
+        <div class='popup-link'>
+          <a href=`+ url +`>
+            Go to details page
+          </a>
         </div>
-        ` + this.getSNRcatUrl() + `
-
-    `;
-  }
-
-  getSNRcatUrl() {
-
-    if(this.catalogName == "SNRcat") {
-
-    return `  <style>
-                  #snrcat {
-                    text-align: right;
-                    margin-right: 4px;
-                    font-size: 12px;
-                  }
-              </style>
-              <div id='snrcat'>
-                  <a href='` + new SourceSNRcat(this.source).getSNRcatUrl("SNRcatID") + `' target='_blank'>
-                  View source on SNRcat
-
-                  </a>
-              </div>
-              `;
-    }
-    else {
-      return "";
-    }
-  }
-
-  constructor(source, catalogName) {
-    this.source = source;
-    this.catalogName = catalogName;
+    `
   }
 
 }
+
+export {PopupBase};

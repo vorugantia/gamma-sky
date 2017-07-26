@@ -56,18 +56,8 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   goToMap() {
-    let formattedGlon = this.source.format(this.d.glon, false).toString();
-    let formattedGlat = this.source.format(this.d.glat, false).toString();
-    let target = formattedGlon + formattedGlat;
-    // this.source.format() keeps a hanging space at the end of each value:
-    target = target.slice(0, -1);
-
-    this.router.navigate(
-      ['map'], {
-        queryParams: {
-          target: target
-        }
-      });
+    let target = this.source.getTargetString('glon', 'glat');
+    this.router.navigate(['map'], { queryParams: { target: target } });
   }
 
   constructor(

@@ -1,15 +1,13 @@
+import { PopupBase } from './popup';
 import { SourceTeV } from '../../services/source';
 
-export class PopupTeV {
+export class PopupTeV extends PopupBase {
 
-  private source;
-  private sourceTeV;
+  private sourceTeV = new SourceTeV(this.source);
 
   getDesc() {
-
     // This function returns the whole template to be displayed in the
     // MapComponent's popups.
-
     return `
 
       <div class='popup-info'>
@@ -52,28 +50,8 @@ export class PopupTeV {
           </table>
 
         </div>
-        ` + this.getSourceDetailUrl() + `
+        ` + this.getCatLink('tev') + `
     `;
-  }
-
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
-  }
-
-  getSourceDetailUrl() {
-
-    return `
-        <div class='popup-link'>
-          <a href="#cat/tev/`+this.source.source_id+`">
-            Go to details page
-          </a>
-        </div>
-    `
-  }
-
-  constructor(source) {
-    this.source = source;
-    this.sourceTeV = new SourceTeV(this.source);
   }
 
 }

@@ -63,6 +63,14 @@ class SourceBase {
       return "N/A";
   }
 
+  getTargetString(glon='GLON', glat='GLAT') {
+    let formattedGlon = this.format(this.data[glon], false).toString();
+    let formattedGlat = this.format(this.data[glat], false).toString();
+    let target = formattedGlon + formattedGlat;
+    // this.source.format() keeps a hanging space at the end of each value:
+    return target.slice(0, -1);
+  }
+
 }
 
 export class SourceTeV extends SourceBase {

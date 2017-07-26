@@ -1,15 +1,13 @@
+import { PopupBase } from './popup';
 import { SourceSNRcat } from '../../services/source';
 
-export class PopupSNRcat {
+export class PopupSNRcat extends PopupBase {
 
-  private source;
-  private sourceSNRcat;
+  private sourceSNRcat = new SourceSNRcat(this.source);
 
   getDesc() {
-
     // This function returns the whole template to be displayed in the
     // MapComponent's popups.
-
     return `
 
       <div class='popup-info'>
@@ -57,10 +55,6 @@ export class PopupSNRcat {
     `;
   }
 
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
-  }
-
   getSNRcatUrl() {
 
     return `
@@ -75,11 +69,6 @@ export class PopupSNRcat {
 
   getSNRcatId() {
     return this.source.snrcat_id;
-  }
-
-  constructor(source) {
-    this.source = source;
-    this.sourceSNRcat = new SourceSNRcat(this.source);
   }
 
 }

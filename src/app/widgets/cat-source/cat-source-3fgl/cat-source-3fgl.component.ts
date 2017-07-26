@@ -92,18 +92,8 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
   }
 
   goToMap() {
-    let formattedGlon = this.source.format(this.d.GLON, false).toString();
-    let formattedGlat = this.source.format(this.d.GLAT, false).toString();
-    let target = formattedGlon + formattedGlat;
-    // this.source.format() keeps a hanging space at the end of each value:
-    target = target.slice(0, -1);
-
-    this.router.navigate(
-      ['map'], {
-        queryParams: {
-          target: target
-        }
-      });
+    let target = this.source.getTargetString();
+    this.router.navigate(['map'], {queryParams: { target: target } });
   }
 
   constructor(

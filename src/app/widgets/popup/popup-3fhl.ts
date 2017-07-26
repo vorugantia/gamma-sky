@@ -1,13 +1,10 @@
+import { PopupBase } from './popup';
 
-export class Popup3FHL {
-
-  private source;
+export class Popup3FHL extends PopupBase {
 
   getDesc() {
-
     // This function returns the whole template to be displayed in the
     // MapComponent's popups.
-
     return `
 
       <div class='popup-info'>
@@ -50,27 +47,8 @@ export class Popup3FHL {
           </table>
 
         </div>
-        ` + this.getSourceDetailUrl() + `
+        ` + this.getCatLink('3fhl') + `
     `;
-  }
-
-  round(val) {
-    return (Math.round(val * 100) / 100).toFixed(2);
-  }
-
-  getSourceDetailUrl() {
-
-    return `
-        <div class='popup-link'>
-          <a href="#cat/3fhl/`+this.source.source_id+`">
-            Go to details page
-          </a>
-        </div>
-    `
-  }
-
-  constructor(source) {
-    this.source = source;
   }
 
 }
