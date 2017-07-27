@@ -37,8 +37,8 @@ export class MapComponent implements OnInit, OnDestroy {
   showMap() {
     // Configure view
     let opts = MAP_STATE;
-    opts.target = this.target;
-    opts.fov = this.fov;
+    // opts.target = this.target;
+    // opts.fov = this.fov;
 
     // Initialize Aladin Lite
     this.map = A.aladin("#aladin-lite-div", opts);
@@ -169,11 +169,6 @@ export class MapComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-
-    console.log("aladin map onInit()");
-
-    this.marker = 'snrcat';
-
     // Grabs parameters from the URL and uses them to set up Aladin map view.
     this.sub = this.activatedRoute
           .queryParams
@@ -184,6 +179,8 @@ export class MapComponent implements OnInit, OnDestroy {
             this.marker = params['marker'] || "tev";
           });
 
+    console.log("aladin map onInit()");
+
     this.showMap();
     this.updateSurveys();
 
@@ -191,11 +188,12 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getCatalogSNRcat();
     this.getCatalogTeV();
     this.getCatalog3FHL();
+
   }
 
   ngOnDestroy() {
     console.log('aladin map OnDestroy');
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
 }
