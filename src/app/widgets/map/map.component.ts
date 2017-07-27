@@ -37,8 +37,8 @@ export class MapComponent implements OnInit, OnDestroy {
   showMap() {
     // Configure view
     let opts = MAP_STATE;
-    // opts.target = this.target;
-    // opts.fov = this.fov;
+    opts.target = this.target;
+    opts.fov = this.fov;
 
     // Initialize Aladin Lite
     this.map = A.aladin("#aladin-lite-div", opts);
