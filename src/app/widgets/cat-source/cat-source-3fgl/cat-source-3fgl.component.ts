@@ -93,7 +93,13 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
   goToMap() {
     let target = this.source.getTargetString();
-    this.router.navigate(['map'], {queryParams: { target: target } });
+    let fov = 20 // Set default fov to 20 degrees.
+    this.router.navigate(['map'], {
+      queryParams: {
+        target: target,
+        fov: fov
+      }
+    });
   }
 
   constructor(
