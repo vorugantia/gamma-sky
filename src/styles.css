@@ -21,3 +21,16 @@
   margin-right: 4px;
   font-size: 12px;
 }
+
+/*Cat detail pages*/
+.cat-detail-button {
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: bold;
+  /*position: fixed;*/
+  border: 2px solid rgb(50, 50, 50);
+  background-color: white;
+  opacity: 0.9;
+  height: 30px;
+  margin-bottom: 20px;
+}
