@@ -57,7 +57,13 @@ export class CatSourceTeVComponent implements OnInit {
 
   goToMap() {
     let target = this.source.getTargetString('glon', 'glat');
-    this.router.navigate(['map'], { queryParams: { target: target } });
+    let fov = 20 // Set default fov to 20 degrees.
+    this.router.navigate(['map'], {
+      queryParams: {
+        target: target,
+        fov: fov
+      }
+    });
   }
 
   constructor(

@@ -31,15 +31,16 @@ export class MapComponent implements OnInit, OnDestroy {
   // Used to configure view
   private sub;
   private target;
+  private fov;
 
   showMap() {
     // Configure view
     let opts = MAP_STATE;
     opts.target = this.target;
+    opts.fov = this.fov;
 
     // Initialize Aladin Lite
     this.map = A.aladin("#aladin-lite-div", opts);
-    // this.map.gotoRaDec(83.63, 22.01);
   }
 
   updateSurveys() {
@@ -173,6 +174,8 @@ export class MapComponent implements OnInit, OnDestroy {
             // (Adding (+) before params[...] would convert string to number)
             this.target = params['target'] || "0 +0";
             console.log("target: ", this.target);
+            this.fov = params['fov'] || "180";
+            console.log("fov: ", this.fov);
           });
 
     this.showMap();
