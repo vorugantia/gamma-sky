@@ -75,6 +75,8 @@ class SourceBase {
 
 export class SourceTeV extends SourceBase {
 
+  public cat = 'tev';
+
   comma_space(val) {
     return val.split(',').join(', ');
   }
@@ -98,6 +100,8 @@ export class SourceTeV extends SourceBase {
 }
 
 export class Source3FHL extends SourceBase {
+
+  public cat = '3fhl';
 
   join_assoc() {
     var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM,
@@ -126,6 +130,8 @@ export class Source3FHL extends SourceBase {
 
 export class Source3FGL extends SourceBase {
 
+  public cat = '3fgl';
+
   join_assoc() {
     var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_TEV,
     this.data.ASSOC_GAM1, this.data.ASSOC_GAM2, this.data.ASSOC_GAM3];
@@ -143,6 +149,8 @@ export class Source3FGL extends SourceBase {
 }
 
 export class SourceSNRcat extends SourceBase {
+
+  public cat = 'snrcat';
 
   getSNRcatUrl(snrcatId) {
     return `http://www.physics.umanitoba.ca/snr/SNRcat/SNRrecord.php?id=${snrcatId}`;

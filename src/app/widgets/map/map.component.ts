@@ -32,6 +32,7 @@ export class MapComponent implements OnInit, OnDestroy {
   private sub;
   private target;
   private fov;
+  private marker;
 
   showMap() {
     // Configure view
@@ -116,9 +117,8 @@ export class MapComponent implements OnInit, OnDestroy {
           '#DB7F00',
           catalog
         );
-        //This hides 3FHL catalog on webpage startup.
-        this.cat.hide();
-      })
+        this.hideCatalog('3fhl');
+      });
   }
 
   getCatalog3FGL() {
@@ -129,9 +129,8 @@ export class MapComponent implements OnInit, OnDestroy {
           '#09518D',
           catalog
         );
-        //This hides 3FGL catalog on webpage startup.
-        this.cat.hide();
-      })
+        this.hideCatalog('3fgl');
+      });
   }
 
   getCatalogSNRcat() {
@@ -142,9 +141,8 @@ export class MapComponent implements OnInit, OnDestroy {
           '#00A525',
           catalog
         );
-        //This hides SNRcat catalog on webpage startup.
-        this.cat.hide();
-      })
+        this.hideCatalog('snrcat');
+      });
   }
   getCatalogTeV() {
     this.catalogService.getCatalogTeV()
@@ -154,7 +152,15 @@ export class MapComponent implements OnInit, OnDestroy {
           '#DA0000',
           catalog
         );
-      })
+        // We always want to show the markers for TeV sources. No need to hide.
+        // this.hideCatalog('tev');
+      });
+  }
+
+  hideCatalog(catName) {
+    if(catName != this.marker) {
+      this.cat.hide();
+    }
   }
 
   constructor(
@@ -166,16 +172,16 @@ export class MapComponent implements OnInit, OnDestroy {
 
     console.log("aladin map onInit()");
 
-    // Grabs the 'target' query parameter from the URL, to set Aladin map view.
+    this.marker = 'snrcat';
+
+    // Grabs parameters from the URL and uses them to set up Aladin map view.
     this.sub = this.activatedRoute
           .queryParams
           .subscribe(params => {
             // The || gives a default value if no parameter is returned.
-            // (Adding (+) before params[...] would convert string to number)
             this.target = params['target'] || "0 +0";
-            console.log("target: ", this.target);
-            this.fov = params['fov'] || "180";
-            console.log("fov: ", this.fov);
+            this.fov = params['fov']       || "180";
+            this.marker = params['marker'] || "tev";
           });
 
     this.showMap();

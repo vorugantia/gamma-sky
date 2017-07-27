@@ -11,7 +11,7 @@ const routes: Routes = [
     component: MapViewComponent,
     children: [
       {
-        path: '?target=:target&fov=:fov',
+        path: '?target=:target&fov=:fov&marker=:marker',
         component: MapViewComponent
       },
     ]
