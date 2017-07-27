@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
@@ -7,7 +7,8 @@ import {Popup3FHL} from '../popup/popup-3fhl';
 import {CatalogService} from '../../services/catalog.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import {Observable} from 'rxjs/Rx';
+import { Location } from '@angular/common';
+import { Observable } from 'rxjs/Rx';
 
 // config
 import {SURVEYS} from '../../services/surveys';
@@ -15,14 +16,14 @@ import {MAP_STATE} from '../../services/map-state';
 
 declare var A: any;
 declare var HpxImageSurvey: any;
-declare var $: any;
+declare var CooConversion: any;
 
 @Component({
   selector: 'map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit, OnDestroy, DoCheck {
 
   private map;
   private cat;
@@ -165,7 +166,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
   constructor(
     private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    // private router: Router,
+    private location: Location
+    // private params: Params
   ) { }
 
   ngOnInit() {
@@ -189,6 +193,22 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getCatalogTeV();
     this.getCatalog3FHL();
 
+  }
+
+  ngDoCheck() {
+    // Update the URL (without refreshing page) as Map View changes.
+    // TODO: Only call this on mouse scroll (event listener needed.)
+    let dynamicGlonGlat = CooConversion.J2000ToGalactic(
+      [
+        this.map.getRaDec()[0],
+        this.map.getRaDec()[1]
+      ]);
+    let dynamicTarget =   dynamicGlonGlat[0].toFixed(3) + ','
+                        + dynamicGlonGlat[1].toFixed(3);
+    let dynamicFov = this.map.getFov()[0].toFixed(3).toString();
+
+    let dynamicParams = 'target=' + dynamicTarget + '&fov=' + dynamicFov;
+    this.location.go('/map', dynamicParams); // '/map' or 'map'?
   }
 
   ngOnDestroy() {

@@ -67,8 +67,8 @@ class SourceBase {
     let formattedGlon = this.format(this.data[glon], false).toString();
     let formattedGlat = this.format(this.data[glat], false).toString();
     let target = formattedGlon + formattedGlat;
-    // this.source.format() keeps a hanging space at the end of each value:
-    return target.slice(0, -1);
+    // Replace whitespace + separate coordinates with a comma
+    return target.slice(0, -1).replace(/\s/g,',')
   }
 
 }
