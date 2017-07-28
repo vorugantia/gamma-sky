@@ -1,18 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'cat-view',
-  templateUrl: './cat-view.component.html'
+  selector: 'app-cat-view',
+  template: `
+    <app-switch-view selectedView="cat"></app-switch-view>
+    <app-cat-search></app-cat-search>
+    <router-outlet></router-outlet>
+  `
 })
-export class CatViewComponent implements OnInit {
-
-  private selectedView = "cat";
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    console.log("CatViewComponent ngOnInit()");
-  }
-
+export class CatViewComponent {
 }

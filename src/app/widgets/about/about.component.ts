@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
-declare var $: any;
+declare let $: any;
 
 @Component({
-  selector: 'about-button',
-  templateUrl: './about-button.component.html',
-  styleUrls: ['./about.component.css']
+  selector: 'app-about-button',
+  templateUrl: './about-button.component.html'
 })
 export class AboutButtonComponent implements OnInit {
 
   private aboutButtonRight;
+
+  constructor(public dialog: MdDialog) {
+  }
+
+  ngOnInit() {
+    this.resize();
+  }
 
   onClick() {
     this.dialog.open(AboutDialogComponent);
@@ -21,27 +27,18 @@ export class AboutButtonComponent implements OnInit {
     let pageWidth = $(document).width();
 
     if (pageWidth > 800) {
-      this.aboutButtonRight = "160px";
+      this.aboutButtonRight = '160px';
+    } else {
+      this.aboutButtonRight = '110px';
     }
-    else {
-      this.aboutButtonRight = "110px";
-    }
-  }
-
-  constructor(public dialog: MdDialog) {
-  }
-
-  ngOnInit() {
-    this.resize();
   }
 
 }
 
 
 @Component({
-  selector: 'about-dialog',
-  templateUrl: './about-dialog.component.html',
-  styleUrls: ['./about.component.css']
+  selector: 'app-about-dialog',
+  templateUrl: './about-dialog.component.html'
 })
 export class AboutDialogComponent {
 }

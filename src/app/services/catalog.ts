@@ -1,29 +1,26 @@
-import { SourceTeV, Source3FGL, SourceSNRcat, Source3FHL } from './source';
-
 class CatalogBase {
 
   public data;
   public sourceClass;
 
+  // default column names.
+  public sourceNameCol = 'Source_Name';
+  public raCol = 'RAJ2000';
+  public decCol = 'DEJ2000';
+
   constructor(data, sourceClass) {
     this.data = data;
     this.sourceClass = sourceClass;
   }
-
-  // default column names.
-  public sourceNameCol = "Source_Name";
-  public raCol = "RAJ2000";
-  public decCol = "DEJ2000";
-
 }
 
 export class CatalogTeV extends CatalogBase {
 
   public catName = 'tev';
 
-  public sourceNameCol = "common_name";
-  public raCol = "ra";
-  public decCol = "dec";
+  public sourceNameCol = 'common_name';
+  public raCol = 'ra';
+  public decCol = 'dec';
 
   printInfo(idx) {
     console.log(this.data[idx]);

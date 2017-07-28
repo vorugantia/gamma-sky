@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { SourceTeV, Source3FGL, SourceSNRcat, Source3FHL } from './source';
@@ -41,9 +40,9 @@ export class CatalogService {
 
 // Fetch source data
   getSourceDirectory(cat, id) {
-    var str = id.toString();
-    var pad = "0000";
-    var s = pad.substring(0, pad.length - str.length) + str;
+    const str = id.toString();
+    const pad = '0000';
+    const s = pad.substring(0, pad.length - str.length) + str;
     return `data/cat/${cat}/sources/${s}/data.json`;
   }
 

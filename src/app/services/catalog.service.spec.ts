@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { HttpModule, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { CatalogService } from './catalog.service';

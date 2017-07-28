@@ -38,7 +38,7 @@ class SourceBase {
   }
 
   handle_null() {
-    return "No data";
+    return 'No data';
   }
 
   join_entries(arr) {
@@ -52,13 +52,13 @@ class SourceBase {
     // Only works for 3FHL and 3FGL.
     const flag = this.data.TEVCAT_FLAG;
     if (flag === 'N') {
-      return "No TeV association";
+      return 'No TeV association';
     } else if (flag === 'P') {
-      return "Small TeV source";
+      return 'Small TeV source';
     } else if (flag === 'E') {
-      return "Extended TeV source (diameter > 40 arcmins)";
+      return 'Extended TeV source (diameter > 40 arcmins)';
     } else {
-      return "N/A";
+      return 'N/A';
     }
   }
 
