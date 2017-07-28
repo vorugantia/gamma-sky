@@ -19,6 +19,25 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
   private catalog: Catalog3FGL;
   private source: Source3FGL;
 
+  constructor(private catalogService: CatalogService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
+
+  ngOnInit() {
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      let id = +params['id'];
+      this.id = id;
+      this.getSource();
+    });
+
+    this.getCatalog();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   getCatalog() {
     this.catalogService.getCatalog3FGL()
       .subscribe(catalog => this.catalog = catalog);
@@ -45,25 +64,6 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
         marker: this.source.cat
       }
     });
-  }
-
-  constructor(private catalogService: CatalogService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {
-  }
-
-  ngOnInit() {
-    this.sub = this.activatedRoute.params.subscribe(params => {
-      let id = +params['id'];
-      this.id = id;
-      this.getSource();
-    });
-
-    this.getCatalog();
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
 }

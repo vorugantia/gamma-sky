@@ -9,7 +9,14 @@ import { CatalogTeV, Catalog3FGL, CatalogSNRcat, Catalog3FHL } from './catalog';
 @Injectable()
 export class CatalogService {
 
-// Fetch catalog data
+  constructor(private http: Http) {
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
+
   getCatalogTeV() {
     return this.http.get('data/cat/tev/cat.json')
       .map(res => res.json())
@@ -38,7 +45,6 @@ export class CatalogService {
       .catch(this.handleError);
   }
 
-// Fetch source data
   getSourceDirectory(cat, id) {
     const str = id.toString();
     const pad = '0000';
@@ -72,15 +78,6 @@ export class CatalogService {
       .map(res => res.json())
       .map(source => new SourceSNRcat(source))
       .catch(this.handleError);
-  }
-
-
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
-  constructor(private http: Http) {
   }
 
 }

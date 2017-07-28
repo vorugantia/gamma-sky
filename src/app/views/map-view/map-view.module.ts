@@ -9,6 +9,7 @@ import { MapViewRoutingModule } from './map-view-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 
 import { CatalogService } from '../../services/catalog.service';
+import { AppInfoService} from '../../services/app-info.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CatalogService } from '../../services/catalog.service';
     SharedModule
   ],
   providers: [
-    CatalogService
+    CatalogService,
+    AppInfoService
   ],
   entryComponents: [
     AboutDialogComponent,

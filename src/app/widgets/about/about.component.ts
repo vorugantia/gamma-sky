@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
+import { AppInfoService } from '../../services/app-info.service';
 
 declare let $: any;
 
@@ -40,5 +41,17 @@ export class AboutButtonComponent implements OnInit {
   selector: 'app-about-dialog',
   templateUrl: './about-dialog.component.html'
 })
-export class AboutDialogComponent {
+export class AboutDialogComponent implements OnInit {
+  private app_info: object;
+
+  constructor(private appInfoService: AppInfoService) {
+  }
+
+  ngOnInit() {
+    this.appInfoService.getInfo()
+      .subscribe(app_info => this.app_info = app_info);
+
+    console.log(this.app_info);
+  }
+
 }
