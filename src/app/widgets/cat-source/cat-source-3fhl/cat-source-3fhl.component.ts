@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FHL } from '../../../services/catalog';
@@ -6,11 +6,11 @@ import { Source3FHL } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
-  selector: 'cat-source-3fhl',
+  selector: 'app-cat-source-3fhl',
   templateUrl: './cat-source-3fhl.component.html',
   providers: [CatalogService]
 })
-export class CatSource3FHLComponent implements OnInit {
+export class CatSource3FHLComponent implements OnInit, OnDestroy {
 
   private sub;
   private id;
@@ -61,13 +61,11 @@ export class CatSource3FHLComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Routing to CatSource3FHLComponent...");
-
-    // TODO params will be replaced by paramMap. (https://angular.io/guide/router#parammap-api) - I made this switch already in MapComponent.
+    // TODO params will be replaced by paramMap.
+    // (https://angular.io/guide/router#parammap-api) - I made this switch already in MapComponent.
     this.sub = this.activatedRoute.params.subscribe(params => {
       // (the (+) converts string to number)
       let id = +params['id'];
-      console.log('id ', id);
       this.id = id;
       this.getSource();
     });

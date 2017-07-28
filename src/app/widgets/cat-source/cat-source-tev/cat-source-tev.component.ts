@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CatalogTeV } from '../../../services/catalog';
@@ -6,11 +6,11 @@ import { SourceTeV } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
-  selector: 'cat-source-tev',
+  selector: 'app-cat-source-tev',
   templateUrl: './cat-source-tev.component.html',
   providers: [CatalogService]
 })
-export class CatSourceTeVComponent implements OnInit {
+export class CatSourceTeVComponent implements OnInit, OnDestroy {
 
   private sub;
   private id;
@@ -74,11 +74,9 @@ export class CatSourceTeVComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Routing to CatSourceTeVComponent...");
 
     this.sub = this.activatedRoute.params.subscribe(params => {
       let id = +params['id'];
-      console.log('id ', id);
       this.id = id;
       this.getSource();
     });

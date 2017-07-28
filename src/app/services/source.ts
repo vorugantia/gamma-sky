@@ -135,6 +135,8 @@ export class Source3FGL extends SourceBase {
 
   public cat = '3fgl';
 
+  spec_type = this.data.SpectrumType.trim();
+
   join_assoc() {
     return this.join_entries([
       this.data.ASSOC1,
@@ -154,6 +156,33 @@ export class Source3FGL extends SourceBase {
       this.data['1FHL_Name']
     ]);
   }
+
+  getUrl(image) {
+
+    let name = this.data.Source_Name;
+    name = name.substring(6);
+    if (name.indexOf(' ') > 0) {
+      name = name.substring(0, name.length - 1);
+    }
+
+    const string1 = name.substring(0, 4);
+    const string2 = name.substring(5, 6);
+    const operation = name.substring(6, 7);
+    const string3 = name.substring(7);
+
+    let operationLetter;
+    if (operation === '+') {
+      operationLetter = 'p';
+    } else {
+      operationLetter = 'm';
+    }
+
+    const urlEnd = string1 + 'd' + string2 + operationLetter + string3;
+
+    return ('http://fermi.gsfc.nasa.gov/ssc/data/access/lat/4yr_catalog/3FGL-table/data/3FGL_'
+      + image + '_v5/3FGL_J' + urlEnd + '_' + image + '.png');
+  }
+
 
 }
 

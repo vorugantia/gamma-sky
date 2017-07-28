@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-map-view',
   template: `
     <div id='background'>
-      <map></map>
+      <app-map></app-map>
       <app-switch-view selectedView="map"></app-switch-view>
       <app-about-button></app-about-button>
       <share-button></share-button>
