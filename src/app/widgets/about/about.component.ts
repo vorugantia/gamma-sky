@@ -1,64 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 declare var $: any;
 
 @Component({
-  selector: 'about',
-  templateUrl: './about.component.html',
+  selector: 'about-button',
+  templateUrl: './about-button.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent implements OnInit {
+export class AboutButtonComponent implements OnInit {
 
-  private toggle: boolean;
   private aboutButtonRight;
-  private aboutInfoRight;
-  private aboutInfoWidth;
 
   onClick() {
-    $("#aboutInfo").toggle();
-
-    this.toggle = !this.toggle
-    this.changeButtonDisplay();
+    this.dialog.open(AboutDialogComponent);
   }
 
-  changeButtonDisplay() {
-    if(this.toggle == false) {
-      return "About";
-    }
-    else {
-      return "Close";
-    }
-  }
-
-  // TODO make this a directive, don't use jQuery.
+  // TODO make this a directive, or just use Angular event listeners. Don't use jQuery.
   resize() {
-
     let pageWidth = $(document).width();
 
-    if (pageWidth > 800) {
-      this.aboutButtonRight = "100px";
-      this.aboutInfoRight = "100px";
+    if(pageWidth > 800) {
+      this.aboutButtonRight = "160px";
     }
-    if (pageWidth <= 800) {
-      this.aboutButtonRight = "50px";
-      this.aboutInfoRight = "50px";
-
+    else {
+      this.aboutButtonRight = "110px";
     }
-    if (pageWidth > 500) {
-      this.aboutInfoWidth = "410px";
-    }
-    if (pageWidth <= 500) {
-      this.aboutInfoWidth = "205px";
-    }
-
   }
 
-  constructor() { }
+  constructor(public dialog: MdDialog) { }
 
   ngOnInit() {
-    this.toggle = false;
-    this.changeButtonDisplay();
     this.resize();
   }
 
 }
+
+
+@Component({
+  selector: 'about-dialog',
+  templateUrl: './about-dialog.component.html',
+  styleUrls: ['./about.component.css']
+})
+export class AboutDialogComponent {}

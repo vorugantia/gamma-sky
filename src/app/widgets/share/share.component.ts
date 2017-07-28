@@ -14,21 +14,19 @@ export class ShareButtonComponent implements OnInit {
   private shareButtonRight;
   private urlString;
 
-  openLink() {
+  onClick() {
     this.dialog.open(ShareDialogComponent);
   }
 
   resize() {
-
     let pageWidth = $(document).width();
 
     if(pageWidth > 800) {
-      this.shareButtonRight = "160px";
+      this.shareButtonRight = "100px";
     }
     else {
-      this.shareButtonRight = "110px";
+      this.shareButtonRight = "50px";
     }
-
   }
 
   constructor(public dialog: MdDialog) {}
@@ -38,6 +36,7 @@ export class ShareButtonComponent implements OnInit {
   }
 
 }
+
 
 @Component({
   selector: 'share-dialog',

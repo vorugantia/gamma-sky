@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { MapViewComponent } from './map-view.component';
 import { MapComponent } from '../../widgets/map/map.component';
-import { AboutComponent } from '../../widgets/about/about.component';
+import { AboutButtonComponent, AboutDialogComponent } from '../../widgets/about/about.component';
 import { ShareButtonComponent, ShareDialogComponent } from '../../widgets/share/share.component';
 
 import { MapViewRoutingModule } from './map-view-routing.module';
@@ -14,7 +14,8 @@ import { CatalogService } from '../../services/catalog.service';
   declarations: [
     MapViewComponent,
     MapComponent,
-    AboutComponent,
+    AboutButtonComponent,
+    AboutDialogComponent,
     ShareButtonComponent,
     ShareDialogComponent
   ],
@@ -26,6 +27,7 @@ import { CatalogService } from '../../services/catalog.service';
     CatalogService
   ],
   entryComponents: [
+    AboutDialogComponent,
     ShareDialogComponent
   ]
 })
