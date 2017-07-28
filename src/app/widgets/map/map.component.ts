@@ -173,11 +173,12 @@ export class MapComponent implements OnInit, OnDestroy {
       .queryParams
       .subscribe(params => {
         // The || gives a default value if no parameter is returned.
-        // Replace comma with space in the target coords.
-        this.target = params['target'].replace(/,/g , ' ') || '0 +0';
+        this.target = params['target'] || '0 +0';
         this.fov = params['fov'] || '180';
         this.marker = params['marker'] || 'tev';
       });
+    // Replace comma with space in the target coords.
+    this.target = this.target.replace(/,/g , ' ');
 
     this.showMap();
     this.updateSurveys();
