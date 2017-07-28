@@ -4,13 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MdAutocompleteModule, MdInputModule, MdDialogModule } from '@angular/material';
 
-import { SwitchViewComponent } from '../views/switch-view/switch-view.component';
+import { SwitchButtonComponent } from '../widgets/switch/switch-button.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [SwitchViewComponent],
+  declarations: [SwitchButtonComponent],
   exports: [
-    SwitchViewComponent,
+    SwitchButtonComponent,
 
     CommonModule,
     FormsModule,

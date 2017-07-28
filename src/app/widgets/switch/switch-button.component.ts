@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-switch-view',
-  templateUrl: './switch-view.component.html',
-  styleUrls: ['./switch-view.component.css']
+  templateUrl: './switch-button.component.html',
+  styleUrls: ['./switch-button.component.css']
 })
-export class SwitchViewComponent implements OnInit {
+export class SwitchButtonComponent implements OnInit {
 
   @Input() selectedView;
 
