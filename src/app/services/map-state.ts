@@ -20,5 +20,5 @@ export let MAP_STATE: MapState = {
   target: "0 +0",
   fov: 180,
   allowFullZoomout: true,
-  showShareControl: true, // Not yet working
+  showShareControl: false, // Not yet working
 }

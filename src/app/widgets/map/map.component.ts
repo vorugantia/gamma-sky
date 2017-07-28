@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PopupTeV} from '../popup/popup-tev';
 import {Popup3FGL} from '../popup/popup-3fgl';
 import {PopupSNRcat} from '../popup/popup-snrcat';
@@ -23,7 +23,7 @@ declare var CooConversion: any;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnDestroy, DoCheck {
+export class MapComponent implements OnInit, OnDestroy {
 
   private map;
   private cat;
@@ -164,6 +164,25 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck {
     }
   }
 
+  updateUrl() {
+    let dynamicGlonGlat = CooConversion.J2000ToGalactic(
+      [
+        this.map.getRaDec()[0],
+        this.map.getRaDec()[1]
+      ]);
+    let dynamicTarget = dynamicGlonGlat[0].toFixed(3) + ','
+                        + dynamicGlonGlat[1].toFixed(3);
+    let dynamicFov = this.map.getFov()[0].toFixed(3).toString();
+
+    let dynamicParams = 'target=' + dynamicTarget + '&fov=' + dynamicFov
+                         + '&marker=' + this.marker;
+
+    // Update the URL (without refreshing page) as Map View changes.
+    // TODO: Only call this on mouse scroll (event listener needed.)
+    this.location.go('/map', dynamicParams); // '/map' or 'map'?
+
+  }
+
   constructor(
     private catalogService: CatalogService,
     private activatedRoute: ActivatedRoute,
@@ -195,25 +214,9 @@ export class MapComponent implements OnInit, OnDestroy, DoCheck {
 
   }
 
-  ngDoCheck() {
-    // Update the URL (without refreshing page) as Map View changes.
-    // TODO: Only call this on mouse scroll (event listener needed.)
-    let dynamicGlonGlat = CooConversion.J2000ToGalactic(
-      [
-        this.map.getRaDec()[0],
-        this.map.getRaDec()[1]
-      ]);
-    let dynamicTarget =   dynamicGlonGlat[0].toFixed(3) + ','
-                        + dynamicGlonGlat[1].toFixed(3);
-    let dynamicFov = this.map.getFov()[0].toFixed(3).toString();
-
-    let dynamicParams = 'target=' + dynamicTarget + '&fov=' + dynamicFov;
-    this.location.go('/map', dynamicParams); // '/map' or 'map'?
-  }
-
   ngOnDestroy() {
     console.log('aladin map OnDestroy');
-    // this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
 }

@@ -30,9 +30,10 @@ export class AboutComponent implements OnInit {
     }
   }
 
+  // TODO make this a directive, don't use jQuery.
   resize() {
 
-    var pageWidth = $(document).width();
+    let pageWidth = $(document).width();
 
     if (pageWidth > 800) {
       this.aboutButtonRight = "100px";
