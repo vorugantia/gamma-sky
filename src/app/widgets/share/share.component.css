@@ -1,4 +1,4 @@
-#shareButton, #closeShareLinkButton {
+#shareButton {
   font-family: monospace;
   font-size: 15px;
   color: black;
@@ -14,27 +14,15 @@
   bottom: 3px;
   z-index: 10;
 }
-#closeShareLinkButton {
-  -webkit-transform: translate(-50%, 0);
-  bottom: -8px;
-}
 
 #shareLinkBox {
   width:400px;
-  height:60px;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: auto;
-  z-index:20;
-  text-align: center;
+  /*height:60px;*/
+  font-size: 13px;
+  /*text-align: center;*/
 }
 
 #shareLinkText {
   width:400px;
-  opacity: 0.9;
-  border: 1px solid rgb(50, 50, 50);
-  font-size: 20px;
+  font-size: 16px;
 }

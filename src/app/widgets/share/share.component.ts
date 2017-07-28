@@ -1,30 +1,23 @@
 import { Component, Inject, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { MdDialog } from '@angular/material';
 
 declare var $: any;
 
 @Component({
-  selector: 'button-share',
-  templateUrl: './button-share.component.html',
-  styleUrls: ['./button-share.component.css']
+  selector: 'share-button',
+  templateUrl: './share-button.component.html',
+  styleUrls: ['./share.component.css']
 })
-export class ButtonShareComponent implements OnInit {
+export class ShareButtonComponent implements OnInit {
 
 // Button to the left of "About". On click, a text field appears in the middle of the window. Share URL is inside. Also share URL is updated in website URL. The div for the field takes up the whole page, you can't click anything else. Then there's a "close" button below (make sure border + close button background are contrasting colors.) WIDTH 400px for field.
 
   private shareButtonRight;
   private urlString;
-  private toggle;
 
-  // Using https://stackoverflow.com/a/40733052/4726636
   openLink() {
-    this.urlString = this.document.location.href;
-    this.toggle = true;
-  }
-
-  closeLink() {
-    this.toggle = false;
+    this.dialog.open(ShareDialogComponent);
   }
 
   resize() {
@@ -40,11 +33,24 @@ export class ButtonShareComponent implements OnInit {
 
   }
 
-  constructor(@Inject(DOCUMENT) private document: any) { }
+  constructor(public dialog: MdDialog) {}
 
   ngOnInit() {
     this.resize();
-    this.toggle = false;
   }
+
+}
+
+@Component({
+  selector: 'share-dialog',
+  templateUrl: './share-dialog.component.html',
+  styleUrls: ['./share.component.css']
+})
+export class ShareDialogComponent {
+
+  // Using https://stackoverflow.com/a/40733052/4726636
+  private urlString = this.document.location.href;
+
+  constructor(@Inject(DOCUMENT) private document: any) {}
 
 }

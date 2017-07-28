@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MdAutocompleteModule, MdInputModule} from '@angular/material';
+import { MdAutocompleteModule, MdInputModule, MdDialogModule } from '@angular/material';
 
 import { SwitchViewComponent } from '../views/switch-view/switch-view.component';
 
@@ -16,7 +16,8 @@ import { SwitchViewComponent } from '../views/switch-view/switch-view.component'
     FormsModule,
     ReactiveFormsModule,
     MdAutocompleteModule,
-    MdInputModule
+    MdInputModule,
+    MdDialogModule
   ]
 })
 export class SharedModule { }
