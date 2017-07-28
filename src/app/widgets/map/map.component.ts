@@ -1,18 +1,17 @@
-
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {PopupTeV} from '../popup/popup-tev';
-import {Popup3FGL} from '../popup/popup-3fgl';
-import {PopupSNRcat} from '../popup/popup-snrcat';
-import {Popup3FHL} from '../popup/popup-3fhl';
-import {CatalogService} from '../../services/catalog.service';
+import { PopupTeV } from '../popup/popup-tev';
+import { Popup3FGL } from '../popup/popup-3fgl';
+import { PopupSNRcat } from '../popup/popup-snrcat';
+import { Popup3FHL } from '../popup/popup-3fhl';
+import { CatalogService } from '../../services/catalog.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
 
 // config
-import {SURVEYS} from '../../services/surveys';
-import {MAP_STATE} from '../../services/map-state';
+import { SURVEYS } from '../../services/surveys';
+import { MAP_STATE } from '../../services/map-state';
 
 declare var A: any;
 declare var HpxImageSurvey: any;
@@ -69,7 +68,7 @@ export class MapComponent implements OnInit, OnDestroy {
     var n_sources = catalog.data.length;
     console.log(catalogName, " # number of sources: ", n_sources);
 
-    for(var i = 0; i < n_sources; i++) {
+    for (var i = 0; i < n_sources; i++) {
       //Configuring the popup
       var popup = this.initializePopup(catalogName, catalog, i);
       var ra = catalog.data[i][catalog.raCol];
@@ -84,7 +83,7 @@ export class MapComponent implements OnInit, OnDestroy {
         });
       this.cat.addSources([marker]);
 
-        //this.cat.hide() will hide all catalogs on webpage startup.
+      //this.cat.hide() will hide all catalogs on webpage startup.
     }
 
     console.log(catalogName, " loading done");
@@ -94,13 +93,13 @@ export class MapComponent implements OnInit, OnDestroy {
   initializePopup(catalogName, catalog, source) {
     var popup;
 
-    if(catalogName == 'TeV') {
+    if (catalogName == 'TeV') {
       popup = new PopupTeV(catalog.data[source]);
     }
-    else if(catalogName == '3FHL') {
+    else if (catalogName == '3FHL') {
       popup = new Popup3FHL(catalog.data[source]);
     }
-    else if(catalogName == '3FGL') {
+    else if (catalogName == '3FGL') {
       popup = new Popup3FGL(catalog.data[source]);
     }
     else {
@@ -145,6 +144,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this.hideCatalog('snrcat');
       });
   }
+
   getCatalogTeV() {
     this.catalogService.getCatalogTeV()
       .subscribe(catalog => {
@@ -159,7 +159,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   hideCatalog(catName) {
-    if(catName != this.marker) {
+    if (catName != this.marker) {
       this.cat.hide();
     }
   }
@@ -171,11 +171,11 @@ export class MapComponent implements OnInit, OnDestroy {
         this.map.getRaDec()[1]
       ]);
     let dynamicTarget = dynamicGlonGlat[0].toFixed(3) + ','
-                        + dynamicGlonGlat[1].toFixed(3);
+      + dynamicGlonGlat[1].toFixed(3);
     let dynamicFov = this.map.getFov()[0].toFixed(3).toString();
 
     let dynamicParams = 'target=' + dynamicTarget + '&fov=' + dynamicFov
-                         + '&marker=' + this.marker;
+      + '&marker=' + this.marker;
 
     // Update the URL (without refreshing page) as Map View changes.
     // TODO: Only call this on mouse scroll (event listener needed.)
@@ -183,24 +183,24 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
-  constructor(
-    private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute,
-    // private router: Router,
-    private location: Location
-    // private params: Params
-  ) { }
+  constructor(private catalogService: CatalogService,
+              private activatedRoute: ActivatedRoute,
+              // private router: Router,
+              private location: Location
+              // private params: Params
+  ) {
+  }
 
   ngOnInit() {
     // Grabs parameters from the URL and uses them to set up Aladin map view.
     this.sub = this.activatedRoute
-          .queryParams
-          .subscribe(params => {
-            // The || gives a default value if no parameter is returned.
-            this.target = params['target'] || "0 +0";
-            this.fov = params['fov']       || "180";
-            this.marker = params['marker'] || "tev";
-          });
+      .queryParams
+      .subscribe(params => {
+        // The || gives a default value if no parameter is returned.
+        this.target = params['target'] || "0 +0";
+        this.fov = params['fov'] || "180";
+        this.marker = params['marker'] || "tev";
+      });
 
     console.log("aladin map onInit()");
 

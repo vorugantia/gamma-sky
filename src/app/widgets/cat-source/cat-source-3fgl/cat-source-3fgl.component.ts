@@ -8,7 +8,6 @@ import { CatalogService } from '../../../services/catalog.service';
 @Component({
   selector: 'cat-source-3fgl',
   templateUrl: './cat-source-3fgl.component.html',
-  styleUrls: ['./cat-source-3fgl.component.css'],
   providers: [CatalogService]
 })
 export class CatSource3FGLComponent implements OnInit, OnDestroy {
@@ -40,8 +39,8 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
 
     var name = sourceName.toString();
     name = name.substring(6);
-    if(name.indexOf(" ") > 0) {
-      name = name.substring(0, name.length-1);
+    if (name.indexOf(" ") > 0) {
+      name = name.substring(0, name.length - 1);
     }
 
     var string1 = name.substring(0, 4);
@@ -50,7 +49,7 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
     var string3 = name.substring(7);
 
     var operationLetter;
-    if(operation == "+") {
+    if (operation == "+") {
       operationLetter = "p";
     }
     else {
@@ -65,28 +64,31 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
   }
 
   isPowerLaw() {
-    if(this.d.SpectrumType.trim() == 'PowerLaw')
+    if (this.d.SpectrumType.trim() == 'PowerLaw')
       return true;
     return false;
   }
+
   isLogParabola() {
-    if(this.d.SpectrumType.trim() == 'LogParabola')
+    if (this.d.SpectrumType.trim() == 'LogParabola')
       return true;
     return false;
   }
+
   isECPL() {
-    if(this.d.SpectrumType.trim() == 'PLExpCutoff')
+    if (this.d.SpectrumType.trim() == 'PLExpCutoff')
       return true;
     return false;
   }
+
   isSuperECPL() {
-    if(this.d.SpectrumType.trim() == 'PLSuperExpCutoff')
+    if (this.d.SpectrumType.trim() == 'PLSuperExpCutoff')
       return true;
     return false;
   }
 
   peakMeasured() {
-    if(this.d.Signif_Peak != null)
+    if (this.d.Signif_Peak != null)
       return true;
     return false;
   }
@@ -102,20 +104,19 @@ export class CatSource3FGLComponent implements OnInit, OnDestroy {
     });
   }
 
-  constructor(
-    private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+  constructor(private catalogService: CatalogService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
     console.log("Routing to CatSource3FGLComponent...");
 
     this.sub = this.activatedRoute.params.subscribe(params => {
-        let id = +params['id'];
-        console.log('id ', id);
-        this.id = id;
-        this.getSource();
+      let id = +params['id'];
+      console.log('id ', id);
+      this.id = id;
+      this.getSource();
     });
 
     this.getCatalog();

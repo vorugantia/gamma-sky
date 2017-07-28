@@ -30,4 +30,5 @@ import { CatalogService } from '../../services/catalog.service';
     CatalogService
   ]
 })
-export class CatViewModule { }
+export class CatViewModule {
+}

@@ -1,4 +1,3 @@
-
 class Survey {
   "id": string;
   "url": string;

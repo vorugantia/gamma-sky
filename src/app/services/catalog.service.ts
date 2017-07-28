@@ -81,6 +81,7 @@ export class CatalogService {
     return Promise.reject(error.message || error);
   }
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+  }
 
 }

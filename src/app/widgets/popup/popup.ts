@@ -1,7 +1,7 @@
-
 class PopupBase {
 
   public source;
+
   constructor(source) {
     this.source = source;
   }
@@ -16,7 +16,7 @@ class PopupBase {
 
     return `
         <div class='popup-link'>
-          <a href=`+ url +`>
+          <a href=` + url + `>
             Go to details page
           </a>
         </div>
@@ -25,4 +25,4 @@ class PopupBase {
 
 }
 
-export {PopupBase};
+export { PopupBase };

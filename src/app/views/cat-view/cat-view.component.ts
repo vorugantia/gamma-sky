@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'cat-view',
-  templateUrl: './cat-view.component.html',
-  styleUrls: ['./cat-view.component.css']
+  templateUrl: './cat-view.component.html'
 })
 export class CatViewComponent implements OnInit {
 
   private selectedView = "cat";
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     console.log("CatViewComponent ngOnInit()");

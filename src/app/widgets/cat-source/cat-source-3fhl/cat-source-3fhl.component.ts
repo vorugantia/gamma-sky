@@ -8,7 +8,6 @@ import { CatalogService } from '../../../services/catalog.service';
 @Component({
   selector: 'cat-source-3fhl',
   templateUrl: './cat-source-3fhl.component.html',
-  styleUrls: ['./cat-source-3fhl.component.css'],
   providers: [CatalogService]
 })
 export class CatSource3FHLComponent implements OnInit {
@@ -23,7 +22,7 @@ export class CatSource3FHLComponent implements OnInit {
 
   getCatalog() {
     this.catalogService.getCatalog3FHL()
-      .subscribe(catalog => this.catalog = catalog );
+      .subscribe(catalog => this.catalog = catalog);
   }
 
   getSource() {
@@ -37,8 +36,9 @@ export class CatSource3FHLComponent implements OnInit {
   isExtended() {
     return this.source.is_extended();
   }
+
   isLogParabola() {
-    if(this.d.SpectrumType.trim() == 'LogParabola')
+    if (this.d.SpectrumType.trim() == 'LogParabola')
       return true;
     return false;
   }
@@ -55,11 +55,10 @@ export class CatSource3FHLComponent implements OnInit {
 
   }
 
-  constructor(
-    private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private catalogService: CatalogService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
     console.log("Routing to CatSource3FHLComponent...");

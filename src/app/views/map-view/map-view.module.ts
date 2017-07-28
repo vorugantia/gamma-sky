@@ -31,4 +31,5 @@ import { CatalogService } from '../../services/catalog.service';
     ShareDialogComponent
   ]
 })
-export class MapViewModule { }
+export class MapViewModule {
+}

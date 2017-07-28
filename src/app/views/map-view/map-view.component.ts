@@ -9,7 +9,8 @@ export class MapViewComponent implements OnInit {
 
   private selectedView = "map";
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     console.log("MapViewComponent ngOnInit()");

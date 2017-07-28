@@ -20,7 +20,7 @@ export class AboutButtonComponent implements OnInit {
   resize() {
     let pageWidth = $(document).width();
 
-    if(pageWidth > 800) {
+    if (pageWidth > 800) {
       this.aboutButtonRight = "160px";
     }
     else {
@@ -28,7 +28,8 @@ export class AboutButtonComponent implements OnInit {
     }
   }
 
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MdDialog) {
+  }
 
   ngOnInit() {
     this.resize();
@@ -42,4 +43,5 @@ export class AboutButtonComponent implements OnInit {
   templateUrl: './about-dialog.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutDialogComponent {}
+export class AboutDialogComponent {
+}

@@ -31,7 +31,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
     this.catalogService.getCatalogTeV()
       .subscribe(catalog => this.makeSearchItems(catalog, items, 'common_name'))
-      this.options = items;
+    this.options = items;
 
     this.catalogService.getCatalog3FHL()
       .subscribe(catalog => this.makeSearchItems(catalog, items))
@@ -44,7 +44,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
   // Creates individual source objects for each search entry
   makeSearchItems(catalog, items, nameCol = 'Source_Name') {
-    for(var i = 0; i < catalog.data.length; i++) {
+    for (var i = 0; i < catalog.data.length; i++) {
       items.push({
         cat: catalog.catName,
         id: catalog.data[i]['source_id'].toString(),
@@ -57,11 +57,11 @@ export class CatSearchComponent implements OnInit, DoCheck {
   public filter(val: string): any[] {
     let results;
 
-    if(val) {
-      results = this.options.filter( function(s) {
+    if (val) {
+      results = this.options.filter(function (s) {
         return s.name.toLowerCase().includes(val.toLowerCase())
       })
-      results = results.slice(0,5);
+      results = results.slice(0, 5);
     }
     else {
       results = [];
@@ -78,7 +78,7 @@ export class CatSearchComponent implements OnInit, DoCheck {
 
   // When an item is selected/decselected
   onSelected(evt: MdOptionSelectionChange, option) {
-    if(evt.source.selected) { //If an option is selected vs. un-selected
+    if (evt.source.selected) { //If an option is selected vs. un-selected
       this.selectedCat = option.cat;
       this.selectedId = option.id;
       this.selectedName = option.name;
@@ -92,10 +92,8 @@ export class CatSearchComponent implements OnInit, DoCheck {
   }
 
 
-  constructor(
-    private catalogService: CatalogService,
-    private router: Router
-  ) {
+  constructor(private catalogService: CatalogService,
+              private router: Router) {
     this.myControl = new FormControl();
   }
 
@@ -105,9 +103,9 @@ export class CatSearchComponent implements OnInit, DoCheck {
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
       .map(option => option && typeof option === 'object' ? option.name
-                                                          : option)
+        : option)
       .map(name => name ? this.filter(name)
-                        : []);//this.options.slice());
+        : []);//this.options.slice());
 
   }
 
