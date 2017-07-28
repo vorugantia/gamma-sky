@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { SourceTeV, Source3FGL, SourceSNRcat, Source3FHL } from './source';
@@ -10,7 +9,14 @@ import { CatalogTeV, Catalog3FGL, CatalogSNRcat, Catalog3FHL } from './catalog';
 @Injectable()
 export class CatalogService {
 
-// Fetch catalog data
+  constructor(private http: Http) {
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
+
   getCatalogTeV() {
     return this.http.get('data/cat/tev/cat.json')
       .map(res => res.json())
@@ -39,11 +45,10 @@ export class CatalogService {
       .catch(this.handleError);
   }
 
-// Fetch source data
   getSourceDirectory(cat, id) {
-    var str = id.toString();
-    var pad = "0000";
-    var s = pad.substring(0, pad.length - str.length) + str;
+    const str = id.toString();
+    const pad = '0000';
+    const s = pad.substring(0, pad.length - str.length) + str;
     return `data/cat/${cat}/sources/${s}/data.json`;
   }
 
@@ -74,13 +79,5 @@ export class CatalogService {
       .map(source => new SourceSNRcat(source))
       .catch(this.handleError);
   }
-
-
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
-  constructor(private http: Http) {}
 
 }

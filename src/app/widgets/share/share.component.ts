@@ -21,15 +21,15 @@ export class ShareButtonComponent implements OnInit {
   resize() {
     let pageWidth = $(document).width();
 
-    if(pageWidth > 800) {
+    if (pageWidth > 800) {
       this.shareButtonRight = "100px";
-    }
-    else {
+    } else {
       this.shareButtonRight = "50px";
     }
   }
 
-  constructor(public dialog: MdDialog) {}
+  constructor(public dialog: MdDialog) {
+  }
 
   ngOnInit() {
     this.resize();
@@ -48,6 +48,7 @@ export class ShareDialogComponent {
   // See https://stackoverflow.com/a/40733052/4726636
   private urlString = this.document.location.href;
 
-  constructor(@Inject(DOCUMENT) private document: any) {}
+  constructor(@Inject(DOCUMENT) private document: any) {
+  }
 
 }

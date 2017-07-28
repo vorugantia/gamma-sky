@@ -1,33 +1,30 @@
-
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {PopupTeV} from '../popup/popup-tev';
-import {Popup3FGL} from '../popup/popup-3fgl';
-import {PopupSNRcat} from '../popup/popup-snrcat';
-import {Popup3FHL} from '../popup/popup-3fhl';
-import {CatalogService} from '../../services/catalog.service';
+import { PopupTeV } from '../popup/popup-tev';
+import { Popup3FGL } from '../popup/popup-3fgl';
+import { PopupSNRcat } from '../popup/popup-snrcat';
+import { Popup3FHL } from '../popup/popup-3fhl';
+import { CatalogService } from '../../services/catalog.service';
 
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs/Rx';
 
 // config
-import {SURVEYS} from '../../services/surveys';
-import {MAP_STATE} from '../../services/map-state';
+import { SURVEYS } from '../../services/surveys';
+import { MAP_STATE } from '../../services/map-state';
 
-declare var A: any;
-declare var HpxImageSurvey: any;
-declare var CooConversion: any;
+declare let A: any;
+declare let HpxImageSurvey: any;
+declare let CooConversion: any;
 
 @Component({
-  selector: 'map',
-  templateUrl: './map.component.html',
+  selector: 'app-map',
+  template: `<div id="aladin-lite-div"></div>`,
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnDestroy {
 
   private map;
   private cat;
-  private error: any;
 
   // Used to configure view
   private sub;
@@ -42,7 +39,7 @@ export class MapComponent implements OnInit, OnDestroy {
     opts.fov = this.fov;
 
     // Initialize Aladin Lite
-    this.map = A.aladin("#aladin-lite-div", opts);
+    this.map = A.aladin('#aladin-lite-div', opts);
   }
 
   updateSurveys() {
@@ -53,9 +50,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
 // TODO: Go through this function and replace data accesses with functions, which can be defined in catalog.ts.
   addCatalog(catalogName, catalogColor, data) {
-    console.log("Adding ", catalogName, " catalog...");
 
-    var catalog = data;
+    let catalog = data;
 
     this.cat = A.catalog({
       name: catalogName,
@@ -66,17 +62,16 @@ export class MapComponent implements OnInit, OnDestroy {
     this.map.addCatalog(this.cat);
 
     // Adding each individual source:
-    var n_sources = catalog.data.length;
-    console.log(catalogName, " # number of sources: ", n_sources);
+    const n_sources = catalog.data.length;
 
-    for(var i = 0; i < n_sources; i++) {
-      //Configuring the popup
-      var popup = this.initializePopup(catalogName, catalog, i);
-      var ra = catalog.data[i][catalog.raCol];
-      var dec = catalog.data[i][catalog.decCol];
+    for (let i = 0; i < n_sources; i++) {
+      // Configuring the popup
+      let popup = initializePopup(catalogName, catalog, i);
+      const ra = catalog.data[i][catalog.raCol];
+      const dec = catalog.data[i][catalog.decCol];
 
-      //Adding the markers
-      var marker = A.marker(
+      // Adding the markers
+      const marker = A.marker(
         ra,
         dec,
         {
@@ -84,30 +79,9 @@ export class MapComponent implements OnInit, OnDestroy {
         });
       this.cat.addSources([marker]);
 
-        //this.cat.hide() will hide all catalogs on webpage startup.
+      // this.cat.hide() will hide all catalogs on webpage startup.
     }
 
-    console.log(catalogName, " loading done");
-
-  }
-
-  initializePopup(catalogName, catalog, source) {
-    var popup;
-
-    if(catalogName == 'TeV') {
-      popup = new PopupTeV(catalog.data[source]);
-    }
-    else if(catalogName == '3FHL') {
-      popup = new Popup3FHL(catalog.data[source]);
-    }
-    else if(catalogName == '3FGL') {
-      popup = new Popup3FGL(catalog.data[source]);
-    }
-    else {
-      popup = new PopupSNRcat(catalog.data[source]);
-    }
-
-    return popup;
   }
 
   getCatalog3FHL() {
@@ -145,6 +119,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this.hideCatalog('snrcat');
       });
   }
+
   getCatalogTeV() {
     this.catalogService.getCatalogTeV()
       .subscribe(catalog => {
@@ -159,7 +134,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   hideCatalog(catName) {
-    if(catName != this.marker) {
+    if (catName !== this.marker) {
       this.cat.hide();
     }
   }
@@ -171,11 +146,11 @@ export class MapComponent implements OnInit, OnDestroy {
         this.map.getRaDec()[1]
       ]);
     let dynamicTarget = dynamicGlonGlat[0].toFixed(3) + ','
-                        + dynamicGlonGlat[1].toFixed(3);
+      + dynamicGlonGlat[1].toFixed(3);
     let dynamicFov = this.map.getFov()[0].toFixed(3).toString();
 
     let dynamicParams = 'target=' + dynamicTarget + '&fov=' + dynamicFov
-                         + '&marker=' + this.marker;
+      + '&marker=' + this.marker;
 
     // Update the URL (without refreshing page) as Map View changes.
     // TODO: Only call this on mouse scroll (event listener needed.)
@@ -183,26 +158,24 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
-  constructor(
-    private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute,
-    // private router: Router,
-    private location: Location
-    // private params: Params
-  ) { }
+  constructor(private catalogService: CatalogService,
+              private activatedRoute: ActivatedRoute,
+              // private router: Router,
+              private location: Location
+              // private params: Params
+  ) {
+  }
 
   ngOnInit() {
     // Grabs parameters from the URL and uses them to set up Aladin map view.
     this.sub = this.activatedRoute
-          .queryParams
-          .subscribe(params => {
-            // The || gives a default value if no parameter is returned.
-            this.target = params['target'] || "0 +0";
-            this.fov = params['fov']       || "180";
-            this.marker = params['marker'] || "tev";
-          });
-
-    console.log("aladin map onInit()");
+      .queryParams
+      .subscribe(params => {
+        // The || gives a default value if no parameter is returned.
+        this.target = params['target'] || '0 +0';
+        this.fov = params['fov'] || '180';
+        this.marker = params['marker'] || 'tev';
+      });
 
     this.showMap();
     this.updateSurveys();
@@ -215,8 +188,20 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('aladin map OnDestroy');
     this.sub.unsubscribe();
   }
 
+}
+
+
+function initializePopup(catalogName, catalog, source) {
+  if (catalogName === 'TeV') {
+    return new PopupTeV(catalog.data[source]);
+  } else if (catalogName === '3FHL') {
+    return new Popup3FHL(catalog.data[source]);
+  } else if (catalogName === '3FGL') {
+    return new Popup3FGL(catalog.data[source]);
+  } else {
+    return new PopupSNRcat(catalog.data[source]);
+  }
 }

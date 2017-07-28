@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'cat-help',
-  templateUrl: './cat-help.component.html',
-  styleUrls: ['./cat-help.component.css']
+  selector: 'app-cat-help',
+  templateUrl: './cat-help.component.html'
 })
-export class CatHelpComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class CatHelpComponent {
 }

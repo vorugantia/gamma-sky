@@ -7,9 +7,9 @@ import { MdAutocompleteModule, MdInputModule, MdDialogModule } from '@angular/ma
 import { SwitchViewComponent } from '../views/switch-view/switch-view.component';
 
 @NgModule({
-  imports:      [ CommonModule ],
-  declarations: [ SwitchViewComponent ],
-  exports:      [
+  imports: [CommonModule],
+  declarations: [SwitchViewComponent],
+  exports: [
     SwitchViewComponent,
 
     CommonModule,
@@ -20,4 +20,5 @@ import { SwitchViewComponent } from '../views/switch-view/switch-view.component'
     MdDialogModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

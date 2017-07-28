@@ -20,7 +20,8 @@
       <ul>
         <li>TeVCat name: {{d.tevcat_name}}
           (TeVCat ID: <a href={{source.get_tevcat_url()}} target='_blank'>{{d.tevcat_id}}</a>,
-          TeVCat2 ID: <a href={{source.get_tevcat2_url()}} target="_blank">{{d.tevcat2_id}}</a>)</li>
+          TeVCat2 ID: <a href={{source.get_tevcat2_url()}} target="_blank">{{d.tevcat2_id}}</a>)
+        </li>
         <li>TGeVCat name: {{d.tgevcat_name}} (ID: {{d.tgevcat_id}})</li>
       </ul>
       <ul>
@@ -59,7 +60,7 @@
         <li>Sigma: {{source.format(d.morph_sigma, false, 'deg')}}</li>
         <li>Sigma error: {{source.format(d.morph_sigma_err, false, 'deg')}}</li>
         <li>Sigma2: {{source.format(d.morph_sigma2, false, 'deg')}}</li>
-        <li>Sigma2 error: {{source.format(d.morph_sigma2_err, false, 'deg')}} </li>
+        <li>Sigma2 error: {{source.format(d.morph_sigma2_err, false, 'deg')}}</li>
         <li>Position angle: {{source.format(d.morph_pa, false, 'deg')}}</li>
         <li>Position angle error: {{source.format(d.morph_pa_err, false, 'deg')}}
         </li>
@@ -74,12 +75,15 @@
       </ul>
 
       <div *ngIf="show_spec_pl()">
-      <!-- <div [hidden]="!show_spec_pl()">  <=this might fix the bug also -->
+        <!-- <div [hidden]="!show_spec_pl()">  <=this might fix the bug also -->
         <ul>
           <li>Spectrum type: pl</li>
           <ul>
-            <li>norm: {{source.format_stat_sys(d.spec_pl_norm, d.spec_pl_norm_err, d.spec_pl_norm_err_sys, true, 'cm-2 s-1 TeV-1' )}}</li>
-            <li>index: {{source.format_stat_sys(d.spec_pl_index, d.spec_pl_index_err, d.spec_pl_index_err_sys, true)}}</li>
+            <li>norm: {{source.format_stat_sys(d.spec_pl_norm, d.spec_pl_norm_err, d.spec_pl_norm_err_sys, true, 'cm-2
+              s-1 TeV-1' )}}
+            </li>
+            <li>index: {{source.format_stat_sys(d.spec_pl_index, d.spec_pl_index_err, d.spec_pl_index_err_sys, true)}}
+            </li>
             <li>reference: {{source.format(d.spec_pl_e_ref, true, 'TeV')}}</li>
           </ul>
         </ul>
@@ -88,8 +92,12 @@
         <ul>
           <li>Spectrum type: pl2 (integral pl)</li>
           <ul>
-            <li>flux: {{source.format_stat_sys(d.spec_pl2_flux, d.spec_pl2_flux_err, d.spec_pl2_flux_err_sys, true, 'cm-2 s-1')}}</li>
-            <li>index: {{source.format_stat_sys(d.spec_pl2_index, d.spec_pl2_index_err, d.spec_pl2_index_err_sys, true)}}</li>
+            <li>flux: {{source.format_stat_sys(d.spec_pl2_flux, d.spec_pl2_flux_err, d.spec_pl2_flux_err_sys, true,
+              'cm-2 s-1')}}
+            </li>
+            <li>index: {{source.format_stat_sys(d.spec_pl2_index, d.spec_pl2_index_err, d.spec_pl2_index_err_sys,
+              true)}}
+            </li>
             <li>e_min: {{source.format(d.spec_pl2_e_min, true, 'TeV')}}</li>
             <li>e_max: {{source.format(d.spec_pl2_e_max, true, 'TeV')}}</li>
           </ul>
@@ -99,9 +107,15 @@
         <ul>
           <li>Spectrum type: ecpl</li>
           <ul>
-            <li>norm: {{source.format_stat_sys(d.spec_ecpl_norm, d.spec_ecpl_norm_err, d.spec_ecpl_norm_err_sys, true, 'cm-2 s-1 TeV-1')}}</li>
-            <li>index: {{source.format_stat_sys(d.spec_ecpl_index, d.spec_ecpl_index_err, d.spec_ecpl_index_err_sys, true)}}</li>
-            <li>e_cut: {{source.format_stat_sys(d.spec_ecpl_e_cut, d.spec_ecpl_e_cut_err, d.spec_ecpl_e_cut_err_sys, true, 'TeV')}}</li>
+            <li>norm: {{source.format_stat_sys(d.spec_ecpl_norm, d.spec_ecpl_norm_err, d.spec_ecpl_norm_err_sys, true,
+              'cm-2 s-1 TeV-1')}}
+            </li>
+            <li>index: {{source.format_stat_sys(d.spec_ecpl_index, d.spec_ecpl_index_err, d.spec_ecpl_index_err_sys,
+              true)}}
+            </li>
+            <li>e_cut: {{source.format_stat_sys(d.spec_ecpl_e_cut, d.spec_ecpl_e_cut_err, d.spec_ecpl_e_cut_err_sys,
+              true, 'TeV')}}
+            </li>
             <li>reference: {{source.format(d.spec_ecpl_e_ref, true, 'TeV')}}</li>
           </ul>
         </ul>
@@ -123,10 +137,18 @@
         <u>Derived fluxes</u>
       </p>
       <ul>
-        <li>Spectral model norm (1 TeV): {{source.format_error(d.spec_dnde_1TeV, d.spec_dnde_1TeV_err, true, 'cm-2 s-1 TeV-1 (stat.)')}}</li>
-        <li>Integrated flux (&gt;1 TeV): {{source.format_error(d.spec_flux_1TeV, d.spec_flux_1TeV_err, true, 'cm-2 s-1 (stat.)')}} </li>
-        <li>Integrated flux (&gt;1 TeV): {{source.format_error(d.spec_flux_1TeV_crab, d.spec_flux_1TeV_crab_err, true, '% crab')}}</li>
-        <li>Integrated flux (1-10 TeV): {{source.format_error(d.spec_eflux_1TeV_10TeV, d.spec_eflux_1TeV_10TeV_err, true, 'erg cm-2 s-1')}} </li>
+        <li>Spectral model norm (1 TeV): {{source.format_error(d.spec_dnde_1TeV, d.spec_dnde_1TeV_err, true, 'cm-2 s-1
+          TeV-1 (stat.)')}}
+        </li>
+        <li>Integrated flux (&gt;1 TeV): {{source.format_error(d.spec_flux_1TeV, d.spec_flux_1TeV_err, true, 'cm-2 s-1
+          (stat.)')}}
+        </li>
+        <li>Integrated flux (&gt;1 TeV): {{source.format_error(d.spec_flux_1TeV_crab, d.spec_flux_1TeV_crab_err, true,
+          '% crab')}}
+        </li>
+        <li>Integrated flux (1-10 TeV): {{source.format_error(d.spec_eflux_1TeV_10TeV, d.spec_eflux_1TeV_10TeV_err,
+          true, 'erg cm-2 s-1')}}
+        </li>
       </ul>
 
       <br>
@@ -146,9 +168,9 @@
   </div>
 </div>
 <footer>
-    <div class="container">
-        <p>
-            Data from: <a href="https://gammapy.github.io/gamma-cat/">gamma-cat, an open TeV source catalog</a>
-        </p>
-    </div>
+  <div class="container">
+    <p>
+      Data from: <a href="https://gammapy.github.io/gamma-cat/">gamma-cat, an open TeV source catalog</a>
+    </p>
+  </div>
 </footer>

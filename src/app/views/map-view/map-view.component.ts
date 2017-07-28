@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'map-view',
-  templateUrl: './map-view.component.html',
+  selector: 'app-map-view',
+  template: `
+    <div id='background'>
+      <app-map></app-map>
+      <app-switch-view selectedView="map"></app-switch-view>
+      <app-about-button></app-about-button>
+      <share-button></share-button>
+    </div>
+  `,
   styleUrls: ['./map-view.component.css']
 })
-export class MapViewComponent implements OnInit {
-
-  private selectedView = "map";
-
-  constructor() { }
-
-  ngOnInit() {
-    console.log("MapViewComponent ngOnInit()");
-  }
-
+export class MapViewComponent {
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Catalog3FHL } from '../../../services/catalog';
@@ -6,12 +6,11 @@ import { Source3FHL } from '../../../services/source';
 import { CatalogService } from '../../../services/catalog.service';
 
 @Component({
-  selector: 'cat-source-3fhl',
+  selector: 'app-cat-source-3fhl',
   templateUrl: './cat-source-3fhl.component.html',
-  styleUrls: ['./cat-source-3fhl.component.css'],
   providers: [CatalogService]
 })
-export class CatSource3FHLComponent implements OnInit {
+export class CatSource3FHLComponent implements OnInit, OnDestroy {
 
   private sub;
   private id;
@@ -23,7 +22,7 @@ export class CatSource3FHLComponent implements OnInit {
 
   getCatalog() {
     this.catalogService.getCatalog3FHL()
-      .subscribe(catalog => this.catalog = catalog );
+      .subscribe(catalog => this.catalog = catalog);
   }
 
   getSource() {
@@ -37,8 +36,9 @@ export class CatSource3FHLComponent implements OnInit {
   isExtended() {
     return this.source.is_extended();
   }
+
   isLogParabola() {
-    if(this.d.SpectrumType.trim() == 'LogParabola')
+    if (this.d.SpectrumType.trim() == 'LogParabola')
       return true;
     return false;
   }
@@ -55,20 +55,17 @@ export class CatSource3FHLComponent implements OnInit {
 
   }
 
-  constructor(
-    private catalogService: CatalogService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private catalogService: CatalogService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
-    console.log("Routing to CatSource3FHLComponent...");
-
-    // TODO params will be replaced by paramMap. (https://angular.io/guide/router#parammap-api) - I made this switch already in MapComponent.
+    // TODO params will be replaced by paramMap.
+    // (https://angular.io/guide/router#parammap-api) - I made this switch already in MapComponent.
     this.sub = this.activatedRoute.params.subscribe(params => {
       // (the (+) converts string to number)
       let id = +params['id'];
-      console.log('id ', id);
       this.id = id;
       this.getSource();
     });

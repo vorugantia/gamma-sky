@@ -8,7 +8,6 @@ import { CatSourceTeVComponent } from '../../widgets/cat-source/cat-source-tev/c
 import { CatSource3FHLComponent } from '../../widgets/cat-source/cat-source-3fhl/cat-source-3fhl.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'test', pathMatch: 'full'},
   {
     path: '',
     component: CatViewComponent,
@@ -37,4 +36,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CatViewRoutingModule {}
+export class CatViewRoutingModule {
+}

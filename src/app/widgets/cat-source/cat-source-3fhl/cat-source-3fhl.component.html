@@ -12,7 +12,9 @@
         <li>Source name: {{d.Source_Name}}</li>
         <li>Extended name: {{d.Extended_Source_Name}}</li>
         <li>Associations: {{source.join_assoc()}}</li>
-        <li>Association probability: {{source.format(d.ASSOC_PROB_BAY, false)}} (Bayesian), {{source.format(d.ASSOC_PROB_LR)}} (Likelihood Ratio)</li>
+        <li>Association probability: {{source.format(d.ASSOC_PROB_BAY, false)}} (Bayesian),
+          {{source.format(d.ASSOC_PROB_LR)}} (Likelihood Ratio)
+        </li>
         <li>Class: {{d.CLASS}}</li>
         <li>TeVCat flag: {{source.tevcat_flag()}}</li>
       </ul>
@@ -54,14 +56,16 @@
           <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
           <li *ngIf='isLogParabola()'>Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
           <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'GeV')}}</li>
-          <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 GeV-1')}}</li>
+          <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 GeV-1')}}
+          </li>
         </ul>
       </ul>
 
       <ul>
         <li>Power law index: {{source.format_error(d.PowerLaw_Index, d.Unc_PowerLaw_Index, false)}}</li>
         <li>Integral flux (10 GeV - 1 TeV): {{source.format_error(d.Flux, d.Unc_Flux, true, 'cm-2 s-1')}}</li>
-        <li>Energy flux (10 GeV - 1 TeV): {{source.format_error(d.Energy_Flux, d.Unc_Energy_Flux, true, 'erg cm-2 s-1')}}</li>
+        <li>Energy flux (10 GeV - 1 TeV): {{source.format_error(d.Energy_Flux, d.Unc_Energy_Flux, true, 'erg cm-2 s-1')}}
+        </li>
         <li>Significance curvature: {{source.format(d.Signif_Curve, true)}}</li>
       </ul>
 
@@ -74,7 +78,9 @@
       <br>
       <h4><b>Other Info</b></h4>
       <ul>
-        <li>Highest energy photon: {{source.format(d.HEP_Energy, false, 'GeV')}} (Probability: {{source.format(d.HEP_Prob * 100, true)}}%)</li>
+        <li>Highest energy photon: {{source.format(d.HEP_Energy, false, 'GeV')}} (Probability:
+          {{source.format(d.HEP_Prob * 100, true)}}%)
+        </li>
         <li>Bayesian Blocks: {{source.bayesian_blocks()}}</li>
         <li>Redshift: {{source.format(d.Redshift, false)}}</li>
         <li>NuPeak_obs: {{source.format(d.NuPeak_obs, true, 'Hz')}}</li>
