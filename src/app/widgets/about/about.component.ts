@@ -39,18 +39,27 @@ export class AboutButtonComponent implements OnInit {
 
 @Component({
   selector: 'app-about-dialog',
-  templateUrl: './about-dialog.component.html'
+  templateUrl: './about-dialog.component.html',
+  styleUrls: ['./about.component.css']
 })
 export class AboutDialogComponent implements OnInit {
 
   private version;
+  private lastModified;
 
   constructor(private appInfoService: AppInfoService) {
   }
 
   ngOnInit() {
     this.appInfoService.getInfo()
-      .subscribe(data => this.version = data['version']);
+      .subscribe(data => {
+        this.version = data['version'];
+        this.lastModified = data['last_modified'];
+      });
+  }
+
+  appInfoLoaded() {
+    return (this.version && this.lastModified)
   }
 
 }
