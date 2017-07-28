@@ -13,7 +13,7 @@ class Survey {
 //         Conversely, some of the survey links do work but the image will not appear on Aladin Lite.
 //         Therefore, check each survey that you add to the list below.
 
-export var SURVEYS: Survey[] = [
+export const SURVEYS: Survey[] = [
 
   {
     "id": "P/Fermi/10GeV",

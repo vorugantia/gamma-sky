@@ -42,7 +42,7 @@ class SourceBase {
   }
 
   join_entries(arr) {
-    var entries = arr.filter(entry => {
+    const entries = arr.filter(entry => {
       return /\S/.test(entry);
     });
     return entries.toString().replace(/,/g, ', ');
@@ -50,15 +50,16 @@ class SourceBase {
 
   tevcat_flag() {
     // Only works for 3FHL and 3FGL.
-    var flag = this.data.TEVCAT_FLAG;
-    if (flag == 'N')
+    const flag = this.data.TEVCAT_FLAG;
+    if (flag === 'N') {
       return "No TeV association";
-    else if (flag == 'P')
+    } else if (flag === 'P') {
       return "Small TeV source";
-    else if (flag == 'E')
+    } else if (flag === 'E') {
       return "Extended TeV source (diameter > 40 arcmins)";
-    else
+    } else {
       return "N/A";
+    }
   }
 
   getTargetString(glon = 'GLON', glat = 'GLAT') {
@@ -91,7 +92,10 @@ export class SourceTeV extends SourceBase {
     if (val == null) {
       return this.handle_null();
     } else {
-      return `${this.format(val, precision)} +/- ${this.format(err_stat, precision)} (stat.) +/- ${this.format(err_syst, precision)} (syst.) ${unit}`;
+      return `
+        ${this.format(val, precision)} +/- ${this.format(err_stat, precision)} (stat.)
+        +/- ${this.format(err_syst, precision)} (syst.) ${unit}
+        `;
     }
   }
 
@@ -102,26 +106,27 @@ export class Source3FHL extends SourceBase {
   public cat = '3fhl';
 
   join_assoc() {
-    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_GAM,
-      this.data.ASSOC_TEV];
-
-    return this.join_entries(assocs);
+    return this.join_entries([
+      this.data.ASSOC1,
+      this.data.ASSOC2,
+      this.data.ASSOC_GAM,
+      this.data.ASSOC_TEV
+    ]);
   }
 
   bayesian_blocks() {
-    var bayesBlocks = this.data.Variability_BayesBlocks;
-    var msg;
-    if (bayesBlocks == 1)
-      msg = '1 (not variable)';
-    else if (bayesBlocks == -1)
-      msg = 'Could not be tested';
-    else
-      msg = bayesBlocks.toString();
-    return msg;
+    const bayesBlocks = this.data.Variability_BayesBlocks;
+    if (bayesBlocks === 1) {
+      return '1 (not variable)';
+    } else if (bayesBlocks === -1) {
+      return 'Could not be tested';
+    } else {
+      return bayesBlocks.toString();
+    }
   }
 
   is_extended() {
-    return this.data.Extended_Source_Name.trim() != '';
+    return this.data.Extended_Source_Name.trim() !== '';
   }
 
 }
@@ -131,17 +136,23 @@ export class Source3FGL extends SourceBase {
   public cat = '3fgl';
 
   join_assoc() {
-    var assocs = [this.data.ASSOC1, this.data.ASSOC2, this.data.ASSOC_TEV,
-      this.data.ASSOC_GAM1, this.data.ASSOC_GAM2, this.data.ASSOC_GAM3];
-
-    return this.join_entries(assocs);
+    return this.join_entries([
+      this.data.ASSOC1,
+      this.data.ASSOC2,
+      this.data.ASSOC_TEV,
+      this.data.ASSOC_GAM1,
+      this.data.ASSOC_GAM2,
+      this.data.ASSOC_GAM3
+    ]);
   }
 
   join_other_names() {
-    var other_names = [this.data['0FGL_Name'], this.data['1FGL_Name'],
-      this.data['2FGL_Name'], this.data['1FHL_Name']];
-
-    return this.join_entries(other_names);
+    return this.join_entries([
+      this.data['0FGL_Name'],
+      this.data['1FGL_Name'],
+      this.data['2FGL_Name'],
+      this.data['1FHL_Name']
+    ]);
   }
 
 }
