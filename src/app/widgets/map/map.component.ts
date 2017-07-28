@@ -18,7 +18,8 @@ declare let CooConversion: any;
 
 @Component({
   selector: 'app-map',
-  template: `<div id="aladin-lite-div"></div>`,
+  template: `<div id="aladin-lite-div" (mouseup)="updateUrl()"></div>`,
+  // (scroll) event not working? https://github.com/angular/angular/issues/17015
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnDestroy {
