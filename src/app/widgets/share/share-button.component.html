@@ -5,16 +5,4 @@
     <b>Share</b>
   </button>
 
-  <div id="shareLinkBox" [hidden]="!toggle">
-
-    <form id=shareLinkText>
-      <input id=shareLinkText type="text" value="{{urlString}}" (focus)="$event.target.select()">
-    </form>
-
-    <button id="closeShareLinkButton" (click)="closeLink()">
-      <b>Close</b>
-    </button>
-
-  </div>
-
 </div>
