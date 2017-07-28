@@ -7,15 +7,10 @@ div {
   width: 150px;
   height: 30px;
   /*padding: 0 1em 0 1em;*/
-  z-index: 99999;
+  z-index: 20;
 }
 #switchViewButton {
-  font-family: monospace;
   font-size: 15px;
   position: fixed;
-  border: 2px solid rgb(50, 50, 50);
-  background-color: white;
-  opacity: 0.9;
-  height: 30px;
   right: 10px;
 }

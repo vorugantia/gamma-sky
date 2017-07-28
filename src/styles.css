@@ -22,15 +22,28 @@
   font-size: 12px;
 }
 
+/*Buttons*/
+.button-default {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  border: 2px solid rgb(50, 50, 50);
+  opacity: 0.9;
+  padding: 4 4 4 4;
+  height: 30px;
+}
+
+.button-map-bottom {
+  bottom: 3px;
+  z-index: 10;
+  position: absolute;
+}
+
 /*Cat detail pages*/
 .cat-detail-button {
-  font-family: monospace;
   font-size: 15px;
-  font-weight: bold;
   /*position: fixed;*/
-  border: 2px solid rgb(50, 50, 50);
-  background-color: white;
-  opacity: 0.9;
-  height: 30px;
   margin-bottom: 20px;
 }

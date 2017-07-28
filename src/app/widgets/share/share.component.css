@@ -1,20 +1,3 @@
-#shareButton {
-  font-family: monospace;
-  font-size: 15px;
-  color: black;
-  position: absolute;
-  border: 2px solid rgb(50, 50, 50);
-  background-color: white;
-  opacity: 0.9;
-  font-size: 14px;
-  padding: 4 4 4 4;
-  height: 30px;
-}
-#shareButton {
-  bottom: 3px;
-  z-index: 10;
-}
-
 #shareLinkBox {
   width:400px;
   font-size: 13px;
