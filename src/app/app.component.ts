@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-import { MapViewComponent } from './views/map-view/map-view.component';
-
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   // title = 'gamma-sky.net';
