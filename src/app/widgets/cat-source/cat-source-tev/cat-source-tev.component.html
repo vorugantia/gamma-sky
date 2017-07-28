@@ -74,7 +74,7 @@
         <li>Livetime: {{source.format(d.livetime, false, 'h')}}</li>
       </ul>
 
-      <div *ngIf="show_spec_pl()">
+      <div *ngIf="source.spec_type == 'pl'">
         <!-- <div [hidden]="!show_spec_pl()">  <=this might fix the bug also -->
         <ul>
           <li>Spectrum type: pl</li>
@@ -88,7 +88,7 @@
           </ul>
         </ul>
       </div>
-      <div *ngIf="show_spec_pl2()">
+      <div *ngIf="source.spec_type == 'pl2'">
         <ul>
           <li>Spectrum type: pl2 (integral pl)</li>
           <ul>
@@ -103,7 +103,7 @@
           </ul>
         </ul>
       </div>
-      <div *ngIf="show_spec_ecpl()">
+      <div *ngIf="source.spec_type == 'ecpl'">
         <ul>
           <li>Spectrum type: ecpl</li>
           <ul>
@@ -120,7 +120,7 @@
           </ul>
         </ul>
       </div>
-      <div *ngIf="no_spec()">
+      <div *ngIf="source.spec_type == 'none'">
         <ul>
           <li>Spectral model not yet implemented.</li>
         </ul>

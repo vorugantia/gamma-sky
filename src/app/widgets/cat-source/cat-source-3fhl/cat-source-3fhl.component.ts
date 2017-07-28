@@ -33,16 +33,6 @@ export class CatSource3FHLComponent implements OnInit, OnDestroy {
       });
   }
 
-  isExtended() {
-    return this.source.is_extended();
-  }
-
-  isLogParabola() {
-    if (this.d.SpectrumType.trim() == 'LogParabola')
-      return true;
-    return false;
-  }
-
   goToMap() {
     let target = this.source.getTargetString();
     this.router.navigate(['map'], {

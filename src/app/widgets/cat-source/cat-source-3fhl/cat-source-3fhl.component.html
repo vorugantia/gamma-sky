@@ -41,7 +41,7 @@
         <li>Npred: {{source.format(d.Npred, true)}}</li>
       </ul>
 
-      <div *ngIf="isExtended()">
+      <div *ngIf="source.is_extended()">
         <p>
           <u>Extended source information</u>
         </p>
@@ -54,7 +54,7 @@
         <li>Spectrum type: {{d.SpectrumType}}</li>
         <ul>
           <li>Spectral index: {{source.format_error(d.Spectral_Index, d.Unc_Spectral_Index, false)}}</li>
-          <li *ngIf='isLogParabola()'>Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
+          <li *ngIf="source.spec_type == 'LogParabola'">Beta: {{source.format_error(d.beta, d.Unc_beta, false)}}</li>
           <li>Pivot energy: {{source.format(d.Pivot_Energy, true, 'GeV')}}</li>
           <li>Flux density at pivot energy: {{source.format_error(d.Flux_Density, d.Unc_Flux_Density, true, 'cm-2 s-1 GeV-1')}}
           </li>

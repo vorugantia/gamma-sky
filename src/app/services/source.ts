@@ -75,6 +75,7 @@ class SourceBase {
 export class SourceTeV extends SourceBase {
 
   public cat = 'tev';
+  public spec_type = this.data.spec_type
 
   comma_space(val) {
     return val.split(',').join(', ');
@@ -104,6 +105,7 @@ export class SourceTeV extends SourceBase {
 export class Source3FHL extends SourceBase {
 
   public cat = '3fhl';
+  public spec_type = this.data.SpectrumType.trim()
 
   join_assoc() {
     return this.join_entries([
@@ -134,8 +136,7 @@ export class Source3FHL extends SourceBase {
 export class Source3FGL extends SourceBase {
 
   public cat = '3fgl';
-
-  spec_type = this.data.SpectrumType.trim();
+  public spec_type = this.data.SpectrumType.trim();
 
   join_assoc() {
     return this.join_entries([

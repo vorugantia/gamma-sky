@@ -33,30 +33,6 @@ export class CatSourceTeVComponent implements OnInit, OnDestroy {
       });
   }
 
-  show_spec_pl() {
-    if (this.d.spec_type == 'pl')
-      return true;
-    return false;
-  }
-
-  show_spec_pl2() {
-    if (this.d.spec_type == 'pl2')
-      return true;
-    return false;
-  }
-
-  show_spec_ecpl() {
-    if (this.d.spec_type == 'ecpl')
-      return true;
-    return false;
-  }
-
-  no_spec() {
-    if (this.d.spec_type == 'none')
-      return true;
-    return false;
-  }
-
   goToMap() {
     let target = this.source.getTargetString('glon', 'glat');
     this.router.navigate(['map'], {
